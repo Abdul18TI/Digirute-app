@@ -1,0 +1,39 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateIuransTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('iurans', function (Blueprint $table) {
+            $table->id('id_iuran');
+            $table->string('pj_iuran');
+            $table->string('judul_iuran');
+            $table->integer('target_iuran');
+            $table->integer('jumlah_iuran');
+            $table->timestamp('tgl_pembuatan_iuran');
+            $table->dateTime('tgl_mulai_iuran');
+            $table->dateTime('tgl_akhir_iuran');
+            $table->text('deskripsi_iuran');
+            $table->integer('status_iuran');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('iurans');
+    }
+}

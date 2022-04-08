@@ -25,8 +25,8 @@ class CreateWargasTable extends Migration
             $table->string('tempat_lahir');
             $table->string('tgl_lahir');
             $table->string('jenis_kelamin');
-            $table->string('golongan_darah', ['A', 'B', 'AB', 'O']);
-            $table->string('status_perkawinan', ['belum_kawin', 'kawin', 'cerai_hidup', 'cerai']);
+            $table->enum('golongan_darah', ['A', 'B', 'AB', 'O']);
+            $table->enum('status_perkawinan', ['belum_kawin', 'kawin', 'cerai_hidup', 'cerai']);
             $table->string('nomor_passport')->unique();
             $table->string('nomor_kitaskitap')->unique();
             $table->string('nama_ayah');

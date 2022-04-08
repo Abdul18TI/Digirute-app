@@ -19,7 +19,6 @@ class CreatePengaduansTable extends Migration
             $table->string('kategori_pengaduan');
             $table->text('deskripsi_pengaduan');
             $table->string('bukti_pengaduan');
-            $table->dateTime('tgl_pengaduan');
         });
     }
 
