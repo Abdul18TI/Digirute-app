@@ -15,7 +15,7 @@ class CreateRtsTable extends Migration
     {
         Schema::create('rts', function (Blueprint $table) {
             $table->id('id_rt');
-            $table->foreign('id_rw');
+            $table->foreignId('id_rw');
             $table->string('no_rt');
             $table->string('ketua_rt');
             $table->dateTime('tgl_awal_jabatan_rt');

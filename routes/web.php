@@ -30,3 +30,15 @@ Route::get('/warga', function () {
         "title" => "warga"
     ]);
 });
+
+Route::get('/tambah-pengumuman', function () {
+    return view('tambah_pengumuman', [
+        "title" => "tambah pengumuman"
+    ]);
+});
+
+Route::get('/tabel-pengumuman', function () {
+    return view('tabel_pengumuman', [
+        "title" => "tabel pengumuman"
+    ]);
+});

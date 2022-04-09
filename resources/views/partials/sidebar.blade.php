@@ -48,6 +48,12 @@
                                 <li><a href="">Tabel agenda</a></li>
                             </ul>
                         </li>
+                        <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="calendar"></i><span>Pengumuman</span></a>
+                            <ul class="nav-submenu menu-content">
+                                <li><a href="tabel-pengumuman">Tabel pengumuman</a></li>
+                                <li><a href="tambah-pengumuman">Tambah pengumuman</a></li>
+                            </ul>
+                        </li>
                         <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="sun"></i><span>Covid-19</span></a>
                             <ul class="nav-submenu menu-content">
                                 <li><a href="">Tambah data covid</a></li>
