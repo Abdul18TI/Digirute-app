@@ -60,13 +60,6 @@
                                 <li><a href="tambah-iuran">Tambah iuran</a></li>
                             </ul>
                         </li>
-                        <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="sun"></i><span>Covid-19</span></a>
-                            <ul class="nav-submenu menu-content">
-                                <li><a href="">Tambah data covid</a></li>
-                                <li><a href="">Tabel data covid</a></li>
-                            </ul>
-                        </li>
-
                     </ul>
                 </div>
                 <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>

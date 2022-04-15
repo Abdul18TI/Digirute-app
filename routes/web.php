@@ -43,6 +43,12 @@ Route::get('/tabel-pengumuman', function () {
     ]);
 });
 
+Route::get('/detail-pengumuman', function () {
+    return view('detail_pengumuman', [
+        "title" => "detail pengumuman"
+    ]);
+});
+
 Route::get('/tambah-iuran', function () {
     return view('tambah_iuran', [
         "title" => "tambah iuran"
@@ -64,5 +70,17 @@ Route::get('/detail-iuran', function () {
 Route::get('/kelola-rtrw', function () {
     return view('kelola_rtrw', [
         "title" => "Kelola RT/RW"
+    ]);
+});
+
+Route::get('/kelola-utilitas', function () {
+    return view('kelola_utilitas', [
+        "title" => "Kelola Utilitas"
+    ]);
+});
+
+Route::get('/login-admin', function () {
+    return view('login_admin', [
+        "title" => "Login Admin"
     ]);
 });

@@ -9,7 +9,7 @@
                     <div class="card-header pb-0">
                         <h5>Form tambah iuran</h5>
                     </div>
-                    <form class="form theme-form">
+                    <form class="form theme-form" name="f1" method="POST">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">
@@ -21,24 +21,24 @@
                                 </div>
                             </div>
                             <div class="row">
-								<div class="col">
-									<div class="mb-3">
-										<label class="form-label" for="exampleFormControlSelect7">Jenis iuran</label>
-										<select class="form-select btn-pill digits" id="exampleFormControlSelect7">
-											<option>1</option>
-											<option>2</option>
-											<option>3</option>
-											<option>4</option>
-											<option>5</option>
-										</select>
-									</div>
-								</div>
-							</div>
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="exampleFormControlSelect7">Jenis iuran</label>
+                                        <select class="form-select btn-pill digits" id="exampleFormControlSelect7">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col">
                                     <div class="mb-3">
                                         <label class="form-label" for="exampleFormControlInput1">Jumlah iuran</label>
-                                        <input class="form-control" id="exampleFormControlInput1" type="number"/>
+                                        <input class="form-control" id="exampleFormControlInput1" type="number" />
                                     </div>
                                 </div>
                             </div>
@@ -46,20 +46,22 @@
                                 <div class="col">
                                     <div class="mb-3">
                                         <div class="checkbox checkbox-success">
-                                            <input id="checkbox-primary" type="checkbox">
+                                            <input id="checkbox-primary" type="checkbox"
+                                                onclick="enable_text(this.checked)">
                                             <label for="checkbox-primary">Ada target iuran</label>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                              <div class="row">
-								<div class="col">
-									<div class="mb-3">
-										<label class="form-label" for="exampleInputPassword22">Target iuran</label>
-										<input class="form-control" id="exampleInputPassword22" type="text" disabled="" placeholder="Disabled" />
-									</div>
-								</div>
-							</div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="exampleInputPassword22">Target iuran</label>
+                                        <input class="form-control" id="exampleInputPassword22" name="other_text"
+                                            type="number" disabled="" />
+                                    </div>
+                                </div>
+                            </div>
                             <div class="mb-3 row">
                                 <label class="form-label">Tanggal mulai iuran</label>
                                 <div class="col-sm-9">
