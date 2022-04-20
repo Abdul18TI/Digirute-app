@@ -23,28 +23,19 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach($iuran as $i)
                                     <tr>
-                                        <td>1</td>
-                                        <td>System Architect</td>
-                                        <td>Edinburgh</td>
-                                        <td>61</td>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $i->judul_iuran }}</td>
+                                        <td>{{ $i->target_iuran }}</td>
+                                        <td>{{ $i->jumlah_iuran }}</td>
                                         <td>
-                                            <a class="btn btn-info btn-sm" href="detail-iuran"><span class="fa fa-eye"></span> Detail</a>
-                                            <a class="btn btn-secondary btn-sm" href="javascript:void(0)"><span class="fa fa-edit"></span> Edit</a>
-                                            <a class="btn btn-danger btn-sm" href="javascript:void(0)"><span class="fa fa-trash"></span> Hapus</a>
+                                            <a class="btn btn-info btn-sm" href="detail-iuran/{{ $i->id_iuran }}"><span class="fa fa-eye"></span> Detail</a>
+                                            <a class="btn btn-secondary btn-sm" href="edit-iuran/{{ $i->id_iuran }}"><span class="fa fa-edit"></span> Edit</a>
+                                            <a class="btn btn-danger btn-sm" href="hapus-iuran/{{ $i->id_iuran }}"><span class="fa fa-trash"></span> Hapus</a>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Accountant</td>
-                                        <td>Tokyo</td>
-                                        <td>63</td>
-                                        <td>
-                                            <a class="btn btn-info btn-sm" href="detail-iuran"><span class="fa fa-eye"></span> Detail</a>
-                                            <a class="btn btn-secondary btn-sm" href="javascript:void(0)"><span class="fa fa-edit"></span> Edit</a>
-                                            <a class="btn btn-danger btn-sm" href="javascript:void(0)"><span class="fa fa-trash"></span> Hapus</a>
-                                        </td>
-                                    </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

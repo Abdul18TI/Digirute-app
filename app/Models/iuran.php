@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class iuran extends Model
 {
     use HasFactory;
+
+    protected $guarded = ['id_iuran'];
 }

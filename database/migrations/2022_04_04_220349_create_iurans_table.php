@@ -17,6 +17,7 @@ class CreateIuransTable extends Migration
             $table->id('id_iuran');
             $table->string('pj_iuran');
             $table->string('judul_iuran');
+            $table->string('jenis_iuran');
             $table->integer('target_iuran');
             $table->integer('jumlah_iuran');
             $table->timestamp('tgl_pembuatan_iuran');

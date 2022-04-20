@@ -45,12 +45,6 @@ Route::get('/detail-pengumuman', function () {
     ]);
 })->middleware('auth');
 
-Route::get('/tabel-iuran', function () {
-    return view('tabel_iuran', [
-        "title" => "tabel iuran"
-    ]);
-});
-
 Route::get('/detail-iuran', function () {
     return view('detail_iuran', [
         "title" => "detail iuran"
@@ -78,3 +72,8 @@ Route::get('/login-admin', function () {
 Route::get('/c_login_rw', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/c_login_rw', [LoginController::class, 'authenticate']);
 Route::get('/tambah-iuran', [IuranController::class, 'create']);
+
+//route CRUD
+Route::get('/view-iuran', [IuranController::class, 'index']);
+Route::get('/create-iuran', [IuranController::class, 'create']);
+Route::post('/store-iuran', [IuranController::class, 'store']);
