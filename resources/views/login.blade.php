@@ -51,19 +51,26 @@
             <div class="row">
                 <div class="col-12">
                     <div class="login-card">
-                        <form class="theme-form login-form" method="POST" action="C_login_rw">
+                        <form class="theme-form login-form" method="POST" action="c_login_rw">
+                            @csrf
                             <h4>Login RW</h4>
                             <h6>Selamat datang RW</h6>
+                            @if(session()->has('loginError'))
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{ session('loginError') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close"></button>
+                            </div>
+                            @endif
                             <div class="form-group">
                                 <label>NIK/Username</label>
                                 <div class="input-group"><span class="input-group-text"><i class="icon-user"></i></span>
-                                    <input class="form-control" type="text" id="NIK" name="NIK" placeholder="NIK/Username" value="">
+                                    <input class="form-control" type="text" id="NIK" name="NIK" placeholder="NIK/Username" autofocus required value="{{ old('NIK') }}">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label>Password</label>
                                 <div class="input-group"><span class="input-group-text"><i class="icon-lock"></i></span>
-                                    <input class="form-control" type="password" id="password" name="password" placeholder="*********">
+                                    <input class="form-control" type="password" id="password" name="password" placeholder="*********" required>
                                     <div class="show-hide"><span class="show"> </span></div>
                                 </div>
                             </div>

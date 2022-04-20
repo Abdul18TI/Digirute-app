@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\IuranController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,12 +18,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('home', [
         "title" => "home"
-    ]);
-});
-
-Route::get('/login', function () {
-    return view('login', [
-        "title" => "login"
     ]);
 });
 
@@ -47,13 +43,7 @@ Route::get('/detail-pengumuman', function () {
     return view('detail_pengumuman', [
         "title" => "detail pengumuman"
     ]);
-});
-
-Route::get('/tambah-iuran', function () {
-    return view('tambah_iuran', [
-        "title" => "tambah iuran"
-    ]);
-});
+})->middleware('auth');
 
 Route::get('/tabel-iuran', function () {
     return view('tabel_iuran', [
@@ -84,3 +74,7 @@ Route::get('/login-admin', function () {
         "title" => "Login Admin"
     ]);
 });
+
+Route::get('/c_login_rw', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/c_login_rw', [LoginController::class, 'authenticate']);
+Route::get('/tambah-iuran', [IuranController::class, 'create']);
