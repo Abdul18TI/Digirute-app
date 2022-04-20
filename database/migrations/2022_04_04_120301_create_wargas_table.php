@@ -16,7 +16,7 @@ class CreateWargasTable extends Migration
         Schema::create('wargas', function (Blueprint $table) {
             $table->id('id_warga');
             $table->string('nik')->unique();
-            $table->string('no_kk')->unique();
+            $table->string('no_kk');
             $table->string('username')->unique();
             $table->string('password');
             $table->text('alamat');
