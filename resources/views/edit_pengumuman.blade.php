@@ -40,8 +40,14 @@
                                 <div class="col">
                                     <div class="mb-3 row">
                                         <label class="form-label">Foto pengumuman</label>
+                                        <input type="hidden" name="oldImage" value="{{ $p->foto_pengumuman }}">
+                                        @if($p->foto_pengumuman)
+                                        <img src="{{ asset('storage/'. $p->foto_pengumuman) }}" class="img-preview img-fluid mb-3 col-sm-5 d-block">
+                                        @else
+                                        <img class="img-preview img-fluid mb-3 col-sm-5">
+                                        @endif
                                         <div class="col-sm-9">
-                                            <input class="form-control" name="foto_pengumuman" type="file" />
+                                            <input class="form-control" name="foto_pengumuman" onchange="previewImage()" id="image" type="file" />
                                         </div>
                                     </div>
                                 </div>
@@ -65,4 +71,19 @@
         </div>
     </div>
 </div>
+<script>
+    function previewImage(){
+        const image = document.querySelector('#image');
+        const imgPreview = document.querySelector('.img-preview');
+
+        imgPreview.style.display = 'block';
+        
+        const oFReader = new FileReader();
+        oFReader.readAsDataURL(image.files[0]);
+
+        oFReader.onload = function(oFREvent) {
+            imgPreview.src = oFREvent.target.result;
+        }
+    }
+</script>
 @endsection
