@@ -3,6 +3,7 @@
 use App\Http\Controllers\IuranController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\WargaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -80,3 +81,15 @@ Route::get('/edit-iuran/{id}', [IuranController::class, 'edit']);
 Route::post('/update-iuran', [IuranController::class, 'update']);
 Route::get('/hapus-iuran/{id}', [IuranController::class, 'hapus']);
 // Route::get('/detail-iuran/{id}', [IuranController::class, 'detail']);
+
+
+Route::group(['prefix'=>'RT'], function(){
+    Route::group(['prefix'=>'warga'], function(){
+        Route::get('/',[WargaController::class,'home_rt'])->name('rt.warga.home');
+        Route::get('/tambah',[WargaController::class,'tambah_warga_rt'])->name('rt.warga.tambah');
+        Route::post('/insert',[WargaController::class,'add'])->name('rt.warga.insert');
+        Route::get('/edit/{id}',[WargaController::class,'edit'])->name('rt.warga.edit');
+        Route::put('/update/{id}',[WargaController::class,'update'])->name('rt.warga.update');
+        
+    });
+});
