@@ -86,4 +86,16 @@ class IuranController extends Controller
         // alihkan halaman ke halaman pegawai
         return redirect('/view-iuran');
     }
+
+    // method untuk melihat detail data pegawai
+    public function detail($id)
+    {
+        // mengambil data pegawai berdasarkan id yang dipilih
+        $iuran = DB::table('iurans')->where('id_iuran', $id)->get();
+        // passing data pegawai yang didapat ke view edit.blade.php
+        return view('detail_iuran', [
+            'iuran' => $iuran,
+            'title' => 'detail-iuran'
+        ]);
+    }
 }

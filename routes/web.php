@@ -3,6 +3,7 @@
 use App\Http\Controllers\IuranController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PengumumanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,29 +28,11 @@ Route::get('/warga', function () {
     ]);
 });
 
-Route::get('/tambah-pengumuman', function () {
-    return view('tambah_pengumuman', [
-        "title" => "tambah pengumuman"
-    ]);
-});
-
-Route::get('/tabel-pengumuman', function () {
-    return view('tabel_pengumuman', [
-        "title" => "tabel pengumuman"
-    ]);
-});
-
-Route::get('/detail-pengumuman', function () {
-    return view('detail_pengumuman', [
-        "title" => "detail pengumuman"
-    ]);
-})->middleware('auth');
-
-Route::get('/detail-iuran', function () {
-    return view('detail_iuran', [
-        "title" => "detail iuran"
-    ]);
-});
+// Route::get('/detail-pengumuman', function () {
+//     return view('detail_pengumuman', [
+//         "title" => "detail pengumuman"
+//     ]);
+// })->middleware('auth');
 
 Route::get('/kelola-rtrw', function () {
     return view('kelola_rtrw', [
@@ -79,4 +62,13 @@ Route::post('/store-iuran', [IuranController::class, 'store']);
 Route::get('/edit-iuran/{id}', [IuranController::class, 'edit']);
 Route::post('/update-iuran', [IuranController::class, 'update']);
 Route::get('/hapus-iuran/{id}', [IuranController::class, 'hapus']);
-// Route::get('/detail-iuran/{id}', [IuranController::class, 'detail']);
+Route::get('/detail-iuran/{id}', [IuranController::class, 'detail']);
+
+//route CRUD pengumuman
+Route::get('/view-pengumuman', [PengumumanController::class, 'index']);
+Route::get('/create-pengumuman', [PengumumanController::class, 'create']);
+Route::post('/store-pengumuman', [PengumumanController::class, 'store']);
+Route::get('/edit-pengumuman/{id}', [PengumumanController::class, 'edit']);
+Route::post('/update-pengumuman', [PengumumanController::class, 'update']);
+Route::get('/hapus-pengumuman/{id}', [PengumumanController::class, 'hapus']);
+Route::get('/detail-pengumuman/{id}', [PengumumanController::class, 'detail']);

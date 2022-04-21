@@ -18,7 +18,7 @@
                                         <th>No</th>
                                         <th>Judul iuran</th>
                                         <th>Jumlah terkumpul</th>
-                                        <th>Status</th>
+                                        <th>Jumlah iuran</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -27,7 +27,7 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $i->judul_iuran }}</td>
-                                        <td>{{ $i->target_iuran }}</td>
+                                        <td>0</td>
                                         <td>{{ $i->jumlah_iuran }}</td>
                                         <td>
                                             <a class="btn btn-info btn-sm" href="detail-iuran/{{ $i->id_iuran }}"><span class="fa fa-eye"></span> Detail</a>
