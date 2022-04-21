@@ -18,7 +18,7 @@ class CreatePengumumenTable extends Migration
             $table->string('kategori_pengumuman');
             $table->string('judul_pengumuman');
             $table->text('isi_pengumuman');
-            $table->string('foto_pengumuman');
+            $table->string('foto_pengumuman')->nullable();
             $table->integer('status_pengumuman');
             $table->dateTime('tgl_terbit');
         });

@@ -29,16 +29,17 @@ class PengumumanController extends Controller
     // method untuk insert data ke table pegawai
     public function store(Request $request)
     {
-        // insert data ke table pegawai
-        DB::table('pengumuman')->insert([
-            'kategori_pengumuman' => 'abdul',
-            'judul_pengumuman' => $request->judul_pengumuman,
-            'isi_pengumuman' => $request->jenis_pengumuman,
-            'foto_pengumuman' => $request->other_text,
-            'status_pengumuman' => $request->jumlah_pengumuman,
-            'tgl_terbit' => $request->tgl_mulai_pengumuman
-        ]);
 
+        // insert data ke table pegawai
+
+        DB::table('pengumuman')->insert([
+            'kategori_pengumuman' => 'umum',
+            'judul_pengumuman' => $request->judul_pengumuman,
+            'isi_pengumuman' => $request->isi_pengumuman,
+            'foto_pengumuman' =>  $request->file('foto_pengumuman')->store('gambar-pengumuman'),
+            'status_pengumuman' => 1,
+            'tgl_terbit' => $request->tgl_terbit
+        ]);
         // alihkan halaman ke halaman pegawai
         return redirect('/view-pengumuman');
     }
@@ -60,15 +61,12 @@ class PengumumanController extends Controller
     {
         // update data pegawai
         DB::table('pengumuman')->where('id_pengumuman', $request->id)->update([
-            'pj_pengumuman' => 'abdul',
+            'kategori_pengumuman' => 'umum',
             'judul_pengumuman' => $request->judul_pengumuman,
-            'jenis_pengumuman' => $request->jenis_pengumuman,
-            'target_pengumuman' => $request->other_text,
-            'jumlah_pengumuman' => $request->jumlah_pengumuman,
-            'tgl_mulai_pengumuman' => $request->tgl_mulai_pengumuman,
-            'tgl_akhir_pengumuman' => $request->tgl_akhir_pengumuman,
-            'deskripsi_pengumuman' => $request->deskripsi_pengumuman,
-            'status_pengumuman' => 1
+            'isi_pengumuman' => $request->isi_pengumuman,
+            'foto_pengumuman' =>  $request->file('foto_pengumuman')->store('gambar-pengumuman'),
+            'status_pengumuman' => 1,
+            'tgl_terbit' => $request->tgl_terbit
         ]);
         // alihkan halaman ke halaman pegawai
         return redirect('/view-pengumuman');
