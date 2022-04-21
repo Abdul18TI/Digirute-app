@@ -57,7 +57,7 @@
                         <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="dollar-sign"></i><span>Iuran</span></a>
                             <ul class="nav-submenu menu-content">
                                 <li><a href="view-iuran">Tabel iuran</a></li>
-                                <li><a href="tambah-iuran">Tambah iuran</a></li>
+                                <li><a href="create-iuran">Tambah iuran</a></li>
                             </ul>
                         </li>
                     </ul>

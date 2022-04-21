@@ -71,9 +71,12 @@ Route::get('/login-admin', function () {
 
 Route::get('/c_login_rw', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/c_login_rw', [LoginController::class, 'authenticate']);
-Route::get('/tambah-iuran', [IuranController::class, 'create']);
 
-//route CRUD
+//route CRUD iuran
 Route::get('/view-iuran', [IuranController::class, 'index']);
 Route::get('/create-iuran', [IuranController::class, 'create']);
 Route::post('/store-iuran', [IuranController::class, 'store']);
+Route::get('/edit-iuran/{id}', [IuranController::class, 'edit']);
+Route::post('/update-iuran', [IuranController::class, 'update']);
+Route::get('/hapus-iuran/{id}', [IuranController::class, 'hapus']);
+// Route::get('/detail-iuran/{id}', [IuranController::class, 'detail']);
