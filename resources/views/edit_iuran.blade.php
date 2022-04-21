@@ -81,8 +81,8 @@
                             <div class="mb-3">
                                 <div>
                                     <label class="form-label" for="exampleFormControlTextarea4">Deskripsi iuran</label>
-                                    <textarea class="form-control" name="deskripsi_iuran" value="{{ $i->deskripsi_iuran }}" id="exampleFormControlTextarea4"
-                                        rows="6"></textarea>
+                                    <textarea class="form-control" name="deskripsi_iuran" id="exampleFormControlTextarea4"
+                                        rows="6">{{ $i->deskripsi_iuran }}</textarea>
                                 </div>
                             </div>
                         </div>

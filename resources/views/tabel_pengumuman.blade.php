@@ -23,28 +23,26 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach($pengumuman as $p)
                                     <tr>
-                                        <td>1</td>
-                                        <td>System Architect</td>
-                                        <td>Edinburgh</td>
-                                        <td>61</td>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $p->judul_pengumuman }}</td>
+                                        <td>{{ $p->tgl_terbit }}</td>
+                                        <td>@if ($p->status_pengumuman == 1)
+                                            aktif
+                                            @else
+                                            Tidak aktif
+                                            @endif</td>
                                         <td>
-                                            <a class="btn btn-info btn-sm" href="javascript:void(0)"><span class="fa fa-eye"></span> Detail</a>
-                                            <a class="btn btn-secondary btn-sm" href="javascript:void(0)"><span class="fa fa-edit"></span> Edit</a>
-                                            <a class="btn btn-danger btn-sm" href="javascript:void(0)"><span class="fa fa-trash"></span> Hapus</a>
+                                            <a class="btn btn-info btn-sm" href="detail-pengumuman/{{ $p->id_pengumuman }}"><span
+                                                    class="fa fa-eye"></span> Detail</a>
+                                            <a class="btn btn-secondary btn-sm" href="edit-pengumuman/{{ $p->id_pengumuman }}"><span
+                                                    class="fa fa-edit"></span> Edit</a>
+                                            <a class="btn btn-danger btn-sm" href="hapus-pengumuman/{{ $p->id_pengumuman }}"><span
+                                                    class="fa fa-trash"></span> Hapus</a>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Accountant</td>
-                                        <td>Tokyo</td>
-                                        <td>63</td>
-                                        <td>
-                                            <a class="btn btn-info btn-sm" href="javascript:void(0)"><span class="fa fa-eye"></span> Detail</a>
-                                            <a class="btn btn-secondary btn-sm" href="javascript:void(0)"><span class="fa fa-edit"></span> Edit</a>
-                                            <a class="btn btn-danger btn-sm" href="javascript:void(0)"><span class="fa fa-trash"></span> Hapus</a>
-                                        </td>
-                                    </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

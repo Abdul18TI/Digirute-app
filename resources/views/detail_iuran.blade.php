@@ -7,11 +7,13 @@
             <!-- Zero Configuration  Starts-->
             <div class="col-sm-12">
                 <div class="card">
+                    @foreach($iuran as $i)
                     <div class="card-header">
-                        <h5 class="text-center">Iuran gotong royong</h5>
+                        <h5 class="text-center">{{ $i->judul_iuran }}</h5>
                         <h6 class="text-center">Iuran terkumpul</h6>
-                            <h6 class="text-center mb-3">Rp.750.000/Rp.2.000.000</h6>
+                            <h6 class="text-center mb-3">0/Rp.{{ $i->target_iuran }}</h6>
                     </div>
+                    @endforeach
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="display" id="dataTable">
