@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 
 class WargaController extends Controller
 {
-    public function home_rt(){
+    public function home_rt()
+    {
         $warga = Warga::all();
         return view(
             'RT.warga.warga-rt',
@@ -17,7 +18,7 @@ class WargaController extends Controller
             ]
         );
     }
-    
+
     // function menampilkan halaman tambah warga 
     public function tambah_warga_rt()
     {
@@ -30,25 +31,48 @@ class WargaController extends Controller
             ]
         );
     }
+
     //function tambah ke dalam database
     public function add(Request $request)
     {
         $data = $request->except('_token');
         $data['tgl_lahir'] = strtotime($request->tgl_lahir);
         $data['tgl_keluar_kk'] = strtotime($request->tgl_keluar_kk);
+
+        // dd($data);
+        $request->validate([
+            'no_kk' => 'required|numeric',
+            'nik' => 'required|numeric|unique:wargas,nik',
+            'no_kk' => 'required|numeric',
+            // 'username' => 'required|unique:wargas,username',
+            // 'password' => 'required|min:6',
+            'alamat' => 'required',
+            'kelurahan' => 'required',
+            'kecamatan' => 'required',
+            'kabupaten' => 'required',
+            'provinsi' => 'required',
+            'kode_pos' => 'nullable|numeric',
+            'nama_lengkap' => 'required',
+            'tempat_lahir' => 'required',
+            'tgl_lahir' => 'required|date',
+            'jenis_kelamin' => 'required',
+            'agama' => 'required',
+            'pekerjaan' => 'required',
+            'golongan_darah' => 'required',
+            'status_perkawinan' => 'required',
+            'nomor_passport' => 'nullable|numeric',
+            'nomor_kitaskitap' => 'nullable|numeric',
+            'nama_ayah' => 'required',
+            'nama_ibu' => 'required',
+            'tgl_keluar_kk' => 'date',
+            // 'foto_warga' => 'required',
+            //eTime('tanggal_tambah'
+            // 'email_warga' => 'email:rfc,dns',
+            // 'no_hp_warga' => 'required',
+            'rt' => 'required',
+            'rw' => 'required'
+        ]);
         Warga::create($data);
-        dd($data);
-        // $request->validate([
-        //     'title' => 'required|string',
-        //     'small_thumbnail' => 'required|image|mimes:jpeg,jpg,png',
-        //     'large_thumbnail' => 'required|image|mimes:jpeg,jpg,png',
-        //     'trailer' => 'required|url',
-        //     'movie'=>'required|url',
-        //     'casts'=>'required|string',
-        //     'categories'=>'required|string',
-        //     'release_date'=>'required|string',
-        //     'about'=>'required|string',
-        //     'short_about'=>'required|string'
-        // ]);
+        return redirect()->route('rt.warga.home');
     }
 }
