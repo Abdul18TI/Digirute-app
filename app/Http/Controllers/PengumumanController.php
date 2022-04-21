@@ -99,27 +99,31 @@ class PengumumanController extends Controller
     }
 
     // method untuk hapus data pegawai
-    public function hapus(Pengumuman $pengumuman)
+    public function hapus($id)
     {
-        if ($pengumuman->foto_pengumuman) {
-            Storage::delete($pengumuman->foto_pengumuman);
-        }
-        Pengumuman::destroy($pengumuman->id_pengumuman);
-        return redirect('/view-pengumuman');
-        // $pengumuman = DB::table('pengumuman')->where('id_pengumuman', $id)->get();
-        // return $pengumuman;
         // if ($pengumuman->foto_pengumuman) {
         //     Storage::delete($pengumuman->foto_pengumuman);
-        //     // menghapus data pegawai berdasarkan id yang dipilih
-        //     DB::table('pengumuman')->where('id_pengumuman', $id)->delete();
-        // } else {
-        //     DB::table('pengumuman')->where('id_pengumuman', $id)->delete();
         // }
-
-
-        // // alihkan halaman ke halaman pegawai
+        // Pengumuman::destroy($pengumuman->id_pengumuman);
         // return redirect('/view-pengumuman');
+        $pengumuman = DB::table('pengumuman')->where('id_pengumuman', $id)->first();
+        // return $pengumuman->foto_pengumuman;
+        if ($pengumuman->foto_pengumuman) {
+            Storage::delete($pengumuman->foto_pengumuman);
+            // menghapus data pegawai berdasarkan id yang dipilih
+            DB::table('pengumuman')->where('id_pengumuman', $id)->delete();
+        } else {
+            DB::table('pengumuman')->where('id_pengumuman', $id)->delete();
+        }
+
+
+        // alihkan halaman ke halaman pegawai
+        return redirect('/view-pengumuman');
     }
+    // public function hapus($id)
+    // {
+    //     Pengumuman::find($id)->delete();
+    // }
 
     // method untuk melihat detail data pegawai
     public function detail($id)
