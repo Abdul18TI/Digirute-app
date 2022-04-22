@@ -62,8 +62,8 @@
                                             <td>{{ $dw->alamat }}</td>
                                             <td>{{ $dw->no_hp_warga }}</td>
                                             <td>
-                                                <a href="{{ $dw->id_warga}}>" class="btn btn-success btn-sm p-2" data-container="body" data-bs-toggle="tooltip" data-bs-placement="top" title="Detail"><span class="fa fa-list"></span></a>
-                                                <a href="{{$dw->ID_Warga }}" class="btn btn-secondary btn-sm p-2" data-container="body" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><span class="fa fa-pencil"></span></a>
+                                                <a href="{{ route('rt.warga.edit', $dw->id_warga) }}" class="btn btn-success btn-sm p-2" data-container="body" data-bs-toggle="tooltip" data-bs-placement="top" title="Detail"><span class="fa fa-list"></span></a>
+                                                <a href="{{$dw->id_warga }}" class="btn btn-secondary btn-sm p-2" data-container="body" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><span class="fa fa-pencil"></span></a>
                                             </td>
                                         </tr>
                                    @endforeach

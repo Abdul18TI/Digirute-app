@@ -72,8 +72,8 @@ Route::group(['prefix' => 'RT'], function () {
         Route::get('/', [WargaController::class, 'home_rt'])->name('rt.warga.home');
         Route::get('/tambah', [WargaController::class, 'tambah_warga_rt'])->name('rt.warga.tambah');
         Route::post('/insert', [WargaController::class, 'add'])->name('rt.warga.insert');
-        Route::get('/edit/{warga}', [WargaController::class, 'edit'])->name('rt.warga.edit');
-        // Route::put('/update/{id}',[WargaController::class,'update'])->name('rt.warga.update');
+        Route::get('/edit/{warga}', [WargaController::class, 'edit_warga_rt'])->name('rt.warga.edit');
+        Route::put('/update/{id}',[WargaController::class,'update'])->name('rt.warga.update');
 
     });
 });

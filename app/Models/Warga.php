@@ -14,6 +14,11 @@ class Warga extends Model
 
     protected $guarded = ['id_warga'];
 
+    public function getRouteKeyName()
+    {
+        return 'id_warga';
+    }
+
     public function pengaduan()
     {
         return $this->hasMany(Pengaduan::class);

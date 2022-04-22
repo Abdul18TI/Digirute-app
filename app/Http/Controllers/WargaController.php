@@ -27,7 +27,7 @@ class WargaController extends Controller
             'RT.warga.warga-tambah-rt',
             [
                 'warga' => $warga,
-                'title' => 'Warga'
+                'title' => 'Tambah Data Warga'
             ]
         );
     }
@@ -74,5 +74,25 @@ class WargaController extends Controller
         ]);
         Warga::create($data);
         return redirect()->route('rt.warga.home');
+    }
+
+    public function edit_warga_rt(Warga $warga)
+    {
+        // dd($warga->all());
+        return view(
+            'RT.warga.warga-edit-rt',
+            [
+                'warga' => $warga,
+                'title' => 'Edit Data Warga'
+            ]
+        );
+    }
+
+    public function update(Request $request, $id)
+    {
+        $data = $request->except(['_token', '_method']);
+        $data['tgl_lahir'] = strtotime($request->tgl_lahir);
+        $data['tgl_keluar_kk'] = strtotime($request->tgl_keluar_kk);
+        Warga::where('id_warga', $id)->update($data);
     }
 }
