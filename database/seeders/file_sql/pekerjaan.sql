@@ -1,13 +1,4 @@
-CREATE TABLE `tb_pekerjaan` (
-  `ID_Pekerjaan` int(2) NOT NULL,
-  `Nama_Pekerjaan` varchar(250) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data untuk tabel `tb_pekerjaan`
---
-
-INSERT INTO `tb_pekerjaan` (`ID_Pekerjaan`, `Nama_Pekerjaan`) VALUES
+INSERT INTO `pekerjaans` (`id`, `nama_pekerjaan`) VALUES
 (1, 'BELUM/TIDAK BEKERJA'),
 (2, 'MENGURUS RUMAH TANGGA'),
 (3, 'PELAJAR/MAHASISWA'),
@@ -97,10 +88,3 @@ INSERT INTO `tb_pekerjaan` (`ID_Pekerjaan`, `Nama_Pekerjaan`) VALUES
 (87, 'BIARAWATI'),
 (88, 'WIRASWASTA'),
 (89, 'LAINNYA');
-
-
-ALTER TABLE `tb_pekerjaan`
-  ADD PRIMARY KEY (`ID_Pekerjaan`);
-
-ALTER TABLE `tb_pekerjaan`
-  MODIFY `ID_Pekerjaan` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;

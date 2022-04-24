@@ -15,7 +15,9 @@ class CreatePekerjaansTable extends Migration
     {
         Schema::create('pekerjaans', function (Blueprint $table) {
             $table->id();
+            $table->string('nama_pekerjaan');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
