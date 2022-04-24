@@ -73,8 +73,7 @@ Route::group(['prefix' => 'RT'], function () {
         Route::get('/tambah', [WargaController::class, 'tambah_warga_rt'])->name('rt.warga.tambah');
         Route::post('/insert', [WargaController::class, 'add'])->name('rt.warga.insert');
         Route::get('/edit/{warga}', [WargaController::class, 'edit_warga_rt'])->name('rt.warga.edit');
-        Route::put('/update/{id}',[WargaController::class,'update'])->name('rt.warga.update');
-
+        Route::put('/update/{id}', [WargaController::class, 'update'])->name('rt.warga.update');
     });
 });
 Route::get('/detail-iuran/{id}', [IuranController::class, 'detail']);
@@ -95,3 +94,10 @@ Route::post('/store-kategori-pengumuman', [KategoriPengumumanController::class, 
 Route::get('/edit-kategori-pengumuman/{id}', [KategoriPengumumanController::class, 'edit']);
 Route::post('/update-kategori-pengumuman', [KategoriPengumumanController::class, 'update']);
 Route::get('/hapus-kategori-pengumuman/{id}', [KategoriPengumumanController::class, 'hapus']);
+
+//route kegiatan
+Route::get('/view-kegiatan', function () {
+    return view('RW.Kegiatan.table_kegiatan', [
+        'title' => 'table-kegiatan'
+    ]);
+});
