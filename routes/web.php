@@ -101,3 +101,15 @@ Route::get('/view-kegiatan', function () {
         'title' => 'table-kegiatan'
     ]);
 });
+
+//route kelahiran
+Route::get('/view-kelahiran', function () {
+    return view('RT.Kelahiran.kelahiran-rt', [
+        'title' => 'table-kelahiran'
+    ]);
+});
+Route::get('/create-kelahiran', function () {
+    return view('RT.Kelahiran.kelahiran-tambah-rt', [
+        'title' => 'table-kelahiran'
+    ]);
+});

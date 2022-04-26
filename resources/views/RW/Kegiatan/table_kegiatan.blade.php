@@ -18,13 +18,13 @@
                             <div class="col-3">
                                 <div class="bookmark"><a class="btn btn-primary btn-lg" data-bs-toggle="modal"
                                         data-bs-target="#exampleModalgetbootstrapCREATE"><span
-                                            class="fa fa-plus-square"></span>Tambah Data</a></div>
+                                            class="fa fa-plus-square"></span> Tambah Data</a></div>
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="display" id="tabelwarga-rt">
+                            <table class="display" id="dataTable">
                                 <thead>
                                     <tr>
                                         <th>No</th>
@@ -47,10 +47,6 @@
                                                 data-bs-placement="top" title="Detail"><span class="fa fa-list"></span></a><a href="" class="btn btn-secondary btn-sm p-2" data-container="body" data-bs-placement="top" data-bs-toggle="modal"
                                                 data-bs-target="#exampleModalgetbootstrapEDIT" title="Edit"><span
                                                     class="fa fa-pencil"></span></a>
-                                                    {{-- <div
-                                                class="btn btn-danger btn-sm p-2" type="button" onclick="_gaq.push(['_trackEvent', 'example', 'try', 'sweet-5']);"><span
-                                                    class="fa fa-trash"></span></div></td> --}}
-                                                        <button class="btn btn-warning sweet-5" type="button" onclick="_gaq.push(['_trackEvent', 'example', 'try', 'sweet-5']);">Warning alert</button>
                                     </tr>
                                 </tbody>
                                 <tr>
