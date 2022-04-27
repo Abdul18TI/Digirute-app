@@ -164,8 +164,10 @@
                                         <div class="col-sm-9">
                                             <select class='form-select' name='pekerjaan' id='pekerjaan' >
                                                 <option value='00'>-- Pilih --</option>
-                                                <option value='1' {{ old('pekerjaan') == '1' ? "selected" : ""}}>BELUM/TIDAK BEKERJA</option>
-                                                <option value='2' {{ old('pekerjaan') == '2' ? "selected" : ""}}>MENGURUS RUMAH TANGGA</option>
+                                                @foreach ($pekerjaan as $p)
+                                                <option value='{{ $p->id_pekerjaan }}'>{{ $p->nama_pekerjaan }}</option>
+                                                @endforeach
+                                                {{-- <option value='1' {{ old('pekerjaan') == '1' ? "selected" : ""}}>BELUM/TIDAK BEKERJA</option>
                                                 <option value='3' {{ old('pekerjaan') == '3' ? "selected" : ""}}>PELAJAR/MAHASISWA</option>
                                                 <option value='4' {{ old('pekerjaan') == '4' ? "selected" : ""}}>PENSIUNAN</option>
                                                 <option value='5' {{ old('pekerjaan') == '5' ? "selected" : ""}}>PEGAWAI NEGERI SIPIL</option>
@@ -173,7 +175,7 @@
                                                 <option value='7' {{ old('pekerjaan') == '7' ? "selected" : ""}}>KEPOLISIAN RI</option>
                                                 <option value='8' {{ old('pekerjaan') == '8' ? "selected" : ""}}>PERDAGANGAN</option>
                                                 <option value='9' {{ old('pekerjaan') == '9' ? "selected" : ""}}>PETANI/PEKEBUN</option>
-                                                <option value='10' {{ old('pekerjaan') == '10' ? "selected" : ""}}>PETERNAK</option>
+                                                <option value='10' {{ old('pekerjaan') == '10' ? "selected" : ""}}>PETERNAK</option> --}}
                                             </select>
                                         </div>
                                     </div>

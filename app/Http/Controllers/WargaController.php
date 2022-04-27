@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Warga;
+use App\Helper\Helpers;
+use App\Models\Pekerjaan;
 use Illuminate\Http\Request;
 
 class WargaController extends Controller
@@ -10,6 +12,8 @@ class WargaController extends Controller
     public function home_rt()
     {
         $warga = Warga::all();
+        // $warga = Warga::find(1);
+        // dd($warga);
         return view(
             'RT.warga.warga-rt',
             [
@@ -23,10 +27,12 @@ class WargaController extends Controller
     public function tambah_warga_rt()
     {
         $warga = Warga::all();
+        $data = Pekerjaan::all();
         return view(
             'RT.warga.warga-tambah-rt',
             [
                 'warga' => $warga,
+                'pekerjaan' => $data,
                 'title' => 'Tambah Data Warga'
             ]
         );

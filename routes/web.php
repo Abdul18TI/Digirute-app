@@ -68,6 +68,7 @@ Route::get('/hapus-iuran/{id}', [IuranController::class, 'hapus']);
 
 
 Route::group(['prefix' => 'RT'], function () {
+    Route::get('/', [WargaController::class, 'home_rt'])->name('rt.warga.home');
     Route::group(['prefix' => 'warga'], function () {
         Route::get('/', [WargaController::class, 'home_rt'])->name('rt.warga.home');
         Route::get('/tambah', [WargaController::class, 'tambah_warga_rt'])->name('rt.warga.tambah');
