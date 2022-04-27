@@ -14,7 +14,7 @@ class CreatePekerjaansTable extends Migration
     public function up()
     {
         Schema::create('pekerjaans', function (Blueprint $table) {
-            $table->id();
+            $table->id('id_pekerjaan');
             $table->string('nama_pekerjaan');
             $table->timestamps();
             $table->softDeletes();

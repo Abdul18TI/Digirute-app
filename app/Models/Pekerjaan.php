@@ -8,5 +8,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Pekerjaan extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
+    protected $table = 'pekerjaans';
+    protected $primaryKey = 'id_pekerjaan';
+    protected $guarded = ['id_pekerjaan'];
+
+    public function getRouteKeyName()
+    {
+        return 'id_pekerjaan';
+    }
 }
