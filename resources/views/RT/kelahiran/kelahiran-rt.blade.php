@@ -17,7 +17,7 @@
                             </div>
                             <div class="col-3">
                                 <div class="bookmark">
-                                    <a class="btn btn-primary btn-lg" href="{{ route('') }}" data-bs-original-title="" title=""> <span class="fa fa-plus-square"></span> Tambah Data</a>
+                                    <a class="btn btn-primary btn-lg" href="" data-bs-original-title="" title=""> <span class="fa fa-plus-square"></span> Tambah Data</a>
                                 </div>
                             </div>
                         </div>
