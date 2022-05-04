@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.main-rt')
 
 @section('container')
 <div class="page-body">
@@ -32,7 +32,7 @@
                             <div class="col-3">
                                 <div class="bookmark">
 
-                                    <a class="btn btn-primary btn-lg" href="{{ route('rt.warga.tambah') }}" data-bs-original-title="" title=""> <span class="fa fa-plus-square"></span>Tambah Data</a>
+                                    <a class="btn btn-primary btn-lg" href="{{ route('rt.warga.tambah') }}" data-bs-original-title="" title=""> <span class="fa fa-plus-square"></span> Tambah Data</a>
                                 </div>
                             </div>
                         </div>
@@ -88,4 +88,12 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('js')
+ <!-- Plugins JS start-->
+ <script src="{{ asset("assets/js/datatable/datatables/jquery.dataTables.min.js")}}"></script>
+ <script src="{{ asset("assets/js/datatable/datatables/datatable.custom.js")}}"></script>
+ <script src="{{ asset("assets/js/tooltip-init.js")}}"></script>
+ <!-- Plugins JS Ends-->
 @endsection

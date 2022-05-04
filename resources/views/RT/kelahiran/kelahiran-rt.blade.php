@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.main-rt')
 @section('container') 
 <div class="page-body">
     <div class="container-fluid">
