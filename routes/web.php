@@ -114,3 +114,8 @@ Route::get('/create-kelahiran', function () {
         'title' => 'table-kelahiran'
     ]);
 });
+Route::get('/create-kematian', function () {
+    return view('RT.kematian.kematian-tambah-rt', [
+        'title' => 'table-kematian'
+    ]);
+});

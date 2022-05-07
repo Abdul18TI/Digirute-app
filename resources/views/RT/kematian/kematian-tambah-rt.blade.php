@@ -6,7 +6,7 @@
         <div class="page-header">
             <div class="row">
                 <div class="col-sm-6">
-                    <h3>Tambah data kelahiran</h3>
+                    <h3>Tambah data kematian</h3>
                 </div>
             </div>
         </div>
@@ -18,7 +18,7 @@
 				<div class="card">
 					<div class="card-body">
 						<form class="needs-validation" novalidate="">
-                                <h6 class="mb-4">Informasi kelahiran</h6>
+                                <h6 class="mb-4">Informasi kematian</h6>
 							<div class="row g-3">
 								<div class="col-md-4">
 									<label class="form-label" for="validationCustom01">Desa / Kelurahan</label>
@@ -49,7 +49,14 @@
 								</div>
 							</div>
                             <hr>
-                                <h6 class="mb-4">Bayi / Anak</h6>
+                                <h6 class="mb-4">Jenazah</h6>
+                            <div class="row g-3 mt-3">
+								<div class="col-md-4">
+									<label class="form-label" for="validationCustom01">NIK</label>
+									<input class="form-control" id="validationCustom01" placeholder="NIK" type="text" value="" required="" />
+									<div class="valid-feedback">Looks good!</div>
+								</div>
+							</div>
                             <div class="row g-3 mt-3">
 								<div class="col-md-4">
 									<label class="form-label" for="validationCustom01">Nama</label>
@@ -74,43 +81,16 @@
 							</div>
 							<div class="row g-3 mt-3">
 								<div class="col-md-4">
-									<label class="form-label" for="validationDefault04">Tempat dilahirkan</label>
-									<select class="form-select" id="validationDefault04" required="">
-										<option selected="" disabled="" value="">Choose...</option>
-										<option>...</option>
-									</select>
-								</div>
-								<div class="col-md-4">
-									<label class="form-label" for="validationCustom02">Tempat kelahiran</label>
-									<input class="form-control" id="validationCustom02" type="text" value="Otto" required="" />
-									<div class="valid-feedback">Looks good!</div>
-								</div>
-							</div>
-							<div class="row g-3 mt-3">
-								<div class="col-md-4">
-									<label class="form-label" for="validationCustom02">Tanggal kelahiran</label>
+									<label class="form-label" for="validationCustom02">Tanggal Lahir</label>
 									<input class="form-control digits" type="date" value="2018-01-01" />
 								</div>
 								<div class="col-md-4">
-									<label class="form-label" for="validationCustom02">Pukul</label>
-									<input class="form-control digits" type="time" value="21:45:00" />
-								</div>
-							</div>
-							<div class="row g-3 mt-3">
-								<div class="col-md-4">
-									<label class="form-label" for="validationCustom02">Jenis kelahiran</label>
-									<select class="form-select" id="validationDefault04" required="">
-										<option selected="" disabled="" value="">Choose...</option>
-										<option>...</option>
-									</select>
-								</div>
-								<div class="col-md-4">
-									<label class="form-label" for="validationCustom02">Kelahiran ke</label>
-									<input class="form-control" id="validationCustom02" type="text" value="Otto" required="" />
+									<label class="form-label" for="validationCustom01">Tempat Lahir</label>
+									<input class="form-control" id="validationCustom01" placeholder="Tempat Lahir" type="text" value="" required="" />
 									<div class="valid-feedback">Looks good!</div>
 								</div>
-								<div class="col-md-4">
-									<label class="form-label" for="validationCustom02">Penolong kelahiran</label>
+                                <div class="col-md-4">
+									<label class="form-label" for="validationCustom02">Agama</label>
 									<select class="form-select" id="validationDefault04" required="">
 										<option selected="" disabled="" value="">Choose...</option>
 										<option>...</option>
@@ -119,88 +99,74 @@
 							</div>
 							<div class="row g-3 mt-3">
 								<div class="col-md-4">
-									<label class="form-label" for="validationCustom02">Berat</label>
-									<input class="form-control" id="validationCustom02" type="text" value="Otto" required="" />
-									<div class="valid-feedback">Looks good!</div>
-								</div>
-								<div class="col-md-4">
-									<label class="form-label" for="validationCustom02">Panjang bayi</label>
-									<input class="form-control" id="validationCustom02" type="number" value="Otto" required="" />
-									<div class="valid-feedback">Looks good!</div>
-								</div>
-							</div>
-                            <hr>
-                                <h6 class="mb-4">NIK</h6>
-                            <div class="row g-3 mt-3">
-								<div class="col-md-4">
-									<label class="form-label" for="validationCustom01">First name</label>
-									<input class="form-control" id="validationCustom01" type="text" placeholder="NIK" value="" required="" />
-									<div class="valid-feedback">Looks good!</div>
-								</div>
-							</div>
-							<div class="row g-3 mt-3">
-								<div class="col-md-4">
-									<label class="form-label" for="validationCustom02">Nama</label>
-									<input class="form-control" id="validationCustom02" type="text" value="Otto" required="" />
-									<div class="valid-feedback">Looks good!</div>
-								</div>
-                                <div class="col-md-4">
-									<label class="form-label" for="validationCustom02">Tanggal lahir</label>
-									<input class="form-control digits" type="date" value="2018-01-01" />
-								</div>
-							</div>
-							<div class="row g-3 mt-3">
-                                <div class="col-md-4">
-									<label class="form-label" for="validationDefault04">Pekerjaan</label>
+									<label class="form-label" for="validationCustom02">Pekerjaan</label>
 									<select class="form-select" id="validationDefault04" required="">
 										<option selected="" disabled="" value="">Choose...</option>
 										<option>...</option>
 									</select>
 								</div>
-                                <div class="col-md-4">
+								<div class="col-md-4">
 									<label class="form-label" for="validationCustom02">Alamat</label>
-									<input class="form-control" id="validationCustom02" type="text" value="Otto" required="" />
+									<input class="form-control" id="validationCustom02" type="text" value="" required="" />
 									<div class="valid-feedback">Looks good!</div>
 								</div>
-							</div>
-							<div class="row g-3 mt-3">
 								<div class="col-md-4">
 									<label class="form-label" for="validationCustom02">Provinsi</label>
-									<input class="form-control" id="validationCustom02" type="text" value="Otto" required="" />
-									<div class="valid-feedback">Looks good!</div>
-								</div>
-								<div class="col-md-4">
-									<label class="form-label" for="validationCustom02">Kabupaten / Kota</label>
-									<input class="form-control" id="validationCustom02" type="text" value="Otto" required="" />
+									<input class="form-control" id="validationCustom02" type="text" value="" required="" />
 									<div class="valid-feedback">Looks good!</div>
 								</div>
 							</div>
 							<div class="row g-3 mt-3">
+								<div class="col-md-4">
+									<label class="form-label" for="validationCustom02">Kabupaten / Kota</label>
+									<input class="form-control" id="validationCustom02" type="text" value="" required="" />
+									<div class="valid-feedback">Looks good!</div>
+								</div>
 								<div class="col-md-4">
 									<label class="form-label" for="validationCustom02">Kecamatan</label>
 									<input class="form-control" id="validationCustom02" type="text" value="Otto" required="" />
 									<div class="valid-feedback">Looks good!</div>
 								</div>
-								<div class="col-md-4">
+                                <div class="col-md-4">
 									<label class="form-label" for="validationCustom02">Desa / Lurah</label>
-									<input class="form-control" id="validationCustom02" type="number" value="Otto" required="" />
-									<div class="valid-feedback">Looks good!</div>
-								</div>
-							</div>
-							<div class="row g-3 mt-3">
-								<div class="col-md-4">
-									<label class="form-label" for="validationCustom02">Kewarganegaraan</label>
 									<input class="form-control" id="validationCustom02" type="text" value="Otto" required="" />
 									<div class="valid-feedback">Looks good!</div>
 								</div>
+							</div>
+                            <div class="row g-3 mt-3">
 								<div class="col-md-4">
-									<label class="form-label" for="validationCustom02">Kebangsaan</label>
-									<input class="form-control" id="validationCustom02" type="number" value="Otto" required="" />
+									<label class="form-label" for="validationCustom01">Anak ke</label>
+									<input class="form-control" id="validationCustom01" type="text" value="" required="" />
 									<div class="valid-feedback">Looks good!</div>
 								</div>
                                 <div class="col-md-4">
-									<label class="form-label" for="validationCustom02">Tanggal Pencatatan Perkawinan</label>
+									<label class="form-label" for="validationCustom02">Tanggal Kematian</label>
 									<input class="form-control digits" type="date" value="2018-01-01" />
+								</div>
+                                <div class="col-md-4">
+									<label class="form-label" for="validationCustom02">Pukul</label>
+									<input class="form-control digits" type="time" value="" />
+								</div>
+							</div>
+							<div class="row g-3 mt-3">
+                                <div class="col-md-4">
+									<label class="form-label" for="validationDefault04">Sebab Kematian</label>
+									<select class="form-select" id="validationDefault04" required="">
+										<option selected="" disabled="" value="">Choose...</option>
+										<option>...</option>
+									</select>
+								</div>
+								<div class="col-md-4">
+									<label class="form-label" for="validationCustom02">Tempat Kematian</label>
+									<input class="form-control" id="validationCustom02" type="text" value="" required="" />
+									<div class="valid-feedback">Looks good!</div>
+								</div>
+                                <div class="col-md-4">
+									<label class="form-label" for="validationDefault04">Yang menerangkan</label>
+									<select class="form-select" id="validationDefault04" required="">
+										<option selected="" disabled="" value="">Choose...</option>
+										<option>...</option>
+									</select>
 								</div>
 							</div>
                             <hr>
@@ -261,6 +227,45 @@
 									<div class="valid-feedback">Looks good!</div>
 								</div>
 							</div>
+                            <hr>
+							<div class="row g-3 mt-3">
+                                <div class="col-md-4">
+									<label class="form-label" for="validationDefault04">Pekerjaan</label>
+									<select class="form-select" id="validationDefault04" required="">
+										<option selected="" disabled="" value="">Choose...</option>
+										<option>...</option>
+									</select>
+								</div>
+                                <div class="col-md-4">
+									<label class="form-label" for="validationCustom02">Alamat</label>
+									<input class="form-control" id="validationCustom02" type="text" value="Otto" required="" />
+									<div class="valid-feedback">Looks good!</div>
+								</div>
+							</div>
+							<div class="row g-3 mt-3">
+								<div class="col-md-4">
+									<label class="form-label" for="validationCustom02">Provinsi</label>
+									<input class="form-control" id="validationCustom02" type="text" value="Otto" required="" />
+									<div class="valid-feedback">Looks good!</div>
+								</div>
+								<div class="col-md-4">
+									<label class="form-label" for="validationCustom02">Kabupaten / Kota</label>
+									<input class="form-control" id="validationCustom02" type="text" value="Otto" required="" />
+									<div class="valid-feedback">Looks good!</div>
+								</div>
+							</div>
+							<div class="row g-3 mt-3">
+								<div class="col-md-4">
+									<label class="form-label" for="validationCustom02">Kecamatan</label>
+									<input class="form-control" id="validationCustom02" type="text" value="Otto" required="" />
+									<div class="valid-feedback">Looks good!</div>
+								</div>
+								<div class="col-md-4">
+									<label class="form-label" for="validationCustom02">Desa / Lurah</label>
+									<input class="form-control" id="validationCustom02" type="number" value="Otto" required="" />
+									<div class="valid-feedback">Looks good!</div>
+								</div>
+							</div>
 							<div class="row g-3 mt-3">
 								<div class="col-md-4">
 									<label class="form-label" for="validationCustom02">Kewarganegaraan</label>
@@ -269,6 +274,68 @@
 								</div>
 								<div class="col-md-4">
 									<label class="form-label" for="validationCustom02">Kebangsaan</label>
+									<input class="form-control" id="validationCustom02" type="number" value="Otto" required="" />
+									<div class="valid-feedback">Looks good!</div>
+								</div>
+                                <div class="col-md-4">
+									<label class="form-label" for="validationCustom02">Tanggal Pencatatan Perkawinan</label>
+									<input class="form-control digits" type="date" value="2018-01-01" />
+								</div>
+							</div>
+                            <hr>
+                                <h6 class="mb-4">Ibu</h6>
+                            <div class="row g-3 mt-3">
+								<div class="col-md-4">
+									<label class="form-label" for="validationCustom01">NIK</label>
+									<input class="form-control" id="validationCustom01"placeholder="NIK" type="text" value="" required="" />
+									<div class="valid-feedback">Looks good!</div>
+								</div>
+							</div>
+							<div class="row g-3 mt-3">
+								<div class="col-md-4">
+									<label class="form-label" for="validationCustom02">Nama</label>
+									<input class="form-control" id="validationCustom02" type="text" value="Otto" required="" />
+									<div class="valid-feedback">Looks good!</div>
+								</div>
+                                <div class="col-md-4">
+									<label class="form-label" for="validationCustom02">Tanggal lahir</label>
+									<input class="form-control digits" type="date" value="2018-01-01" />
+								</div>
+							</div>
+							<div class="row g-3 mt-3">
+                                <div class="col-md-4">
+									<label class="form-label" for="validationDefault04">Pekerjaan</label>
+									<select class="form-select" id="validationDefault04" required="">
+										<option selected="" disabled="" value="">Choose...</option>
+										<option>...</option>
+									</select>
+								</div>
+                                <div class="col-md-4">
+									<label class="form-label" for="validationCustom02">Alamat</label>
+									<input class="form-control" id="validationCustom02" type="text" value="Otto" required="" />
+									<div class="valid-feedback">Looks good!</div>
+								</div>
+							</div>
+							<div class="row g-3 mt-3">
+								<div class="col-md-4">
+									<label class="form-label" for="validationCustom02">Provinsi</label>
+									<input class="form-control" id="validationCustom02" type="text" value="Otto" required="" />
+									<div class="valid-feedback">Looks good!</div>
+								</div>
+								<div class="col-md-4">
+									<label class="form-label" for="validationCustom02">Kabupaten / Kota</label>
+									<input class="form-control" id="validationCustom02" type="text" value="Otto" required="" />
+									<div class="valid-feedback">Looks good!</div>
+								</div>
+							</div>
+							<div class="row g-3 mt-3">
+								<div class="col-md-4">
+									<label class="form-label" for="validationCustom02">Kecamatan</label>
+									<input class="form-control" id="validationCustom02" type="text" value="Otto" required="" />
+									<div class="valid-feedback">Looks good!</div>
+								</div>
+								<div class="col-md-4">
+									<label class="form-label" for="validationCustom02">Desa / Lurah</label>
 									<input class="form-control" id="validationCustom02" type="number" value="Otto" required="" />
 									<div class="valid-feedback">Looks good!</div>
 								</div>
