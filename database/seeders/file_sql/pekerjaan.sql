@@ -1,4 +1,4 @@
-INSERT INTO `pekerjaans` (`id`, `nama_pekerjaan`) VALUES
+INSERT INTO `pekerjaans` (`id_pekerjaan`, `nama_pekerjaan`) VALUES
 (1, 'BELUM/TIDAK BEKERJA'),
 (2, 'MENGURUS RUMAH TANGGA'),
 (3, 'PELAJAR/MAHASISWA'),
