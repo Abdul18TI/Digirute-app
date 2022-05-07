@@ -130,7 +130,7 @@
 								</div>
 							</div>
                             <hr>
-                                <h6 class="mb-4">NIK</h6>
+                                <h6 class="mb-4">Ibu</h6>
                             <div class="row g-3 mt-3">
 								<div class="col-md-4">
 									<label class="form-label" for="validationCustom01">First name</label>
