@@ -33,38 +33,21 @@ class PengumumanController extends Controller
     // method untuk insert data ke table pegawai
     public function store(Request $request)
     {
-
-        $data['tgl_terbit'] = strtotime($request->tgl_terbit);
-
-        $request->validate([
+        $validatedData = $request->validate([
             'judul_pengumuman' => 'required',
-            'Isi_pengumuman' => 'required',
-            'foto_pengumuman' => 'image (jpg, jpeg, png, bmp, gif, svg, or webp)',
+            'isi_pengumuman' => 'required',
+            'foto_pengumuman' => 'image|file|max:2048',
             'tgl_terbit' => 'required'
         ]);
 
         if ($request->file('foto_pengumuman')) {
-            // insert data ke table pegawai
-            DB::table('pengumuman')->insert([
-                'kategori_pengumuman' => 'umum',
-                'judul_pengumuman' => $request->judul_pengumuman,
-                'isi_pengumuman' => $request->isi_pengumuman,
-                'foto_pengumuman' =>  $request->file('foto_pengumuman')->store('gambar-pengumuman'),
-                'status_pengumuman' => 1,
-                'tgl_terbit' => $request->tgl_terbit
-            ]);
-            // alihkan halaman ke halaman pegawai
-        } else {
-            // insert data ke table pegawai
-            DB::table('pengumuman')->insert([
-                'kategori_pengumuman' => 'umum',
-                'judul_pengumuman' => $request->judul_pengumuman,
-                'isi_pengumuman' => $request->isi_pengumuman,
-                'status_pengumuman' => 1,
-                'tgl_terbit' => $request->tgl_terbit
-            ]);
+            $validatedData['foto_pengumuman'] = $request->file('foto_pengumuman')->store('gambar-pengumuman');
         }
-        Pengumuman::create($data);
+
+        $validatedData['kategori_pengumuman'] = 'umum';
+        $validatedData['status_pengumuman'] = 1;
+
+        Pengumuman::create($validatedData);
         return redirect()->route('rw.pengumuman.home');
     }
 

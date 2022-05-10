@@ -19,12 +19,15 @@ use App\Http\Controllers\KategoriPengumumanController;
 |
 */
 
+Route::get('/', function () {
+    return view('login');
+});
+
 Route::get('/warga', function () {
     return view('warga', [
         "title" => "warga"
     ]);
 });
-
 // Route::get('/detail-pengumuman', function () {
 //     return view('detail_pengumuman', [
 //         "title" => "detail pengumuman"

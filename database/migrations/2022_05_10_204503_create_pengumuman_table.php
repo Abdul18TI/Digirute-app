@@ -22,7 +22,6 @@ class CreatePengumumanTable extends Migration
             $table->integer('status_pengumuman');
             $table->dateTime('tgl_terbit');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

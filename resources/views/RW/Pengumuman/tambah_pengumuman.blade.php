@@ -17,8 +17,12 @@
                                     <div class="mb-3">
                                         <label class="form-label" for="exampleFormControlInput1">Judul
                                             pengumuman</label>
-                                        <input class="form-control" name="judul_pengumuman" id="exampleFormControlInput1" type="text"
-                                            placeholder="gotong royong bersama" />
+                                        <input class="form-control @error('judul_pengumuman') is-invalid @enderror" name="judul_pengumuman" id="exampleFormControlInput1" type="text" autofocus value="{{ old('judul_pengumuman') }}"/>
+                                        @error('judul_pengumuman')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -26,9 +30,14 @@
                                 <div class="col">
                                     <div class="mb-3">
                                         <label class="form-label" for="isi_pengumuman">Isi pengumuman</label>
-                                        <input id="isi_pengumuman" type="hidden" name="isi_pengumuman">
+                                        <input id="isi_pengumuman" type="hidden" value="{{ old('isi_pengumuman') }}" name="isi_pengumuman">
                                         <trix-editor input="isi_pengumuman"></trix-editor>
                                     </div>
+                                    @error('isi_pengumuman')
+                                    <a class="text-danger">
+                                        {{ $message }}
+                                    </a>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="row">
@@ -46,7 +55,7 @@
                                 <label class="form-label">Waktu terbit</label>
                                 <div class="col-sm-9">
                                     <input class="form-control digits" id="example-datetime-local-input"
-                                        type="datetime-local" name="tgl_terbit" value="2018-01-19T18:45:00" />
+                                        type="datetime-local" name="tgl_terbit" value="{{ old('tgl_terbit') }}" />
                                 </div>
                             </div>
                         </div>
