@@ -4,7 +4,8 @@ use App\Http\Controllers\IuranController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\WargaController;
-use App\Http\Controllers\PengumumanController;
+use App\Http\Controllers\RW\RwController;
+use App\Http\Controllers\RW\PengumumanController;
 use App\Http\Controllers\KategoriPengumumanController;
 
 /*
@@ -17,12 +18,6 @@ use App\Http\Controllers\KategoriPengumumanController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('home', [
-        "title" => "home"
-    ]);
-});
 
 Route::get('/warga', function () {
     return view('warga', [
@@ -64,8 +59,7 @@ Route::post('/store-iuran', [IuranController::class, 'store']);
 Route::get('/edit-iuran/{id}', [IuranController::class, 'edit']);
 Route::post('/update-iuran', [IuranController::class, 'update']);
 Route::get('/hapus-iuran/{id}', [IuranController::class, 'hapus']);
-// Route::get('/detail-iuran/{id}', [IuranController::class, 'detail']);
-
+Route::get('/detail-iuran/{id}', [IuranController::class, 'detail']);
 
 Route::group(['prefix' => 'RT'], function () {
     Route::get('/', [WargaController::class, 'home_rt'])->name('rt.warga.home');
@@ -77,16 +71,27 @@ Route::group(['prefix' => 'RT'], function () {
         Route::put('/update/{id}', [WargaController::class, 'update'])->name('rt.warga.update');
     });
 });
-Route::get('/detail-iuran/{id}', [IuranController::class, 'detail']);
+
+//RW
+Route::group(['prefix' => 'RW'], function () {
+    Route::get('/', [RwController::class, 'home_rw'])->name('rw.dashboard.home');
+    Route::group(['prefix' => 'pengumuman'], function () {
+        Route::get('/', [PengumumanController::class, 'index'])->name('rw.pengumuman.home');
+        Route::get('/tambah', [PengumumanController::class, 'create'])->name('rw.pengumuman.tambah');
+        Route::post('/insert', [PengumumanController::class, 'store'])->name('rw.pengumuman.insert');
+        Route::get('/edit/{warga}', [PengumumanController::class, 'edit_warga_rt'])->name('rw.pengumuman.edit');
+        Route::put('/update/{id}', [PengumumanController::class, 'update'])->name('rw.pengumuman.update');
+    });
+});
 
 //route CRUD pengumuman
-Route::get('/view-pengumuman', [PengumumanController::class, 'index']);
-Route::get('/create-pengumuman', [PengumumanController::class, 'create']);
-Route::post('/store-pengumuman', [PengumumanController::class, 'store']);
-Route::get('/edit-pengumuman/{id}', [PengumumanController::class, 'edit']);
-Route::post('/update-pengumuman', [PengumumanController::class, 'update']);
-Route::get('/hapus-pengumuman/{id}', [PengumumanController::class, 'hapus']);
-Route::get('/detail-pengumuman/{id}', [PengumumanController::class, 'detail']);
+// Route::get('/view-pengumuman', [PengumumanController::class, 'index']);
+// Route::get('/create-pengumuman', [PengumumanController::class, 'create']);
+// Route::post('/store-pengumuman', [PengumumanController::class, 'store']);
+// Route::get('/edit-pengumuman/{id}', [PengumumanController::class, 'edit']);
+// Route::post('/update-pengumuman', [PengumumanController::class, 'update']);
+// Route::get('/hapus-pengumuman/{id}', [PengumumanController::class, 'hapus']);
+// Route::get('/detail-pengumuman/{id}', [PengumumanController::class, 'detail']);
 
 //route CRUD kategori pengumuman
 Route::get('/view-kategori-pengumuman', [KategoriPengumumanController::class, 'index']);

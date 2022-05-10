@@ -21,6 +21,8 @@ class CreatePengumumanTable extends Migration
             $table->string('foto_pengumuman')->nullable();
             $table->integer('status_pengumuman');
             $table->dateTime('tgl_terbit');
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 

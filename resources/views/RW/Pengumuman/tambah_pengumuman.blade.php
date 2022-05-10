@@ -9,7 +9,7 @@
                     <div class="card-header pb-0">
                         <h5>Form tambah pengumuman</h5>
                     </div>
-                    <form class="form theme-form" method="POST" enctype="multipart/form-data" action="/store-pengumuman">
+                    <form class="form theme-form" method="POST" enctype="multipart/form-data" action="{{ route('rw.pengumuman.insert')}}">
                         @csrf
                         <div class="card-body">
                             <div class="row">
@@ -25,12 +25,9 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="mb-3">
-                                        <div>
-                                            <label class="form-label" for="exampleFormControlTextarea4">Isi
-                                                pengumuman</label>
-                                            <textarea class="form-control" name="isi_pengumuman" id="exampleFormControlTextarea4"
-                                                rows="9"></textarea>
-                                        </div>
+                                        <label class="form-label" for="isi_pengumuman">Isi pengumuman</label>
+                                        <input id="isi_pengumuman" type="hidden" name="isi_pengumuman">
+                                        <trix-editor input="isi_pengumuman"></trix-editor>
                                     </div>
                                 </div>
                             </div>
@@ -77,5 +74,9 @@
             imgPreview.src = oFREvent.target.result;
         }
     }
+
+    document.addEventListener('trix-file-accept', function(e) {
+        e.preventDefault();
+    })
 </script>
 @endsection

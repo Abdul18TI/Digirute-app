@@ -1,22 +1,23 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\RW;
 
 use App\Models\Pengumuman;
 use Illuminate\Contracts\Cache\Store;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\Controller;
 
 class PengumumanController extends Controller
 {
     public function index()
     {
         // mengambil data dari table pegawai
-        $pengumuman = DB::table('pengumuman')->get();
+        $pengumuman = Pengumuman::all();
 
         // mengirim data pengumuman ke view index
-        return view('tabel_pengumuman', [
+        return view('RW.Pengumuman.tabel_pengumuman', [
             'pengumuman' => $pengumuman,
             "title" => "tabel-pengumuman"
         ]);
@@ -24,7 +25,7 @@ class PengumumanController extends Controller
 
     public function create()
     {
-        return view('tambah_pengumuman', [
+        return view('RW.Pengumuman.tambah_pengumuman', [
             'title' => 'tambah-pengumuman'
         ]);
     }
@@ -32,6 +33,15 @@ class PengumumanController extends Controller
     // method untuk insert data ke table pegawai
     public function store(Request $request)
     {
+
+        $data['tgl_terbit'] = strtotime($request->tgl_terbit);
+
+        $request->validate([
+            'judul_pengumuman' => 'required',
+            'Isi_pengumuman' => 'required',
+            'foto_pengumuman' => 'image (jpg, jpeg, png, bmp, gif, svg, or webp)',
+            'tgl_terbit' => 'required'
+        ]);
 
         if ($request->file('foto_pengumuman')) {
             // insert data ke table pegawai
@@ -54,7 +64,8 @@ class PengumumanController extends Controller
                 'tgl_terbit' => $request->tgl_terbit
             ]);
         }
-        return redirect('/view-pengumuman');
+        Pengumuman::create($data);
+        return redirect()->route('rw.pengumuman.home');
     }
 
     // method untuk edit data pegawai

@@ -56,7 +56,7 @@
     <link rel="stylesheet" type="text/css" href={{ asset("assets/css/bootstrap.css")}}>
     <!-- App css-->
     <link rel="stylesheet" type="text/css" href={{ asset("assets/css/style.css")}}>
-    <link id="color" rel="stylesheet" href={{ asset("assets/css/color-1.css")}} media="screen")}}>
+    <link id="color" rel="stylesheet" href={{ asset("assets/css/color-1.css")}} media="screen">
     <!-- Responsive css-->
     <link rel="stylesheet" type="text/css" href={{ asset("assets/css/responsive.css")}}>
     <!-- latest jquery-->
@@ -64,6 +64,13 @@
     <!-- Select2 -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <link rel="stylesheet" type="text/css" href={{ asset("assets/css/trix.css")}}>
+    <script type="text/javascript" src={{ asset("assets/js/trix.js")}}></script>
+    <style>
+        trix-toolbar [data-trix-button-group="file-tools"] {
+            display: none;
+        }
+    </style>
 </head>
 <script>
     $(document).ready(function () {
