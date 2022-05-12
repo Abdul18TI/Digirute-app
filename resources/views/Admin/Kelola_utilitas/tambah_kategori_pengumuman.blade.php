@@ -9,14 +9,19 @@
                     <div class="card-header pb-0">
                         <h5>Form tambah kategori</h5>
                     </div>
-                    <form class="form theme-form" name="f1" method="POST" action="/store-kategori-pengumuman">
+                    <form class="form theme-form" name="f1" method="POST" action="{{ route('admin.kategoripengumuman.insert')}}">
                         @csrf
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">
                                     <div class="mb-3">
-                                        <label class="form-label" for="exampleFormControlInput1">Nama Kategori iuran</label>
-                                        <input class="form-control" name="nama_kategori_iuran" id="exampleFormControlInput1" type="text" />
+                                        <label class="form-label" for="exampleFormControlInput1">Nama Kategori Pengumuman</label>
+                                        <input class="form-control" name="nama_kategori_pengumuman" required id="exampleFormControlInput1" type="text" autofocus value="{{ old('nama_kategori_pengumuman') }}" />
+                                        @error('judul_pengumuman')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>

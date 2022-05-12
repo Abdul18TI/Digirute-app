@@ -6,7 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\WargaController;
 use App\Http\Controllers\RW\RwController;
 use App\Http\Controllers\RW\PengumumanController;
-use App\Http\Controllers\KategoriPengumumanController;
+use App\Http\Controllers\Admin\KategoriPengumumanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -84,6 +84,19 @@ Route::group(['prefix' => 'RW'], function () {
         Route::post('/insert', [PengumumanController::class, 'store'])->name('rw.pengumuman.insert');
         Route::get('/edit/{warga}', [PengumumanController::class, 'edit_warga_rt'])->name('rw.pengumuman.edit');
         Route::put('/update/{id}', [PengumumanController::class, 'update'])->name('rw.pengumuman.update');
+        Route::delete('/delete/{id}', [PengumumanController::class, 'delete'])->name('rw.pengumuman.delete');
+    });
+});
+
+//Admin
+Route::group(['prefix' => 'Admin'], function () {
+    Route::get('/', [RwController::class, 'home_rw'])->name('rw.dashboard.home');
+    Route::group(['prefix' => 'kategoripengumuman'], function () {
+        Route::get('/', [KategoriPengumumanController::class, 'index'])->name('admin.kategoripengumuman.home');
+        Route::get('/tambah', [KategoriPengumumanController::class, 'create'])->name('admin.kategoripengumuman.tambah');
+        Route::post('/insert', [KategoriPengumumanController::class, 'store'])->name('admin.kategoripengumuman.insert');
+        Route::get('/edit/{warga}', [KategoriPengumumanController::class, 'edit_warga_rt'])->name('admin.kategoripengumuman.edit');
+        Route::put('/update/{id}', [KategoriPengumumanController::class, 'update'])->name('admin.kategoripengumuman.update');
     });
 });
 
@@ -94,7 +107,7 @@ Route::group(['prefix' => 'RW'], function () {
 // Route::get('/edit-pengumuman/{id}', [PengumumanController::class, 'edit']);
 // Route::post('/update-pengumuman', [PengumumanController::class, 'update']);
 // Route::get('/hapus-pengumuman/{id}', [PengumumanController::class, 'hapus']);
-// Route::get('/detail-pengumuman/{id}', [PengumumanController::class, 'detail']);
+Route::get('/detail-pengumuman/{id}', [PengumumanController::class, 'detail']);
 
 //route CRUD kategori pengumuman
 Route::get('/view-kategori-pengumuman', [KategoriPengumumanController::class, 'index']);

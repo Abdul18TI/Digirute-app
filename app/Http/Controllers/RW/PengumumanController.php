@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
+use App\Models\KategoriPengumuman;
 
 class PengumumanController extends Controller
 {
@@ -25,7 +26,9 @@ class PengumumanController extends Controller
 
     public function create()
     {
+        $kategori_pengumuman = KategoriPengumuman::all();
         return view('RW.Pengumuman.tambah_pengumuman', [
+            'kategori_pengumuman' => $kategori_pengumuman,
             'title' => 'tambah-pengumuman'
         ]);
     }
@@ -35,6 +38,7 @@ class PengumumanController extends Controller
     {
         $validatedData = $request->validate([
             'judul_pengumuman' => 'required',
+            'kategori_pengumuman' => 'required',
             'isi_pengumuman' => 'required',
             'foto_pengumuman' => 'image|file|max:2048',
             'tgl_terbit' => 'required'
@@ -44,7 +48,6 @@ class PengumumanController extends Controller
             $validatedData['foto_pengumuman'] = $request->file('foto_pengumuman')->store('gambar-pengumuman');
         }
 
-        $validatedData['kategori_pengumuman'] = 'umum';
         $validatedData['status_pengumuman'] = 1;
 
         Pengumuman::create($validatedData);
@@ -89,43 +92,24 @@ class PengumumanController extends Controller
         }
 
         // alihkan halaman ke halaman pegawai
-        return redirect('/view-pengumuman');
+        return redirect()->route('rw.pengumuman.home');
     }
 
     // method untuk hapus data pegawai
-    public function hapus($id)
+    public function delete(Pengumuman $pengumuman)
     {
-        // if ($pengumuman->foto_pengumuman) {
-        //     Storage::delete($pengumuman->foto_pengumuman);
-        // }
-        // Pengumuman::destroy($pengumuman->id_pengumuman);
-        // return redirect('/view-pengumuman');
-        $pengumuman = DB::table('pengumuman')->where('id_pengumuman', $id)->first();
-        // return $pengumuman->foto_pengumuman;
+        Pengumuman::destroy($pengumuman->id_pengumuman);
         if ($pengumuman->foto_pengumuman) {
             Storage::delete($pengumuman->foto_pengumuman);
-            // menghapus data pegawai berdasarkan id yang dipilih
-            DB::table('pengumuman')->where('id_pengumuman', $id)->delete();
-        } else {
-            DB::table('pengumuman')->where('id_pengumuman', $id)->delete();
         }
-
-
-        // alihkan halaman ke halaman pegawai
-        return redirect('/view-pengumuman');
+        return redirect()->route('rw.pengumuman.home');
     }
-    // public function hapus($id)
-    // {
-    //     Pengumuman::find($id)->delete();
-    // }
-
-    // method untuk melihat detail data pegawai
     public function detail($id)
     {
         // mengambil data pegawai berdasarkan id yang dipilih
         $pengumuman = DB::table('pengumuman')->where('id_pengumuman', $id)->get();
         // passing data pegawai yang didapat ke view edit.blade.php
-        return view('detail_pengumuman', [
+        return view('RW.Pengumuman.detail_pengumuman', [
             'pengumuman' => $pengumuman,
             'title' => 'detail-pengumuman'
         ]);

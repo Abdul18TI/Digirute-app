@@ -29,6 +29,22 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="mb-3">
+                                        <label class="form-label" for="validationCustom02">Kategori pengumuman</label>
+                                        <select class="form-select" name="kategori_pengumuman" id="validationDefault04" required>
+                                            @foreach ($kategori_pengumuman as $k)
+                                                @if(old('kategori_pengumuman') == $k->id_kategori_pengumuman)
+                                                    <option value="{{ $k->id_kategori_pengumuman }}" selected>{{ $k->nama_kategori_pengumuman }}</option>
+                                                @else
+                                                    <option value="{{ $k->id_kategori_pengumuman }}">{{ $k->nama_kategori_pengumuman }}</option>
+                                                @endif
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="mb-3">
                                         <label class="form-label" for="isi_pengumuman">Isi pengumuman</label>
                                         <input id="isi_pengumuman" type="hidden" value="{{ old('isi_pengumuman') }}" name="isi_pengumuman">
                                         <trix-editor input="isi_pengumuman"></trix-editor>

@@ -1,19 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Models\KategoriPengumuman;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class KategoriPengumumanController extends Controller
 {
     public function index()
     {
         // mengambil data dari table pegawai
-        $kategori_pengumuman = DB::table('kategori_pengumuman')->get();
+        $kategori_pengumuman = KategoriPengumuman::all();
 
         // mengirim data kategori_pengumuman ke view index
-        return view('tabel_kategori_pengumuman', [
+        return view('Admin.Kelola_utilitas.tabel_kategori_pengumuman', [
             'kategori_pengumuman' => $kategori_pengumuman,
             "title" => "tabel kategori pengumuman"
         ]);
@@ -21,7 +23,7 @@ class KategoriPengumumanController extends Controller
 
     public function create()
     {
-        return view('tambah_kategori_pengumuman', [
+        return view('Admin.Kelola_utilitas.tambah_kategori_pengumuman', [
             'title' => 'tambah-kategori pengumuman'
         ]);
     }
@@ -30,12 +32,13 @@ class KategoriPengumumanController extends Controller
     public function store(Request $request)
     {
         // insert data ke table pegawai
-        DB::table('kategori_pengumuman')->insert([
-            'nama_kategori_pengumuman' => $request->nama_kategori_iuran
+        $validatedData = $request->validate([
+            'nama_kategori_pengumuman' => 'required'
         ]);
 
+        KategoriPengumuman::create($validatedData);
         // alihkan halaman ke halaman pegawai
-        return redirect('/view-kategori-pengumuman');
+        return redirect()->route('admin.kategoripengumuman.home');
     }
 
     // method untuk edit data pegawai
@@ -44,7 +47,7 @@ class KategoriPengumumanController extends Controller
         // mengambil data pegawai berdasarkan id yang dipilih
         $kategori_pengumuman = DB::table('kategori_pengumuman')->where('id_kategori_pengumuman', $id)->get();
         // passing data pegawai yang didapat ke view edit.blade.php
-        return view('edit_kategori_pengumuman', [
+        return view('Admin.Kelola_utilitas.edit_kategori_pengumuman', [
             'kategori_pengumuman' => $kategori_pengumuman,
             'title' => 'edit-kategori-pengumuman'
         ]);

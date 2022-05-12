@@ -16,6 +16,7 @@ class CreateKategoriPengumumenTable extends Migration
         Schema::create('kategori_pengumuman', function (Blueprint $table) {
             $table->id('id_kategori_pengumuman');
             $table->string('nama_kategori_pengumuman');
+            $table->timestamps();
         });
     }
 

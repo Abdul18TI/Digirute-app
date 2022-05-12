@@ -38,8 +38,12 @@
                                                     class="fa fa-eye"></span> Detail</a>
                                             <a class="btn btn-secondary btn-sm" href="edit-pengumuman/{{ $p->id_pengumuman }}"><span
                                                     class="fa fa-edit"></span> Edit</a>
-                                            <a class="btn btn-danger btn-sm" href="hapus-pengumuman/{{ $p->id_pengumuman }}"><span
-                                                    class="fa fa-trash"></span> Hapus</a>
+                                            <form action="{{ route('rw.pengumuman.delete', $p->id_pengumuman)}}" method="POST" class="d-inline">
+                                                @method('delete')
+                                                @csrf
+                                                <button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure ?')"><span
+                                                    class="fa fa-trash"></span>Delete</button>
+                                            </form>
                                         </td>
                                     </tr>
                                     @endforeach
