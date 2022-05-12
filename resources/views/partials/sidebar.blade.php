@@ -50,8 +50,8 @@
                         </li>
                         <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="airplay"></i><span>Pengumuman</span></a>
                             <ul class="nav-submenu menu-content">
-                                <li><a href="view-pengumuman">Tabel pengumuman</a></li>
-                                <li><a href="create-pengumuman">Tambah pengumuman</a></li>
+                                <li><a href="{{ route('pengumuman.index') }}">Tabel pengumuman</a></li>
+                                <li><a href={{ route('pengumuman.create') }}>Tambah pengumuman</a></li>
                             </ul>
                         </li>
                         <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="dollar-sign"></i><span>Iuran</span></a>

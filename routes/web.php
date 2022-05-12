@@ -78,14 +78,15 @@ Route::group(['prefix' => 'RT'], function () {
 //RW
 Route::group(['prefix' => 'RW'], function () {
     Route::get('/', [RwController::class, 'home_rw'])->name('rw.dashboard.home');
-    Route::group(['prefix' => 'pengumuman'], function () {
-        Route::get('/', [PengumumanController::class, 'index'])->name('rw.pengumuman.home');
-        Route::get('/tambah', [PengumumanController::class, 'create'])->name('rw.pengumuman.tambah');
-        Route::post('/insert', [PengumumanController::class, 'store'])->name('rw.pengumuman.insert');
-        Route::get('/edit/{warga}', [PengumumanController::class, 'edit_warga_rt'])->name('rw.pengumuman.edit');
-        Route::put('/update/{id}', [PengumumanController::class, 'update'])->name('rw.pengumuman.update');
-        Route::delete('/delete/{id}', [PengumumanController::class, 'delete'])->name('rw.pengumuman.delete');
-    });
+    // Route::group(['prefix' => 'pengumuman'], function () {
+    //     Route::get('/', [PengumumanController::class, 'index'])->name('rw.pengumuman.home');
+    //     Route::get('/tambah', [PengumumanController::class, 'create'])->name('rw.pengumuman.tambah');
+    //     Route::post('/insert', [PengumumanController::class, 'store'])->name('rw.pengumuman.insert');
+    //     Route::get('/edit/{warga}', [PengumumanController::class, 'edit_warga_rt'])->name('rw.pengumuman.edit');
+    //     Route::put('/update/{id}', [PengumumanController::class, 'update'])->name('rw.pengumuman.update');
+    //     Route::delete('/delete/{id}', [PengumumanController::class, 'delete'])->name('rw.pengumuman.delete');
+    // });
+    route::resource('pengumuman', PengumumanController::class);
 });
 
 //Admin
@@ -110,12 +111,12 @@ Route::group(['prefix' => 'Admin'], function () {
 Route::get('/detail-pengumuman/{id}', [PengumumanController::class, 'detail']);
 
 //route CRUD kategori pengumuman
-Route::get('/view-kategori-pengumuman', [KategoriPengumumanController::class, 'index']);
-Route::get('/create-kategori-pengumuman', [KategoriPengumumanController::class, 'create']);
-Route::post('/store-kategori-pengumuman', [KategoriPengumumanController::class, 'store']);
-Route::get('/edit-kategori-pengumuman/{id}', [KategoriPengumumanController::class, 'edit']);
-Route::post('/update-kategori-pengumuman', [KategoriPengumumanController::class, 'update']);
-Route::get('/hapus-kategori-pengumuman/{id}', [KategoriPengumumanController::class, 'hapus']);
+// Route::get('/view-kategori-pengumuman', [KategoriPengumumanController::class, 'index']);
+// Route::get('/create-kategori-pengumuman', [KategoriPengumumanController::class, 'create']);
+// Route::post('/store-kategori-pengumuman', [KategoriPengumumanController::class, 'store']);
+// Route::get('/edit-kategori-pengumuman/{id}', [KategoriPengumumanController::class, 'edit']);
+// Route::post('/update-kategori-pengumuman', [KategoriPengumumanController::class, 'update']);
+// Route::get('/hapus-kategori-pengumuman/{id}', [KategoriPengumumanController::class, 'hapus']);
 
 //route kegiatan
 Route::get('/view-kegiatan', function () {

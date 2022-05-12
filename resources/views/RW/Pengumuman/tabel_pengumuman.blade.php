@@ -38,7 +38,7 @@
                                                     class="fa fa-eye"></span> Detail</a>
                                             <a class="btn btn-secondary btn-sm" href="edit-pengumuman/{{ $p->id_pengumuman }}"><span
                                                     class="fa fa-edit"></span> Edit</a>
-                                            <form action="{{ route('rw.pengumuman.delete', $p->id_pengumuman)}}" method="POST" class="d-inline">
+                                            <form action="{{ route('pengumuman.destroy', $p->id_pengumuman)}}" method="POST" class="d-inline">
                                                 @method('delete')
                                                 @csrf
                                                 <button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure ?')"><span

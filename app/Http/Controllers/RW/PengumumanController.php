@@ -51,7 +51,7 @@ class PengumumanController extends Controller
         $validatedData['status_pengumuman'] = 1;
 
         Pengumuman::create($validatedData);
-        return redirect()->route('rw.pengumuman.home');
+        return redirect()->route('pengumuman');
     }
 
     // method untuk edit data pegawai
@@ -96,13 +96,15 @@ class PengumumanController extends Controller
     }
 
     // method untuk hapus data pegawai
-    public function delete(Pengumuman $pengumuman)
+    public function destroy(Pengumuman $pengumuman)
     {
-        Pengumuman::destroy($pengumuman->id_pengumuman);
+        // Pengumuman::destroy($pengumuman->id_pengumuman);
+        $pengumuman->delete();
         if ($pengumuman->foto_pengumuman) {
             Storage::delete($pengumuman->foto_pengumuman);
         }
-        return redirect()->route('rw.pengumuman.home');
+        // return redirect()->route('rw.pengumuman.home');
+        return redirect('RW/pengumuman');
     }
     public function detail($id)
     {
