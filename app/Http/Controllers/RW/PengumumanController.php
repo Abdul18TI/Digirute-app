@@ -51,48 +51,39 @@ class PengumumanController extends Controller
         $validatedData['status_pengumuman'] = 1;
 
         Pengumuman::create($validatedData);
-        return redirect()->route('pengumuman');
+        return redirect()->route('pengumuman.index');
     }
 
     // method untuk edit data pegawai
-    public function edit($id)
+    public function edit(Pengumuman $pengumuman)
     {
-        // mengambil data pegawai berdasarkan id yang dipilih
-        $pengumuman = DB::table('pengumuman')->where('id_pengumuman', $id)->get();
-        // passing data pegawai yang didapat ke view edit.blade.php
-        return view('edit_pengumuman', [
+        $kategori_pengumuman = KategoriPengumuman::all();
+        $pengumuman = Pengumuman::all();
+        return view('RW.Pengumuman.edit_pengumuman', [
+            'kategori_pengumuman' => $kategori_pengumuman,
             'pengumuman' => $pengumuman,
             'title' => 'edit-pengumuman'
         ]);
     }
 
-    // update data pegawai
-    public function update(Request $request)
+    public function update(Request $request, Pengumuman $pengumuman)
     {
+        $validatedData = $request->validate([
+            'judul_pengumuman' => 'required',
+            'kategori_pengumuman' => 'required',
+            'isi_pengumuman' => 'required',
+            'foto_pengumuman' => 'image|file|max:2048',
+            'tgl_terbit' => 'required'
+        ]);
+
         if ($request->file('foto_pengumuman')) {
-            // update data pegawai
-            DB::table('pengumuman')->where('id_pengumuman', $request->id)->update([
-                'kategori_pengumuman' => 'umum',
-                'judul_pengumuman' => $request->judul_pengumuman,
-                'isi_pengumuman' => $request->isi_pengumuman,
-                'foto_pengumuman' =>  $request->file('foto_pengumuman')->store('gambar-pengumuman'),
-                'status_pengumuman' => 1,
-                'tgl_terbit' => $request->tgl_terbit
-            ]);
             Storage::delete($request->oldImage);
-        } else {
-            // update data pegawai
-            DB::table('pengumuman')->where('id_pengumuman', $request->id)->update([
-                'kategori_pengumuman' => 'umum',
-                'judul_pengumuman' => $request->judul_pengumuman,
-                'isi_pengumuman' => $request->isi_pengumuman,
-                'status_pengumuman' => 1,
-                'tgl_terbit' => $request->tgl_terbit
-            ]);
+            $validatedData['foto_pengumuman'] = $request->file('foto_pengumuman')->store('gambar-pengumuman');
         }
 
-        // alihkan halaman ke halaman pegawai
-        return redirect()->route('rw.pengumuman.home');
+        Pengumuman::where('id_pengumuman', $pengumuman->id_pengumuman)
+            ->update($validatedData);
+        return redirect()->route('pengumuman.index');
     }
 
     // method untuk hapus data pegawai
@@ -104,7 +95,7 @@ class PengumumanController extends Controller
             Storage::delete($pengumuman->foto_pengumuman);
         }
         // return redirect()->route('rw.pengumuman.home');
-        return redirect('RW/pengumuman');
+        return redirect()->route('pengumuman.index');
     }
     public function detail($id)
     {

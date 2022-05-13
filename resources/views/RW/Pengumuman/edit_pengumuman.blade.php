@@ -7,10 +7,11 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header pb-0">
-                        <h5>Form tambah pengumuman</h5>
+                        <h5>Form edit pengumuman</h5>
                     </div>
                     @foreach($pengumuman as $p)
-                    <form class="form theme-form" method="POST" enctype="multipart/form-data" action="/update-pengumuman">
+                    <form class="form theme-form" method="POST" enctype="multipart/form-data" action="/RW/pengumuman/{{ $p->id_pengumuman }}">
+                        @method('put')
                         @csrf
                         <input type="hidden" name="id" value="{{ $p->id_pengumuman }}">
                         <div class="card-body">
@@ -19,7 +20,7 @@
                                     <div class="mb-3">
                                         <label class="form-label" for="exampleFormControlInput1">Judul
                                             pengumuman</label>
-                                        <input class="form-control" name="judul_pengumuman" value="{{ $p->judul_pengumuman }}" id="exampleFormControlInput1" type="text"
+                                        <input class="form-control" name="judul_pengumuman" value="{{ old('judul_pengumuman',$p->judul_pengumuman) }}" id="exampleFormControlInput1" type="text"
                                             placeholder="gotong royong bersama" />
                                     </div>
                                 </div>
@@ -27,13 +28,31 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="mb-3">
-                                        <div>
-                                            <label class="form-label" for="exampleFormControlTextarea4">Isi
-                                                pengumuman</label>
-                                            <textarea class="form-control" name="isi_pengumuman" id="exampleFormControlTextarea4"
-                                                rows="9">{{ $p->isi_pengumuman }}</textarea>
-                                        </div>
+                                        <label class="form-label" for="validationCustom02">Kategori pengumuman</label>
+                                        <select class="form-select" name="kategori_pengumuman" id="validationDefault04" required>
+                                            @foreach ($kategori_pengumuman as $k)
+                                                @if(old('kategori_pengumuman', $k->id_kategori_pengumuman) == $k->id_kategori_pengumuman)
+                                                    <option value="{{ $k->id_kategori_pengumuman }}" selected>{{ $k->nama_kategori_pengumuman }}</option>
+                                                @else
+                                                    <option value="{{ $k->id_kategori_pengumuman }}">{{ $k->nama_kategori_pengumuman }}</option>
+                                                @endif
+                                            @endforeach
+                                        </select>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="isi_pengumuman">Isi pengumuman</label>
+                                        <input id="isi_pengumuman" type="hidden" name="isi_pengumuman" value="{{ old('isi_pengumuman',$p->isi_pengumuman) }}">
+                                        <trix-editor input="isi_pengumuman"></trix-editor>
+                                    </div>
+                                    @error('isi_pengumuman')
+                                    <a class="text-danger">
+                                        {{ $message }}
+                                    </a>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="row">
@@ -61,7 +80,7 @@
                             </div>
                         </div>
                         <div class="card-footer text-end">
-                            <button class="btn btn-primary" type="submit">Tambah</button>
+                            <button class="btn btn-primary" type="submit">Edit</button>
                             <input class="btn btn-light" type="reset" value="Batal" />
                         </div>
                     </form>

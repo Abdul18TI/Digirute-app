@@ -36,12 +36,12 @@
                                         <td>
                                             <a class="btn btn-info btn-sm" href="detail-pengumuman/{{ $p->id_pengumuman }}"><span
                                                     class="fa fa-eye"></span> Detail</a>
-                                            <a class="btn btn-secondary btn-sm" href="edit-pengumuman/{{ $p->id_pengumuman }}"><span
+                                            <a class="btn btn-secondary btn-sm" href="pengumuman/{{ $p->id_pengumuman }}/edit"><span
                                                     class="fa fa-edit"></span> Edit</a>
                                             <form action="{{ route('pengumuman.destroy', $p->id_pengumuman)}}" method="POST" class="d-inline">
                                                 @method('delete')
                                                 @csrf
-                                                <button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure ?')"><span
+                                                <button class="btn btn-danger btn-sm border-0" onclick="return confirm('Are you sure ?')"><span
                                                     class="fa fa-trash"></span>Delete</button>
                                             </form>
                                         </td>
