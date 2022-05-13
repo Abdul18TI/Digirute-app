@@ -57,11 +57,9 @@ class PengumumanController extends Controller
     // method untuk edit data pegawai
     public function edit(Pengumuman $pengumuman)
     {
-        $kategori_pengumuman = KategoriPengumuman::all();
-        $pengumuman = Pengumuman::all();
         return view('RW.Pengumuman.edit_pengumuman', [
-            'kategori_pengumuman' => $kategori_pengumuman,
             'pengumuman' => $pengumuman,
+            'kategori_pengumuman' => KategoriPengumuman::all(),
             'title' => 'edit-pengumuman'
         ]);
     }
@@ -86,22 +84,17 @@ class PengumumanController extends Controller
         return redirect()->route('pengumuman.index');
     }
 
-    // method untuk hapus data pegawai
     public function destroy(Pengumuman $pengumuman)
     {
-        // Pengumuman::destroy($pengumuman->id_pengumuman);
         $pengumuman->delete();
         if ($pengumuman->foto_pengumuman) {
             Storage::delete($pengumuman->foto_pengumuman);
         }
-        // return redirect()->route('rw.pengumuman.home');
         return redirect()->route('pengumuman.index');
     }
-    public function detail($id)
+    public function show($id)
     {
-        // mengambil data pegawai berdasarkan id yang dipilih
-        $pengumuman = DB::table('pengumuman')->where('id_pengumuman', $id)->get();
-        // passing data pegawai yang didapat ke view edit.blade.php
+        $pengumuman = Pengumuman::find($id);
         return view('RW.Pengumuman.detail_pengumuman', [
             'pengumuman' => $pengumuman,
             'title' => 'detail-pengumuman'

@@ -34,7 +34,7 @@
                                             Tidak aktif
                                             @endif</td>
                                         <td>
-                                            <a class="btn btn-info btn-sm" href="detail-pengumuman/{{ $p->id_pengumuman }}"><span
+                                            <a class="btn btn-info btn-sm" href="pengumuman/{{ $p->id_pengumuman }}"><span
                                                     class="fa fa-eye"></span> Detail</a>
                                             <a class="btn btn-secondary btn-sm" href="pengumuman/{{ $p->id_pengumuman }}/edit"><span
                                                     class="fa fa-edit"></span> Edit</a>

@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.main-admin')
 
 @section('container')
 <div class="page-body">
@@ -26,7 +26,7 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $kp->nama_kategori_pengumuman }}</td>
                                         <td>
-                                            <a class="btn btn-secondary btn-sm" href="edit-kategori-pengumuman/{{ $kp->id_kategori_pengumuman }}"><span class="fa fa-edit"></span> Edit</a>
+                                            <a class="btn btn-secondary btn-sm" href="kategori_pengumuman/{{ $kp->id_kategori_pengumuman }}/edit"><span class="fa fa-edit"></span> Edit</a>
                                             <a class="btn btn-danger btn-sm" href="hapus-kategori-pengumuman/{{ $kp->id_kategori_pengumuman }}"><span class="fa fa-trash"></span> Hapus</a>
                                         </td>
                                     </tr>

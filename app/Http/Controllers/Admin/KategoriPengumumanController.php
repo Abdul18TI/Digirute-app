@@ -11,10 +11,7 @@ class KategoriPengumumanController extends Controller
 {
     public function index()
     {
-        // mengambil data dari table pegawai
         $kategori_pengumuman = KategoriPengumuman::all();
-
-        // mengirim data kategori_pengumuman ke view index
         return view('Admin.Kelola_utilitas.tabel_kategori_pengumuman', [
             'kategori_pengumuman' => $kategori_pengumuman,
             "title" => "tabel kategori pengumuman"
@@ -28,49 +25,38 @@ class KategoriPengumumanController extends Controller
         ]);
     }
 
-    // method untuk insert data ke table pegawai
     public function store(Request $request)
     {
-        // insert data ke table pegawai
         $validatedData = $request->validate([
             'nama_kategori_pengumuman' => 'required'
         ]);
 
         KategoriPengumuman::create($validatedData);
-        // alihkan halaman ke halaman pegawai
-        return redirect()->route('admin.kategoripengumuman.home');
+        return redirect()->route('kategori_pengumuman.index');
     }
 
-    // method untuk edit data pegawai
-    public function edit($id)
+    public function edit(KategoriPengumuman $kategoriPengumuman)
     {
-        // mengambil data pegawai berdasarkan id yang dipilih
-        $kategori_pengumuman = DB::table('kategori_pengumuman')->where('id_kategori_pengumuman', $id)->get();
-        // passing data pegawai yang didapat ke view edit.blade.php
         return view('Admin.Kelola_utilitas.edit_kategori_pengumuman', [
-            'kategori_pengumuman' => $kategori_pengumuman,
+            'kategori_pengumuman' => $kategoriPengumuman,
             'title' => 'edit-kategori-pengumuman'
         ]);
     }
 
-    // update data pegawai
-    public function update(Request $request)
+    public function update(Request $request, KategoriPengumuman $kategoriPengumuman)
     {
-        // update data pegawai
-        DB::table('kategori_pengumuman')->where('id_kategori_pengumuman', $request->id)->update([
-            'nama_kategori_pengumuman' => $request->nama_kategori_pengumuman
+        $validatedData = $request->validate([
+            'nama_kategori_pengumuman' => 'required'
         ]);
-        // alihkan halaman ke halaman pegawai
-        return redirect('/view-kategori-pengumuman');
+
+        KategoriPengumuman::where('id_kategori_pengumuman', $kategoriPengumuman->id_kategori_pengumuman)
+            ->update($validatedData);
+        return redirect()->route('kategori_pengumuman.index');
     }
 
-    // method untuk hapus data pegawai
-    public function hapus($id)
+    public function destroy(KategoriPengumuman $kategoriPengumuman)
     {
-        // menghapus data pegawai berdasarkan id yang dipilih
-        DB::table('kategori_pengumuman')->where('id_kategori_pengumuman', $id)->delete();
-
-        // alihkan halaman ke halaman pegawai
-        return redirect('/view-kategori-pengumuman');
+        $kategoriPengumuman->delete();
+        return redirect()->route('pengumuman.index');
     }
 }

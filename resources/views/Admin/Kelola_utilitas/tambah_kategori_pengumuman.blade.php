@@ -9,7 +9,7 @@
                     <div class="card-header pb-0">
                         <h5>Form tambah kategori</h5>
                     </div>
-                    <form class="form theme-form" name="f1" method="POST" action="{{ route('admin.kategoripengumuman.insert')}}">
+                    <form class="form theme-form" name="f1" method="POST" action="{{ route('kategori_pengumuman.store')}}">
                         @csrf
                         <div class="card-body">
                             <div class="row">

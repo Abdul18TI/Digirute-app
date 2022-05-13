@@ -9,18 +9,17 @@
                     <div class="card-header pb-0">
                         <h5>Form edit pengumuman</h5>
                     </div>
-                    @foreach($pengumuman as $p)
-                    <form class="form theme-form" method="POST" enctype="multipart/form-data" action="/RW/pengumuman/{{ $p->id_pengumuman }}">
+                    <form class="form theme-form" method="POST" enctype="multipart/form-data" action="/RW/pengumuman/{{ $pengumuman->id_pengumuman }}">
                         @method('put')
                         @csrf
-                        <input type="hidden" name="id" value="{{ $p->id_pengumuman }}">
+                        <input type="hidden" name="id" value="{{ $pengumuman->id_pengumuman }}">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">
                                     <div class="mb-3">
                                         <label class="form-label" for="exampleFormControlInput1">Judul
                                             pengumuman</label>
-                                        <input class="form-control" name="judul_pengumuman" value="{{ old('judul_pengumuman',$p->judul_pengumuman) }}" id="exampleFormControlInput1" type="text"
+                                        <input class="form-control" name="judul_pengumuman" value="{{ old('judul_pengumuman',$pengumuman->judul_pengumuman) }}" id="exampleFormControlInput1" type="text"
                                             placeholder="gotong royong bersama" />
                                     </div>
                                 </div>
@@ -45,7 +44,7 @@
                                 <div class="col">
                                     <div class="mb-3">
                                         <label class="form-label" for="isi_pengumuman">Isi pengumuman</label>
-                                        <input id="isi_pengumuman" type="hidden" name="isi_pengumuman" value="{{ old('isi_pengumuman',$p->isi_pengumuman) }}">
+                                        <input id="isi_pengumuman" type="hidden" name="isi_pengumuman" value="{{ old('isi_pengumuman',$pengumuman->isi_pengumuman) }}">
                                         <trix-editor input="isi_pengumuman"></trix-editor>
                                     </div>
                                     @error('isi_pengumuman')
@@ -59,9 +58,9 @@
                                 <div class="col">
                                     <div class="mb-3 row">
                                         <label class="form-label">Foto pengumuman</label>
-                                        <input type="hidden" name="oldImage" value="{{ $p->foto_pengumuman }}">
-                                        @if($p->foto_pengumuman)
-                                        <img src="{{ asset('storage/'. $p->foto_pengumuman) }}" class="img-preview img-fluid mb-3 col-sm-5 d-block">
+                                        <input type="hidden" name="oldImage" value="{{ $pengumuman->foto_pengumuman }}">
+                                        @if($pengumuman->foto_pengumuman)
+                                        <img src="{{ asset('storage/'. $pengumuman->foto_pengumuman) }}" class="img-preview img-fluid mb-3 col-sm-5 d-block">
                                         @else
                                         <img class="img-preview img-fluid mb-3 col-sm-5">
                                         @endif
@@ -75,7 +74,7 @@
                                 <label class="form-label">Waktu terbit</label>
                                 <div class="col-sm-9">
                                     <input class="form-control digits" id="example-datetime-local-input"
-                                        type="datetime-local" name="tgl_terbit" value="{{ $p->tgl_terbit }}" />
+                                        type="datetime-local" name="tgl_terbit" value="{{ $pengumuman->tgl_terbit }}" />
                                 </div>
                             </div>
                         </div>
@@ -84,7 +83,6 @@
                             <input class="btn btn-light" type="reset" value="Batal" />
                         </div>
                     </form>
-                    @endforeach
                 </div>
             </div>
         </div>
