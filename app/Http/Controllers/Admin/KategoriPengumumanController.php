@@ -6,9 +6,11 @@ use App\Models\KategoriPengumuman;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class KategoriPengumumanController extends Controller
 {
+
     public function index()
     {
         $kategori_pengumuman = KategoriPengumuman::all();
@@ -31,8 +33,15 @@ class KategoriPengumumanController extends Controller
             'nama_kategori_pengumuman' => 'required'
         ]);
 
-        KategoriPengumuman::create($validatedData);
-        return redirect()->route('kategori_pengumuman.index');
+        try {
+            KategoriPengumuman::create($validatedData);
+
+            return redirect()->route('kategori_pengumuman.index')
+                ->with('success', 'Created successfully!');
+        } catch (\Exception $e) {
+            return redirect()->route('kategori_pengumuman.index')
+                ->with('error', 'Error during the creation!');
+        }
     }
 
     public function edit(KategoriPengumuman $kategoriPengumuman)
@@ -56,7 +65,13 @@ class KategoriPengumumanController extends Controller
 
     public function destroy(KategoriPengumuman $kategoriPengumuman)
     {
-        $kategoriPengumuman->delete();
-        return redirect()->route('pengumuman.index');
+        try {
+            $kategoriPengumuman->delete();
+            return redirect()->route('kategori_pengumuman.index')
+                ->with('success', 'deleted successfully!');
+        } catch (\Exception $e) {
+            return redirect()->route('kategori_pengumuman.index')
+                ->with('error', 'Error during the deletion!');
+        }
     }
 }

@@ -27,7 +27,13 @@
                                         <td>{{ $kp->nama_kategori_pengumuman }}</td>
                                         <td>
                                             <a class="btn btn-secondary btn-sm" href="kategori_pengumuman/{{ $kp->id_kategori_pengumuman }}/edit"><span class="fa fa-edit"></span> Edit</a>
-                                            <a class="btn btn-danger btn-sm" href="hapus-kategori-pengumuman/{{ $kp->id_kategori_pengumuman }}"><span class="fa fa-trash"></span> Hapus</a>
+                                            <form action="{{ route('kategori_pengumuman.destroy', $kp->id_kategori_pengumuman)}}" method="POST" class="d-inline">
+                                                @method('delete')
+                                                @csrf
+                                                <button class="btn btn-danger btn-sm border-0" onclick="return confirm('Are you sure ?')"><span
+                                                    class="fa fa-trash"></span>Delete</button>
+                                                    <button class="btn btn-primary sweet-1" type="button" onclick="_gaq.push(['_trackEvent', 'example', 'try', 'sweet-1']);">Basic</button>
+                                            </form>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -41,4 +47,5 @@
     </div>
 </div>
 <!-- Zero Configuration  Ends-->
+
 @endsection
