@@ -69,7 +69,7 @@
                                     <tbody>
                                         @foreach ($data as $dt)
                                             <tr>
-                                                <td>{{ '1' }}</td>
+                                                <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $dt->judul_pengaduan }}</td>
                                                 <td>{{ $dt->kategori_pengaduan }}</td>
                                                 <td>{{ Str::limit($dt->deskripsi_pengaduan, 100, '...') }}</td>
@@ -86,89 +86,15 @@
                                                 class="btn btn-success btn-sm p-2" role="button" data-bs-toggle="modal"
                                                 data-original-title="test" data-bs-target="#exampleModal"><span
                                                     class="fa fa-list"></span></a>
-                                            @if ($dt->ditampilkan == '0')
+                                            {{-- @if ($dt->ditampilkan == '0')
                                                 <a href="{{ $dt->id_pengaduan }}" class="btn btn-danger btn-sm p-2"
                                                     data-container="body" data-bs-toggle="tooltip" data-bs-placement="top"
                                                     title="Edit"><span class="fa fa-trash"></span></a>
-                                            @endif
+                                            @endif --}}
                                         </td>
                                         </tr>
                                         @endforeach
                                         {{-- <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-original-title="test" data-bs-target="#exampleModal">Simple</button> --}}
-
-                                        {{-- MODAL DETAIL DATA --}}
-                                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog  modal-lg" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Detail Data</h5>
-                                                        <button class="btn-close" type="button" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="container-fluid bd-example-row">
-                                                            <div class="row mb-3 pb-2"
-                                                                style="border-bottom: 1px solid #dee2e696;">
-                                                                <div class="col-md-3">
-                                                                    <p class="f-w-600" >Judul Pengaduan</p>
-                                                                </div>
-                                                                <div class="col-md-9 ml-auto">
-                                                                    <p id="judul_pengaduan"></p></div>
-                                                            </div>
-                                                            <div class="row mb-3 pb-2"
-                                                                style="border-bottom: 1px solid #dee2e696;">
-                                                                <div class="col-md-3">
-                                                                    <p class="f-w-600">Kategori</span>
-                                                                </div>
-                                                                <div class="col-md-9 ml-auto">
-                                                                    <p id="kategori_pengaduan"></p></div>
-                                                            </div>
-                                                            <div class="row mb-3 pb-2"
-                                                                style="border-bottom: 1px solid #dee2e696;">
-                                                                <div class="col-md-3">
-                                                                    <p class="f-w-600">Deskripsi</span>
-                                                                </div>
-                                                                <div class="col-md-9 ml-auto">
-                                                                    <p id="deskripsi_pengaduan"></p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row mb-3 pb-2"
-                                                                style="border-bottom: 1px solid #dee2e696;">
-                                                                <div class="col-md-3">
-                                                                    <p class="f-w-600">Bukti</span>
-                                                                </div>
-                                                                <div class="col-md-9 ml-auto"><img
-                                                                        src="{{ asset('assets/images/dashboard/bg.jpg') }}">
-                                                                </div>
-                                                            </div>
-                                                            <div class="row mb-3 pb-2"
-                                                                style="border-bottom: 1px solid #dee2e696;">
-                                                                <div class="col-md-3">
-                                                                    <p class="f-w-600">Tanggal Lapor</span>
-                                                                </div>
-                                                                <div class="col-md-9 ml-auto">
-                                                                    <p id="tanggal_pengaduan"></p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row mb-3 pb-2">
-                                                                <div class="col-md-3">
-                                                                    <p class="f-w-600">Status </span>
-                                                                </div>
-                                                                <div class="col-md-9 ml-auto"> <span
-                                                                        class="badge badge-warning">Proses</span></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button class="btn btn-primary" type="button"
-                                                            data-bs-dismiss="modal">Edit</button>
-                                                        {{-- <button class="btn btn-secondary" type="button">Save changes</button> --}}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        {{-- END DETAIL MODAL --}}
                                     </tbody>
                                     <tfooter>
                                         <tr>
@@ -186,10 +112,82 @@
                         </div>
                     </div>
                     <!-- Form Pengaduan End -->
-                </div>
+                    </div>
             </div>
         </div>
     </div>
+        {{-- MODAL DETAIL DATA --}}
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog  modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Detail Data</h5>
+                    <button class="btn-close" type="button" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid bd-example-row">
+                        <div class="row mb-3 pb-2"
+                            style="border-bottom: 1px solid #dee2e696;">
+                            <div class="col-md-3">
+                                <p class="f-w-600" >Judul Pengaduan</p>
+                            </div>
+                            <div class="col-md-9 ml-auto">
+                                <p id="judul_pengaduan"></p></div>
+                        </div>
+                        <div class="row mb-3 pb-2"
+                            style="border-bottom: 1px solid #dee2e696;">
+                            <div class="col-md-3">
+                                <p class="f-w-600">Kategori</span>
+                            </div>
+                            <div class="col-md-9 ml-auto">
+                                <p id="kategori_pengaduan"></p></div>
+                        </div>
+                        <div class="row mb-3 pb-2"
+                            style="border-bottom: 1px solid #dee2e696;">
+                            <div class="col-md-3">
+                                <p class="f-w-600">Deskripsi</span>
+                            </div>
+                            <div class="col-md-9 ml-auto">
+                                <p id="deskripsi_pengaduan"></p>
+                            </div>
+                        </div>
+                        <div class="row mb-3 pb-2"
+                            style="border-bottom: 1px solid #dee2e696;">
+                            <div class="col-md-3">
+                                <p class="f-w-600">Bukti</span>
+                            </div>
+                            <div class="col-md-9 ml-auto"><img
+                                    src="{{ asset('assets/images/dashboard/bg.jpg') }}">
+                            </div>
+                        </div>
+                        <div class="row mb-3 pb-2"
+                            style="border-bottom: 1px solid #dee2e696;">
+                            <div class="col-md-3">
+                                <p class="f-w-600">Tanggal Lapor</span>
+                            </div>
+                            <div class="col-md-9 ml-auto">
+                                <p id="tanggal_pengaduan"></p>
+                            </div>
+                        </div>
+                        <div class="row pb-2">
+                            <div class="col-md-3">
+                                <p class="f-w-600">Status </span>
+                            </div>
+                            <div class="col-md-9 ml-auto" id="status_pengaduan"></div>
+                        </div>
+                    </div>
+                </div>
+                {{-- <div class="modal-footer">
+                    <button class="btn btn-primary" type="button"
+                        data-bs-dismiss="modal">Edit</button>
+                  <button class="btn btn-secondary" type="button">Save changes</button>
+                </div> --}}
+            </div>
+        </div>
+    </div>
+    {{-- END DETAIL MODAL --}}
 @endsection
 
 @section('js')
@@ -199,7 +197,8 @@
     <script src="{{ asset('assets/js/tooltip-init.js') }}"></script>
     <script>
         $('#tabelpengaduan-warga').DataTable();
-           const detail = (id) => {
+            //membuat modal detail
+            const detail = (id) => {
             const judul_pengaduan = document.getElementById('judul_pengaduan');
             const deskripsi_pengaduan = document.getElementById('deskripsi_pengaduan');
             const kategori_pengaduan = document.getElementById('kategori_pengaduan');
@@ -209,15 +208,23 @@
             fetch('{{route('warga.pengaduan.show',1)}}')
                 .then(respone =>respone.json())
                 .then(data=>{
-                    const event = new Date(data[0].created_at);
-                    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
                     judul_pengaduan.textContent = data[0].judul_pengaduan;
                     deskripsi_pengaduan.textContent = data[0].deskripsi_pengaduan;
                     kategori_pengaduan.textContent = data[0].kategori_pengaduan;
+                    //membuat tanggal indonesia
+                    const event = new Date(data[0].created_at);
+                    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
                     tanggal_pengaduan.textContent = event.toLocaleDateString('id-ID',options);
-                }
-                )
+                    //end membuat tanggal indonesia
+                    let status = '';
+                    if(data[0].status_pengaduan == 0){
+                        status = '<span class="badge badge-warning">Proses</span>'
+                    }
+                    status_pengaduan.innerHTML = status;
+                })
+            //end membuat modal detail
         }
     </script>
     <!-- Plugins JS Ends-->
 @endsection
+;

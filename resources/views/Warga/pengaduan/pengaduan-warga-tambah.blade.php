@@ -1,4 +1,4 @@
-@extends('layouts.main-rt')
+@extends('layouts.main-warga')
 
 @section('container')
 <div class="page-body">
