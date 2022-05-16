@@ -38,12 +38,17 @@
                         <li>
                             <a class="nav-link menu-title link-nav" href="{{ route('rt.warga.home')}}"><i data-feather="users"></i><span>Warga</span></a>
                         </li>
-                        <li>
                         <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="message-circle"></i><span>Pengaduan</span></a>
                             <ul class="nav-submenu menu-content">
                                 <li><a href="">Pengaduan Warga</a></li>
                                 <li><a href="">Pengaduan Pribadi</a></li>
                             </ul>
+                        </li>
+                         <li>
+                             <form action="{{ route('logout.warga');}}" method="POST" id="form-id">
+                                @csrf
+                                <a class="nav-link menu-title link-nav" onclick="document.getElementById('form-id').submit();"><i data-feather="log-out"></i><span>Logout</span></a>
+                            </form>
                         </li>
                     </ul>
                 </div>

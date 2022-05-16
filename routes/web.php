@@ -7,6 +7,7 @@ use App\Http\Controllers\WargaController;
 use App\Http\Controllers\RW\RwController;
 use App\Http\Controllers\RW\PengumumanController;
 use App\Http\Controllers\Admin\KategoriPengumumanController;
+use App\Http\Controllers\Warga\LoginWargaController;
 use App\Http\Controllers\Warga\PengaduanController as WargaPengaduanController;
 
 /*
@@ -20,9 +21,7 @@ use App\Http\Controllers\Warga\PengaduanController as WargaPengaduanController;
 |
 */
 
-Route::get('/', function () {
-    return view('Warga.login-warga');
-});
+
 
 Route::get('/warga', function () {
     return view('warga', [
@@ -60,8 +59,13 @@ Route::get('/detail-iuran/{id}', [IuranController::class, 'detail']);
 //     Route::get('profile', [UserController::class, 'profile'])->name('profile');
 //     Route::get('setting', [UserController::class, 'setting'])->name('setting');
 // });
+Route::get('/', function () {
+    return view('Warga.login-warga');
+})->name('warga.login');
+Route::post('/', [LoginWargaController::class, 'authenticate'])->name('login.warga');
+Route::post('/logout', [LoginWargaController::class, 'logout'])->name('logout.warga');
 
-Route::prefix('Warga')->name('warga.')->group(function () {
+Route::prefix('Warga')->middleware('auth')->name('warga.')->group(function () {
     Route::get('/', function () {
         return 'berhasil';
     })->name('home');

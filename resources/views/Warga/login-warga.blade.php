@@ -53,28 +53,32 @@
                 </div>
                 <div class="col-xl-7 p-0">
                     <div class="login-card">
-                        <form class="theme-form login-form" method="POST" action="C_login_warga">
+                        <form class="theme-form login-form" method="POST" action="{{ route('login.warga') }}">
+                            @csrf
                             <h4>Login Warga</h4>
                             <h6>Selamat datang warga Kelurahan Umban Sari.</h6>
-
-                            {{-- <?= $this->session->flashdata('message'); ?> --}}
-
                             <div class="form-group">
                                 <label>Username</label>
                                 <div class="input-group"><span class="input-group-text"><i class="icon-user"></i></span>
-                                    <input class="form-control" name="username" id="username" value="" type=" text" placeholder="Username">
+                                    <input class="form-control @error('username') is-invalid @enderror" name="username" id="username" value="{{ old('username') }}" type=" text" placeholder="Username" autofocus >
+                                    @error('username')
+                                    <div class="invalid-feedback">{{ $message}}</div>
+                                   @enderror
                                 </div>
-                      
                             </div>
                             <div class="form-group">
                                 <label>Password</label>
                                 <div class="input-group"><span class="input-group-text"><i class="icon-lock"></i></span>
-                                    <input class="form-control" name="password" type="password" id="password" name="password" placeholder="*********">
-                                    <div class="show-hide"><span class="show"> </span></div>
+                                    <input class="form-control @error('password') is-invalid @enderror" name="password" type="password" id="password" name="password" placeholder="*********">
+                                    @error('password')
+                                    <div class="invalid-feedback">{{ $message}}</div>
+                                   @enderror
+                                    {{-- <div class="show-hide"><span class="show"> </span></div> --}}
                                 </div>
                              <small class="text-danger pl-3">
                             </div>
                             <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Login</button></div>
+                        </form>
                             <div class="login-social-title">
                                 <h5>Login Sebagai</h5>
                             </div>
@@ -85,7 +89,6 @@
                                     <div class="col-4"><a class="btn btn-primary btn-block" href="" type="submit">RT</a></div>
                                 </div>
                             </div>
-                        </form>
                     </div>
                 </div>
             </div>

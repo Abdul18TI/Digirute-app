@@ -103,8 +103,11 @@
                             <li><a class="text-dark" href="#!" onclick="javascript:toggleFullScreen()"><i
                                         data-feather="maximize"></i></a></li>
                             <li class="onhover-dropdown p-0">
-                                <button class="btn btn-primary-light" type="button"><a href="Warga/C_login_warga/logout"><i
+                                <form action="{{ route('logout.warga');}}" class="m-0" method="POST">
+                                    @csrf
+                                <button class="btn btn-primary-light" ><i
                                             data-feather="log-out"></i>Log out</a></button>
+                                </form>
                             </li>
                         </ul>
                     </div>

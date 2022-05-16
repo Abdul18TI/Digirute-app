@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+// use Illuminate\Auth\Authenticatable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 
-class Warga extends Model
+class Warga extends Authenticatable
 {
     use HasFactory, SoftDeletes;
 
