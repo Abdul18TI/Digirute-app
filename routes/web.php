@@ -7,6 +7,7 @@ use App\Http\Controllers\WargaController;
 use App\Http\Controllers\RW\RwController;
 use App\Http\Controllers\RW\PengumumanController;
 use App\Http\Controllers\Admin\KategoriPengumumanController;
+use App\Http\Controllers\Warga\PengaduanController as WargaPengaduanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +21,7 @@ use App\Http\Controllers\Admin\KategoriPengumumanController;
 */
 
 Route::get('/', function () {
-    return view('login');
+    return view('Warga.login-warga');
 });
 
 Route::get('/warga', function () {
@@ -52,6 +53,32 @@ Route::get('/edit-iuran/{id}', [IuranController::class, 'edit']);
 Route::post('/update-iuran', [IuranController::class, 'update']);
 Route::get('/hapus-iuran/{id}', [IuranController::class, 'hapus']);
 Route::get('/detail-iuran/{id}', [IuranController::class, 'detail']);
+
+//contoh penggunana prefix grup dan name
+// Route::prefix('user')->name('user.')->middleware(['user', 'auth'])->group(function () {
+//     Route::get('dashboard', [UserController::class, 'index'])->name('dashboard');
+//     Route::get('profile', [UserController::class, 'profile'])->name('profile');
+//     Route::get('setting', [UserController::class, 'setting'])->name('setting');
+// });
+
+Route::prefix('Warga')->name('warga.')->group(function () {
+    Route::get('/', function () {
+        return 'berhasil';
+    })->name('home');
+    Route::resource('pengaduan', WargaPengaduanController::class);
+    // Route::get('/users', function () {
+    //     // Route assigned name "admin.users"...
+    // })->name('users');
+
+    // Route::get('/', [WargaController::class, 'home_rt'])->name('rt.warga.home');
+    // Route::group(['prefix' => 'warga'], function () {
+    //     Route::get('/', [WargaController::class, 'home_rt'])->name('rt.warga.home');
+    //     Route::get('/tambah', [WargaController::class, 'tambah_warga_rt'])->name('rt.warga.tambah');
+    //     Route::post('/insert', [WargaController::class, 'add'])->name('rt.warga.insert');
+    //     Route::get('/edit/{warga}', [WargaController::class, 'edit_warga_rt'])->name('rt.warga.edit');
+    //     Route::put('/update/{id}', [WargaController::class, 'update'])->name('rt.warga.update');
+    // });
+});
 
 Route::group(['prefix' => 'RT'], function () {
     Route::get('/', [WargaController::class, 'home_rt'])->name('rt.warga.home');
@@ -90,7 +117,7 @@ Route::get('/view-kelahiran', function () {
     ]);
 });
 Route::get('/create-kelahiran', function () {
-    return view('RT.Kelahiran.kelahiran-tambah-rt', [
+    return view('RT.kelahiran.kelahiran-tambah-rt', [
         'title' => 'table-kelahiran'
     ]);
 });
