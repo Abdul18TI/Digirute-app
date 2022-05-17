@@ -27,12 +27,11 @@
                                         <td>{{ $kp->nama_kategori_pengumuman }}</td>
                                         <td>
                                             <a class="btn btn-secondary btn-sm" href="kategori_pengumuman/{{ $kp->id_kategori_pengumuman }}/edit"><span class="fa fa-edit"></span> Edit</a>
-                                            <form action="{{ route('kategori_pengumuman.destroy', $kp->id_kategori_pengumuman)}}" method="POST" class="d-inline">
-                                                @method('delete')
+                                            <form method="POST" action="{{ route('kategori_pengumuman.destroy', $kp->id_kategori_pengumuman)}}" class="d-inline">
                                                 @csrf
-                                                <button class="btn btn-danger btn-sm border-0 sweet-1"><span
-                                                    class="fa fa-trash"></span>Delete</button>
-                                                    <button class="btn btn-warning sweet-1" type="button">Warning alert</button>
+                                               <input name="_method" type="hidden" value="DELETE">
+                                               <button type="submit" class="btn btn-danger sweet" data-toggle="tooltip" title='Delete'><span
+                                                class="fa fa-trash"></span>Delete</button>
                                             </form>
                                         </td>
                                     </tr>
@@ -47,5 +46,4 @@
     </div>
 </div>
 <!-- Zero Configuration  Ends-->
-
 @endsection

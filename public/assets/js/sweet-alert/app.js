@@ -1,23 +1,22 @@
 var SweetAlert_custom = {
     init: function() {
-        document.querySelector('.sweet-1').onclick = function(){
+        $('.sweet').click(function(event) {
+            var form =  $(this).closest("form");
+            var name = $(this).data("name");
+            event.preventDefault();
             swal({
-                title: "Are you sure?",
-                text: "Once deleted, you will not be able to recover this imaginary file!",
+                title: `Apakah anda yakin ingin menghapus data ??`,
+                text: "data akan hilang selamanya.",
                 icon: "warning",
                 buttons: true,
                 dangerMode: true,
             })
             .then((willDelete) => {
-                if (willDelete) {
-                    swal("Poof! Your imaginary file has been deleted!", {
-                        icon: "success",
-                    });
-                } else {
-                    swal("Your imaginary file is safe!");
-                }
-            })
-    }
+              if (willDelete) {
+                form.submit();
+              }
+            });
+        });
     }
 
 };
