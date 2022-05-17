@@ -59,7 +59,7 @@
     <link id="color" rel="stylesheet" href={{ asset("assets/css/color-1.css")}} media="screen">
     <!-- Responsive css-->
     <link rel="stylesheet" type="text/css" href={{ asset("assets/css/responsive.css")}}>
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/sweetalert2.css')}}">
+    <link rel="stylesheet" type="text/css" href={{ asset("assets/css/sweetalert2.css")}}>
     <!-- latest jquery-->
     <script src={{ asset("assets/js/jquery-3.5.1.min.js")}}></script>
     <!-- Select2 -->
@@ -139,7 +139,6 @@
         </footer>
     </div>
     </div>
-
     <!-- feather icon js-->
     <script src={{ asset("assets/js/icons/feather-icon/feather.min.js")}}></script>
     <script src={{ asset("assets/js/icons/feather-icon/feather-icon.js")}}></script>
@@ -178,8 +177,8 @@
     <!-- Theme js-->
     <script src={{ asset("assets/js/script.js")}}></script>
     <script src={{ asset("assets/js/theme-customizer/customizer.js")}}></script>
-    <script src="{{asset('assets/js/sweet-alert/sweetalert.min.js')}}"></script>
-    <script src="{{asset('assets/js/sweet-alert/app.js')}}"></script>
+    <script src={{ asset("assets/js/sweet-alert/sweetalert.min.js")}}></script>
+    <script src={{ asset("assets/js/sweet-alert/app.js")}}></script>
     <!-- login js-->
     <!-- Plugin used-->
 </body>

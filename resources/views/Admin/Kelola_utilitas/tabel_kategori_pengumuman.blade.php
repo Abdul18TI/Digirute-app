@@ -30,9 +30,9 @@
                                             <form action="{{ route('kategori_pengumuman.destroy', $kp->id_kategori_pengumuman)}}" method="POST" class="d-inline">
                                                 @method('delete')
                                                 @csrf
-                                                <button class="btn btn-danger btn-sm border-0" onclick="return confirm('Are you sure ?')"><span
+                                                <button class="btn btn-danger btn-sm border-0 sweet-1"><span
                                                     class="fa fa-trash"></span>Delete</button>
-                                                    <button class="btn btn-primary sweet-1" type="button" onclick="_gaq.push(['_trackEvent', 'example', 'try', 'sweet-1']);">Basic</button>
+                                                    <button class="btn btn-warning sweet-1" type="button">Warning alert</button>
                                             </form>
                                         </td>
                                     </tr>
