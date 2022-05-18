@@ -7,17 +7,6 @@
                 <h6 class="mt-3 f-14 f-w-600">Sahid</h6>
             </a>
             <p class="mb-0 font-roboto">RW 04</p>
-            <!-- <ul>
-                <li><span><span class="counter">19.8</span>k</span>
-                    <p>Follow</p>
-                </li>
-                <li><span>2 year</span>
-                    <p>Experince</p>
-                </li>
-                <li><span><span class="counter">95.2</span>k</span>
-                    <p>Follower </p>
-                </li>
-            </ul> -->
         </div>
         <nav>
             <div class="main-navbar">
@@ -33,38 +22,20 @@
                             </div>
                         </li>
                         <li>
-                            <a class="nav-link menu-title link-nav" href="C_dashboard_rw"><i data-feather="home"></i><span>Dashboard</span></a>
+                            <a class="nav-link menu-title link-nav" href="{{ route('rw.dashboard.home') }}"><i data-feather="home"></i><span>Dashboard</span></a>
                         </li>
                         <li>
-                        <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="users"></i><span>Warga</span></a>
-                            <ul class="nav-submenu menu-content">
-                                <li><a href="">Tambah warga</a></li>
-                                <li><a href="">Tabel warga</a></li>
-                            </ul>
+                            <a class="nav-link menu-title link-nav" href="{{ route('rw.dashboard.home') }}"><i data-feather="users"></i><span>Warga</span></a>
                         </li>
-                        <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="calendar"></i><span>Agenda</span></a>
-                            <ul class="nav-submenu menu-content">
-                                <li><a href="">Tambah agenda</a></li>
-                                <li><a href="">Tabel agenda</a></li>
-                            </ul>
+                        <li>
+                            <a class="nav-link menu-title link-nav" href="{{ route('rw.dashboard.home') }}"><i data-feather="calendar"></i><span>Agenda</span></a>
                         </li>
-                        <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="airplay"></i><span>Pengumuman</span></a>
-                            <ul class="nav-submenu menu-content">
-                                <li><a href="{{ route('pengumuman.index') }}">Tabel pengumuman</a></li>
-                                <li><a href={{ route('pengumuman.create') }}>Tambah pengumuman</a></li>
-                            </ul>
+                        <li>
+                            <a class="nav-link menu-title link-nav" href="{{ route('pengumuman.index') }}"><i data-feather="airplay"></i><span>Pengumuman</span></a>
                         </li>
-                        <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="dollar-sign"></i><span>Iuran</span></a>
-                            <ul class="nav-submenu menu-content">
-                                <li><a href="view-iuran">Tabel iuran</a></li>
-                                <li><a href="create-iuran">Tambah iuran</a></li>
-                            </ul>
+                        <li>
+                            <a class="nav-link menu-title link-nav" href="{{ route('rw.dashboard.home') }}"><i data-feather="dollar-sign"></i><span>Iuran</span></a>
                         </li>
-                        <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="dollar-sign"></i><span>Kategori Pengumuman</span></a>
-                            <ul class="nav-submenu menu-content">
-                                <li><a href="view-kategori-pengumuman">Tabel Kategori</a></li>
-                                <li><a href="create-kategori-pengumuman">Tambah Kategori</a></li>
-                            </ul>
                         </li>
                     </ul>
                 </div>

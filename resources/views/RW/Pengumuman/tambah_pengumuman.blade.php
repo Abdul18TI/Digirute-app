@@ -5,6 +5,14 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
+                @if ($errors->any())
+                <div class="alert alert-danger dark alert-dismissible fade show" role="alert"><strong>Terjadi kesalahan</strong>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                    <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                  @endif
                 <div class="card">
                     <div class="card-header pb-0">
                         <h5>Form tambah pengumuman</h5>
@@ -73,6 +81,11 @@
                                     <input class="form-control digits" id="example-datetime-local-input"
                                         type="datetime-local" name="tgl_terbit" value="{{ old('tgl_terbit') }}" />
                                 </div>
+                                @error('tgl_terbit')
+                                    <a class="text-danger">
+                                        {{ $message }}
+                                    </a>
+                                    @enderror
                             </div>
                         </div>
                         <div class="card-footer text-end">

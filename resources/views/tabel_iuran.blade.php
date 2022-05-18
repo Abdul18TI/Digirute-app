@@ -3,15 +3,31 @@
 @section('container')
 <div class="page-body">
     <div class="container-fluid">
+        <div class="page-header">
+            <div class="row">
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
         <div class="row">
-            <!-- Zero Configuration  Starts-->
             <div class="col-sm-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h5>Data iuran</h5>
+                        <div class="card">
+                    <div class="card-header pb-0">
+                        <div class="row">
+                            <div class="col-9">
+                                <h5>Data iuran</h5>
+                            </div>
+                            <div class="col-3">
+                                <div class="bookmark">
+
+                                    <a class="btn btn-primary btn-lg" href="{{ route('iuran.create') }}" data-bs-original-title="" title=""> <span class="fa fa-plus-square"></span> Tambah Data</a>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                     <div class="card-body">
-                        <div class="table-responsive">
+                        <div class="table-responsive overflow-hidden">
                             <table class="display" id="dataTable">
                                 <thead>
                                     <tr>
@@ -41,9 +57,9 @@
                         </div>
                     </div>
                 </div>
+                <!-- Form Pengaduan End -->
             </div>
         </div>
     </div>
 </div>
-<!-- Zero Configuration  Ends-->
 @endsection

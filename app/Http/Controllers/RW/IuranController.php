@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\RW;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Iuran;
+use App\Http\Controllers\Controller;
 
 class IuranController extends Controller
 {
     public function index()
     {
-        // mengambil data dari table pegawai
-        $iuran = DB::table('iurans')->get();
+        $iuran = Iuran::all();
 
-        // mengirim data iuran ke view index
         return view('tabel_iuran', [
             'iuran' => $iuran,
             "title" => "tabel iuran"
@@ -26,10 +26,16 @@ class IuranController extends Controller
         ]);
     }
 
-    // method untuk insert data ke table pegawai
     public function store(Request $request)
     {
-        // insert data ke table pegawai
+        // $validatedData = $request->validate([
+        //     'pj_iuran' => 'required',
+        //     'kategori_pengumuman' => 'required',
+        //     'isi_pengumuman' => 'required',
+        //     'foto_pengumuman' => 'image|file|max:2048',
+        //     'tgl_terbit' => 'required'
+        // ]);
+
         DB::table('iurans')->insert([
             'pj_iuran' => 'abdul',
             'judul_iuran' => $request->judul_iuran,
@@ -42,26 +48,20 @@ class IuranController extends Controller
             'status_iuran' => 1
         ]);
 
-        // alihkan halaman ke halaman pegawai
         return redirect('/view-iuran');
     }
 
-    // method untuk edit data pegawai
     public function edit($id)
     {
-        // mengambil data pegawai berdasarkan id yang dipilih
         $iuran = DB::table('iurans')->where('id_iuran', $id)->get();
-        // passing data pegawai yang didapat ke view edit.blade.php
         return view('edit_iuran', [
             'iuran' => $iuran,
             'title' => 'edit-iuran'
         ]);
     }
 
-    // update data pegawai
     public function update(Request $request)
     {
-        // update data pegawai
         DB::table('iurans')->where('id_iuran', $request->id)->update([
             'pj_iuran' => 'abdul',
             'judul_iuran' => $request->judul_iuran,
@@ -73,26 +73,19 @@ class IuranController extends Controller
             'deskripsi_iuran' => $request->deskripsi_iuran,
             'status_iuran' => 1
         ]);
-        // alihkan halaman ke halaman pegawai
         return redirect('/view-iuran');
     }
 
-    // method untuk hapus data pegawai
-    public function hapus($id)
+    public function destroy($id)
     {
-        // menghapus data pegawai berdasarkan id yang dipilih
         DB::table('iurans')->where('id_iuran', $id)->delete();
 
-        // alihkan halaman ke halaman pegawai
         return redirect('/view-iuran');
     }
 
-    // method untuk melihat detail data pegawai
-    public function detail($id)
+    public function show($id)
     {
-        // mengambil data pegawai berdasarkan id yang dipilih
         $iuran = DB::table('iurans')->where('id_iuran', $id)->get();
-        // passing data pegawai yang didapat ke view edit.blade.php
         return view('detail_iuran', [
             'iuran' => $iuran,
             'title' => 'detail-iuran'

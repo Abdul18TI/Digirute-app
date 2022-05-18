@@ -15,7 +15,7 @@
                     <div class="card-header pb-0">
                         <div class="row">
                             <div class="col-9">
-                                <h5>Data Warga</h5>
+                                <h5>Data pengumuman</h5>
                             </div>
                             <div class="col-3">
                                 <div class="bookmark">
@@ -45,9 +45,9 @@
                                         <td>{{ $p->judul_pengumuman }}</td>
                                         <td>{{ $p->tgl_terbit }}</td>
                                         <td>@if ($p->status_pengumuman == 1)
-                                            aktif
+                                            <span class="badge badge-success">aktif</span>
                                             @else
-                                            Tidak aktif
+                                            <span class="badge badge-warning">tidak aktif</span>
                                             @endif</td>
                                         <td>
                                             <a class="btn btn-info btn-sm p-2" href="pengumuman/{{ $p->id_pengumuman }}"><span

@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\IuranController;
+use App\Http\Controllers\RW\IuranController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\WargaController;
@@ -43,13 +43,13 @@ Route::get('/login-admin', function () {
 // Route::post('/c_login_rw', [LoginController::class, 'authenticate']);
 
 //route CRUD iuran
-Route::get('/view-iuran', [IuranController::class, 'index']);
-Route::get('/create-iuran', [IuranController::class, 'create']);
-Route::post('/store-iuran', [IuranController::class, 'store']);
-Route::get('/edit-iuran/{id}', [IuranController::class, 'edit']);
-Route::post('/update-iuran', [IuranController::class, 'update']);
-Route::get('/hapus-iuran/{id}', [IuranController::class, 'hapus']);
-Route::get('/detail-iuran/{id}', [IuranController::class, 'detail']);
+// Route::get('/view-iuran', [IuranController::class, 'index']);
+// Route::get('/create-iuran', [IuranController::class, 'create']);
+// Route::post('/store-iuran', [IuranController::class, 'store']);
+// Route::get('/edit-iuran/{id}', [IuranController::class, 'edit']);
+// Route::post('/update-iuran', [IuranController::class, 'update']);
+// Route::get('/hapus-iuran/{id}', [IuranController::class, 'hapus']);
+// Route::get('/detail-iuran/{id}', [IuranController::class, 'detail']);
 
 //contoh penggunana prefix grup dan name
 // Route::prefix('user')->name('user.')->middleware(['user', 'auth'])->group(function () {
@@ -98,6 +98,7 @@ Route::group(['prefix' => 'RT'], function () {
 Route::group(['prefix' => 'RW'], function () {
     Route::get('/', [RwController::class, 'home_rw'])->name('rw.dashboard.home');
     route::resource('pengumuman', PengumumanController::class);
+    route::resource('iuran', IuranController::class);
 });
 
 //Admin
