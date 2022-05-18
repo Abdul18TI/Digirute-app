@@ -26,8 +26,8 @@ class LoginWargaController extends Controller
             return redirect()->route('warga.home');
         }
 
-        return back()->withErrors([
-            'username' => 'The provided credentials do not match our records.',
+        return back()->with([
+            'gagal' => 'Terjadi kesalahan pada login, email atau password salah',
         ]);
     }
     public function logout(Request $request)

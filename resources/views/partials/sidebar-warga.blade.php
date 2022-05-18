@@ -45,9 +45,9 @@
                             </ul>
                         </li>
                          <li>
-                             <form action="{{ route('logout.warga');}}" method="POST" id="form-id">
+                             <form action="{{ route('warga.logout');}}" method="POST" id="form-id">
                                 @csrf
-                                <a class="nav-link menu-title link-nav" onclick="document.getElementById('form-id').submit();"><i data-feather="log-out"></i><span>Logout</span></a>
+                                <a class="nav-link menu-title link-nav" onclick="document.getElementById('form-id').submit();"><i data-feather="log-out"></i><span>Keluar</span></a>
                             </form>
                         </li>
                     </ul>

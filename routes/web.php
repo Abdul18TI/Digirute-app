@@ -24,9 +24,7 @@ use App\Http\Controllers\Warga\PengaduanController as WargaPengaduanController;
 
 
 Route::get('/warga', function () {
-    return view('warga', [
-        "title" => "warga"
-    ]);
+    return view('Warga.login-warga');
 });
 
 Route::get('/kelola-rtrw', function () {
@@ -59,17 +57,18 @@ Route::get('/detail-iuran/{id}', [IuranController::class, 'detail']);
 //     Route::get('profile', [UserController::class, 'profile'])->name('profile');
 //     Route::get('setting', [UserController::class, 'setting'])->name('setting');
 // });
-Route::get('/', function () {
-    return view('Warga.login-warga');
-})->name('warga.login');
-Route::post('/', [LoginWargaController::class, 'authenticate'])->name('login.warga');
-Route::post('/logout', [LoginWargaController::class, 'logout'])->name('logout.warga');
+Route::middleware(['guest', 'PreventBackHistory'])->group(function () {
+    Route::view('/', 'Warga.login-warga')->name('warga.login');
+    Route::post('/', [LoginWargaController::class, 'authenticate'])->name('login.warga');
+});
 
-Route::prefix('Warga')->middleware('auth')->name('warga.')->group(function () {
+
+Route::prefix('Warga')->middleware(['auth', 'PreventBackHistory'])->name('warga.')->group(function () {
     Route::get('/', function () {
         return 'berhasil';
     })->name('home');
     Route::resource('pengaduan', WargaPengaduanController::class);
+    Route::post('logout', [LoginWargaController::class, 'logout'])->name('logout');
     // Route::get('/users', function () {
     //     // Route assigned name "admin.users"...
     // })->name('users');

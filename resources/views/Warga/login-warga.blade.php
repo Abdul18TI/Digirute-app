@@ -52,11 +52,19 @@
                 <div class="col-xl-5"><img class="bg-img-cover bg-center" src="{{ asset('assets/images/login/3v2.jpg')}}" alt="looginpage">
                 </div>
                 <div class="col-xl-7 p-0">
+               
                     <div class="login-card">
                         <form class="theme-form login-form" method="POST" action="{{ route('login.warga') }}">
                             @csrf
                             <h4>Login Warga</h4>
-                            <h6>Selamat datang warga Kelurahan Umban Sari.</h6>
+                            <h6>Selamat Datang Warga Kelurahan Umban Sari.</h6>
+                                 @if (session()->has('gagal'))
+                                <div class="alert alert-danger dark alert-dismissible fade show" role="alert">
+                                    <strong>Gagal login ! </strong> {{ session('gagal') }}.
+                                    <button class="btn-close" type="button" data-bs-dismiss="alert"
+                                        aria-label="Close" data-bs-original-title="" title=""></button>
+                                </div>
+                                @endif
                             <div class="form-group">
                                 <label>Username</label>
                                 <div class="input-group"><span class="input-group-text"><i class="icon-user"></i></span>
