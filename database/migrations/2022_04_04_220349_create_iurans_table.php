@@ -21,8 +21,8 @@ class CreateIuransTable extends Migration
             $table->integer('target_iuran')->nullable();
             $table->integer('jumlah_iuran');
             $table->timestamp('tgl_pembuatan_iuran');
-            $table->dateTime('tgl_mulai_iuran');
-            $table->dateTime('tgl_akhir_iuran');
+            $table->timestamp('tgl_mulai_iuran');
+            $table->timestamp('tgl_akhir_iuran');
             $table->text('deskripsi_iuran');
             $table->integer('status_iuran');
         });

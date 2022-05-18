@@ -36,7 +36,7 @@ class CreateWargasTable extends Migration
             $table->foreignId('status_hubungan');
             $table->enum('status_perkawinan', ['belum_kawin', 'kawin', 'cerai_hidup', 'cerai']);
             $table->string('nomor_passport')->unique()->nullable();
-            $table->date('tanggal_akhir_passport')->nullable();
+            $table->timestamp('tanggal_akhir_passport')->nullable();
             $table->string('nomor_kitaskitap')->unique()->nullable();
             $table->string('nik_ayah');
             $table->string('nama_ayah');
@@ -47,7 +47,7 @@ class CreateWargasTable extends Migration
             // $table->dateTime('tanggal_tambah');
             $table->string('akta_kawin')->nullable();
             $table->string('akta_cerai')->nullable();
-            $table->date('tanggal_cerai')->nullable();
+            $table->timestamp('tanggal_cerai')->nullable();
             $table->string('kelainan')->nullable();
             $table->string('email_warga')->nullable();
             $table->string('no_hp_warga')->nullable();

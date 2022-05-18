@@ -20,6 +20,8 @@ class CreatePembayaransTable extends Migration
             $table->text('isi_pengumuman');
             $table->string('foto_pengumuman');
             $table->integer('status_pengumuman');
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 

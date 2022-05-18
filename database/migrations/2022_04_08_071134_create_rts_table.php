@@ -18,9 +18,11 @@ class CreateRtsTable extends Migration
             $table->foreignId('id_rw');
             $table->string('no_rt');
             $table->string('ketua_rt');
-            $table->dateTime('tgl_awal_jabatan_rt');
-            $table->dateTime('tgl_akhir_jabatan_rt');
+            $table->timestamp('tgl_awal_jabatan_rt');
+            $table->timestamp('tgl_akhir_jabatan_rt');
             $table->integer('status_rt');
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
