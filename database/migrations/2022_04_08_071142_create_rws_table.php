@@ -17,8 +17,8 @@ class CreateRwsTable extends Migration
             $table->id('id_rw');
             $table->string('no_rw');
             $table->string('ketua_rw');
-            $table->timestamp('tgl_awal_jabatan_rw');
-            $table->timestamp('tgl_akhir_jabatan_rw');
+            $table->timestamp('tgl_awal_jabatan_rw')->nullable();
+            $table->timestamp('tgl_akhir_jabatan_rw')->nullable();
             $table->integer('status_rw');
             $table->timestamps();
             $table->softDeletes();

@@ -20,7 +20,7 @@ class CreatePengumumanTable extends Migration
             $table->text('isi_pengumuman');
             $table->string('foto_pengumuman')->nullable();
             $table->integer('status_pengumuman');
-            $table->timestamp('tgl_terbit');
+            $table->timestamp('tgl_terbit')->nullable();
             $table->timestamps();
         });
     }
