@@ -15,7 +15,7 @@ class CreateGolonganDarahsTable extends Migration
     {
         Schema::create('golongan_darahs', function (Blueprint $table) {
             $table->id();
-            $table->string('golongan_darah',5);
+            $table->string('golongan_darah', 10);
         });
     }
 
