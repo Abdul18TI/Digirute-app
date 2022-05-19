@@ -6,6 +6,7 @@ use App\Models\Warga;
 use App\Models\pengaduan;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class PengaduanController extends Controller
 {
@@ -16,11 +17,10 @@ class PengaduanController extends Controller
      */
     public function index()
     {
-        //
-        $data = pengaduan::where('id_rt', '123')->get();
-        // $warga =   $warga = Warga::all();
-        // var_dump($data);
-        // die();
+        // dd(Auth::user()->load(['rt_rel'])->rt_rel->ketua_rt);
+        // dd(Auth::user()->rt_rel->ketua_rt);
+        // dd();
+        $data = pengaduan::where('id_rt', Auth::id())->get();
         $title = "Pengaduan";
         return view('warga.pengaduan.pengaduan-warga', compact('title', 'data'));
     }

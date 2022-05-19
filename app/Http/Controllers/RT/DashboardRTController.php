@@ -8,4 +8,8 @@ use Illuminate\Http\Request;
 class DashboardRTController extends Controller
 {
     //
+    public function index()
+    {
+        return "halaman dashboardf rt";
+    }
 }

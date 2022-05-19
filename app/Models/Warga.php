@@ -26,4 +26,9 @@ class Warga extends Authenticatable
     {
         return $this->hasMany(Pengaduan::class);
     }
+    public function rt_rel()
+    {
+        return $this->belongsTo(rt::class, 'rt', 'id_rt');
+        // return $this->belongsTo(rt::class);
+    }
 }

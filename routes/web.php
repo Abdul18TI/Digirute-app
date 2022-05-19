@@ -4,9 +4,11 @@ use App\Http\Controllers\RW\IuranController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\WargaController;
+use App\Http\Controllers\RT\LoginRTController;
 use App\Http\Controllers\RW\RwController;
 use App\Http\Controllers\RW\PengumumanController;
 use App\Http\Controllers\Admin\KategoriPengumumanController;
+use App\Http\Controllers\RT\DashboardRTController;
 use App\Http\Controllers\Warga\LoginWargaController;
 use App\Http\Controllers\Warga\PengaduanController as WargaPengaduanController;
 
@@ -61,6 +63,10 @@ Route::middleware(['guest', 'PreventBackHistory'])->group(function () {
     Route::view('/', 'Warga.login-warga')->name('warga.login');
     Route::post('/', [LoginWargaController::class, 'authenticate'])->name('login.warga');
 });
+Route::middleware(['guest', 'PreventBackHistory'])->group(function () {
+    Route::view('/RT', 'RT.login-rt ')->name('rt.login');
+    Route::post('/', [LoginRTController::class, 'authenticate'])->name('login.rt');
+});
 
 
 Route::prefix('Warga')->middleware(['auth', 'PreventBackHistory'])->name('warga.')->group(function () {
@@ -82,9 +88,8 @@ Route::prefix('Warga')->middleware(['auth', 'PreventBackHistory'])->name('warga.
     //     Route::put('/update/{id}', [WargaController::class, 'update'])->name('rt.warga.update');
     // });
 });
-
-Route::group(['prefix' => 'RT'], function () {
-    Route::get('/', [WargaController::class, 'home_rt'])->name('rt.warga.home');
+Route::prefix('RT')->middleware(['rt'])->group(function () {
+    Route::get('/dashboard', [DashboardRTController::class, 'index'])->name('rt.home');
     Route::group(['prefix' => 'warga'], function () {
         Route::get('/', [WargaController::class, 'home_rt'])->name('rt.warga.home');
         Route::get('/tambah', [WargaController::class, 'tambah_warga_rt'])->name('rt.warga.tambah');

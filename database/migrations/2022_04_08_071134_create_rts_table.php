@@ -16,6 +16,8 @@ class CreateRtsTable extends Migration
         Schema::create('rts', function (Blueprint $table) {
             $table->id('id_rt');
             $table->foreignId('id_rw');
+            $table->string('username')->unique()->nullable();
+            $table->string('password')->nullable();
             $table->string('no_rt');
             $table->string('ketua_rt');
             $table->timestamp('tgl_awal_jabatan_rt')->nullable();
