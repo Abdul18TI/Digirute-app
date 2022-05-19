@@ -46,9 +46,16 @@
                                         <td>0</td>
                                         <td>{{ $i->jumlah_iuran }}</td>
                                         <td>
-                                            <a class="btn btn-info btn-sm" href="detail-iuran/{{ $i->id_iuran }}"><span class="fa fa-eye"></span> Detail</a>
-                                            <a class="btn btn-secondary btn-sm" href="edit-iuran/{{ $i->id_iuran }}"><span class="fa fa-edit"></span> Edit</a>
-                                            <a class="btn btn-danger btn-sm" href="hapus-iuran/{{ $i->id_iuran }}"><span class="fa fa-trash"></span> Hapus</a>
+                                            <a class="btn btn-info btn-sm p-2" href="iuran/{{ $i->id_iuran }}"><span
+                                                    class="fa fa-eye"></span></a>
+                                            <a class="btn btn-secondary btn-sm p-2" href="iuran/{{ $i->id_iuran }}/edit"><span
+                                                    class="fa fa-edit"></span></a>
+                                            <form method="POST" action="{{ route('iuran.destroy', $i->id_iuran)}}" class="d-inline">
+                                                @csrf
+                                               <input name="_method" type="hidden" value="DELETE">
+                                               <button type="submit" class="btn btn-danger btn-sm p-2 border-0 sweet" data-toggle="tooltip" title='Delete'><span
+                                                class="fa fa-trash"></span></button>
+                                            </form>
                                         </td>
                                     </tr>
                                     @endforeach

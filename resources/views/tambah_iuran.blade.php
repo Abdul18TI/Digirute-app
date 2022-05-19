@@ -5,11 +5,19 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
+                @if ($errors->any())
+                <div class="alert alert-danger dark alert-dismissible fade show" role="alert"><strong>Terjadi kesalahan</strong>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                    <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                  @endif
                 <div class="card">
                     <div class="card-header pb-0">
                         <h5>Form tambah iuran</h5>
                     </div>
-                    <form class="form theme-form" name="f1" method="POST" action="/store-iuran">
+                    <form class="form theme-form" name="f1" method="POST" action="{{ route('iuran.store') }}">
                         @csrf
                         <div class="card-body">
                             <div class="row">

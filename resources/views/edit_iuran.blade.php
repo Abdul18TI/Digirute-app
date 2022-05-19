@@ -10,7 +10,8 @@
                         <h5>Form edit iuran</h5>
                     </div>
                     @foreach($iuran as $i)
-                    <form class="form theme-form" name="f1" method="POST" action="/update-iuran">
+                    <form class="form theme-form" name="f1" method="POST" action="/RW/iuran/{{ $i->id_iuran }}">
+                        @method('put')
                         @csrf
                         <input type="hidden" name="id" value="{{ $i->id_iuran }}">
                         <div class="card-body">

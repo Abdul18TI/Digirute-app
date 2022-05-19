@@ -28,27 +28,27 @@ class IuranController extends Controller
 
     public function store(Request $request)
     {
-        // $validatedData = $request->validate([
-        //     'pj_iuran' => 'required',
-        //     'kategori_pengumuman' => 'required',
-        //     'isi_pengumuman' => 'required',
-        //     'foto_pengumuman' => 'image|file|max:2048',
-        //     'tgl_terbit' => 'required'
-        // ]);
-
-        DB::table('iurans')->insert([
-            'pj_iuran' => 'abdul',
-            'judul_iuran' => $request->judul_iuran,
-            'jenis_iuran' => $request->jenis_iuran,
-            'target_iuran' => $request->other_text,
-            'jumlah_iuran' => $request->jumlah_iuran,
-            'tgl_mulai_iuran' => $request->tgl_mulai_iuran,
-            'tgl_akhir_iuran' => $request->tgl_akhir_iuran,
-            'deskripsi_iuran' => $request->deskripsi_iuran,
-            'status_iuran' => 1
+        $validatedData = $request->validate([
+            'judul_iuran' => 'required',
+            'jenis_iuran' => 'required',
+            'jumlah_iuran' => 'required',
+            'tgl_mulai_iuran' => 'required',
+            'tgl_akhir_iuran' => 'required',
+            'deskripsi_iuran' => 'required'
         ]);
 
-        return redirect('/view-iuran');
+        $validatedData['pj_iuran'] = 'abdul';
+        $validatedData['status_iuran'] = 1;
+
+        try {
+            Iuran::create($validatedData);
+
+            return redirect()->route('iuran.index')
+                ->with('success', 'Data berhasil ditambah!');
+        } catch (\Exception $e) {
+            return redirect()->route('iuran.index')
+                ->with('error', 'Gagal menambahkan data!');
+        }
     }
 
     public function edit($id)
@@ -73,14 +73,20 @@ class IuranController extends Controller
             'deskripsi_iuran' => $request->deskripsi_iuran,
             'status_iuran' => 1
         ]);
-        return redirect('/view-iuran');
+        return redirect()->route('iuran.index')->with('success', 'Data berhasil diubah!');
     }
 
-    public function destroy($id)
+    public function destroy(Iuran $iuran)
     {
-        DB::table('iurans')->where('id_iuran', $id)->delete();
 
-        return redirect('/view-iuran');
+        try {
+            $iuran->delete();
+            return redirect()->route('iuran.index')
+                ->with('success', 'data berhasil dihapus!');
+        } catch (\Exception $e) {
+            return redirect()->route('iuran.index')
+                ->with('error', 'Gagal menghapus data!');
+        }
     }
 
     public function show($id)
