@@ -17,6 +17,10 @@ return [
         'guard' => 'web',
         'passwords' => 'users',
     ],
+    'rt' => [
+        'driver' => 'eloquent',
+        'model' => App\Models\rt::class,
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -42,7 +46,7 @@ return [
         ],
         'rt' => [
             'driver' => 'session',
-            'provider' => 'rt',
+            'provider' => 'rts',
         ],
     ],
 
@@ -68,10 +72,11 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\Warga::class,
         ],
-        'rt' => [
+        'rts' => [
             'driver' => 'eloquent',
             'model' => App\Models\rt::class,
         ],
+
 
         // 'users' => [
         //     'driver' => 'database',
@@ -100,6 +105,10 @@ return [
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
+        ],
+        'rts' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\rt::class,
         ],
     ],
 

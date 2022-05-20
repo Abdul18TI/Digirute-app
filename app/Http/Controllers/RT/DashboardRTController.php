@@ -10,6 +10,6 @@ class DashboardRTController extends Controller
     //
     public function index()
     {
-        return "halaman dashboardf rt";
+        return '<pre>' . auth()->guard('rt')->user() . '</pre>';
     }
 }

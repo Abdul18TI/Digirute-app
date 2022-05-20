@@ -11,17 +11,17 @@ class LoginRTController extends Controller
     //
     public function authenticate(Request $request)
     {
-        $credentials = $request->validate([
+        // dd($request->routeIs('rt.*'));
+        $validate = $request->validate([
             'username' => ['required'],
             'password' => ['required'],
         ]);
 
         // dd(Hash::make('asdasd'));
         // dd('berhasil login');
-
+        $credentials = $request->only('username', 'password');
         if (Auth::guard('rt')->attempt($credentials)) {
             $request->session()->regenerate();
-
             return redirect()->route('rt.home');
         }
 
