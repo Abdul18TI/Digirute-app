@@ -54,7 +54,7 @@
                 <div class="col-xl-7 p-0">
                
                     <div class="login-card">
-                        <form class="theme-form login-form" method="POST" action="{{ route('login.warga') }}">
+                        <form class="theme-form login-form" method="POST" action="{{ route('warga.check-login') }}">
                             @csrf
                             <h4>Login Warga</h4>
                             <h6>Selamat Datang Warga Kelurahan Umban Sari.</h6>

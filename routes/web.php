@@ -25,9 +25,7 @@ use App\Http\Controllers\Warga\PengaduanController as WargaPengaduanController;
 
 
 
-// Route::get('/warga', function () {
-//     return view('Warga.login-warga');
-// });
+
 
 // Route::get('/kelola-rtrw', function () {
 //     return view('kelola_rtrw', [
@@ -59,36 +57,37 @@ use App\Http\Controllers\Warga\PengaduanController as WargaPengaduanController;
 //     Route::get('profile', [UserController::class, 'profile'])->name('profile');
 //     Route::get('setting', [UserController::class, 'setting'])->name('setting');
 // });
-Route::middleware(['guest', 'PreventBackHistory'])->group(function () {
-    Route::view('/', 'Warga.login-warga')->name('warga.login');
-    Route::post('/', [LoginWargaController::class, 'authenticate'])->name('login.warga');
-});
+// Route::middleware(['guest', 'PreventBackHistory'])->group(function () {
+//     Route::view('/', 'Warga.login-warga')->name('warga.login');
+//     Route::post('/', [LoginWargaController::class, 'authenticate'])->name('login.warga');
+// });
 
+Route::get('/', function () {
+    return view('Warga.login-warga');
+})->name('warga.login')->middleware(['guest:web', 'PreventBackHistory']);
 
-Route::prefix('Warga')->middleware(['auth', 'PreventBackHistory'])->name('warga.')->group(function () {
-    Route::get('/', function () {
-        return 'berhasil';
-    })->name('home');
-    Route::resource('pengaduan', WargaPengaduanController::class);
-    Route::post('logout', [LoginWargaController::class, 'logout'])->name('logout');
+Route::prefix('Warga')->name('warga.')->group(function () {
+    Route::middleware(['guest', 'PreventBackHistory'])->group(function () {
+        // Route::view('/', 'Warga.login-warga ');
+        Route::post('/', [LoginWargaController::class, 'authenticate'])->name('check-login');
+    });
+    Route::middleware(['auth', 'PreventBackHistory'])->group(function () {
+        Route::get('/', function () {
+            return 'berhasil';
+        })->name('home');
+        Route::resource('pengaduan', WargaPengaduanController::class);
+        Route::post('logout', [LoginWargaController::class, 'logout'])->name('logout');
+    });
+
     // Route::get('/users', function () {
     //     // Route assigned name "admin.users"...
     // })->name('users');
-
-    // Route::get('/', [WargaController::class, 'home_rt'])->name('rt.warga.home');
-    // Route::group(['prefix' => 'warga'], function () {
-    //     Route::get('/', [WargaController::class, 'home_rt'])->name('rt.warga.home');
-    //     Route::get('/tambah', [WargaController::class, 'tambah_warga_rt'])->name('rt.warga.tambah');
-    //     Route::post('/insert', [WargaController::class, 'add'])->name('rt.warga.insert');
-    //     Route::get('/edit/{warga}', [WargaController::class, 'edit_warga_rt'])->name('rt.warga.edit');
-    //     Route::put('/update/{id}', [WargaController::class, 'update'])->name('rt.warga.update');
-    // });
 });
 
-// Route::domain('{account}.example.com')->group(function () {
-//     Route::get('user/{id}', function ($account, $id) {
-//         //
-//     });
+// Route::domain('RT.' . env('APP_URL'))->group(function () {
+// Route::get('post/{id}', function ($username, $id) {
+//     return 'User ' . $username . ' is trying to read post ' . $id;
+// });
 // });
 
 Route::prefix('RT')->name('rt.')->group(function () {
@@ -107,6 +106,7 @@ Route::prefix('RT')->name('rt.')->group(function () {
         });
     });
 });
+// });
 
 //RW
 Route::group(['prefix' => 'RW'], function () {

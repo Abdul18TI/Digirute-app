@@ -6,7 +6,8 @@
             <div class="badge-bottom"><span class="badge badge-primary">RT</span></div><a href="user-profile.html">
                 <h6 class="mt-3 f-14 f-w-600">{{ auth()->user()->nama_lengkap }}</h6>
             </a>
-            <p class="mb-0 font-roboto">Warga RT {{ auth()->user()->rt_rel->no_rt }} RW 09</p>
+            <p class="mb-0 font-roboto">Warga RT  RW 09</p>
+            {{-- {{ auth()->user()->rt_rel->no_rt }} --}}
             <!-- <ul>
                 <li><span><span class="counter">19.8</span>k</span>
                     <p>Follow</p>

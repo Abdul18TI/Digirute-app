@@ -31,7 +31,7 @@ class LoginRTController extends Controller
     }
     public function logout(Request $request)
     {
-        Auth::logout();
+        Auth::guard('rt')->logout();
 
         $request->session()->invalidate();
 

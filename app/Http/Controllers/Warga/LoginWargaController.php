@@ -20,7 +20,7 @@ class LoginWargaController extends Controller
         // dd(Hash::make('asdasd'));
         // dd('berhasil login');
 
-        if (Auth::attempt($credentials)) {
+        if (Auth::guard('web')->attempt($credentials)) {
             $request->session()->regenerate();
 
             return redirect()->route('warga.home');
@@ -32,7 +32,7 @@ class LoginWargaController extends Controller
     }
     public function logout(Request $request)
     {
-        Auth::logout();
+        Auth::guard('web')->logout();
 
         $request->session()->invalidate();
 

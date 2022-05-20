@@ -18,7 +18,8 @@ class Authenticate extends Middleware
             if ($request->routeIs('rt.*')) {
                 return route('rt.login');
             }
-            return 'entahlah';
+            // return route('warga.login');
+            return route('warga.login');
         }
     }
 }
