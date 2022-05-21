@@ -60,7 +60,7 @@
         <!-- Responsive css-->
         <link rel="stylesheet" type="text/css" href={{ asset("assets/css/responsive.css")}}>
         <!-- latest jquery-->
-        <script src={{ asset("assets/js/jquery-3.5.1.min.js")}}></script>
+        {{-- <script src={{ asset("assets/js/jquery-3.5.1.min.js")}}></script> --}}
         <!-- Select2 -->
         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
