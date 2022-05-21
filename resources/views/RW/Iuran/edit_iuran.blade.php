@@ -19,7 +19,7 @@
                                 <div class="col">
                                     <div class="mb-3">
                                         <label class="form-label" for="exampleFormControlInput1">Judul iuran</label>
-                                        <input class="form-control" name="judul_iuran" value="{{ $i->judul_iuran }}" id="exampleFormControlInput1" type="text"
+                                        <input class="form-control" name="judul_iuran" value="{{ old('judul_iuran',$i->judul_iuran) }}" id="exampleFormControlInput1" type="text"
                                             placeholder="Iuran tong sampah" />
                                     </div>
                                 </div>
@@ -41,7 +41,7 @@
                                 <div class="col">
                                     <div class="mb-3">
                                         <label class="form-label" for="exampleFormControlInput1">Jumlah iuran</label>
-                                        <input class="form-control" value="{{ $i->jumlah_iuran }}" name="jumlah_iuran" id="exampleFormControlInput1" type="number" />
+                                        <input class="form-control" value="{{ old('jumlah_iuran',$i->jumlah_iuran) }}" name="jumlah_iuran" id="exampleFormControlInput1" type="number" />
                                     </div>
                                 </div>
                             </div>
@@ -61,7 +61,7 @@
                                     <div class="mb-3">
                                         <label class="form-label" for="exampleInputPassword22">Target iuran</label>
                                         <input class="form-control" id="exampleInputPassword22" name="other_text"
-                                            type="number" value="{{ $i->target_iuran }}" disabled="" />
+                                            type="number" value="{{ old('target_iuran',$i->target_iuran) }}" disabled="" />
                                     </div>
                                 </div>
                             </div>
@@ -83,7 +83,7 @@
                                 <div>
                                     <label class="form-label" for="exampleFormControlTextarea4">Deskripsi iuran</label>
                                     <textarea class="form-control" name="deskripsi_iuran" id="exampleFormControlTextarea4"
-                                        rows="6">{{ $i->deskripsi_iuran }}</textarea>
+                                        rows="6">{{ old('deskripsi_iuran',$i->deskripsi_iuran) }}</textarea>
                                 </div>
                             </div>
                         </div>

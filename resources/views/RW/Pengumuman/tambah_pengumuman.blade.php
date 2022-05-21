@@ -11,8 +11,8 @@
                     <li>{{ $error }}</li>
                     @endforeach
                     <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
-                  </div>
-                  @endif
+                </div>
+                @endif
                 <div class="card">
                     <div class="card-header pb-0">
                         <h5>Form tambah pengumuman</h5>

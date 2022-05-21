@@ -13,7 +13,7 @@ class IuranController extends Controller
     {
         $iuran = Iuran::all();
 
-        return view('tabel_iuran', [
+        return view('RW.Iuran.tabel_iuran', [
             'iuran' => $iuran,
             "title" => "tabel iuran"
         ]);
@@ -21,7 +21,7 @@ class IuranController extends Controller
 
     public function create()
     {
-        return view('tambah_iuran', [
+        return view('RW.Iuran.tambah_iuran', [
             'title' => 'tambah-iuran'
         ]);
     }
@@ -54,25 +54,29 @@ class IuranController extends Controller
     public function edit($id)
     {
         $iuran = DB::table('iurans')->where('id_iuran', $id)->get();
-        return view('edit_iuran', [
+        return view('RW.Iuran.edit_iuran', [
             'iuran' => $iuran,
             'title' => 'edit-iuran'
         ]);
     }
 
-    public function update(Request $request)
+    public function update(Request $request, Iuran $iuran)
     {
-        DB::table('iurans')->where('id_iuran', $request->id)->update([
-            'pj_iuran' => 'abdul',
-            'judul_iuran' => $request->judul_iuran,
-            'jenis_iuran' => $request->jenis_iuran,
-            'target_iuran' => $request->other_text,
-            'jumlah_iuran' => $request->jumlah_iuran,
-            'tgl_mulai_iuran' => $request->tgl_mulai_iuran,
-            'tgl_akhir_iuran' => $request->tgl_akhir_iuran,
-            'deskripsi_iuran' => $request->deskripsi_iuran,
-            'status_iuran' => 1
+        $validatedData = $request->validate([
+            'judul_iuran' => 'required',
+            'jenis_iuran' => 'required',
+            'jumlah_iuran' => 'required',
+            'tgl_mulai_iuran' => 'required',
+            'tgl_akhir_iuran' => 'required',
+            'deskripsi_iuran' => 'required'
         ]);
+
+        $validatedData['pj_iuran'] = 'abdul';
+        $validatedData['status_iuran'] = 1;
+
+        iuran::where('id_iuran', $iuran->id_iuran)
+            ->update($validatedData);
+
         return redirect()->route('iuran.index')->with('success', 'Data berhasil diubah!');
     }
 
@@ -91,8 +95,8 @@ class IuranController extends Controller
 
     public function show($id)
     {
-        $iuran = DB::table('iurans')->where('id_iuran', $id)->get();
-        return view('detail_iuran', [
+        $iuran = Iuran::fInd($id);
+        return view('RW.Iuran.detail_iuran', [
             'iuran' => $iuran,
             'title' => 'detail-iuran'
         ]);
