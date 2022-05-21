@@ -6,7 +6,7 @@
             <div class="badge-bottom"><span class="badge badge-primary">RT</span></div><a href="user-profile.html">
                 <h6 class="mt-3 f-14 f-w-600">{{ auth()->user()->nama_lengkap }}</h6>
             </a>
-            <p class="mb-0 font-roboto">Warga RT  RW 09</p>
+            <p class="mb-0 font-roboto">Warga RT {{ auth()->user()->rt_rel->no_rt }} RW 09</p>
             {{-- {{ auth()->user()->rt_rel->no_rt }} --}}
             <!-- <ul>
                 <li><span><span class="counter">19.8</span>k</span>
@@ -34,14 +34,11 @@
                             </div>
                         </li>
                         <li>
-                            <a class="nav-link menu-title link-nav" href="C_dashboard_rw"><i data-feather="home"></i><span>Dashboard</span></a>
-                        </li>
-                        <li>
-                            <a class="nav-link menu-title link-nav" href="{{ route('rt.warga.home')}}"><i data-feather="users"></i><span>Warga</span></a>
+                            <a class="nav-link menu-title link-nav" href="{{ route('warga.home')}}"><i data-feather="home"></i><span>Dashboard</span></a>
                         </li>
                         <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="message-circle"></i><span>Pengaduan</span></a>
                             <ul class="nav-submenu menu-content">
-                                <li><a href="">Pengaduan Warga</a></li>
+                                <li><a href="{{ route('warga.pengaduan.index')}}">Pengaduan Warga</a></li>
                                 <li><a href="">Pengaduan Pribadi</a></li>
                             </ul>
                         </li>
