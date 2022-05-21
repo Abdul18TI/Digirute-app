@@ -5,6 +5,7 @@ namespace App\Http\Controllers\RW;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Iuran;
+use App\Models\JenisIuran;
 use App\Http\Controllers\Controller;
 
 class IuranController extends Controller
@@ -21,7 +22,9 @@ class IuranController extends Controller
 
     public function create()
     {
+        $jenis_iuran = JenisIuran::all();
         return view('RW.Iuran.tambah_iuran', [
+            'jenis_iuran' => $jenis_iuran,
             'title' => 'tambah-iuran'
         ]);
     }
@@ -51,11 +54,11 @@ class IuranController extends Controller
         }
     }
 
-    public function edit($id)
+    public function edit(Iuran $iuran)
     {
-        $iuran = DB::table('iurans')->where('id_iuran', $id)->get();
         return view('RW.Iuran.edit_iuran', [
             'iuran' => $iuran,
+            'jenis_iuran' => JenisIuran::all(),
             'title' => 'edit-iuran'
         ]);
     }

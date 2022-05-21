@@ -9,7 +9,7 @@ class RwController extends Controller
 {
     public function home_rw()
     {
-        return view('Admin.dashboard.home', [
+        return view('RW.dashboard.home', [
             "title" => "Dashboard"
         ]);
     }

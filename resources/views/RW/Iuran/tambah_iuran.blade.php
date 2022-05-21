@@ -11,8 +11,8 @@
                     <li>{{ $error }}</li>
                     @endforeach
                     <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
-                  </div>
-                  @endif
+                </div>
+                @endif
                 <div class="card">
                     <div class="card-header pb-0">
                         <h5>Form tambah iuran</h5>
@@ -38,10 +38,13 @@
                                     <div class="mb-3">
                                         <label class="form-label" for="exampleFormControlSelect7">Jenis iuran</label>
                                         <select class="form-select btn-pill digits" name="jenis_iuran" id="exampleFormControlSelect7">
-                                            <option value="kebersihan">Iuran kebersihan</option>
-                                            <option value="keamanan">Iuran keamanan</option>
-                                            <option value="wajib">Iuran wajib</option>
-                                            <option value="lainnya">Lainnya</option>
+                                            @foreach ($jenis_iuran as $j)
+                                                @if(old('jenis_iuran') == $j->id_jenis_iuran)
+                                                    <option value="{{ $j->id_jenis_iuran }}" selected>{{ $j->nama_jenis_iuran }}</option>
+                                                @else
+                                                    <option value="{{ $j->id_jenis_iuran }}">{{ $j->nama_jenis_iuran }}</option>
+                                                @endif
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
