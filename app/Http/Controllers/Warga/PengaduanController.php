@@ -52,8 +52,8 @@ class PengaduanController extends Controller
             'deskripsi_pengaduan' => 'required|string',
             // 'bukti_pengaduan' => 'image|mimes:jpeg,jpg,png'
         ]);
-        $data['nik'] = '123';
-        $data['id_rt'] = '123';
+        $data['nik'] = auth()->user()->nik;
+        $data['id_rt'] = auth()->user()->rt;
 
         // dd($data);
         pengaduan::create($data);

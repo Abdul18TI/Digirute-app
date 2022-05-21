@@ -57,7 +57,7 @@
                         <div class="mb-3 row">
                           <label class="col-sm-3 col-form-label" for="judul_pengaduan">Judul Pengaduan</label>
                           <div class="col-sm-9">
-                            <input class="form-control @error('judul_pengaduan') is-invalid @enderror" name="judul_pengaduan" id="judul_pengaduan" type="text" placeholder="Judul Pengaduan" value="{{ old('judul_pengaduan') }}">
+                            <input class="form-control @error('judul_pengaduan') is-invalid @enderror" name="judul_pengaduan" id="judul_pengaduan" type="text" placeholder="Judul Pengaduan" value="{{ old('judul_pengaduan') }}" autocomplete="false" autofocus>
                             @error('judul_pengaduan')
                                <div class="invalid-feedback">{{ $message}}</div>
                               @enderror
@@ -90,7 +90,7 @@
                         </div>
                       </div>
                     <div class="card-footer">
-                      <button class="btn btn-primary" type="submit">Submit</button>
+                      <button class="btn btn-primary" type="submit">Simpan</button>
                       <button class="btn btn-secondary" type="reset">Batal</button>
                     </form>
                     </div>
