@@ -9,6 +9,7 @@ use App\Http\Controllers\RW\RwController;
 use App\Http\Controllers\RW\PengumumanController;
 use App\Http\Controllers\Admin\KategoriPengumumanController;
 use App\Http\Controllers\RT\DashboardRTController;
+use App\Http\Controllers\Warga\DashboardWargaController;
 use App\Http\Controllers\Warga\LoginWargaController;
 use App\Http\Controllers\Warga\PengaduanController as WargaPengaduanController;
 
@@ -72,9 +73,7 @@ Route::prefix('Warga')->name('warga.')->group(function () {
         Route::post('/', [LoginWargaController::class, 'authenticate'])->name('check-login');
     });
     Route::middleware(['auth', 'PreventBackHistory'])->group(function () {
-        Route::get('/', function () {
-            return 'berhasil';
-        })->name('home');
+        Route::get('/', [DashboardWargaController::class, 'index'])->name('home');
         Route::resource('pengaduan', WargaPengaduanController::class);
         Route::post('logout', [LoginWargaController::class, 'logout'])->name('logout');
     });
