@@ -33,37 +33,13 @@
                             </div>
                         </li>
                         <li>
-                            <a class="nav-link menu-title link-nav" href="C_dashboard_rw"><i data-feather="home"></i><span>Dashboard</span></a>
+                            <a class="nav-link menu-title link-nav" href="{{ route('admin.dashboard.home') }}"><i data-feather="home"></i><span>Dashboard</span></a>
                         </li>
                         <li>
-                        <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="users"></i><span>Warga</span></a>
+                        <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="airplay"></i><span>Utilitas form</span></a>
                             <ul class="nav-submenu menu-content">
-                                <li><a href="">Tambah warga</a></li>
-                                <li><a href="">Tabel warga</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="calendar"></i><span>Agenda</span></a>
-                            <ul class="nav-submenu menu-content">
-                                <li><a href="">Tambah agenda</a></li>
-                                <li><a href="">Tabel agenda</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="airplay"></i><span>Pengumuman</span></a>
-                            <ul class="nav-submenu menu-content">
-                                <li><a href="{{ route('kategori_pengumuman.index') }}">Tabel kategori_pengumuman</a></li>
-                                <li><a href={{ route('kategori_pengumuman.create') }}>Tambah kategori_pengumuman</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="dollar-sign"></i><span>Iuran</span></a>
-                            <ul class="nav-submenu menu-content">
-                                <li><a href="view-iuran">Tabel iuran</a></li>
-                                <li><a href="create-iuran">Tambah iuran</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="dollar-sign"></i><span>Kategori Pengumuman</span></a>
-                            <ul class="nav-submenu menu-content">
-                                <li><a href="view-kategori-pengumuman">Tabel Kategori</a></li>
-                                <li><a href="create-kategori-pengumuman">Tambah Kategori</a></li>
+                                <li><a href="{{ route('kategori_pengumuman.index') }}">Kategori pengumuman</a></li>
+                                <li><a href="{{ route('jenis_iuran.index') }}">Jenis iuran</a></li>
                             </ul>
                         </li>
                     </ul>

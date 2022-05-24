@@ -14,7 +14,7 @@ class KategoriPengumumanController extends Controller
     public function index()
     {
         $kategori_pengumuman = KategoriPengumuman::all();
-        return view('Admin.Kelola_utilitas.tabel_kategori_pengumuman', [
+        return view('Admin.Kelola_utilitas.kategori_pengumuman.tabel_kategori_pengumuman', [
             'kategori_pengumuman' => $kategori_pengumuman,
             "title" => "tabel kategori pengumuman"
         ]);
@@ -22,7 +22,7 @@ class KategoriPengumumanController extends Controller
 
     public function create()
     {
-        return view('Admin.Kelola_utilitas.tambah_kategori_pengumuman', [
+        return view('Admin.Kelola_utilitas.kategori_pengumuman.tambah_kategori_pengumuman', [
             'title' => 'tambah-kategori pengumuman'
         ]);
     }
@@ -46,7 +46,7 @@ class KategoriPengumumanController extends Controller
 
     public function edit(KategoriPengumuman $kategoriPengumuman)
     {
-        return view('Admin.Kelola_utilitas.edit_kategori_pengumuman', [
+        return view('Admin.Kelola_utilitas.kategori_pengumuman.edit_kategori_pengumuman', [
             'kategori_pengumuman' => $kategoriPengumuman,
             'title' => 'edit-kategori-pengumuman'
         ]);

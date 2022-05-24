@@ -6,8 +6,10 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\WargaController;
 use App\Http\Controllers\RT\LoginRTController;
 use App\Http\Controllers\RW\RwController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\RW\PengumumanController;
 use App\Http\Controllers\Admin\KategoriPengumumanController;
+use App\Http\Controllers\Admin\JenisIuranController;
 use App\Http\Controllers\RT\DashboardRTController;
 use App\Http\Controllers\Warga\DashboardWargaController;
 use App\Http\Controllers\Warga\LoginWargaController;
@@ -109,15 +111,16 @@ Route::prefix('RT')->name('rt.')->group(function () {
 
 //RW
 Route::group(['prefix' => 'RW'], function () {
-    Route::get('/', [RwController::class, 'home_rw'])->name('rw.dashboard.home');
+    Route::get('/', [RWController::class, 'home_rw'])->name('rw.dashboard.home');
     route::resource('pengumuman', PengumumanController::class);
     route::resource('iuran', IuranController::class);
 });
 
 //Admin
 Route::group(['prefix' => 'Admin'], function () {
-    Route::get('/', [RwController::class, 'home_rw'])->name('rw.dashboard.home');
+    Route::get('/', [AdminController::class, 'home_admin'])->name('admin.dashboard.home');
     route::resource('kategori_pengumuman', KategoriPengumumanController::class);
+    route::resource('jenis_iuran', JenisIuranController::class);
 });
 
 //route kegiatan
