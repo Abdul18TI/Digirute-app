@@ -1,4 +1,8 @@
-@extends('layouts.main-warga')
+@extends('layouts.main-rt')
+
+@push('css')
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/datatables.css')}}">
+@endpush
 
 @section('container')
     <div class="page-body">
@@ -31,16 +35,8 @@
                     <div class="card">
                         <div class="card-header pb-0">
                             <div class="row">
-                                <div class="col-9">
+                                <div class="col">
                                     <h5>Pengaduan Warga</h5>
-                                </div>
-                                <div class="col-3">
-                                    <div class="bookmark">
-
-                                        <a class="btn btn-primary btn-lg" href="{{ route('warga.pengaduan.create') }}"
-                                            data-bs-original-title="" title=""> <span class="fa fa-plus-square"></span>
-                                            Tambah Data</a>
-                                    </div>
                                 </div>
                             </div>
 
@@ -58,6 +54,7 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
+                                            <th>Pelapor</th>
                                             <th>Judul</th>
                                             <th>Kategori</th>
                                             <th>Deskripsi</th>
@@ -70,19 +67,22 @@
                                         @foreach ($data as $dt)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $dt->nik }}</td>
                                                 <td>{{ $dt->judul_pengaduan }}</td>
                                                 <td>{{ $dt->kategori_pengaduan }}</td>
                                                 <td>{{ Str::limit($dt->deskripsi_pengaduan, 100, '...') }}</td>
                                                 <td>{{ $dt->created_at->isoFormat('ddd, D MMM Y') }}</td>
                                                 <td>
-                                                    @if ($dt->status == 1)
-                                                        <span class="badge badge-success">Ditanggapi</span>
+                                                    @if ($dt->status_pengaduan == 1)
+                                                        <span class="badge badge-success">Sudah Ditanggapi</span>
+                                                    @elseif($dt->status_pengaduan == 0)
+                                                            <span class="badge badge-warning">Proses</span></td>
+                                                    @elseif($dt->status_pengaduan == 3)
+                                                            <span class="badge badge-warning">Ditolak</span></td>
+                                                    @endif
                                                 </td>
-                                            @elseif($dt->status == 0)
-                                                <span class="badge badge-warning">Proses</span></td>
-                                        @endif
                                         <td>
-                                            <a href="" onclick="detail({{ $dt->id_pengaduan }},'{{route('warga.pengaduan.show',$dt->id_pengaduan)}}')"
+                                            <a href="" onclick="detail({{ $dt->id_pengaduan }}, '{{ route('rt.pengaduan.show',$dt->id_pengaduan)}}')"
                                                 class="btn btn-success btn-sm p-2" role="button" data-bs-toggle="modal"
                                                 data-original-title="test" data-bs-target="#exampleModal"><span
                                                     class="fa fa-list"></span></a>
@@ -197,8 +197,9 @@
     <script src="{{ asset('assets/js/tooltip-init.js') }}"></script>
     <script>
         $('#tabelpengaduan-warga').DataTable();
-            //membuat modal detail
-            const detail = (id, url) => {
+         //membuat modal detail
+         const detail = (id,url) => {
+             alert(url);
             const judul_pengaduan = document.getElementById('judul_pengaduan');
             const deskripsi_pengaduan = document.getElementById('deskripsi_pengaduan');
             const kategori_pengaduan = document.getElementById('kategori_pengaduan');
@@ -206,27 +207,27 @@
             // console.log(deskripsi_pengaduan.textContent);
             // console.log(deskripsi_pengaduan.textContent);
             fetch(url)
-                .then(console.log(url))
+            .then(alert(url))
                 .then(respone =>respone.json())
                 .then(data=>{
-                    judul_pengaduan.textContent = data.judul_pengaduan;
-                    deskripsi_pengaduan.textContent = data.deskripsi_pengaduan;
-                    kategori_pengaduan.textContent = data.kategori_pengaduan;
-                    //membuat tanggal indonesia
-                    const event = new Date(data.created_at);
-                    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-                    tanggal_pengaduan.textContent = event.toLocaleDateString('id-ID',options);
-                    //end membuat tanggal indonesia
-                    let status = '';
-                    if(data.status_pengaduan == 0){
-                        status = '<span class="badge badge-warning">Proses</span>'
-                    }else if(data.status_pengaduan == 1){
-                        status = '<span class="badge badge-warning">Proses</span>'
-                    }
-                    status_pengaduan.innerHTML = status;
+                    console.log(data);
+                    // judul_pengaduan.textContent = data[0].judul_pengaduan;
+                    // deskripsi_pengaduan.textContent = data[0].deskripsi_pengaduan;
+                    // kategori_pengaduan.textContent = data[0].kategori_pengaduan;
+                    // //membuat tanggal indonesia
+                    // const event = new Date(data[0].created_at);
+                    // const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                    // tanggal_pengaduan.textContent = event.toLocaleDateString('id-ID',options);
+                    // //end membuat tanggal indonesia
+                    // let status = '';
+                    // if(data[0].status_pengaduan == 0){
+                    //     status = '<span class="badge badge-warning">Proses</span>'
+                    // }
+                    // status_pengaduan.innerHTML = status;
                 })
-            //end membuat modal detail
-        }
+            //end membuat modal detail    
+         }
     </script>
     <!-- Plugins JS Ends-->
 @endsection
+;

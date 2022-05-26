@@ -68,8 +68,8 @@ class PengaduanController extends Controller
      */
     public function show(pengaduan $pengaduan)
     {
-        //
-        return pengaduan::find($pengaduan);
+        $data = pengaduan::find($pengaduan)->first();
+        return $data;
     }
 
     /**
