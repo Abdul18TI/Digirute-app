@@ -22,6 +22,7 @@ class rw extends Model
     public function rt_rel()
     {
         // return $this->hasMany(rt::class);
-        return $this->belongsToMany(rt::class, 'id_rw', 'id_rw');
+        return $this->hasMany(rt::class, 'id_rw', 'id_rw');
+        // return $this->belongsToMany(rt::class, 'id_rw', 'id_rw');
     }
 }

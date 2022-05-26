@@ -14,7 +14,7 @@ class OtherController extends Controller
     public function rtrw()
     {
         // $warga = Warga::with('rt_rel')->first();
-        $warga = warga::with('rt_rel.rw_rel')->first();
+        $warga = warga::with('rt_rel.rw_rel')->get();
         return $warga;
     }
 }
