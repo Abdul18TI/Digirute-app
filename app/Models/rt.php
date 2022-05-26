@@ -28,7 +28,8 @@ class rt extends Authenticatable
     public function rw_rel()
     {
         //belongsTo(namamodel, foreign key tabel rt, primary key tabel sendiri)
-        return $this->hasOne(rw::class, 'id_rw', 'id_rw');
+        return $this->belongsTo(rw::class, 'id_rw', 'id_rw');
+        // return $this->hasOne(rw::class, 'id_rw', 'id_rw'); -- bisa di pakai
         // return $this->belongsTo(rw::class);
     }
 }
