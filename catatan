@@ -7,6 +7,11 @@ https://youtu.be/upn5ieyL48k
 
  //mengganti nama URL pada resource controller RouteServiceProvider
 
+  //belongsTo(namamodel, foreign key tabel rt, primary key tabel sendiri)
+        return $this->belongsTo(rw::class, 'id_rw', 'id_rw');
+        //hasMany(namamodel, foreign key tabel warga, primary key tabel sendiri)
+        return $this->hasMany(Warga::class, 'rt', 'id_rt');
+
 
  const detail = (id) => {
              const asd ={{route('rt.pengaduan.show',${id})}};

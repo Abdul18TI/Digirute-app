@@ -14,6 +14,7 @@ use App\Http\Controllers\RT\DashboardRTController;
 use App\Http\Controllers\RT\PengaduanRTController;
 use App\Http\Controllers\Warga\DashboardWargaController;
 use App\Http\Controllers\Warga\LoginWargaController;
+use App\Http\Controllers\Warga\OtherController;
 use App\Http\Controllers\Warga\PengaduanController as WargaPengaduanController;
 
 /*
@@ -84,6 +85,7 @@ Route::prefix('Warga')->name('warga.')->group(function () {
     Route::middleware(['auth', 'PreventBackHistory'])->group(function () {
         Route::get('/', [DashboardWargaController::class, 'index'])->name('home');
         Route::resource('pengaduan', WargaPengaduanController::class);
+        Route::get('/rw-rt', [OtherController::class, 'rtrw'])->name('rw-rt');
         Route::post('logout', [LoginWargaController::class, 'logout'])->name('logout');
     });
 

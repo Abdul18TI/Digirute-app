@@ -9,10 +9,19 @@ class rw extends Model
 {
     use HasFactory;
 
+    protected $table = 'rws';
+    protected $primaryKey = 'id_rw';
     protected $guarded = ['id_rw'];
 
-    public function rt()
+    public function getRouteKeyName()
     {
-        return $this->hasMany(rt::class);
+        return 'id_rw';
+    }
+
+
+    public function rt_rel()
+    {
+        // return $this->hasMany(rt::class);
+        return $this->belongsToMany(rt::class, 'id_rw', 'id_rw');
     }
 }
