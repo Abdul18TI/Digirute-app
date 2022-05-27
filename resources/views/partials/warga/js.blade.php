@@ -14,4 +14,6 @@
 <!-- Theme js-->
 <script src="{{asset('assets/js/script.js')}}"></script>
 <script src="{{asset('assets/js/theme-customizer/customizer.js')}}"></script>
-<!-- Plugin used-->
+<!-- Custom JS start-->
+@stack('scripts-custom')
+<!-- Custom JS Ends-->

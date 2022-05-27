@@ -72,6 +72,14 @@ class PengaduanController extends Controller
         return $data;
     }
 
+    public function pengaduan_pribadi()
+    {
+        $data = pengaduan::where('id_rt', Auth::id())
+            ->where('nik', Auth::user()->nik)
+            ->get();
+        return view('warga.pengaduan.pengaduan-warga-pribadi', compact('data'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

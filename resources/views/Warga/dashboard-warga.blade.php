@@ -1,7 +1,18 @@
 @extends('layouts.main-warga')
 
+@section('title')Dashboard
+ {{ $title }}
+@endsection
+
+@push('css')
+<link rel="stylesheet" type="text/css" href="{{asset('assets/css/datatables.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('assets/css/date-picker.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('assets/css/owlcarousel.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('assets/css/prism.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('assets/css/whether-icon.css')}}">
+@endpush
+
 @section('container')
-<div class="page-body">
     <!-- Container-fluid starts-->
     <div class="container-fluid general-widget">
       <div class="row">
@@ -46,7 +57,7 @@
             <div class="bg-warning b-r-4 card-body">
               <div class="media static-top-widget">
                 <div class="align-self-center text-center"><i data-feather="user-plus"></i></div>
-                <div class="media-body"><span class="m-0">Kepala Keluarga</span>
+                <div class="media-body"><span class="m-0">K. Keluarga</span>
                   <h4 class="mb-0 counter">531</h4><i class="icon-bg" data-feather="user-plus"></i>
                 </div>
               </div>
@@ -493,5 +504,19 @@
     </div>
   </div>
   <!-- Container-fluid Ends-->
-  </div>
+  @push('scripts')    
+        <script src="{{asset('assets/js/prism/prism.min.js')}}"></script>
+        <script src="{{asset('assets/js/clipboard/clipboard.min.js')}}"></script>
+        <script src="{{asset('assets/js/counter/jquery.waypoints.min.js')}}"></script>
+        <script src="{{asset('assets/js/counter/jquery.counterup.min.js')}}"></script>
+        <script src="{{asset('assets/js/counter/counter-custom.js')}}"></script>
+        <script src="{{asset('assets/js/custom-card/custom-card.js')}}"></script>
+        <script src="{{asset('assets/js/datepicker/date-picker/datepicker.js')}}"></script>
+        <script src="{{asset('assets/js/datepicker/date-picker/datepicker.en.js')}}"></script>
+        <script src="{{asset('assets/js/datepicker/date-picker/datepicker.custom.js')}}"></script>
+        <script src="{{asset('assets/js/owlcarousel/owl.carousel.js')}}"></script>
+        <script src="{{asset('assets/js/general-widget.js')}}"></script>
+        <script src="{{asset('assets/js/height-equal.js')}}"></script>
+        <script src="{{asset('assets/js/tooltip-init.js')}}"></script>
+    @endpush
   @endsection

@@ -32,7 +32,7 @@
       <!-- Page Body Start-->
       <div class="page-body-wrapper sidebar-icon">
         <!-- Page Sidebar Start-->
-        @includeIf('partials.warga.sidebar')
+        @includeIf('partials.warga.sidebar-warga')
         <!-- Page Sidebar Ends-->
         <div class="page-body">
           <!-- Container-fluid starts-->

@@ -1,7 +1,14 @@
 @extends('layouts.main-warga')
 
+@section('title')Tambah Pengaduan Warga
+ {{ $title }}
+@endsection
+
+@push('css')
+<link rel="stylesheet" type="text/css" href="{{asset('assets/css/datatables.css')}}">
+@endpush
+
 @section('container')
-<div class="page-body">
     <div class="container-fluid">
         {{-- <div class="page-header">
             <div class="row">
@@ -98,6 +105,5 @@
                 <!-- Form Pengaduan End -->
             </div>
         </div>
-    </div>
 </div>
 @endsection

@@ -1,9 +1,9 @@
 <header class="main-nav">
     <div class="sidebar-user text-center">
         <a class="setting-primary" href="javascript:void(0)"><i data-feather="settings"></i></a><img class="img-90 rounded-circle" src="{{asset('assets/images/dashboard/1.png')}}" alt="" />
-        <div class="badge-bottom"><span class="badge badge-primary">New</span></div>
-        <a href="user-profile"> <h6 class="mt-3 f-14 f-w-600">Emay Walter</h6></a>
-        <p class="mb-0 font-roboto">Human Resources Department</p>
+        <div class="badge-bottom"><span class="badge badge-primary">Warga</span></div>
+        <a href="user-profile"> <h6 class="mt-3 f-14 f-w-600">{{ auth()->user()->nama_lengkap }}</h6></a>
+        <p class="mb-0 font-roboto">RT {{ auth()->user()->rt_rel->no_rt }} RW {{auth()->user()->rt_rel->rw_rel->no_rw }}</p>
         <ul>
             <li>
                 <span><span class="counter">19.8</span>k</span>
@@ -33,10 +33,13 @@
                         </div>
                     </li>
                     <li class="dropdown">
-                        <a class="nav-link menu-title active" href="javascript:void(0)"><i data-feather="home"></i><span>Dashboard</span></a>                  
-                        <ul class="nav-submenu menu-content" style="display: block;">
-                            <li><a href="" class="">Default</a></li>
-                            <li><a href="" class="">Ecommerce</a></li>
+                        <a class="nav-link menu-title link-nav {{routeActive('warga.home')}}" href="{{ route('warga.home') }}"><i data-feather="home"></i><span>Dashboard</span></a>
+                    </li>
+                    <li class="dropdown">
+                        <a class="nav-link menu-title {{  prefixActive('warga.pengaduan.*') }}" href="javascript:void(0)"><i data-feather="message-circle"></i><span>Pengaduan</span></a>                  
+                        <ul class="nav-submenu menu-content" style="display: {{ prefixBlock('warga.pengaduan.*') }};">
+                            <li><a  href="{{ route('warga.pengaduan.index') }}" class="{{routeActive('warga.pengaduan.index')}}">Pengaduan Warga</a></li>
+                            <li><a href="{{ route('warga.pengaduan.pribadi') }}" class="{{routeActive('warga.pengaduan.pribadi')}}">Pengaduan Pribadi</a></li>
                         </ul>
                     </li>
                     
