@@ -14,7 +14,9 @@ class OtherController extends Controller
     public function rtrw()
     {
         // $warga = Warga::with('rt_rel')->first();
-        $warga = warga::with('rt_rel.rw_rel')->get();
-        return $warga;
+        // $warga = warga::with('rt_rel.rw_rel')->get();
+        // $title = "Profile RT RW";
+        // return view('Warga.rt-rw', compact('title'));
+        return view('Warga.pengaduan.coba');
     }
 }

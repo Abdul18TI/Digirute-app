@@ -7,7 +7,7 @@
       p{
         width: 100%;
         white-space: nowrap;
-        overflow: hidden; 
+        overflow: hidden;
         text-overflow: ellipsis;
       }
     }
@@ -179,17 +179,6 @@
       }
     }
   }
-  // user profile //
-  .user-profile{
-    .photos{
-      ul{
-        li{
-          width:21%;
-        }
-      }
-    }
-  }
-
 
   // email wrap
   .email-wrap {
@@ -563,7 +552,6 @@
       }     
     }
   }
-
   .chat-left-aside {
     .people-list {
       height: 420px;
@@ -577,6 +565,7 @@
       left: 36px;
     }
   }
+  
   //blog scss
   .blog-box {
     .blog-details-main {
@@ -736,16 +725,7 @@
         }
       }
     }
-  }
-  .user-profile{
-    .photos{
-      ul{
-        li{
-          width:20%;
-        }
-      }
-    }
-  }
+  }  
   .page-main-header {
     .main-header-right {
       .left-menu-header{
@@ -1436,24 +1416,7 @@
     }
   }
   // user profile
-  .user-profile {
-    .photos {
-      ul {
-        li{
-          width:19%;
-        }
-      }
-    }
-    .social-tab {
-      ul{
-        li{
-          &:nth-child(n+2){
-            margin-left:10px;
-          }
-        }
-      }
-    }
-  }
+  
 
   // emaill application
   .email-wrap {
@@ -2149,7 +2112,6 @@
       }
     }
   }
-  
   .chat-menu-icons {
     display: block;
     clear: both;
@@ -2180,10 +2142,13 @@
       margin-right: 0 !important;
     }
   }  
+
+
+
+
   // Email app
   .email-wrap {
-    .email-right-aside {
-      
+    .email-right-aside {    
       .email-body {
         border-top-right-radius: 4px;
         border-bottom-right-radius: 4px;
@@ -2311,72 +2276,7 @@
       }
     }
   }
-  // user-profile page
-  .profile-img-style {
-    #aniimated-thumbnials-3 {
-      text-align: center;
-    }
-  }
-  .user-profile{
-    .photos{
-      ul{
-        li{
-          width:20%;
-        }
-      }
-    } 
-    .profile-header{
-      height:380px;
-      .userpro-box{
-        max-width:325px;
-        padding:25px;
-        .icon-wrapper{
-          width:30px;
-          height:30px;
-          font-size:13px;
-        }
-        .avatar{
-          width:85px;
-          height:85px;
-        }
-        h4{
-          font-size: 18px;
-        }
-        h6{
-          font-size: 14px;
-        }
-        
-      }
-    }
-    .social-media {
-      ul{
-        &.user-list-social {
-          li {
-            a{
-              width:28px;
-              height:28px;
-            }
-          }
-        }
-      }
-    }
-  }
-  .social-tab {
-    padding:20px;
-    ul{
-      li{
-        a{
-          padding: 8px 10px;
-          font-size: 12px;
-        }
-      }
-    }
-    .input-group{
-      .form-control{
-        height:35px;
-      }
-    }
-  }
+
 
   // vertical page
   .vertical-menu-mt {
@@ -2695,38 +2595,7 @@
     padding-bottom: 25px !important;
   }
 
-
-  // user-profile
-  .user-profile{
-    .photos{
-      ul{
-        li{
-          width:19%;
-        }
-      }
-    }
-    .profile-post {
-      .post-header {
-        .media {
-          img{
-            width:50px;
-            height:50px;
-          }
-          h5{
-            font-size:16px;
-          }
-          h6{
-            font-size:12px;
-          }
-        }
-      }
-    }
-  }
- 
   
-
-
-
   // main header css
   .page-wrapper {
     .section-space {
@@ -3745,65 +3614,6 @@
 
 
 
-  // user profile //
-  .user-profile {
-    .photos {
-      ul {
-        li{
-          width:55px;
-        }
-      }
-    }
-    .profile-header{
-      height:355px;
-      .userpro-box{
-        padding:20px;
-        max-width:300px;
-        .avatar{
-          width:70px;
-          height:70px;          
-        }
-        h4{
-          font-size:16px;
-        }
-        h6{
-          font-size:13px;
-        }
-      }
-     }        
-  }
-  .social-tab{
-    display:block;
-    ul{
-      justify-content:center;
-      margin-bottom:-10px;
-      li{
-        display: inline-block;
-        margin-bottom: 10px;
-      }
-    }
-    .input-group{
-      margin-top:15px;
-      margin-right: auto;
-      margin-left: auto;
-    }
-  }
-  .social-app-profile{
-    .social-status {     
-      .media {
-        img{
-          width:40px !important;
-        }
-        .social-status{
-          bottom:10px;
-          left:35px;
-        }
-      }
-    }    
-  }
-  
-
-
   // general-widget
   .general-widget{
     .custom-card{
@@ -4759,22 +4569,9 @@
     width:100%;
     flex-basis:auto;
   }
+  
 
-  // user-profile page
-  .hovercard {
-    .info {
-      .follow {
-        .text-md-end {
-          text-align: center;
-        }
-      }
-    }
-  }
-  .profile-img-style {
-    .like-comment-sm-mb {
-      margin-bottom: 20px;
-    }
-  }
+
   // forget-password page
   .reset-password-box {
     .theme-form {
@@ -4861,17 +4658,6 @@
   .bg-gallery {
     height: 60vh;
   }
-  .user-profile{
-    .photos{
-      ul {
-        li{
-          width:53px;
-        }
-      }
-    }
-  }
-
-
 }
 @media screen and (max-width: 540px) {
   .bg-gallery {
@@ -4959,56 +4745,6 @@
       }
     }
   }
-
-  // user profile
-  .user-profile{
-    .photos{
-      ul{
-        li{
-          width:18%;
-        }
-      }
-    }
-    .profile-post{
-      padding:20px;      
-      .post-body {
-        figure{
-          margin-bottom:20px;
-        }
-        .post-react {
-          ul {
-            li {             
-              img{
-                width:20px;
-                height:20px;
-              }
-              &:nth-child(n+2){
-                margin-left:-15px;
-              }
-            }
-          }
-          h6{
-            margin-left:10px;
-            font-size:13px;
-          }
-        }
-      }
-    }
-    .profile-header{
-      padding:0;
-      height:auto;
-      .profile-img-wrrap{
-        display:block;
-        height:280px;
-      }       
-      .userpro-box{
-        max-width:100%;
-      }
-    }
-  }
-
-   
-
   
 
   //dashboard mian //

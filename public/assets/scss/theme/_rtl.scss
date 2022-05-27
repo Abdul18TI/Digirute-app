@@ -3018,6 +3018,10 @@
       }
     }
   }
+
+
+
+
   // chat page
   .call-chat-body {
     .chat-box {
@@ -3074,11 +3078,11 @@
         }
         .chat-header {
           .chat-menu-icons{
-            margin-left:unset;
-            margin-right:15px;
+            margin-left: unset;
+            margin-right: 15px;
             li{
-              margin-right: unset;
-              margin-left:24px;
+              margin-right:unset;
+              margin-left: 24px;
             }
           }
         }
@@ -3130,6 +3134,11 @@
       }
     }
   }
+
+
+
+
+  
   // cke editor page
   .cke_toolbar, .cke_toolgroup, a.cke_button, .cke_combo_text {
     float: right;
@@ -4425,9 +4434,8 @@
           left: unset;
         }
       }
-
-
     }
+    
     .chat-menu-icons {
       text-align: left;
     }

@@ -23,6 +23,9 @@
             &.close_icon{
               margin-left: auto;
             }
+
+
+
           }
           .page-body-wrapper{
             width:1280px;                    
@@ -187,11 +190,15 @@
             padding-right:10px;
           }
         }    
-        .page-main-header {
-          
-          .main-header-right {
+        .page-main-header{
+          .main-header-right{
             .main-header-left{
               width:255px;
+            }
+            .nav-right {
+              .nav-menus{
+                padding:20px 25px;
+              }
             }
           }
         }
