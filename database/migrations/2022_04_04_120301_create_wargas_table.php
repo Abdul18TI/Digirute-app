@@ -17,8 +17,8 @@ class CreateWargasTable extends Migration
             $table->id('id_warga'); ////
             $table->string('nik')->unique(); ////
             $table->string('no_kk'); ////
-            // $table->string('username')->unique()->nullable();
-            // $table->string('password')->nullable();
+            $table->string('username')->unique()->nullable();
+            $table->string('password')->nullable();
             $table->string('nama_kepala_keluarga'); ////
             $table->string('nokk_kepala_keluarga'); ////
             $table->integer('status_hubungan_dalam_keluarga'); //
@@ -47,7 +47,7 @@ class CreateWargasTable extends Migration
             $table->string('nik_ibu'); ////
             $table->string('nama_ibu'); ////
             $table->timestamp('tgl_keluar_kk')->nullable(); ////
-            $table->string('foto_warga')->nullable(); ////
+            $table->string('foto_warga')->default('no-image.png'); ////
             $table->timestamp('tgl_perkawinan')->nullable(); ////
             $table->integer('status_akta_kawin'); ////
             $table->string('akta_kawin')->nullable(); ////
