@@ -9,28 +9,13 @@
 @endpush
 
 @section('container')
-        <div class="container-fluid">
-            {{-- <div class="page-header">
-            <div class="row">
-                <div class="col-sm-6">
-                    <h3>Pengaduan Warga</h3>
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Pengaduan</a></li>
-                        <li class="breadcrumb-item active">Data Pengaduan</li>
-                    </ol>
-                </div>
-                <div class="col-sm-6">
-                    <!-- Bookmark Start-->
-                    <div class="bookmark">
-                        <ul>
-                            
-                        </ul>
-                    </div>
-                    <!-- Bookmark Ends-->
-                </div>
-            </div>
-        </div> --}}
-        </div>
+        @component('components.warga.breadcrumb')
+        @slot('breadcrumb_title')
+        <h3>Pengaduan Warga</h3>
+        @endslot
+        {{-- <li class="breadcrumb-item">Pengaduan</li> --}}
+        <li class="breadcrumb-item active">Pengaduan Warga</li>
+        @endcomponent
         <!-- Form Tambah Warga -->
         <div class="container-fluid">
             <div class="row">

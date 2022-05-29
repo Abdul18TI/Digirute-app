@@ -9,6 +9,13 @@
 @endpush
 
 @section('container')
+        @component('components.warga.breadcrumb')
+            @slot('breadcrumb_title')
+                <h3>Pengaduan Pribadi</h3>
+            @endslot
+            <li class="breadcrumb-item">Pengaduan</li>
+            <li class="breadcrumb-item active">Pengaduan Pribadi</li>
+        @endcomponent
         <div class="container-fluid">
             {{-- <div class="page-header">
             <div class="row">
