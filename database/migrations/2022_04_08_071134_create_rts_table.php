@@ -19,6 +19,7 @@ class CreateRtsTable extends Migration
             $table->string('username')->unique()->nullable();
             $table->string('password')->nullable();
             $table->string('no_rt');
+            $table->foreignId('id_warga');
             $table->string('ketua_rt');
             $table->timestamp('tgl_awal_jabatan_rt')->nullable();
             $table->timestamp('tgl_akhir_jabatan_rt')->nullable();

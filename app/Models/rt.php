@@ -25,6 +25,13 @@ class rt extends Authenticatable
         //hasMany(namamodel, foreign key tabel warga, primary key tabel sendiri)
         return $this->hasMany(Warga::class, 'rt', 'id_rt');
     }
+
+    public function identitas_rt()
+    {
+        //hasMany(namamodel, foreign key tabel warga, primary key tabel sendiri)
+        return $this->belongsTo(Warga::class, 'id_warga', 'id_warga');
+    }
+
     public function rw_rel()
     {
         //belongsTo(namamodel, foreign key tabel rt, primary key tabel sendiri)
