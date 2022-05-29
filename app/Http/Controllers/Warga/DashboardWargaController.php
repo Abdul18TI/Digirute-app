@@ -11,7 +11,6 @@ class DashboardWargaController extends Controller
     public function index()
     {
         # code...
-        $title = "Dashboard";
-        return view('Warga.dashboard-warga', compact('title'));
+        return view('Warga.dashboard-warga');
     }
 }
