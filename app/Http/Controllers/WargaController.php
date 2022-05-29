@@ -6,10 +6,12 @@ use App\Models\Warga;
 use App\Helper\Helpers;
 use App\Models\Pekerjaan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class WargaController extends Controller
 {
-    public function home_rt()
+    public function index()
     {
         $warga = Warga::all();
         // $warga = Warga::find(1);
@@ -24,7 +26,7 @@ class WargaController extends Controller
     }
 
     // function menampilkan halaman tambah warga 
-    public function tambah_warga_rt()
+    public function create()
     {
         $warga = Warga::all();
         $data = Pekerjaan::all();
@@ -39,66 +41,173 @@ class WargaController extends Controller
     }
 
     //function tambah ke dalam database
-    public function add(Request $request)
+    public function store(Request $request)
     {
-        $data = $request->except('_token');
-        $data['tgl_lahir'] = strtotime($request->tgl_lahir);
-        $data['tgl_keluar_kk'] = strtotime($request->tgl_keluar_kk);
+        $validatedData = $request->except('_token');
+        // $validatedData['tgl_lahir'] = strtotime($request->tgl_lahir);
+        // $validatedData['tgl_keluar_kk'] = strtotime($request->tgl_keluar_kk);
 
-        // dd($data);
-        $request->validate([
+        $validatedData = $request->validate([
             'no_kk' => 'required|numeric',
             'nik' => 'required|numeric|unique:wargas,nik',
-            'no_kk' => 'required|numeric',
             // 'username' => 'required|unique:wargas,username',
             // 'password' => 'required|min:6',
+            'nama_kepala_keluarga' => 'required',
+            'nokk_kepala_keluarga' => 'required|numeric',
+            'status_hubungan_dalam_keluarga' => 'required|numeric',
             'alamat' => 'required',
             'kelurahan' => 'required',
             'kecamatan' => 'required',
             'kabupaten' => 'required',
             'provinsi' => 'required',
+            'nama_dusun' => 'required',
             'kode_pos' => 'nullable|numeric',
             'nama_lengkap' => 'required',
             'tempat_lahir' => 'required',
             'tgl_lahir' => 'required|date',
+            'status_akta_kelahiran' => 'required', //
+            'akta_kelahiran' => 'nullable|numeric', //
             'jenis_kelamin' => 'required',
             'agama' => 'required',
-            'pekerjaan' => 'required',
             'golongan_darah' => 'required',
-            'status_perkawinan' => 'required',
-            'nomor_passport' => 'nullable|numeric',
-            'nomor_kitaskitap' => 'nullable|numeric',
-            'nama_ayah' => 'required',
-            'nama_ibu' => 'required',
-            'tgl_keluar_kk' => 'date',
-            // 'foto_warga' => 'required',
-            //eTime('tanggal_tambah'
-            // 'email_warga' => 'email:rfc,dns',
-            // 'no_hp_warga' => 'required',
-            'rt' => 'required',
-            'rw' => 'required'
+            'pendidikan' => 'required',
+            'pekerjaan' => 'required',
+            'status_hubungan' => 'required', //
+            'status_perkawinan' => 'required', //
+            'tgl_perkawinan' => 'nullable|date', //
+            'status_akta_kawin' => 'required', //
+            'akta_kawin' => 'nullable|numeric', //
+            'status_akta_cerai' => 'required', //
+            'akta_cerai' => 'nullable|numeric', //
+            'tgl_cerai' => 'nullable|date', //
+            'nomor_passport' => 'nullable|numeric|unique:wargas,nomor_passport', //
+            'tgl_akhir_passport' => 'nullable|date', //
+            'nomor_kitaskitap' => 'nullable|numeric|unique:wargas,nomor_kitaskitap', //
+            'nik_ayah' => 'required', //
+            'nama_ayah' => 'required', //
+            'nik_ibu' => 'required', //
+            'nama_ibu' => 'required', //
+            'tgl_keluar_kk' => 'date', //
+            'status_kelainan' => 'required', //
+            'kelainan' => 'nullable', //
+            'foto_warga' => 'image|file|max:2048', //
+            'email_warga' => 'required',
+            'no_hp_warga' => 'required',
+            'rt' => 'required|nullable',
+            'rw' => 'required|nullable'
         ]);
-        Warga::create($data);
-        return redirect()->route('rt.warga.home');
+
+        if ($request->file('foto_warga')) {
+            $validatedData['foto_warga'] = $request->file('foto_warga')->store('foto-warga');
+        }
+
+        try {
+            Warga::create($validatedData);
+
+            return redirect()->route('rt.warga.index')
+                ->with('success', 'Data berhasil ditambah!');
+        } catch (\Exception $e) {
+            return redirect()->route('rt.warga.index')
+                ->with('error', 'Gagal menambahkan data!');
+        }
+
+        // return Warga::create($validatedData);
     }
 
-    public function edit_warga_rt(Warga $warga)
+    public function edit(Warga $warga)
     {
         // dd($warga->all());
+        $data = Pekerjaan::all();
         return view(
             'RT.warga.warga-edit-rt',
             [
                 'warga' => $warga,
+                'pekerjaan' => $data,
                 'title' => 'Edit Data Warga'
             ]
         );
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Warga $warga)
     {
-        $data = $request->except(['_token', '_method']);
-        $data['tgl_lahir'] = strtotime($request->tgl_lahir);
-        $data['tgl_keluar_kk'] = strtotime($request->tgl_keluar_kk);
-        Warga::where('id_warga', $id)->update($data);
+        $validatedData = $request->except(['_token', '_method']);
+        $validatedData = $request->validate([
+            'no_kk' => 'required|numeric',
+            'nik' => 'required|numeric',
+            // 'username' => 'required|unique:wargas,username',
+            // 'password' => 'required|min:6',
+            'nama_kepala_keluarga' => 'required',
+            'nokk_kepala_keluarga' => 'required|numeric',
+            'status_hubungan_dalam_keluarga' => 'required|numeric',
+            'alamat' => 'required',
+            'kelurahan' => 'required',
+            'kecamatan' => 'required',
+            'kabupaten' => 'required',
+            'provinsi' => 'required',
+            'nama_dusun' => 'required',
+            'kode_pos' => 'nullable|numeric',
+            'nama_lengkap' => 'required',
+            'tempat_lahir' => 'required',
+            'tgl_lahir' => 'required|date',
+            'status_akta_kelahiran' => 'required', //
+            'akta_kelahiran' => 'nullable|numeric', //
+            'jenis_kelamin' => 'required',
+            'agama' => 'required',
+            'golongan_darah' => 'required',
+            'pendidikan' => 'required',
+            'pekerjaan' => 'required',
+            'status_hubungan' => 'required', //
+            'status_perkawinan' => 'required', //
+            'tgl_perkawinan' => 'nullable|date', //
+            'status_akta_kawin' => 'required', //
+            'akta_kawin' => 'nullable|numeric', //
+            'status_akta_cerai' => 'required', //
+            'akta_cerai' => 'nullable|numeric', //
+            'tgl_cerai' => 'nullable|date', //
+            'nomor_passport' => 'nullable|numeric', //
+            'tgl_akhir_passport' => 'nullable|date', //
+            'nomor_kitaskitap' => 'nullable|numeric', //
+            'nik_ayah' => 'required', //
+            'nama_ayah' => 'required', //
+            'nik_ibu' => 'required', //
+            'nama_ibu' => 'required', //
+            'tgl_keluar_kk' => 'date', //
+            'status_kelainan' => 'required', //
+            'kelainan' => 'nullable', //
+            'email_warga' => 'required',
+            'no_hp_warga' => 'required',
+            'rt' => 'required|nullable',
+            'rw' => 'required|nullable'
+        ]);
+
+        if ($request->file('foto_warga')) {
+            Storage::delete($request->oldImage);
+            $validatedData['foto_warga'] = $request->file('foto_warga')->store('foto-warga');
+        }
+
+        warga::where('id_warga', $warga->id_warga)
+            ->update($validatedData);
+        return redirect()->route('rt.warga.index')->with('success', 'Data berhasil diubah!');
+    }
+
+    public function destroy(Warga $warga)
+    {
+        // $warga->delete();
+        // if ($warga->foto_warga) {
+        //     Storage::delete($warga->foto_pengumuman);
+        // }
+        // return redirect()->route('pengumuman.index');
+
+        try {
+            $warga->delete();
+            if ($warga->foto_warga) {
+                Storage::delete($warga->foto_warga);
+            }
+            return redirect()->route('rt.warga.index')
+                ->with('success', 'data berhasil dihapus!');
+        } catch (\Exception $e) {
+            return redirect()->route('rt.warga.index')
+                ->with('error', 'Gagal menghapus data!');
+        }
     }
 }

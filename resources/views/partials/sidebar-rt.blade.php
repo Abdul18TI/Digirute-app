@@ -36,7 +36,7 @@
                             <a class="nav-link menu-title link-nav" href="C_dashboard_rw"><i data-feather="home"></i><span>Dashboard</span></a>
                         </li>
                         <li>
-                            <a class="nav-link menu-title link-nav" href="{{ route('rt.warga.home')}}"><i data-feather="users"></i><span>Warga</span></a>
+                            <a class="nav-link menu-title link-nav" href=""><i data-feather="users"></i><span>Warga</span></a>
                         </li>
                         <li>
                         {{-- <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="users"></i><span>Warga</span></a>

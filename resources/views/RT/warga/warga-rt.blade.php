@@ -5,18 +5,6 @@
     <div class="container-fluid">
         <div class="page-header">
             <div class="row">
-                <!-- <div class="col-sm-6">
-                    <h3>Data Warga</h3>
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                        <li class="breadcrumb-item">Forms</li>
-                        <li class="breadcrumb-item">Form Controls</li>
-                        <li class="breadcrumb-item active">Base Inputs</li>
-                    </ol>
-                </div>
-                <div class="col-sm-6">
-
-                </div> -->
             </div>
         </div>
     </div><!-- Form Tambah Warga -->
@@ -31,8 +19,7 @@
                             </div>
                             <div class="col-3">
                                 <div class="bookmark">
-
-                                    <a class="btn btn-primary btn-lg" href="{{ route('rt.warga.tambah') }}" data-bs-original-title="" title=""> <span class="fa fa-plus-square"></span> Tambah Data</a>
+                                    <a class="btn btn-primary btn-lg" href="{{ route('rt.warga.create') }}" data-bs-original-title="" title=""> <span class="fa fa-plus-square"></span> Tambah Data</a>
                                 </div>
                             </div>
                         </div>
@@ -62,8 +49,16 @@
                                             <td>{{ $dw->alamat }}</td>
                                             <td>{{ $dw->no_hp_warga }}</td>
                                             <td>
-                                                <a href="{{ route('rt.warga.edit', $dw->id_warga) }}" class="btn btn-success btn-sm p-2" data-container="body" data-bs-toggle="tooltip" data-bs-placement="top" title="Detail"><span class="fa fa-list"></span></a>
-                                                <a href="{{$dw->id_warga }}" class="btn btn-secondary btn-sm p-2" data-container="body" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><span class="fa fa-pencil"></span></a>
+                                                <a class="btn btn-info btn-sm p-2" href="rt.warga/{{ $dw->id_warga }}"><span
+                                                        class="fa fa-eye"></span></a>
+                                                <a class="btn btn-secondary btn-sm p-2" href="warga/{{ $dw->id_warga }}/edit"><span
+                                                        class="fa fa-edit"></span></a>
+                                                <form method="POST" action="{{ route('rt.warga.destroy', $dw->id_warga)}}" class="d-inline">
+                                                    @csrf
+                                                   <input name="_method" type="hidden" value="DELETE">
+                                                   <button type="submit" class="btn btn-danger btn-sm p-2 border-0 sweet" data-toggle="tooltip" title='Delete'><span
+                                                    class="fa fa-trash"></span></button>
+                                                </form>
                                             </td>
                                         </tr>
                                    @endforeach

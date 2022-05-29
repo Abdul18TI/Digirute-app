@@ -6,7 +6,7 @@
         <div class="page-header">
             <div class="row">
                 <div class="col-sm-6">
-                    <h3>Edit Data Warga</h3>
+                    <h3>Tambah Warga</h3>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                         <li class="breadcrumb-item">Forms</li>
@@ -50,11 +50,12 @@
                   @endif
                 <div class="card">
                     <div class="card-header pb-0">
-                        <h5>Edit Warga</h5>
+                        <h5>Tambah Warga</h5>
                     </div>
                     <form class="form theme-form" method="post" action="{{ route('rt.warga.update', $warga->id_warga)}}">
                         @method('PUT')  
                         @csrf
+                        <input type="hidden" name="id" value="{{ $warga->id_warga }}">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">
@@ -70,19 +71,44 @@
                                     <div class="mb-3 row">
                                         <label class="col-sm-3 col-form-label">Nomor Kartu Keluarga (KK) <span class="text-danger">*</span></label>
                                         <div class="col-sm-9">
-                                            <input class="form-control" type="text" id="no_kk" name="no_kk" value="{{ $warga->no_kk }}"placeholder="Nomor Kartu Keluarga">
+                                            <input class="form-control" type="number" id="no_kk" name="no_kk" value="{{ old('no_kk',$warga->no_kk) }}"placeholder="Nomor Kartu Keluarga">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-3 col-form-label">Nama Kepala Keluarga <span class="text-danger">*</span></label>
+                                        <div class="col-sm-9">
+                                            <input class="form-control" type="text" id="nama_kepala_keluarga" name="nama_kepala_keluarga" value="{{ old('nama_kepala_keluarga',$warga->nama_kepala_keluarga) }}"placeholder="Nama kepala keluarga">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-3 col-form-label">Nomor KK Kepala Keluarga <span class="text-danger">*</span></label>
+                                        <div class="col-sm-9">
+                                            <input class="form-control" type="text" id="nokk_kepala_keluarga" name="nokk_kepala_keluarga" value="{{ old('nokk_kepala_keluarga',$warga->nokk_kepala_keluarga) }}"placeholder="Nomor KK Kepala Keluarga">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-3 col-form-label">Status Hubungan Dalam Keluarga <span class="text-danger">*</span></label>
+                                        <div class="col-sm-9">
+                                            <select name='status_hubungan_dalam_keluarga' id='status_hubungan_dalam_keluarga' class='form-select'>
+                                                <option value='00'>-- Pilih --</option>
+                                                <option value='1' {{ old('status_hubungan_dalam_keluarga',$warga->status_hubungan_dalam_keluarga) == '1' ? "selected" : ""}}>ISLAM</option>
+                                                <option value='2' {{ old('status_hubungan_dalam_keluarga',$warga->status_hubungan_dalam_keluarga) == '2' ? "selected" : ""}}>KRISTEN</option>
+                                                <option value='3' {{ old('status_hubungan_dalam_keluarga',$warga->status_hubungan_dalam_keluarga) == '3' ? "selected" : ""}}>HINDU</option>
+                                                <option value='4' {{ old('status_hubungan_dalam_keluarga',$warga->status_hubungan_dalam_keluarga) == '4' ? "selected" : ""}}>BUDHA</option>
+                                                <option value='5' {{ old('status_hubungan_dalam_keluarga',$warga->status_hubungan_dalam_keluarga) == '5' ? "selected" : ""}}>KATOLIK</option>
+                                                <option value='6' {{ old('status_hubungan_dalam_keluarga',$warga->status_hubungan_dalam_keluarga) == '6' ? "selected" : ""}}>KONGHUCU</option></select>
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
                                         <label class="col-sm-3 col-form-label">Nomor Induk Kepenedudukan (NIK) <span class="text-danger">*</span></label>
                                         <div class="col-sm-9">
-                                            <input class="form-control " type="text" id="nik" name="nik"  value="{{ $warga->nik }}" placeholder="Nomor Induk Kependidikan">
+                                            <input class="form-control " type="number" id="nik" name="nik"  value="{{ old('nik',$warga->nik) }}" placeholder="Nomor Induk Kependidikan">
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
                                         <label class="col-sm-3 col-form-label">Alamat <span class="text-danger">*</span></label>
                                         <div class="col-sm-9">
-                                            <textarea class="form-control" id="alamat" name="alamat" rows="5" cols="5" placeholder="Alamat">{{ $warga->alamat }}</textarea>
+                                            <textarea class="form-control" id="alamat" name="alamat" rows="5" cols="5" placeholder="Alamat">{{ old('alamat',$warga->alamat) }}</textarea>
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
@@ -112,24 +138,51 @@
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
+                                        <label class="col-sm-3 col-form-label">Nama Dusun</label>
+                                        <div class="col-sm-9">
+                                            <input class="form-control " type="text" id="nama_dusun" name="nama_dusun" value="{{ old('nama_dusun',$warga->nama_dusun) }}" placeholder="minas">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
                                         <label class="col-sm-3 col-form-label">Kode Pos</label>
                                         <div class="col-sm-9">
-                                            <input class="form-control " type="text" id="kode_pos" name="kode_pos" value="{{ $warga->kode_pos }}" placeholder="0000">
+                                            <input class="form-control " type="number" id="kode_pos" name="kode_pos" value="{{ old('kode_pos',$warga->kode_pos) }}" placeholder="0000">
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
                                         <label class="col-sm-3 col-form-label">Nama Lengkap <span class="text-danger">*</span></label>
                                         <div class="col-sm-9">
-                                            <input class="form-control " type="text" id="nama_lengkap" name="nama_lengkap" value="{{ $warga->nama_lengkap }}" placeholder="Nama Lengkap">
+                                            <input class="form-control " type="text" id="nama_lengkap" name="nama_lengkap" value="{{ old('nama_lengkap',$warga->nama_lengkap) }}" placeholder="Nama Lengkap">
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
                                         <label class="col-sm-3 col-form-label">Tempat Tanggal Lahir <span class="text-danger">*</span></label>
                                         <div class="col-sm-4">
-                                            <input class="form-control " type="text" id="tempat_lahir" name="tempat_lahir"  value="{{ $warga->tempat_lahir }}" placeholder="Tempat Lahir">
+                                            <input class="form-control " type="text" id="tempat_lahir" name="tempat_lahir"  value="{{ old('tempat_lahir',$warga->tempat_lahir) }}" placeholder="Tempat Lahir">
                                         </div>
                                         <div class="col-sm-5">
                                             <input class="form-control digits" name="tgl_lahir" value="" id="example-datetime-local-input" type="date" data-bs-original-title="" title="">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-3 col-form-label">Akta Kelahiran <span class="text-danger">*</span></label>
+                                        <div class="col-sm-9">
+                                            <div class="form-group mt-2 m-checkbox-inline mb-0 custom-radio-ml">
+                                                <div class="radio radio-primary">
+                                                    <input id="ake_a" type="radio" name="status_akta_kelahiran" value="1" {{ old('status_akta_kelahiran',$warga->status_akta_kelahiran) == 1 ? "checked" : ""}}>
+                                                    <label class="mb-0" for="ake_a">Ada</label>
+                                                </div>
+                                                <div class="radio radio-primary">
+                                                    <input id="ad_ta" type="radio" name="status_akta_kelahiran" value="2" {{ old('status_akta_kelahiran',$warga->status_akta_kelahiran) == 2 ? "checked" : ""}}>
+                                                    <label class="mb-0" for="ad_ta">Tidak ada</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-3 col-form-label">Nomor Akta Kelahiran</label>
+                                        <div class="col-sm-9">
+                                            <input class="form-control " type="number" id="akta_kelahiran" name="akta_kelahiran" value="{{ old('akta_kelahiran',$warga->akta_kelahiran) }}" placeholder="">
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
@@ -137,11 +190,11 @@
                                         <div class="col-sm-9">
                                             <div class="form-group mt-2 m-checkbox-inline mb-0 custom-radio-ml">
                                                 <div class="radio radio-primary">
-                                                    <input id="lk" type="radio" name="jenis_kelamin" value="1" {{ $warga->jenis_kelamin == 1 ? "checked" : ""}}>
+                                                    <input id="lk" type="radio" name="jenis_kelamin" value="1" {{ old('jenis_kelamin',$warga->jenis_kelamin) == 1 ? "checked" : ""}}>
                                                     <label class="mb-0" for="lk">Laki-laki</label>
                                                 </div>
                                                 <div class="radio radio-primary">
-                                                    <input id="pr" type="radio" name="jenis_kelamin" value="2" {{ $warga->jenis_kelamin == 2 ? "checked" : ""}}>
+                                                    <input id="pr" type="radio" name="jenis_kelamin" value="2" {{ old('jenis_kelamin',$warga->jenis_kelamin) == 2 ? "checked" : ""}}>
                                                     <label class="mb-0" for="pr">Perempuan</label>
                                                 </div>
                                             </div>
@@ -152,12 +205,12 @@
                                         <div class="col-sm-9">
                                             <select name='agama' id='agama' class='form-select'>
                                                 <option value='00'>-- Pilih --</option>
-                                                <option value='1' {{ $warga->agama == '1' ? "selected" : ""}}>ISLAM</option>
-                                                <option value='2' {{ $warga->agama == '2' ? "selected" : ""}}>KRISTEN</option>
-                                                <option value='3' {{ $warga->agama == '3' ? "selected" : ""}}>HINDU</option>
-                                                <option value='4' {{ $warga->agama == '4' ? "selected" : ""}}>BUDHA</option>
-                                                <option value='5' {{ $warga->agama == '5' ? "selected" : ""}}>KATOLIK</option>
-                                                <option value='6' {{ $warga->agama == '6' ? "selected" : ""}}>KONGHUCU</option></select>
+                                                <option value='1' {{ old('agama',$warga->agama) == '1' ? "selected" : ""}}>ISLAM</option>
+                                                <option value='2' {{ old('agama',$warga->agama) == '2' ? "selected" : ""}}>KRISTEN</option>
+                                                <option value='3' {{ old('agama',$warga->agama) == '3' ? "selected" : ""}}>HINDU</option>
+                                                <option value='4' {{ old('agama',$warga->agama) == '4' ? "selected" : ""}}>BUDHA</option>
+                                                <option value='5' {{ old('agama',$warga->agama) == '5' ? "selected" : ""}}>KATOLIK</option>
+                                                <option value='6' {{ old('agama',$warga->agama) == '6' ? "selected" : ""}}>KONGHUCU</option></select>
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
@@ -165,16 +218,18 @@
                                         <div class="col-sm-9">
                                             <select class='form-select' name='pekerjaan' id='pekerjaan' >
                                                 <option value='00'>-- Pilih --</option>
-                                                <option value='1' {{ $warga->pekerjaan == '1' ? "selected" : ""}}>BELUM/TIDAK BEKERJA</option>
-                                                <option value='2' {{ $warga->pekerjaan == '2' ? "selected" : ""}}>MENGURUS RUMAH TANGGA</option>
-                                                <option value='3' {{ $warga->pekerjaan == '3' ? "selected" : ""}}>PELAJAR/MAHASISWA</option>
-                                                <option value='4' {{ $warga->pekerjaan == '4' ? "selected" : ""}}>PENSIUNAN</option>
-                                                <option value='5' {{ $warga->pekerjaan == '5' ? "selected" : ""}}>PEGAWAI NEGERI SIPIL</option>
-                                                <option value='6' {{ $warga->pekerjaan == '6' ? "selected" : ""}}>TENTARA NASIONAL INDONESIA</option>
-                                                <option value='7' {{ $warga->pekerjaan == '7' ? "selected" : ""}}>KEPOLISIAN RI</option>
-                                                <option value='8' {{ $warga->pekerjaan == '8' ? "selected" : ""}}>PERDAGANGAN</option>
-                                                <option value='9' {{ $warga->pekerjaan == '9' ? "selected" : ""}}>PETANI/PEKEBUN</option>
-                                                <option value='10' {{ $warga->pekerjaan == '10' ? "selected" : ""}}>PETERNAK</option>
+                                                @foreach ($pekerjaan as $p)
+                                                <option value='{{ $p->id_pekerjaan }}' {{ old('pekerjaan',$warga->pekerjaan) ==  $p->id_pekerjaan ? "selected" : "" }}>{{ $p->nama_pekerjaan }}</option>
+                                                @endforeach
+                                                {{-- <option value='1' {{ old('pekerjaan') == '1' ? "selected" : ""}}>BELUM/TIDAK BEKERJA</option>
+                                                <option value='3' {{ old('pekerjaan') == '3' ? "selected" : ""}}>PELAJAR/MAHASISWA</option>
+                                                <option value='4' {{ old('pekerjaan') == '4' ? "selected" : ""}}>PENSIUNAN</option>
+                                                <option value='5' {{ old('pekerjaan') == '5' ? "selected" : ""}}>PEGAWAI NEGERI SIPIL</option>
+                                                <option value='6' {{ old('pekerjaan') == '6' ? "selected" : ""}}>TENTARA NASIONAL INDONESIA</option>
+                                                <option value='7' {{ old('pekerjaan') == '7' ? "selected" : ""}}>KEPOLISIAN RI</option>
+                                                <option value='8' {{ old('pekerjaan') == '8' ? "selected" : ""}}>PERDAGANGAN</option>
+                                                <option value='9' {{ old('pekerjaan') == '9' ? "selected" : ""}}>PETANI/PEKEBUN</option>
+                                                <option value='10' {{ old('pekerjaan') == '10' ? "selected" : ""}}>PETERNAK</option> --}}
                                             </select>
                                         </div>
                                     </div>
@@ -183,10 +238,10 @@
                                         <div class="col-sm-9">
                                             <select name='golongan_darah' id='golongan_darah' class='form-select'  >
                                                 <option value='00'>-- Pilih --</option>
-                                                <option value='A' {{ $warga->golongan_darah == 'A' ? "selected" : ""}}>A</option>
-                                                <option value='B' {{ $warga->golongan_darah == 'B' ? "selected" : ""}}>B</option>
-                                                <option value='AB' {{ $warga->golongan_darah == 'AB' ? "selected" : ""}}>AB</option>
-                                                <option value='O' {{ $warga->golongan_darah == 'O' ? "selected" : ""}}>O</option>
+                                                <option value='1' {{ old('golongan_darah',$warga->golongan_darah) == '1' ? "selected" : ""}}>A</option>
+                                                <option value='2' {{ old('golongan_darah',$warga->golongan_darah) == '2' ? "selected" : ""}}>B</option>
+                                                <option value='3' {{ old('golongan_darah',$warga->golongan_darah) == '3' ? "selected" : ""}}>AB</option>
+                                                <option value='4' {{ old('golongan_darah',$warga->golongan_darah) == '4' ? "selected" : ""}}>O</option>
                                             </select>                                  
                                         </div>
                                     </div>
@@ -195,42 +250,182 @@
                                         <div class="col-sm-9">
                                             <select name='status_perkawinan' id='status_perkawinan' class='form-select'  >
                                                 <option value='00'>-- Pilih --</option>
-                                                <option value='belum_kawin' {{ $warga->status_perkawinan == 'belum_kawin' ? "selected" : ""}}>BELUM KAWIN</option>
-                                                <option value='kawin' {{ $warga->status_perkawinan == 'kawin' ? "selected" : ""}}>KAWIN</option>
-                                                <option value='cerai_hidup' {{ $warga->status_perkawinan == 'cerai_hidup' ? "selected" : ""}}>CERAI HIDUP</option>
-                                                <option value='cerai_mati' {{ $warga->status_perkawinan == 'cerai_mati' ? "selected" : ""}}>CERAI MATI</option>
+                                                <option value='1' {{ old('status_perkawinan',$warga->status_perkawinan) == '1' ? "selected" : ""}}>BELUM KAWIN</option>
+                                                <option value='2' {{ old('status_perkawinan',$warga->status_perkawinan) == '2' ? "selected" : ""}}>KAWIN</option>
+                                                <option value='3' {{ old('status_perkawinan',$warga->status_perkawinan) == '3' ? "selected" : ""}}>CERAI HIDUP</option>
+                                                <option value='4' {{ old('status_perkawinan',$warga->status_perkawinan) == '4' ? "selected" : ""}}>CERAI MATI</option>
+                                            </select>                                              
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-3 col-form-label">Tanggal Perkawinan <span class="text-danger">*</span> </label>
+                                        <div class="col-sm-9">
+                                            <input class="form-control digits" name="tgl_perkawinan" type="date"  value="">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-3 col-form-label">Akta kawin <span class="text-danger">*</span></label>
+                                        <div class="col-sm-9">
+                                            <div class="form-group mt-2 m-checkbox-inline mb-0 custom-radio-ml">
+                                                <div class="radio radio-primary">
+                                                    <input id="gg_a" type="radio" name="status_akta_kawin" value="1" {{ old('status_akta_kawin',$warga->status_akta_kawin) == 1 ? "checked" : ""}}>
+                                                    <label class="mb-0" for="gg_a">Ada</label>
+                                                </div>
+                                                <div class="radio radio-primary">
+                                                    <input id="gg_ta" type="radio" name="status_akta_kawin" value="2" {{ old('status_akta_kawin',$warga->status_akta_kawin) == 2 ? "checked" : ""}}>
+                                                    <label class="mb-0" for="gg_ta">Tidak ada</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-3 col-form-label">Nomor Akta Kawin</label>
+                                        <div class="col-sm-9">
+                                            <input class="form-control " type="number" id="akta_kawin" name="akta_kawin" value="{{ old('akta_kawin',$warga->akta_kawin) }}" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-3 col-form-label">Tanggal Perceraian <span class="text-danger">*</span> </label>
+                                        <div class="col-sm-9">
+                                            <input class="form-control digits" name="tgl_cerai" type="date"  value="">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-3 col-form-label">Akta Cerai <span class="text-danger">*</span></label>
+                                        <div class="col-sm-9">
+                                            <div class="form-group mt-2 m-checkbox-inline mb-0 custom-radio-ml">
+                                                <div class="radio radio-primary">
+                                                    <input id="cc_a" type="radio" name="status_akta_cerai" value="1" {{ old('status_akta_cerai',$warga->status_akta_cerai) == 1 ? "checked" : ""}}>
+                                                    <label class="mb-0" for="cc_a">Ada</label>
+                                                </div>
+                                                <div class="radio radio-primary">
+                                                    <input id="cc_ta" type="radio" name="status_akta_cerai" value="2" {{ old('status_akta_cerai',$warga->status_akta_cerai) == 2 ? "checked" : ""}}>
+                                                    <label class="mb-0" for="cc_ta">Tidak ada</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-3 col-form-label">Nomor Akta Cerai</label>
+                                        <div class="col-sm-9">
+                                            <input class="form-control " type="number" id="akta_cerai" name="akta_cerai" value="{{ old('akta_cerai',$warga->akta_cerai) }}" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-3 col-form-label">Status Hubungan <span class="text-danger">*</span></label>
+                                        <div class="col-sm-9">
+                                            <select name='status_hubungan' id='status_hubungan' class='form-select'  >
+                                                <option value='00'>-- Pilih --</option>
+                                                <option value='1' {{ old('status_hubungan',$warga->status_hubungan) == '1' ? "selected" : ""}}>BELUM KAWIN</option>
+                                                <option value='2' {{ old('status_hubungan',$warga->status_hubungan) == '2' ? "selected" : ""}}>KAWIN</option>
+                                                <option value='3' {{ old('status_hubungan',$warga->status_hubungan) == '3' ? "selected" : ""}}>CERAI HIDUP</option>
+                                                <option value='4' {{ old('status_hubungan',$warga->status_hubungan) == '4' ? "selected" : ""}}>CERAI MATI</option>
+                                            </select>                                              
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-3 col-form-label">Pendidikan <span class="text-danger">*</span></label>
+                                        <div class="col-sm-9">
+                                            <select name='pendidikan' id='pendidikan' class='form-select'  >
+                                                <option value='00'>-- Pilih --</option>
+                                                <option value='1' {{ old('pendidikan',$warga->pendidikan) == '1' ? "selected" : ""}}>BELUM KAWIN</option>
+                                                <option value='2' {{ old('pendidikan',$warga->pendidikan) == '2' ? "selected" : ""}}>KAWIN</option>
+                                                <option value='3' {{ old('pendidikan',$warga->pendidikan) == '3' ? "selected" : ""}}>CERAI HIDUP</option>
+                                                <option value='4' {{ old('pendidikan',$warga->pendidikan) == '4' ? "selected" : ""}}>CERAI MATI</option>
                                             </select>                                              
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
                                         <label class="col-sm-3 col-form-label">No. Passport</label>
                                         <div class="col-sm-9">
-                                            <input class="form-control " type="text" id="nomor_passport" name="nomor_passport" value="{{ $warga->nomor_passport}}" placeholder="Nomor Passport">
+                                            <input class="form-control " type="number" id="nomor_passport" name="nomor_passport" value="{{ old('nomor_passport',$warga->nomor_passport)}}" placeholder="Nomor Passport">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-3 col-form-label">Tanggal Passport berakhir <span class="text-danger">*</span> </label>
+                                        <div class="col-sm-9">
+                                            <input class="form-control digits" name="tgl_akhir_passport" type="date"  value="">
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
                                         <label class="col-sm-3 col-form-label">No. KTIAS/KITAP</label>
                                         <div class="col-sm-9">
-                                              <input class="form-control " type="text" id="nomor_kitaskitap" name="nomor_kitaskitap" value="{{ $warga->nomor_kitaskitap}}" placeholder="Nomor Passport">
+                                            <input class="form-control " type="number" id="nomor_kitaskitap" name="nomor_kitaskitap" value="{{ old('nomor_kitaskitap',$warga->nomor_kitaskitap)}}" placeholder="Nomor Passport">
                                         </div>
                                     </div>
-
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-3 col-form-label">Nik Ayah <span class="text-danger">*</span></label>
+                                        <div class="col-sm-9">
+                                            <input class="form-control " type="number" id="nik_ayah" name="nik_ayah" value="{{ old('nik_ayah',$warga->nik_ayah)}}" placeholder="Nik Ayah">
+                                        </div>
+                                    </div>
                                     <div class="mb-3 row">
                                         <label class="col-sm-3 col-form-label">Nama Ayah <span class="text-danger">*</span></label>
                                         <div class="col-sm-9">
-                                            <input class="form-control " type="text" id="nama_ayah" name="nama_ayah" value="{{ $warga->nama_ayah}}" placeholder="Nama Ayah">
+                                            <input class="form-control " type="text" id="nama_ayah" name="nama_ayah" value="{{ old('nama_ayah',$warga->nama_ayah)}}" placeholder="Nama Ayah">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-3 col-form-label">Nik Ibu <span class="text-danger">*</span></label>
+                                        <div class="col-sm-9">
+                                            <input class="form-control " type="number" id="nik_ibu" name="nik_ibu" value="{{ old('nik_ibu',$warga->nik_ibu)}}" placeholder="Nik Ibu">
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
                                         <label class="col-sm-3 col-form-label">Nama Ibu <span class="text-danger">*</span></label>
                                         <div class="col-sm-9">
-                                            <input class="form-control " type="text" id="nama_ibu" name="nama_ibu" value="{{ $warga->nama_ibu}}" placeholder="Nama Ibu">
+                                            <input class="form-control " type="text" id="nama_ibu" name="nama_ibu" value="{{ old('nama_ibu',$warga->nama_ibu)}}" placeholder="Nama Ibu">
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
                                         <label class="col-sm-3 col-form-label">Tanggal Terbit KK <span class="text-danger">*</span> </label>
                                         <div class="col-sm-9">
                                             <input class="form-control digits" name="tgl_keluar_kk" type="date"  value="">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="form-label">Foto warga</label>
+                                        <input type="hidden" name="oldImage" value="{{ $warga->foto_warga }}">
+                                        @if($warga->foto_warga)
+                                        <img src="{{ asset('storage/'. $warga->foto_warga) }}" class="img-preview img-fluid mb-3 col-sm-5 d-block">
+                                        @else
+                                        <img class="img-preview img-fluid mb-3 col-sm-5">
+                                        @endif
+                                        <div class="col-sm-9">
+                                            <input class="form-control" name="foto_warga" onchange="previewImage()" id="image" type="file" />
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-3 col-form-label">Kelainan Fisik Dan Mental <span class="text-danger">*</span></label>
+                                        <div class="col-sm-9">
+                                            <div class="form-group mt-2 m-checkbox-inline mb-0 custom-radio-ml">
+                                                <div class="radio radio-primary">
+                                                    <input id="hh_a" type="radio" name="status_kelainan" value="1" {{ old('status_kelainan',$warga->status_kelainan) == 1 ? "checked" : ""}}>
+                                                    <label class="mb-0" for="hh_a">Ada</label>
+                                                </div>
+                                                <div class="radio radio-primary">
+                                                    <input id="hh_ta" type="radio" name="status_kelainan" value="2" {{ old('status_kelainan',$warga->status_kelainan) == 2 ? "checked" : ""}}>
+                                                    <label class="mb-0" for="hh_ta">Tidak ada</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-3 col-form-label">Penyandang Cacat</label>
+                                        <div class="col-sm-9">
+                                            <input class="form-control " type="text" id="kelainan" name="kelainan" value="{{ old('kelainan',$warga->kelainan) }}" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-3 col-form-label">Email Warga</label>
+                                        <div class="col-sm-9">
+                                            <input class="form-control " type="email" id="email_warga" name="email_warga" value="{{ old('email_warga',$warga->email_warga) }}" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-3 col-form-label">Nomor HP Warga</label>
+                                        <div class="col-sm-9">
+                                            <input class="form-control " type="number" id="no_hp_warga" name="no_hp_warga" value="{{ old('no_hp_warga',$warga->no_hp_warga) }}" placeholder="">
                                         </div>
                                     </div>
                                 </div>
@@ -249,4 +444,19 @@
         </div>
     </div>
 </div>
+<script>
+    function previewImage(){
+        const image = document.querySelector('#image');
+        const imgPreview = document.querySelector('.img-preview');
+
+        imgPreview.style.display = 'block';
+        
+        const oFReader = new FileReader();
+        oFReader.readAsDataURL(image.files[0]);
+
+        oFReader.onload = function(oFREvent) {
+            imgPreview.src = oFREvent.target.result;
+        }
+    }
+</script>
 @endsection

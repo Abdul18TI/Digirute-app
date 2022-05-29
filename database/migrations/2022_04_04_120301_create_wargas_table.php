@@ -14,45 +14,54 @@ class CreateWargasTable extends Migration
     public function up()
     {
         Schema::create('wargas', function (Blueprint $table) {
-            $table->id('id_warga');
-            $table->string('nik')->unique();
-            $table->string('no_kk');
-            $table->string('username')->unique()->nullable();
-            $table->string('password')->nullable();
-            $table->text('alamat');
-            $table->foreignId('kelurahan');
-            $table->foreignId('kecamatan');
-            $table->foreignId('kabupaten');
-            $table->foreignId('provinsi');
-            $table->string('kode_pos');
-            $table->string('nama_lengkap');
-            $table->string('tempat_lahir');
-            $table->bigInteger('tgl_lahir');
-            $table->integer('jenis_kelamin');
-            $table->foreignId('agama');
-            $table->foreignId('golongan_darah');
-            $table->foreignId('pendidikan');
-            $table->foreignId('pekerjaan');
-            $table->foreignId('status_hubungan');
-            $table->enum('status_perkawinan', ['belum_kawin', 'kawin', 'cerai_hidup', 'cerai']);
-            $table->string('nomor_passport')->unique()->nullable();
-            $table->timestamp('tanggal_akhir_passport')->nullable();
-            $table->string('nomor_kitaskitap')->unique()->nullable();
-            $table->string('nik_ayah');
-            $table->string('nama_ayah');
-            $table->string('nik_ibu');
-            $table->string('nama_ibu');
-            $table->bigInteger('tgl_keluar_kk');
-            $table->string('foto_warga')->nullable();
-            // $table->dateTime('tanggal_tambah');
-            $table->string('akta_kawin')->nullable();
-            $table->string('akta_cerai')->nullable();
-            $table->timestamp('tanggal_cerai')->nullable();
-            $table->string('kelainan')->nullable();
-            $table->string('email_warga')->nullable();
-            $table->string('no_hp_warga')->nullable();
-            $table->foreignId('rt');
-            $table->foreignId('rw');
+            $table->id('id_warga'); ////
+            $table->string('nik')->unique(); ////
+            $table->string('no_kk'); ////
+            // $table->string('username')->unique()->nullable();
+            // $table->string('password')->nullable();
+            $table->string('nama_kepala_keluarga'); ////
+            $table->string('nokk_kepala_keluarga'); ////
+            $table->integer('status_hubungan_dalam_keluarga'); //
+            $table->text('alamat'); ////
+            $table->foreignId('kelurahan'); ////
+            $table->foreignId('kecamatan'); ////
+            $table->foreignId('kabupaten'); ////
+            $table->foreignId('provinsi'); ////
+            $table->string('nama_dusun'); ////
+            $table->string('kode_pos'); ////
+            $table->string('nama_lengkap'); ////
+            $table->string('tempat_lahir'); ////
+            $table->timestamp('tgl_lahir')->nullable(); ////
+            $table->integer('jenis_kelamin'); ////
+            $table->foreignId('agama'); ////
+            $table->foreignId('golongan_darah'); ////
+            $table->foreignId('pendidikan'); ////
+            $table->foreignId('pekerjaan'); ////
+            $table->foreignId('status_hubungan'); ////
+            $table->enum('status_perkawinan', ['belum_kawin', 'kawin', 'cerai_hidup', 'cerai']); ////
+            $table->string('nomor_passport')->unique()->nullable(); ////
+            $table->timestamp('tgl_akhir_passport')->nullable(); ////
+            $table->string('nomor_kitaskitap')->unique()->nullable(); ////
+            $table->string('nik_ayah'); ////
+            $table->string('nama_ayah'); ////
+            $table->string('nik_ibu'); ////
+            $table->string('nama_ibu'); ////
+            $table->timestamp('tgl_keluar_kk')->nullable(); ////
+            $table->string('foto_warga')->nullable(); ////
+            $table->timestamp('tgl_perkawinan')->nullable(); ////
+            $table->integer('status_akta_kawin'); ////
+            $table->string('akta_kawin')->nullable(); ////
+            $table->integer('status_akta_cerai'); ////
+            $table->string('akta_cerai')->nullable(); ////
+            $table->timestamp('tgl_cerai')->nullable(); ////
+            $table->integer('status_akta_kelahiran'); ////
+            $table->string('akta_kelahiran')->nullable(); ////
+            $table->integer('status_kelainan'); ////
+            $table->string('kelainan')->nullable(); ////
+            $table->string('email_warga')->nullable(); //
+            $table->string('no_hp_warga')->nullable(); //
+            $table->foreignId('rt')->nullable(); //
+            $table->foreignId('rw')->nullable(); //
             $table->timestamps();
             $table->softDeletes();
         });
