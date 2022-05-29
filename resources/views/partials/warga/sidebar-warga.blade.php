@@ -42,6 +42,9 @@
                             <li><a href="{{ route('warga.pengaduan.pribadi') }}" class="{{routeActive('warga.pengaduan.pribadi')}}">Pengaduan Pribadi</a></li>
                         </ul>
                     </li>
+                    <li class="dropdown">
+                        <a class="nav-link menu-title link-nav {{routeActive('warga.rw-rt')}}" href="{{ route('warga.rw-rt') }}"><i data-feather="users"></i><span>Profile RT RW</span></a>
+                    </li>
                     
                 </ul>
             </div>
