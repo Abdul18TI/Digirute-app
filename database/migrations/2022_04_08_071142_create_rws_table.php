@@ -18,6 +18,7 @@ class CreateRwsTable extends Migration
             $table->string('username')->unique()->nullable();
             $table->string('password')->nullable();
             $table->string('no_rw');
+            $table->foreignId('id_warga');
             $table->string('ketua_rw');
             $table->timestamp('tgl_awal_jabatan_rw')->nullable();
             $table->timestamp('tgl_akhir_jabatan_rw')->nullable();

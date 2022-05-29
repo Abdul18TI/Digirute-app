@@ -18,7 +18,11 @@ class rw extends Model
         return 'id_rw';
     }
 
-
+    public function identitas_rw()
+    {
+        //hasMany(namamodel, foreign key tabel warga, primary key tabel sendiri)
+        return $this->belongsTo(Warga::class, 'id_warga', 'id_warga');
+    }
     public function rt_rel()
     {
         // return $this->hasMany(rt::class);
