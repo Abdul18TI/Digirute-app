@@ -13,7 +13,7 @@ class CreateKegiatanTable extends Migration
      */
     public function up()
     {
-        Schema::create('_kegiatan', function (Blueprint $table) {
+        Schema::create('kegiatan', function (Blueprint $table) {
             $table->id('id_kegiatan');
             $table->string('nama_kegiatan');
             $table->text('isi_kegiatan');

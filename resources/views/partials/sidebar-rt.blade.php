@@ -39,6 +39,14 @@
                             <a class="nav-link menu-title link-nav" href=""><i data-feather="users"></i><span>Warga</span></a>
                         </li>
                         <li>
+                            <a class="nav-link menu-title link-nav" href="{{ route('rt.pengaduan.home')}}"><i data-feather="message-circle"></i><span>Pengaduan</span></a>
+                        </li>
+                        <li>
+                             <form action="{{ route('warga.logout');}}" method="POST" id="form-id">
+                                @csrf
+                                <a class="nav-link menu-title link-nav" onclick="document.getElementById('form-id').submit();"><i data-feather="log-out"></i><span>Keluar</span></a>
+                            </form>
+                        </li>
                         {{-- <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="users"></i><span>Warga</span></a>
                             <ul class="nav-submenu menu-content">
                                 <li><a href="">Tambah warga</a></li>

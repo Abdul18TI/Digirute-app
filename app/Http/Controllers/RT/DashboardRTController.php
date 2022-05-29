@@ -10,6 +10,8 @@ class DashboardRTController extends Controller
     //
     public function index()
     {
-        return '<pre>' . auth()->guard('rt')->user() . '</pre>';
+        // return '<pre>' . auth()->guard('rt')->user() . '</pre>';
+        $title = "Dashboard";
+        return view('RT.dashboard-rt', compact('title'));
     }
 }

@@ -15,7 +15,7 @@ class CreatePengumumanTable extends Migration
     {
         Schema::create('pengumuman', function (Blueprint $table) {
             $table->id('id_pengumuman');
-            $table->string('kategori_pengumuman');
+            $table->foreignId('kategori_pengumuman');
             $table->string('judul_pengumuman');
             $table->text('isi_pengumuman');
             $table->string('foto_pengumuman')->nullable();

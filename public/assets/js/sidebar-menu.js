@@ -17,6 +17,12 @@
   // left sidebar and horizotal menu
     if($('#pageWrapper').hasClass('compact-wrapper')){
           jQuery('.submenu-title').append('<div class="according-menu"><i class="fa fa-angle-right"></i></div>');
+          if( $('.submenu-title').hasClass('active') )
+          {
+              jQuery('.submenu-title.active').find('div').replaceWith('<div class="according-menu"><i class="fa fa-angle-down"></i></div>');
+          }else{
+              jQuery('.submenu-title').find('div').replaceWith('<div class="according-menu"><i class="fa fa-angle-right"></i></div>');
+          }
           jQuery('.submenu-title').click(function () {
               jQuery('.submenu-title').removeClass('active');
               jQuery('.submenu-title').find('div').replaceWith('<div class="according-menu"><i class="fa fa-angle-right"></i></div>');
@@ -29,9 +35,15 @@
                   jQuery(this).find('div').replaceWith('<div class="according-menu"><i class="fa fa-angle-right"></i></div>');
               }
           });
-          jQuery('.submenu-content').hide();
+          // jQuery('.submenu-content').hide();
 
           jQuery('.menu-title').append('<div class="according-menu"><i class="fa fa-angle-right"></i></div>');
+          if ( $('.menu-title').hasClass('active') )
+          {
+              jQuery('.menu-title.active').find('div').replaceWith('<div class="according-menu"><i class="fa fa-angle-down"></i></div>');
+          }else{
+              jQuery('.menu-title').find('div').replaceWith('<div class="according-menu"><i class="fa fa-angle-right"></i></div>');
+          }
           jQuery('.menu-title').click(function () {
               jQuery('.menu-title').removeClass('active');
               jQuery('.menu-title').find('div').replaceWith('<div class="according-menu"><i class="fa fa-angle-right"></i></div>');
@@ -44,7 +56,7 @@
                   jQuery(this).find('div').replaceWith('<div class="according-menu"><i class="fa fa-angle-right"></i></div>');
               }
           });
-          jQuery('.menu-content').hide();
+          // jQuery('.menu-content').hide();
     } else if ($('#pageWrapper').hasClass('horizontal-wrapper')) {
         var contentwidth = jQuery(window).width();
         if ((contentwidth) < '992') {
@@ -63,7 +75,7 @@
                   jQuery(this).find('div').replaceWith('<div class="according-menu"><i class="fa fa-angle-right"></i></div>');
               }
           });
-          jQuery('.submenu-content').hide();
+          // jQuery('.submenu-content').hide();
 
           jQuery('.menu-title').append('<div class="according-menu"><i class="fa fa-angle-right"></i></div>');
           jQuery('.menu-title').click(function () {
@@ -78,7 +90,17 @@
                   jQuery(this).find('div').replaceWith('<div class="according-menu"><i class="fa fa-angle-right"></i></div>');
               }
           });
-          jQuery('.menu-content').hide();
+          // jQuery('.menu-content').hide();
+        }
+        var menuContent = document.getElementsByClassName('menu-content');
+        var i;
+        for (i = 0; i < menuContent.length; i++) {
+            menuContent[i].style.display = '';
+            var subMenuContent = document.getElementsByClassName('submenu-content');
+            var j;
+            for (j = 0; j < subMenuContent.length; j++) {
+                subMenuContent[j].style.display = '';
+            }
         }
 
     }
@@ -202,8 +224,8 @@ $("#left-arrow").click(function () {
 });
 
 // page active
-    $( ".main-navbar" ).find( "a" ).removeClass("active");
-    $( ".main-navbar" ).find( "li" ).removeClass("active");
+    // $( ".main-navbar" ).find( "a" ).removeClass("active");
+    // $( ".main-navbar" ).find( "li" ).removeClass("active");
 
     var current = window.location.pathname
     $(".main-navbar ul>li a").filter(function() {

@@ -52,8 +52,8 @@ class PengaduanController extends Controller
             'deskripsi_pengaduan' => 'required|string',
             // 'bukti_pengaduan' => 'image|mimes:jpeg,jpg,png'
         ]);
-        $data['nik'] = '123';
-        $data['id_rt'] = '123';
+        $data['nik'] = auth()->user()->nik;
+        $data['id_rt'] = auth()->user()->rt;
 
         // dd($data);
         pengaduan::create($data);
@@ -68,8 +68,16 @@ class PengaduanController extends Controller
      */
     public function show(pengaduan $pengaduan)
     {
-        //
-        return pengaduan::find($pengaduan);
+        $data = pengaduan::find($pengaduan)->first();
+        return $data;
+    }
+
+    public function pengaduan_pribadi()
+    {
+        $data = pengaduan::where('id_rt', Auth::id())
+            ->where('nik', Auth::user()->nik)
+            ->get();
+        return view('warga.pengaduan.pengaduan-warga-pribadi', compact('data'));
     }
 
     /**

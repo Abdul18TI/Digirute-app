@@ -62,8 +62,6 @@
     min-height: 545px; }
   .search-page .search-vid-block > div {
     margin-top: 30px; }
-  .user-profile .photos ul li {
-    width: 21%; }
   .email-wrap .email-right-aside .email-profile .inbox p {
     width: calc(100% - 300px);
     max-width: 500px; } }
@@ -376,8 +374,6 @@
     .edit-profile .profile-title .media .media-body {
       margin-left: unset;
       margin-top: 10px; }
-  .user-profile .photos ul li {
-    width: 20%; }
   .page-main-header .main-header-right .left-menu-header {
     -webkit-box-flex: 0;
         -ms-flex: 0 0 35%;
@@ -657,10 +653,6 @@
     left: unset; }
   .box-layout.page-wrapper.horizontal-wrapper .page-body-wrapper {
     width: unset; }
-  .user-profile .photos ul li {
-    width: 19%; }
-  .user-profile .social-tab ul li:nth-child(n+2) {
-    margin-left: 10px; }
   .email-wrap .actions li:nth-child(n+2) {
     margin-left: 10px; }
   .email-wrap .actions li .btn {
@@ -1040,36 +1032,6 @@
     width: 95px !important; }
   #batchDelete .jsgrid-grid-body .jsgrid-table .jsgrid-row .jsgrid-cell:first-child {
     width: 95px !important; }
-  .profile-img-style #aniimated-thumbnials-3 {
-    text-align: center; }
-  .user-profile .photos ul li {
-    width: 20%; }
-  .user-profile .profile-header {
-    height: 380px; }
-    .user-profile .profile-header .userpro-box {
-      max-width: 325px;
-      padding: 25px; }
-      .user-profile .profile-header .userpro-box .icon-wrapper {
-        width: 30px;
-        height: 30px;
-        font-size: 13px; }
-      .user-profile .profile-header .userpro-box .avatar {
-        width: 85px;
-        height: 85px; }
-      .user-profile .profile-header .userpro-box h4 {
-        font-size: 18px; }
-      .user-profile .profile-header .userpro-box h6 {
-        font-size: 14px; }
-  .user-profile .social-media ul.user-list-social li a {
-    width: 28px;
-    height: 28px; }
-  .social-tab {
-    padding: 20px; }
-    .social-tab ul li a {
-      padding: 8px 10px;
-      font-size: 12px; }
-    .social-tab .input-group .form-control {
-      height: 35px; }
   .vertical-menu-mt {
     margin-top: 80px !important; }
     .vertical-menu-mt .xl-none {
@@ -1251,15 +1213,6 @@
     margin-bottom: 20px; }
   .photoswipe-pb-responsive {
     padding-bottom: 25px !important; }
-  .user-profile .photos ul li {
-    width: 19%; }
-  .user-profile .profile-post .post-header .media img {
-    width: 50px;
-    height: 50px; }
-  .user-profile .profile-post .post-header .media h5 {
-    font-size: 16px; }
-  .user-profile .profile-post .post-header .media h6 {
-    font-size: 12px; }
   .page-wrapper .section-space {
     padding: 60px 0; }
   .page-wrapper .card .card-header .tab-content .m-t-30,
@@ -1725,39 +1678,6 @@
     width: auto; }
   .ecommerce-widget .progress-showcase .progress {
     height: 15px; }
-  .user-profile .photos ul li {
-    width: 55px; }
-  .user-profile .profile-header {
-    height: 355px; }
-    .user-profile .profile-header .userpro-box {
-      padding: 20px;
-      max-width: 300px; }
-      .user-profile .profile-header .userpro-box .avatar {
-        width: 70px;
-        height: 70px; }
-      .user-profile .profile-header .userpro-box h4 {
-        font-size: 16px; }
-      .user-profile .profile-header .userpro-box h6 {
-        font-size: 13px; }
-  .social-tab {
-    display: block; }
-    .social-tab ul {
-      -webkit-box-pack: center;
-          -ms-flex-pack: center;
-              justify-content: center;
-      margin-bottom: -10px; }
-      .social-tab ul li {
-        display: inline-block;
-        margin-bottom: 10px; }
-    .social-tab .input-group {
-      margin-top: 15px;
-      margin-right: auto;
-      margin-left: auto; }
-  .social-app-profile .social-status .media img {
-    width: 40px !important; }
-  .social-app-profile .social-status .media .social-status {
-    bottom: 10px;
-    left: 35px; }
   .general-widget .custom-card {
     padding: 0; }
     .general-widget .custom-card .card-profile {
@@ -2158,10 +2078,6 @@
     width: 100%;
     -ms-flex-preferred-size: auto;
         flex-basis: auto; }
-  .hovercard .info .follow .text-md-end {
-    text-align: center; }
-  .profile-img-style .like-comment-sm-mb {
-    margin-bottom: 20px; }
   .reset-password-box .theme-form .form-group .btn {
     margin-top: 15px !important; }
   .lg-outer .lg-actions .lg-next,
@@ -2200,9 +2116,7 @@
 
 @media screen and (max-width: 600px) {
   .bg-gallery {
-    height: 60vh; }
-  .user-profile .photos ul li {
-    width: 53px; } }
+    height: 60vh; } }
 
 @media screen and (max-width: 540px) {
   .bg-gallery {
@@ -2244,28 +2158,6 @@
     max-height: 400px; }
   .chat-box .chat-history .call-content {
     min-height: 447px; }
-  .user-profile .photos ul li {
-    width: 18%; }
-  .user-profile .profile-post {
-    padding: 20px; }
-    .user-profile .profile-post .post-body figure {
-      margin-bottom: 20px; }
-    .user-profile .profile-post .post-body .post-react ul li img {
-      width: 20px;
-      height: 20px; }
-    .user-profile .profile-post .post-body .post-react ul li:nth-child(n+2) {
-      margin-left: -15px; }
-    .user-profile .profile-post .post-body .post-react h6 {
-      margin-left: 10px;
-      font-size: 13px; }
-  .user-profile .profile-header {
-    padding: 0;
-    height: auto; }
-    .user-profile .profile-header .profile-img-wrrap {
-      display: block;
-      height: 280px; }
-    .user-profile .profile-header .userpro-box {
-      max-width: 100%; }
   .center-content {
     margin-top: 5px; }
     .center-content p {

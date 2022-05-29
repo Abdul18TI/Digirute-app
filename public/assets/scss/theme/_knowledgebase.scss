@@ -1,7 +1,7 @@
 /**=====================
      73. knowledgebase CSS start
 ==========================**/
-.knowledgebase-bg{
+.knowledgebase-bg {
   height:500px; 
   margin-bottom:30px;
 }
@@ -24,7 +24,7 @@
     margin-top: 10px;
     position: relative;
     ::placeholder {
-    color: $gray-60;
+      color: $gray-60;
     }
     svg {
       position: absolute;
@@ -35,13 +35,12 @@
     }
   }
 }
-.browse{ 
-  >div{ 
-    margin-bottom: 30px;
+.browse{
+  margin-bottom:-20px;
+  >div{
+    margin-bottom:20px;
   }
   .browse-articles{   
-    background-color:$white;
-    padding:30px;
     h6{
       font-weight: 600;
       padding-bottom: 15px;
@@ -69,7 +68,6 @@
         position: relative;        
         padding-top: 8px;
         padding-bottom: 8px;
-        cursor: pointer;
         &:last-child{
           padding-bottom:0;
         }
@@ -112,14 +110,25 @@
   }
 }
 
+@media only screen and (max-width: 1366px){
+  // .browse{
+  //   div[class^="col-"]{
+  //     &:nth-child(3){
+  //       margin-top: 30px;
+  //     }
+  //   }
+  // }
+}
+
 @media only screen and (max-width: 1199px){
   .knowledgebase-bg {
-    height:400px;
+    height: 400px;
   }
-  .knowledgebase-search{
+  .knowledgebase-search {
     .form-inline {
       width: 400px;
       padding: 7px 45px;
+
       svg {
         top: 14px;
       }
@@ -137,14 +146,12 @@
   }
 }
 @media only screen and (max-width: 575px){
-  .browse{      
-    .browse-articles{
-      padding:20px;
+  .browse{   
+    .browse-articles {
       h6{
-        font-size:14px;
         margin-bottom:10px;
       }
-    }   
+    }
   }
   .knowledgebase-bg{
     height:250px;
@@ -175,6 +182,7 @@
       }
     }
   }
+
 }
 @media only screen and (max-width: 360px){
   .browse{
