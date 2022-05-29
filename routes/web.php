@@ -12,10 +12,7 @@ use App\Http\Controllers\Admin\KategoriPengumumanController;
 use App\Http\Controllers\Admin\JenisIuranController;
 use App\Http\Controllers\RT\DashboardRTController;
 use App\Http\Controllers\RT\PengaduanRTController;
-use App\Http\Controllers\Warga\DashboardWargaController;
-use App\Http\Controllers\Warga\LoginWargaController;
-use App\Http\Controllers\Warga\OtherController;
-use App\Http\Controllers\Warga\PengaduanController as WargaPengaduanController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -77,23 +74,6 @@ Route::get('/', function () {
     return view('Warga.login-warga');
 })->name('warga.login')->middleware(['guest:web', 'PreventBackHistory']);
 
-Route::prefix('Warga')->name('warga.')->group(function () {
-    Route::middleware(['guest', 'PreventBackHistory'])->group(function () {
-        // Route::view('/', 'Warga.login-warga ');
-        Route::post('/', [LoginWargaController::class, 'authenticate'])->name('check-login');
-    });
-    Route::middleware(['auth', 'PreventBackHistory'])->group(function () {
-        Route::get('/', [DashboardWargaController::class, 'index'])->name('home');
-        Route::get('pengaduan/pribadi', [WargaPengaduanController::class, 'pengaduan_pribadi'])->name('pengaduan.pribadi');
-        Route::resource('pengaduan', WargaPengaduanController::class);
-        Route::get('/rw-rt', [OtherController::class, 'rtrw'])->name('rw-rt');
-        Route::post('logout', [LoginWargaController::class, 'logout'])->name('logout');
-    });
-
-    // Route::get('/users', function () {
-    //     // Route assigned name "admin.users"...
-    // })->name('users');
-});
 
 // Route::domain('RT.' . env('APP_URL'))->group(function () {
 // Route::get('post/{id}', function ($username, $id) {
@@ -101,27 +81,7 @@ Route::prefix('Warga')->name('warga.')->group(function () {
 // });
 // });
 
-Route::prefix('RT')->name('rt.')->group(function () {
-    Route::middleware(['guest:rt', 'PreventBackHistory'])->group(function () {
-        Route::view('/', 'RT.login-rt ')->name('login');
-        Route::post('/', [LoginRTController::class, 'authenticate'])->name('check-login');
-    });
-    Route::middleware(['auth:rt', 'PreventBackHistory'])->group(function () {
-        Route::get('/dashboard', [DashboardRTController::class, 'index'])->name('home');
-        Route::group(['prefix' => 'warga'], function () {
-            Route::get('/', [WargaController::class, 'home_rt'])->name('warga.home');
-            Route::get('/tambah', [WargaController::class, 'tambah_warga_rt'])->name('warga.tambah');
-            Route::post('/insert', [WargaController::class, 'add'])->name('warga.insert');
-            Route::get('/edit/{warga}', [WargaController::class, 'edit_warga_rt'])->name('warga.edit');
-            Route::put('/update/{id}', [WargaController::class, 'update'])->name('warga.update');
-        });
-        Route::prefix('pengaduan')->name('pengaduan.')->group(function () {
-            Route::get('/', [PengaduanRTController::class, 'index'])->name('home');
-            Route::get('/show/{pengaduan}', [PengaduanRTController::class, 'show'])->name('show');
-        });
-        Route::post('logout', [LoginRTController::class, 'logout'])->name('logout');
-    });
-});
+
 // });
 
 //RW
