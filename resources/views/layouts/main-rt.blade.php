@@ -40,6 +40,7 @@
     <link id="color" rel="stylesheet" href="{{asset('assets/css/color-1.css')}}" media="screen">
     <!-- Responsive css-->
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/responsive.css')}}">
+    <link rel="stylesheet" type="text/css" href={{ asset("assets/css/sweetalert2.css")}}>
 </head>
 {{-- <body onload="enable_text(false);"> --}}
 <body>
@@ -83,7 +84,7 @@
     <!-- Page Header Ends -->
 
     @include('partials.sidebar-rt')
-
+    @include('sweetalert::alert')
     @yield('container')
 
     <footer class="footer">
@@ -118,7 +119,9 @@
 <!-- Plugins JS Ends-->
 <!-- Theme js-->
 <script src="{{asset("assets/js/script.js")}}"></script>
+<script src={{ asset("assets/js/sweet-alert/sweetalert.min.js")}}></script>
 <script src="{{asset("assets/js/theme-customizer/customizer.js")}}"></script>
+<script src={{ asset("assets/js/sweet-alert/app.js")}}></script>
 <!-- login js-->
 <!-- Plugin used-->
 
