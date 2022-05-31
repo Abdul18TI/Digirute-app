@@ -16,12 +16,13 @@ class CreateKegiatanTable extends Migration
         Schema::create('kegiatan', function (Blueprint $table) {
             $table->id('id_kegiatan');
             $table->string('nama_kegiatan');
+            $table->foreignId('kategori_kegiatan');
             $table->text('isi_kegiatan');
             $table->string('foto_kegiatan')->nullable();
             $table->integer('status_kegiatan');
-            $table->bigInteger('tgl_upload_kegiatan');
-            $table->bigInteger('tgl_mulai_kegiatan');
-            $table->bigInteger('tgl_selesai_kegiatan');
+            $table->timestamp('tgl_mulai_kegiatan')->nullable();
+            $table->timestamp('tgl_selesai_kegiatan')->nullable();
+            $table->timestamps();
         });
     }
 

@@ -1,4 +1,4 @@
-@extends('layouts.main-admin')
+@extends('layouts.main')
 
 @section('container')
 <div class="page-body">
@@ -15,12 +15,12 @@
                     <div class="card-header pb-0">
                         <div class="row">
                             <div class="col-9">
-                                <h5>Data Kategori Pengumuman</h5>
+                                <h5>Data Kegiatan</h5>
                             </div>
                             <div class="col-3">
                                 <div class="bookmark">
 
-                                    <a class="btn btn-primary btn-lg" href="{{ route('kategori_pengumuman.create') }}" data-bs-original-title="" title=""> <span class="fa fa-plus-square"></span> Tambah Data</a>
+                                    <a class="btn btn-primary btn-lg" href="{{ route('kegiatan.create') }}" data-bs-original-title="" title=""> <span class="fa fa-plus-square"></span> Tambah Data</a>
                                 </div>
                             </div>
                         </div>
@@ -32,18 +32,29 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>kategori_pengumuman</th>
+                                        <th>Nama kegiatan</th>
+                                        <th>Tanggal Mulai Kegiatan</th>
+                                        <th>Status</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($kategori_pengumuman as $kp)
+                                    @foreach($kegiatan as $p)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $kp->nama_kategori_pengumuman }}</td>
+                                        <td>{{ $p->nama_kegiatan }}</td>
+                                        <td>{{ $p->tgl_mulai_kegiatan }}</td>
+                                        <td>@if ($p->status_kegiatan == 1)
+                                            <span class="badge badge-success">aktif</span>
+                                            @else
+                                            <span class="badge badge-warning">tidak aktif</span>
+                                            @endif</td>
                                         <td>
-                                            <a class="btn btn-success btn-sm p-2" href="kategori_pengumuman/{{ $kp->id_kategori_pengumuman }}/edit"><span class="fa fa-pencil"></span></a>
-                                            <form method="POST" action="{{ route('kategori_pengumuman.destroy', $kp->id_kategori_pengumuman)}}" class="d-inline">
+                                            <a class="btn btn-info btn-sm p-2" href="kegiatan/{{ $p->id_kegiatan }}"><span
+                                                    class="fa fa-eye"></span></a>
+                                            <a class="btn btn-secondary btn-sm p-2" href="kegiatan/{{ $p->id_kegiatan }}/edit"><span
+                                                    class="fa fa-edit"></span></a>
+                                            <form method="POST" action="{{ route('kegiatan.destroy', $p->id_kegiatan)}}" class="d-inline">
                                                 @csrf
                                                <input name="_method" type="hidden" value="DELETE">
                                                <button type="submit" class="btn btn-danger btn-sm p-2 border-0 sweet" data-toggle="tooltip" title='Delete'><span
