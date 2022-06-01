@@ -80,9 +80,9 @@
 
     function enable_text(status) {
         if(status){
-            document.f1.other_text.disabled = !status;
-        }else{
             document.f1.other_text.disabled = false;
+        }else{
+            document.f1.other_text.disabled = true;
             document.f1.other_text.value = "";
         }
     }
