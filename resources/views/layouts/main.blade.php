@@ -86,6 +86,14 @@
             document.f1.other_text.value = "";
         }
     }
+    function enable_text2(status) {
+        if(status){
+            document.f1.jumlah_iuran.disabled = false;
+        }else{
+            document.f1.jumlah_iuran.disabled = true;
+            document.f1.jumlah_iuran.value = "";
+        }
+    }
 </script>
 
 {{-- <body onload="enable_text(false);"> --}}

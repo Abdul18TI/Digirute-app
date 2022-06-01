@@ -5,6 +5,7 @@ namespace App\Http\Controllers\RW;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Iuran;
+use App\Models\Warga;
 use App\Models\JenisIuran;
 use App\Http\Controllers\Controller;
 
@@ -99,8 +100,10 @@ class IuranController extends Controller
     public function show($id)
     {
         $iuran = Iuran::fInd($id);
+        $warga = Warga::all();
         return view('RW.Iuran.detail_iuran', [
             'iuran' => $iuran,
+            'warga' => $warga,
             'title' => 'detail-iuran'
         ]);
     }

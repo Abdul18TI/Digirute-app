@@ -10,7 +10,7 @@
                     <div class="card-header">
                         <h5 class="text-center">{{ $iuran->judul_iuran }}</h5>
                         <h6 class="text-center">Iuran {{ $iuran->jenis_iuran }}</h6>
-                            {{-- <h6 class="text-center mb-3">0/Rp.{{ $i->target_iuran }}</h6> --}}
+                            <h6 class="text-center mb-3">0/Rp.{{ $iuran->jumlah_iuran }}</h6>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -24,28 +24,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach($warga as $w)
                                     <tr>
-                                        <td>1</td>
-                                        <td>Eko patrio</td>
-                                        <td>jalan sejahtera no 5</td>
-                                        <td>
-                                            <div class="checkbox checkbox-solid-primary">
-                                                <input id="solid6" type="checkbox" checked="" />
-                                                <label for="solid6">&nbsp;</label>
-                                            </div>
-                                        </td>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $w->nama_lengkap }}</td>
+                                        <td>{{ $w->judul_iuran }}</td>
+                                        <td>Sudah bayar</td>
                                     </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Ayap saiyo</td>
-                                        <td>Jalan seberang no 9</td>
-                                        <td>
-                                            <div class="checkbox checkbox-solid-primary">
-                                                <input id="solid6" type="checkbox" />
-                                                <label for="solid6">&nbsp;</label>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

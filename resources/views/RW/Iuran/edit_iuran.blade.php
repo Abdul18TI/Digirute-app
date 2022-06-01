@@ -42,8 +42,19 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="mb-3">
-                                        <label class="form-label" for="exampleFormControlInput1">Jumlah iuran</label>
-                                        <input class="form-control" value="{{ old('jumlah_iuran',$iuran->jumlah_iuran) }}" name="jumlah_iuran" id="exampleFormControlInput1" type="number" />
+                                        <div class="checkbox checkbox-success">
+                                            <input id="checkbox-primary2" type="checkbox"
+                                                onclick="enable_text2(this.checked)" value="">
+                                            <label for="checkbox-primary2">Ada Target Jumlah Iuran ?</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="exampleFormControlInput1">Jumlah Target Iuran</label>
+                                        <input class="form-control" disabled="false" value="{{ old('jumlah_iuran',$iuran->jumlah_iuran) }}" name="jumlah_iuran" id="exampleFormControlInput1" type="number" />
                                     </div>
                                 </div>
                             </div>
@@ -53,7 +64,7 @@
                                         <div class="checkbox checkbox-success">
                                             <input id="checkbox-primary" type="checkbox"
                                                 onclick="enable_text(this.checked)">
-                                            <label for="checkbox-primary">Ada target iuran</label>
+                                            <label for="checkbox-primary">Ada Target Iuran Perorang ?</label>
                                         </div>
                                     </div>
                                 </div>
@@ -61,7 +72,7 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="mb-3">
-                                        <label class="form-label" for="exampleInputPassword22">Target iuran</label>
+                                        <label class="form-label" for="exampleInputPassword22">Target Iuran Peroarang</label>
                                         <input class="form-control" id="exampleInputPassword22" name="other_text"
                                             type="number" value="{{ old('target_iuran',$iuran->target_iuran) }}" disabled="" />
                                     </div>
