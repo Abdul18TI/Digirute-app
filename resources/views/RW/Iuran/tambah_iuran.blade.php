@@ -67,7 +67,7 @@
                                     <div class="mb-3">
                                         <div class="checkbox checkbox-success">
                                             <input id="checkbox-primary" type="checkbox"
-                                                onclick="enable_text(this.checked)">
+                                                onclick="enable_text(this.checked)" value="">
                                             <label for="checkbox-primary">Ada target iuran</label>
                                         </div>
                                     </div>
@@ -78,7 +78,7 @@
                                     <div class="mb-3">
                                         <label class="form-label" for="exampleInputPassword22">Target iuran</label>
                                         <input class="form-control" id="exampleInputPassword22" name="other_text"
-                                            type="number" disabled="" />
+                                            type="number" disabled="false" value="1"/>
                                     </div>
                                 </div>
                             </div>

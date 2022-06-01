@@ -79,12 +79,17 @@
     })
 
     function enable_text(status) {
-        status = !status;
-        document.f1.other_text.disabled = status;
+        if(status){
+            document.f1.other_text.disabled = !status;
+        }else{
+            document.f1.other_text.disabled = false;
+            document.f1.other_text.value = "";
+        }
     }
 </script>
 
-<body onload="enable_text(false);">
+{{-- <body onload="enable_text(false);"> --}}
+<body >
     <!-- Loader starts-->
     <div class="loader-wrapper">
         <div class="theme-loader">
