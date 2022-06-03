@@ -7,6 +7,7 @@ use App\Http\Controllers\RW\RwController;
 use App\Http\Controllers\WargaController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\RW\PengumumanController;
+use App\Http\Controllers\RW\PengaduanRWController;
 use App\Http\Controllers\RW\KegiatanController;
 use App\Http\Controllers\Admin\KategoriPengumumanController;
 use App\Http\Controllers\Admin\KategoriKegiatanController;
@@ -91,6 +92,7 @@ Route::group(['prefix' => 'RW'], function () {
     route::resource('iuran', IuranController::class);
     route::resource('kegiatan', kegiatanController::class);
     route::resource('warga', WargaController::class);
+    route::resource('pengaduan', PengaduanRWController::class);
 });
 
 //Admin

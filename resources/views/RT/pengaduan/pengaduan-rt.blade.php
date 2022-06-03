@@ -230,4 +230,3 @@
     </script>
     <!-- Plugins JS Ends-->
 @endsection
-;
