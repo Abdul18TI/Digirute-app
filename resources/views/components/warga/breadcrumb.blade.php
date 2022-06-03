@@ -1,14 +1,14 @@
 <div class="container-fluid">
     <div class="page-header">
       <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-10">
           {{ $breadcrumb_title ?? '' }}
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('warga.home') }}">Beranda</a></li>
               {{ $slot ?? ''}}
           </ol>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-2">
           <!-- Bookmark Start-->
           <div class="bookmark">
             {{-- <ul>

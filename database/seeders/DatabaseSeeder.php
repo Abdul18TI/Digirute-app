@@ -17,11 +17,12 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RtSeeder::class,
             RwSeeder::class,
-            WargaSeeder::class,
+            // WargaSeeder::class,
             PekerjaanSeeder::class,
             PendidikanSeeder::class,
             DaerahSeeder::class,
             GolonganDarahSeeder::class,
+            UtilSeeder::class,
         ]);
     }
 }

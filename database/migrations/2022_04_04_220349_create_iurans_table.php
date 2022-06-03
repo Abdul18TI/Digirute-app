@@ -15,7 +15,7 @@ class CreateIuransTable extends Migration
     {
         Schema::create('iurans', function (Blueprint $table) {
             $table->id('id_iuran');
-            $table->string('pj_iuran');
+            $table->foreignId('pj_iuran');
             $table->string('judul_iuran');
             $table->string('jenis_iuran');
             $table->integer('target_iuran')->nullable();
