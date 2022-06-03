@@ -1,5 +1,9 @@
 @extends('layouts.main-rt')
 
+@push('css')
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/datatables.css')}}">
+@endpush
+
 @section('container')
 <div class="page-body">
     <div class="container-fluid">
@@ -85,10 +89,12 @@
 </div>
 @endsection
 
+
 @section('js')
- <!-- Plugins JS start-->
- <script src="{{ asset("assets/js/datatable/datatables/jquery.dataTables.min.js")}}"></script>
- <script src="{{ asset("assets/js/datatable/datatables/datatable.custom.js")}}"></script>
- <script src="{{ asset("assets/js/tooltip-init.js")}}"></script>
- <!-- Plugins JS Ends-->
+    <!-- Plugins JS start-->
+    <script src="{{ asset('assets/js/datatable/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/js/datatable/datatables/datatable.custom.js') }}"></script>
+    <script src="{{ asset('assets/js/tooltip-init.js') }}"></script>
+    <script>$('#tabelwarga-rt').DataTable();</script>
+    <!-- Plugins JS Ends-->
 @endsection
