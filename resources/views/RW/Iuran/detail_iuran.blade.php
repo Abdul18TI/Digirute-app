@@ -28,7 +28,7 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $w->nama_lengkap }}</td>
-                                        <td>{{ $w->judul_iuran }}</td>
+                                        <td>{{ $w->alamat }}</td>
                                         <td>Sudah bayar</td>
                                     </tr>
                                     @endforeach
