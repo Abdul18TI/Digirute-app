@@ -43,6 +43,13 @@
                         </ul>
                     </li>
                     <li class="dropdown">
+                        <a class="nav-link menu-title {{  prefixActive('warga.pengaduan.*') }}" href="javascript:void(0)"><i data-feather="dollar-sign"></i><span>Iuran</span></a>                  
+                        <ul class="nav-submenu menu-content" style="display: {{ prefixBlock('warga.pengaduan.*') }};">
+                            <li><a  href="{{ route('warga.pengaduan.index') }}" class="{{routeActive('warga.pengaduan.index')}}">Iuran Warga</a></li>
+                            <li><a href="{{ route('warga.pengaduan.pribadi') }}" class="{{routeActive('warga.pengaduan.pribadi')}}">Riwayat</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
                         <a class="nav-link menu-title link-nav {{routeActive('warga.rw-rt')}}" href="{{ route('warga.rw-rt') }}"><i data-feather="users"></i><span>Profile RT RW</span></a>
                     </li>
                     
