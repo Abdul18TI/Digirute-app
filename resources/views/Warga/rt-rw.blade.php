@@ -25,7 +25,7 @@
 	                <div class="card-profile"><img class="rounded-circle" src="{{asset('assets/images/avtar/'. $rt->identitas_rt->foto_warga)}}" alt="" /></div>
 	                <ul class="card-social">
 						<li>
-	                        <a href="https://wa.me/{{ FormatHP($rt->identitas_rt->no_hp_warga)}}"><i class="fa fa-phone"></i></i></a>
+	                        <a target="_blank" href="https://wa.me/{{ FormatHP($rt->identitas_rt->no_hp_warga)}}"><i class="fa fa-phone"></i></i></a>
 	                    </li>
 	                    <li>
 	                        <a href="javascript:void(0)"><i class="fa fa-institution"></i></a>
