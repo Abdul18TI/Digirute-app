@@ -33,8 +33,7 @@ class PengaduanController extends Controller
     public function create()
     {
         //
-        $title = 'Tambah Pengaduan';
-        return view('warga.pengaduan.pengaduan-warga-tambah', compact('title'));
+        return view('warga.pengaduan.pengaduan-warga-tambah');
     }
 
     /**
@@ -66,9 +65,9 @@ class PengaduanController extends Controller
      * @param  \App\Models\pengaduan  $pengaduan
      * @return \Illuminate\Http\Response
      */
-    public function show(pengaduan $pengaduan)
+    public function show($id)
     {
-        $data = pengaduan::find($pengaduan)->first();
+        $data = pengaduan::find($id);
         return $data;
     }
 
