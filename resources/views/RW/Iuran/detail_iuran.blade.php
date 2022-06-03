@@ -20,6 +20,7 @@
                                         <th>No</th>
                                         <th>Nama</th>
                                         <th>Alamat</th>
+                                        <th>Nominal</th>
                                         <th>Status pembayaran</th>
                                     </tr>
                                 </thead>
@@ -29,7 +30,11 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $w->nama_lengkap }}</td>
                                         <td>{{ $w->alamat }}</td>
-                                        <td>Sudah bayar</td>
+                                        <td>Rp.{{ number_format("$iuran->jumlah_iuran",0,".","."); }}</td>
+                                        <td class="text-center"><div class="checkbox checkbox-solid-primary">
+                                            <input id="{{ $loop->iteration }}" type="checkbox" checked="" />
+                                            <label for="{{ $loop->iteration }}">&nbsp;</label>
+                                        </div></td>
                                     </tr>
                                     @endforeach
                                 </tbody>
