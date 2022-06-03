@@ -92,10 +92,9 @@
         }else{
             document.f1.jumlah_iuran.disabled = true;
             document.f1.jumlah_iuran.value = "";
-        }
+          }
     }
 </script>
-
 {{-- <body onload="enable_text(false);"> --}}
 <body >
     <!-- Loader starts-->
