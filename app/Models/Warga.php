@@ -22,10 +22,16 @@ class Warga extends Authenticatable
         return 'id_warga';
     }
 
+    public function iuran()
+    {
+        return $this->belongsToMany(Iuran::class);
+    }
+
     public function pengaduan()
     {
         return $this->hasMany(Pengaduan::class);
     }
+
     public function rt_rel()
     {
         return $this->belongsTo(rt::class, 'rt', 'id_rt');

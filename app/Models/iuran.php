@@ -12,4 +12,9 @@ class iuran extends Model
     protected $guarded = ['id_iuran'];
     protected $table = "iurans";
     protected $primaryKey = 'id_iuran';
+
+    public function warga()
+    {
+        return $this->belongsToMany(Warga::class);
+    }
 }
