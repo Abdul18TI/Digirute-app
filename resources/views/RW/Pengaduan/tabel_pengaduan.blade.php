@@ -1,53 +1,37 @@
-@extends('layouts.main-warga')
-
-@section('title')Pengaduan Warga
- {{ $title }}
-@endsection
+@extends('layouts.main')
 
 @push('css')
-<link rel="stylesheet" type="text/css" href="{{asset('assets/css/datatables.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/datatables.css')}}">
 @endpush
 
 @section('container')
-    @component('components.warga.breadcrumb')
-        @slot('breadcrumb_title')
-        <h3>Pengaduan Warga</h3>
-        @endslot
-        {{-- <li class="breadcrumb-item">Pengaduan</li> --}}
-        <li class="breadcrumb-item active">Pengaduan Warga</li>
-    @endcomponent
-      
-    <!-- Form Tambah Warga -->
+<div class="page-body">
+    <div class="container-fluid">
+        <div class="page-header">
+            <div class="row">
+            </div>
+        </div>
+    </div>
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
-                @if (session()->has('success'))
-                    <div class="alert alert-success dark alert-dismissible fade show" role="alert">
-                        <strong>Sukses ! </strong> {{ session('success') }}.
-                        <button class="btn-close" type="button" data-bs-dismiss="alert"
-                            aria-label="Close" data-bs-original-title="" title=""></button>
-                    </div>
-                @endif
-                <div class="card">
+                        <div class="card">
                     <div class="card-header pb-0">
                         <div class="row">
                             <div class="col-9">
-                                <h5>Pengaduan Warga</h5>
+                                <h5>Data Pengaduan</h5>
                             </div>
                             <div class="col-3">
                                 <div class="bookmark">
 
-                                    <a class="btn btn-primary btn-lg" href="{{ route('warga.pengaduan.create') }}"
-                                        data-bs-original-title="" title=""> <span class="fa fa-plus-square"></span>
-                                        Tambah Data</a>
+                                    <a class="btn btn-primary btn-lg" href="{{ route('pengaduan.create') }}" data-bs-original-title="" title=""> <span class="fa fa-plus-square"></span> Tambah Data</a>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                     <div class="card-body">
                         <div class="table-responsive overflow-hidden">
-                            <table class="display" id="tabelpengaduan-warga">
+                            <table class="display" id="dataTable">
                                 <thead>
                                     <tr>
                                         <th>No</th>
@@ -60,7 +44,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($data as $dt)
+                                    @foreach ($pengaduan as $dt)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $dt->judul_pengaduan }}</td>
@@ -106,8 +90,11 @@
                 </div>
                 <!-- Form Pengaduan End -->
             </div>
+            <!-- Form Pengaduan End -->
         </div>
     </div>
+</div>
+</div>
     {{-- MODAL DETAIL DATA --}}
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog  modal-lg" role="document">

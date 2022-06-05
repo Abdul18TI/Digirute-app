@@ -34,7 +34,7 @@
                                         <th>No</th>
                                         <th>Judul iuran</th>
                                         <th>Jumlah terkumpul</th>
-                                        <th>Jumlah iuran</th>
+                                        <th>Target iuran</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -43,8 +43,14 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $i->judul_iuran }}</td>
-                                        <td>0</td>
-                                        <td>{{ $i->jumlah_iuran }}</td>
+                                        <td>Rp.{{ number_format("0",0,".","."); }}</td>
+                                        <td>
+                                            @if ($i->jumlah_iuran === null)
+                                            Iuran Sukarela
+                                            @else
+                                            Rp.{{ number_format("$i->jumlah_iuran",0,".","."); }}
+                                            @endif
+                                        </td>
                                         <td>
                                             <a class="btn btn-info btn-sm p-2" href="iuran/{{ $i->id_iuran }}"><span
                                                     class="fa fa-eye"></span></a>
