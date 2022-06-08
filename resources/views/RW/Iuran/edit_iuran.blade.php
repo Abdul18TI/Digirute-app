@@ -73,7 +73,7 @@
                                 <div class="col">
                                     <div class="mb-3">
                                         <label class="form-label" for="exampleInputPassword22">Target Iuran Peroarang</label>
-                                        <input class="form-control" id="exampleInputPassword22" name="other_text"
+                                        <input class="form-control" id="exampleInputPassword22" name="target_iuran"
                                             type="number" value="{{ old('target_iuran',$iuran->target_iuran) }}" disabled="" />
                                     </div>
                                 </div>

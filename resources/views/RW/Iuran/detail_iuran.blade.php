@@ -10,7 +10,11 @@
                     <div class="card-header">
                         <h5 class="text-center">{{ $iuran->judul_iuran }}</h5>
                         <h6 class="text-center">Iuran {{ $iuran->jenis_iuran }}</h6>
+                            @if ($iuran->jumlah_iuran !== null)
                             <h6 class="text-center mb-3">0/Rp.{{ $iuran->jumlah_iuran }}</h6>
+                            @else
+                            <h6 class="text-center mb-3">Total terkumpul : Rp.{{ number_format("0",0,".","."); }}</h6>
+                            @endif
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -30,9 +34,15 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $w->nama_lengkap }}</td>
                                         <td>{{ $w->alamat }}</td>
-                                        <td>Rp.{{ number_format("$iuran->jumlah_iuran",0,".","."); }}</td>
+                                        <td>
+                                            @if ($iuran->target_iuran === null)
+                                            Masukkan nominal
+                                            @else
+                                            Rp.{{ number_format("$iuran->target_iuran",0,".","."); }}
+                                            @endif
+                                        </td>
                                         <td class="text-center"><div class="checkbox checkbox-solid-primary">
-                                            <input id="{{ $loop->iteration }}" type="checkbox" checked="" />
+                                            <input id="{{ $loop->iteration }}" type="checkbox" />
                                             <label for="{{ $loop->iteration }}">&nbsp;</label>
                                         </div></td>
                                     </tr>

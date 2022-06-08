@@ -82,10 +82,10 @@
 
     function enable_text(status) {
         if(status){
-            document.f1.other_text.disabled = false;
+            document.f1.target_iuran.disabled = false;
         }else{
-            document.f1.other_text.disabled = true;
-            document.f1.other_text.value = "";
+            document.f1.target_iuran.disabled = true;
+            document.f1.target_iuran.value = "";
         }
     }
     function enable_text2(status) {

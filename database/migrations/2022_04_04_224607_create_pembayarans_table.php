@@ -13,13 +13,11 @@ class CreatePembayaransTable extends Migration
      */
     public function up()
     {
-        Schema::create('pembayarans', function (Blueprint $table) {
-            $table->id('id_pengumuman');
-            $table->string('kategori_pengumuman');
-            $table->string('judul_pengumuman');
-            $table->text('isi_pengumuman');
-            $table->string('foto_pengumuman');
-            $table->integer('status_pengumuman');
+        Schema::create('pembayaran', function (Blueprint $table) {
+            $table->id('id_pembayaran');
+            $table->foreign('id_warga');
+            $table->foreign('id_iuran');
+            $table->integer('jumlah_bayar');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -32,6 +30,6 @@ class CreatePembayaransTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pembayarans');
+        Schema::dropIfExists('pembayaran');
     }
 }

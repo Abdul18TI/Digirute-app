@@ -4,7 +4,7 @@ use App\Http\Controllers\RW\IuranController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RW\RwController;
-use App\Http\Controllers\WargaController;
+use App\Http\Controllers\RW\WargaRWController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\RW\PengumumanController;
 use App\Http\Controllers\RW\PengaduanRWController;
@@ -91,7 +91,7 @@ Route::group(['prefix' => 'RW'], function () {
     route::resource('pengumuman', PengumumanController::class);
     route::resource('iuran', IuranController::class);
     route::resource('kegiatan', kegiatanController::class);
-    route::resource('warga', WargaController::class);
+    route::resource('warga', WargaRWController::class);
     route::resource('pengaduan', PengaduanRWController::class);
 });
 

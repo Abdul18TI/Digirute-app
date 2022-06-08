@@ -13,8 +13,8 @@ class iuran extends Model
     protected $table = "iurans";
     protected $primaryKey = 'id_iuran';
 
-    public function warga()
+    public function pembayaran()
     {
-        return $this->belongsToMany(Warga::class);
+        return $this->hasMany(Pembayaran::class);
     }
 }

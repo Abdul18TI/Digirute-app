@@ -22,14 +22,14 @@ class Warga extends Authenticatable
         return 'id_warga';
     }
 
-    public function iuran()
-    {
-        return $this->belongsToMany(Iuran::class);
-    }
-
     public function pengaduan()
     {
         return $this->hasMany(Pengaduan::class);
+    }
+
+    public function pembayaran()
+    {
+        return $this->hasMany(Pembayaran::class);
     }
 
     public function rt_rel()

@@ -35,7 +35,8 @@ class IuranController extends Controller
         $validatedData = $request->validate([
             'judul_iuran' => 'required',
             'jenis_iuran' => 'required',
-            'jumlah_iuran' => 'required',
+            'jumlah_iuran' => 'Integer',
+            'target_iuran' => 'Integer',
             'tgl_mulai_iuran' => 'required',
             'tgl_akhir_iuran' => 'required',
             'deskripsi_iuran' => 'required'
@@ -69,7 +70,8 @@ class IuranController extends Controller
         $validatedData = $request->validate([
             'judul_iuran' => 'required',
             'jenis_iuran' => 'required',
-            'jumlah_iuran' => 'required',
+            'jumlah_iuran' => 'Integer',
+            'target_iuran' => 'Integer',
             'tgl_mulai_iuran' => 'required',
             'tgl_akhir_iuran' => 'required',
             'deskripsi_iuran' => 'required'
