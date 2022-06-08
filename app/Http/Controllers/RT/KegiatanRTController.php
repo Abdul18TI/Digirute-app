@@ -8,7 +8,7 @@ use App\Models\Kegiatan;
 use Illuminate\Support\Facades\Storage;
 use App\Models\KategoriKegiatan;
 
-class KegiatanController extends Controller
+class KegiatanRTController extends Controller
 {
     public function index()
     {

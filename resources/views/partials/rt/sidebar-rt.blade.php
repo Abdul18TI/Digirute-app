@@ -42,12 +42,15 @@
                                     data-feather="log-out"></i><span>Keluar</span></a>
                         </form> --}}
                     </li>
-                    {{-- <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="users"></i><span>Warga</span></a>
-                <ul class="nav-submenu menu-content">
-                    <li><a href="">Tambah warga</a></li>
-                    <li><a href="">Tabel warga</a></li>
-                </ul>
-            </li> --}}
+                    <li>
+                        <a class="nav-link menu-title  link-nav {{ prefixActive('rt.kegiatan.*') }}"
+                            href="{{ route('rt.kegiatan.index') }}"><i
+                                data-feather="calendar"></i><span>Kegiatan</span></a>
+                    </li>
+                    {{-- <ul class="nav-submenu menu-content" style="display:{{ prefixBlock('rt.kegiatan.*') }};">
+                                <li><a href="{{ route('rt.kegiatan.home') }}"
+                                        class="{{ prefixActive('warga.iuran.home') }}">Iuran Warga</a></li>
+                            </ul> --}}
                 </ul>
             </div>
             <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
