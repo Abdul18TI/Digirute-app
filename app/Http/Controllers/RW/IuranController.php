@@ -42,7 +42,7 @@ class IuranController extends Controller
             'deskripsi_iuran' => 'required'
         ]);
 
-        $validatedData['pj_iuran'] = 'abdul';
+        $validatedData['pj_iuran'] = 1;
         $validatedData['status_iuran'] = 1;
 
         try {
@@ -77,7 +77,7 @@ class IuranController extends Controller
             'deskripsi_iuran' => 'required'
         ]);
 
-        $validatedData['pj_iuran'] = 'abdul';
+        $validatedData['pj_iuran'] = 1;
         $validatedData['status_iuran'] = 1;
 
         iuran::where('id_iuran', $iuran->id_iuran)
@@ -101,12 +101,44 @@ class IuranController extends Controller
 
     public function show($id)
     {
-        $iuran = Iuran::fInd($id);
-        $warga = Warga::all();
+        $iuran = iuran::with('jenis_iurans')->where('id_iuran', $id)->first();
+        // dd($iuran->jenis_iurans->nama_jenis_iuran);
+        // $iuran = DB::table('iurans')
+        //     ->join('jenis_iuran', 'iurans.id_iuran', '=', 'jenis_iuran.id_jenis_iuran')
+        //     ->select('iurans.*', 'jenis_iuran.nama_jenis_iuran')
+        //     ->where('iurans.id_iuran', '=', $id)
+        //     ->first();
+        // $iuran = Iuran::fInd($id);
+        // $warga = Warga::all();
+        $warga = DB::table('wargas')
+            ->leftJoin('pembayaran', 'wargas.id_warga', '=', 'pembayaran.id_warga')
+            ->select('wargas.nama_lengkap', 'wargas.alamat', 'pembayaran.*')
+            ->get();
+
         return view('RW.Iuran.detail_iuran', [
             'iuran' => $iuran,
             'warga' => $warga,
             'title' => 'detail-iuran'
         ]);
+    }
+
+    function action(Request $request)
+    {
+        if ($request->ajax()) {
+            if ($request->action == 'Edit') {
+                $data = array(
+                    'jumlah_bayar' => $request->jumlah_bayar
+                );
+                DB::table('pembayaran')
+                    ->where('id_pembayaran', $request->id_pembayaran)
+                    ->update($data);
+            }
+            if ($request->action == 'delete') {
+                DB::table('pembayaran')
+                    ->where('id_pembayaran', $request->id_pembayaran)
+                    ->delete();
+            }
+            return request()->json($request);
+        }
     }
 }

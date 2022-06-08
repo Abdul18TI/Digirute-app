@@ -15,8 +15,8 @@ class CreatePembayaransTable extends Migration
     {
         Schema::create('pembayaran', function (Blueprint $table) {
             $table->id('id_pembayaran');
-            $table->foreign('id_warga');
-            $table->foreign('id_iuran');
+            $table->foreignId('id_warga');
+            $table->foreignId('id_iuran');
             $table->integer('jumlah_bayar');
             $table->timestamps();
             $table->softDeletes();

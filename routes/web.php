@@ -95,6 +95,8 @@ Route::group(['prefix' => 'RW'], function () {
     route::resource('pengaduan', PengaduanRWController::class);
 });
 
+Route::get('tabledit/action', 'IuranController@action')->name('tabledit.action');
+
 //Admin
 Route::group(['prefix' => 'Admin'], function () {
     Route::get('/', [AdminController::class, 'home_admin'])->name('admin.dashboard.home');
