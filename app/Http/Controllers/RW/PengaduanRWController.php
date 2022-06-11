@@ -10,7 +10,8 @@ class PengaduanRWController extends Controller
 {
     public function index()
     {
-        $pengaduan = Pengaduan::all();
+        $pengaduan = Pengaduan::with('kategori_pengaduans')->get();
+        // dd($pengaduan);
 
         return view('RW.pengaduan.tabel_pengaduan', [
             'pengaduan' => $pengaduan,

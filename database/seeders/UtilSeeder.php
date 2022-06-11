@@ -23,5 +23,8 @@ class UtilSeeder extends Seeder
         DB::table('kategori_pengumuman')->insert([
             'nama_kategori_pengumuman' => 'Umum'
         ]);
+        DB::table('kategori_pengaduan')->insert([
+            'nama_kategori_pengaduan' => 'Kenyamanan'
+        ]);
     }
 }

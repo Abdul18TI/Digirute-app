@@ -17,7 +17,7 @@ class CreatePengaduansTable extends Migration
             $table->id('id_pengaduan');
             $table->string('judul_pengaduan');
             $table->foreignId('nik');
-            $table->string('kategori_pengaduan');
+            $table->foreignId('kategori_pengaduan');
             $table->text('deskripsi_pengaduan');
             $table->string('bukti_pengaduan')->nullable();
             $table->foreignId('id_rt');

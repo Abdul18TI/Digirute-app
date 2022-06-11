@@ -19,13 +19,7 @@
                     <div class="card-header pb-0">
                         <div class="row">
                             <div class="col-9">
-                                <h5>Data Pengaduan</h5>
-                            </div>
-                            <div class="col-3">
-                                <div class="bookmark">
-
-                                    <a class="btn btn-primary btn-lg" href="{{ route('pengaduan.create') }}" data-bs-original-title="" title=""> <span class="fa fa-plus-square"></span> Tambah Data</a>
-                                </div>
+                                <h5>Pengaduan Warga</h5>
                             </div>
                         </div>
                     </div>
@@ -38,7 +32,7 @@
                                         <th>Judul</th>
                                         <th>Kategori</th>
                                         <th>Deskripsi</th>
-                                        <th>Tanggal Pengaduan</th>
+                                        {{-- <th>Tanggal Pengaduan</th> --}}
                                         <th>Status</th>
                                         <th>Aksi</th>
                                     </tr>
@@ -48,9 +42,9 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $dt->judul_pengaduan }}</td>
-                                            <td>{{ $dt->kategori_pengaduan }}</td>
+                                            <td>{{ $dt->kategori_pengaduans->nama_kategori_pengaduan }}</td>
                                             <td>{{ Str::limit($dt->deskripsi_pengaduan, 100, '...') }}</td>
-                                            <td>{{ $dt->created_at->isoFormat('ddd, D MMM Y') }}</td>
+                                            {{-- <td>{{ $dt->created_at->isoFormat('ddd, D MMM Y') }}</td> --}}
                                             <td>
                                                 @if ($dt->status == 1)
                                                     <span class="badge badge-success">Ditanggapi</span>

@@ -21,4 +21,8 @@ class pengaduan extends Model
     {
         return 'id_pengaduan';
     }
+    public function kategori_pengaduans()
+    {
+        return $this->belongsTo(KategoriPengaduan::class, 'kategori_pengaduan', 'id_kategori_pengaduan');
+    }
 }
