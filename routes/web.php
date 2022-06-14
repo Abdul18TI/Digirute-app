@@ -99,6 +99,13 @@ Route::group(['prefix' => 'RW'], function () {
     // route::resource('pembayaran', PembayaranRWController::class)->except('store');
 });
 
+//Prosedur
+Route::get('/prosedure', function () {
+    return view('prosedure', [
+        "title" => "prosedure"
+    ]);
+});
+
 Route::get('tabledit/action', 'IuranController@action')->name('tabledit.action');
 
 //Admin

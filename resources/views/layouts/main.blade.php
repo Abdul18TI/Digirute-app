@@ -198,6 +198,7 @@
     <script src={{ asset("assets/js/sweet-alert/app.js")}}></script>
     <!-- login js-->
     <!-- Plugin used-->
+    @stack('scripts')
 </body>
 
 </html>
