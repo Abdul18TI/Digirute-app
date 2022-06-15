@@ -4,6 +4,7 @@ namespace App\Http\Controllers\RW;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Warga;
 
 class WargaRWController extends Controller
 {
@@ -14,7 +15,12 @@ class WargaRWController extends Controller
      */
     public function index()
     {
-        //
+        $warga = Warga::all();
+
+        return view('RW.Warga.tabel_warga', [
+            'warga' => $warga,
+            "title" => "tabel-warga"
+        ]);
     }
 
     /**
