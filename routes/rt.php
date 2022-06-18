@@ -24,6 +24,7 @@ Route::middleware(['auth:rt', 'PreventBackHistory'])->group(function () {
     // Route::put('/update/{id}', [WargaController::class, 'update'])->name('warga.update');
     route::resource('warga', WargaController::class);
     // });
+    Route::get('/status/update', [KegiatanRTController::class, 'updateStatus'])->name('kegiatan.update.status');
     route::resource('kegiatan', KegiatanRTController::class);
     Route::prefix('pengaduan')->name('pengaduan.')->group(function () {
         Route::get('/', [PengaduanRTController::class, 'index'])->name('home');
