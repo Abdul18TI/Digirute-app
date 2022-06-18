@@ -40,3 +40,19 @@ https://youtu.be/upn5ieyL48k
                 // })
             //end membuat modal detail    
          }
+
+
+$today = Carbon::now()->isoFormat('D MMMM Y');
+// "28 Juni 2020"
+
+$today = Carbon::now()->isoFormat('dddd, D MMMM Y');
+// "Minggu, 28 Juni 2020"
+
+$today = Carbon::now()->isoFormat('dddd, D MMM Y');
+// "Minggu, 28 Jun 2020"
+
+$registeredAt = $user->created_at->isoFormat('dddd, D MMMM Y');
+// "Minggu, 28 Juni 2020"
+
+$lastUpdated = $post->updated_at->diffForHumans(); 
+// "2 hari yang lalu"         

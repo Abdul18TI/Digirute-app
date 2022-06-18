@@ -12,4 +12,5 @@ class Kegiatan extends Model
     protected $table = "kegiatan";
     protected $primaryKey = 'id_kegiatan';
     protected $guarded = ['id_kegiatan'];
+    protected $dates = ['tgl_mulai_kegiatan', 'tgl_selesai_kegiatan'];
 }

@@ -2,10 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WargaController;
+use App\Http\Controllers\RT\LoginRTController;
+use App\Http\Controllers\RT\KegiatanRTController;
 use App\Http\Controllers\RT\DashboardRTController;
 use App\Http\Controllers\RT\PengaduanRTController;
 
-use App\Http\Controllers\RT\LoginRTController;
+
 //  Route::prefix('RT')->name('rt.')->group(function () { 
 Route::middleware(['guest:rt', 'PreventBackHistory'])->group(function () {
     Route::view('/', 'RT.login-rt ')->name('login');
@@ -22,6 +24,8 @@ Route::middleware(['auth:rt', 'PreventBackHistory'])->group(function () {
     // Route::put('/update/{id}', [WargaController::class, 'update'])->name('warga.update');
     route::resource('warga', WargaController::class);
     // });
+    Route::get('/status/update', [KegiatanRTController::class, 'updateStatus'])->name('kegiatan.update.status');
+    route::resource('kegiatan', KegiatanRTController::class);
     Route::prefix('pengaduan')->name('pengaduan.')->group(function () {
         Route::get('/', [PengaduanRTController::class, 'index'])->name('home');
         Route::get('/show/{pengaduan}', [PengaduanRTController::class, 'show'])->name('show');

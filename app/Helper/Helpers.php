@@ -41,4 +41,20 @@ function FormatHP($nomorhp)
     }
     return $nomorhp;
 }
-// }
+
+//Function untuk mengubah tanggal ke dalam format indonesia
+function tanggal_indo($tanggal)
+{
+    return is_null($tanggal) ? '-' : $tanggal->isoFormat('dddd, D MMMM Y');
+}
+
+//Function untuk mengubah tanggal waktu ke dalam format indonesia
+function tanggal_waktu_indo($tanggal)
+{
+    return is_null($tanggal) ? '-' : $tanggal->isoFormat('dddd, D MMMM Y  H:mm');
+}
+
+function ConvertTanggal($tanggal)
+{
+    return is_null($tanggal) ? '-' : date('Y-m-d\TH:i', strtotime($tanggal));
+}
