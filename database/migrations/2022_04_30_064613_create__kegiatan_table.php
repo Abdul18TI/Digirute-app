@@ -17,6 +17,8 @@ class CreateKegiatanTable extends Migration
             $table->id('id_kegiatan');
             $table->string('nama_kegiatan');
             $table->foreignId('kategori_kegiatan');
+            $table->foreignId('id_penanggung_jawab');
+            $table->string('penanggung_jawab');
             $table->text('isi_kegiatan');
             $table->string('foto_kegiatan')->nullable();
             $table->integer('status_kegiatan');

@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,6 +12,7 @@
     <meta name="keywords"
         content="admin template, viho admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="pixelstrap">
+    <meta name="csrf-often" content="{{ csrf_token() }}">
     <link rel="icon" href={{ asset("assets/images/favicon.png")}} type="image/x-icon">
     <link rel="shortcut icon" href={{ asset("assets/images/favicon.png")}} type="image/x-icon">
     <title>Digirute | {{ $title }}</title>
@@ -196,6 +198,7 @@
     <script src={{ asset("assets/js/sweet-alert/app.js")}}></script>
     <!-- login js-->
     <!-- Plugin used-->
+    @stack('scripts')
 </body>
 
 </html>

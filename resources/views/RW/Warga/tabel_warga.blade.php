@@ -1,8 +1,4 @@
-@extends('layouts.main-rt')
-
-@push('css')
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/datatables.css')}}">
-@endpush
+@extends('layouts.main')
 
 @section('container')
 <div class="page-body">
@@ -31,7 +27,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive overflow-hidden">
-                            <table class="display" id="tabelwarga-rt">
+                            <table class="display" id="dataTable">
                                 <thead>
                                     <tr>
                                         <th>No</th>
@@ -87,14 +83,4 @@
         </div>
     </div>
 </div>
-@endsection
-
-
-@section('js')
-    <!-- Plugins JS start-->
-    <script src="{{ asset('assets/js/datatable/datatables/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('assets/js/datatable/datatables/datatable.custom.js') }}"></script>
-    <script src="{{ asset('assets/js/tooltip-init.js') }}"></script>
-    <script>$('#tabelwarga-rt').DataTable();</script>
-    <!-- Plugins JS Ends-->
 @endsection

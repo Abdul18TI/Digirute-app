@@ -12,7 +12,7 @@
   @component('components.warga.breadcrumb')
     @slot('breadcrumb_title')
       <h3>
-        Detial Kegiatan</h3>
+        Detail Kegiatan</h3>
     @endslot
     <li class="breadcrumb-item">Kegiatan</li>
     <li class="breadcrumb-item active">Detail Kegiatan</li>

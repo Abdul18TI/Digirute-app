@@ -13,9 +13,9 @@ class Pembayaran extends Model
     protected $primaryKey = 'id_pembayaran';
     protected $guarded = ['id_pembayaran'];
 
-    public function pembayaran()
+    public function warga()
     {
-        return $this->belongsTo(Pembayaran::class);
+        return $this->belongsTo(Warga::class);
     }
 
     public function iuran()

@@ -73,5 +73,7 @@ class KategoriPengumumanController extends Controller
             return redirect()->route('kategori_pengumuman.index')
                 ->with('error', 'Gagal menghapus data!');
         }
+
+        // dd($kategoriPengumuman->delete());
     }
 }

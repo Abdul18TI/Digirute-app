@@ -8,8 +8,10 @@ use App\Http\Controllers\RW\WargaRWController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\RW\PengumumanController;
 use App\Http\Controllers\RW\PengaduanRWController;
+use App\Http\Controllers\RW\PembayaranRWController;
 use App\Http\Controllers\RW\KegiatanController;
 use App\Http\Controllers\Admin\KategoriPengumumanController;
+use App\Http\Controllers\Admin\KategoriPengaduanController;
 use App\Http\Controllers\Admin\KategoriKegiatanController;
 use App\Http\Controllers\Admin\JenisIuranController;
 
@@ -93,7 +95,18 @@ Route::group(['prefix' => 'RW'], function () {
     route::resource('kegiatan', kegiatanController::class);
     route::resource('warga', WargaRWController::class);
     route::resource('pengaduan', PengaduanRWController::class);
+    route::post('pembayaran/store', [PembayaranRWController::class, 'store'])->name("pembayaran.store");
+    // route::resource('pembayaran', PembayaranRWController::class)->except('store');
 });
+
+//Prosedur
+Route::get('/prosedure', function () {
+    return view('prosedure', [
+        "title" => "prosedure"
+    ]);
+});
+
+Route::get('tabledit/action', 'IuranController@action')->name('tabledit.action');
 
 //Admin
 Route::group(['prefix' => 'Admin'], function () {
@@ -101,6 +114,7 @@ Route::group(['prefix' => 'Admin'], function () {
     route::resource('kategori_pengumuman', KategoriPengumumanController::class);
     route::resource('jenis_iuran', JenisIuranController::class);
     route::resource('kategori_kegiatan', KategoriKegiatanController::class);
+    route::resource('kategori_pengaduan', KategoriPengaduanController::class);
 });
 
 //route kegiatan

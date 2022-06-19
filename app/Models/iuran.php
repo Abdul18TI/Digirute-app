@@ -17,4 +17,9 @@ class iuran extends Model
     {
         return $this->hasMany(Pembayaran::class);
     }
+
+    public function jenis_iurans()
+    {
+        return $this->belongsTo(JenisIuran::class, 'jenis_iuran', 'id_jenis_iuran');
+    }
 }
