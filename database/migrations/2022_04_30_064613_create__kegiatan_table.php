@@ -20,7 +20,7 @@ class CreateKegiatanTable extends Migration
             $table->foreignId('id_penanggung_jawab');
             $table->string('penanggung_jawab');
             $table->text('isi_kegiatan');
-            $table->string('foto_kegiatan')->nullable();
+            $table->string('foto_kegiatan')->default('no-image.png');
             $table->integer('status_kegiatan');
             $table->timestamp('tgl_mulai_kegiatan')->nullable();
             $table->timestamp('tgl_selesai_kegiatan')->nullable();

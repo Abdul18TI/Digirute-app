@@ -6,8 +6,12 @@
 @endsection
 
 @push('css')
-  <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/datatables.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/custom.css') }}">
+  <link rel="stylesheet"
+    type="text/css"
+    href="{{ asset('assets/css/datatables.css') }}">
+  <link rel="stylesheet"
+    type="text/css"
+    href="{{ asset('assets/css/custom.css') }}">
 @endpush
 
 @section('container')
@@ -22,6 +26,30 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-sm-12">
+        @if (session()->has('success'))
+          <div class="alert alert-success dark alert-dismissible fade show"
+            role="alert">
+            <strong>Sukses ! </strong> {{ session('success') }}.
+            <button class="btn-close"
+              type="button"
+              data-bs-dismiss="alert"
+              aria-label="Close"
+              data-bs-original-title=""
+              title=""></button>
+          </div>
+        @endif
+        @if (session()->has('error'))
+          <div class="alert alert-danger dark alert-dismissible fade show"
+            role="alert">
+            <strong>Gagal ! </strong> {{ session('error') }}.
+            <button class="btn-close"
+              type="button"
+              data-bs-dismiss="alert"
+              aria-label="Close"
+              data-bs-original-title=""
+              title=""></button>
+          </div>
+        @endif
         <div class="card">
           <div class="card-header pb-0">
             <div class="row">
@@ -31,7 +59,9 @@
               <div class="col-3">
                 <div class="bookmark">
 
-                  <a class="btn btn-primary btn-lg" href="{{ route('rt.kegiatan.create') }}" data-bs-original-title=""
+                  <a class="btn btn-primary btn-lg"
+                    href="{{ route('rt.kegiatan.create') }}"
+                    data-bs-original-title=""
                     title=""> <span class="fa fa-plus-square"></span>
                     Tambah Data</a>
                 </div>
@@ -41,7 +71,8 @@
           </div>
           <div class="card-body">
             <div class="table-responsive overflow-hidden">
-              <table class="display" id="tabelkegiatan-rt">
+              <table class="display"
+                id="tabelkegiatan-rt">
                 <thead>
                   <tr class="text-center">
                     <th>No</th>
@@ -60,9 +91,10 @@
                       <td>
                         <div class="media-body text-center icon-state">
                           <label class="switch">
-                            <input type="checkbox" {{ $p->status_kegiatan == 1 ? 'checked' : '' }}
-                              data-id="{{ $p->id_kegiatan }}" class="toggle-class"><span
-                              class="switch-state"></span>
+                            <input type="checkbox"
+                              {{ $p->status_kegiatan == 1 ? 'checked' : '' }}
+                              data-id="{{ $p->id_kegiatan }}"
+                              class="toggle-class"><span class="switch-state"></span>
                           </label>
                         </div>
                         {{-- @if ($p->status_kegiatan == 1)
@@ -72,11 +104,10 @@
                         @endif --}}
                       </td>
                       <td class="aksi">
-                        <a class="btn btn-info btn-sm p-2" href="{{ route('rt.kegiatan.show', $p->id_kegiatan) }}"><span
-                            class="fa fa-eye"></span></a>
+                        <a class="btn btn-info btn-sm p-2"
+                          href="{{ route('rt.kegiatan.show', $p->id_kegiatan) }}"><span class="fa fa-eye"></span></a>
                         <a class="btn btn-secondary btn-sm p-2"
-                          href="{{ route('rt.kegiatan.edit', $p->id_kegiatan) }}"><span
-                            class="fa fa-edit"></span></a>
+                          href="{{ route('rt.kegiatan.edit', $p->id_kegiatan) }}"><span class="fa fa-edit"></span></a>
                         <a class="btn btn-danger btn-sm p-2 sweet"
                           href="{{ route('rt.kegiatan.destroy', $p->id_kegiatan) }}"
                           onclick="event.preventDefault();
@@ -84,8 +115,11 @@
                           <span class="fa fa-trash-o"></span>
                         </a>
                         {{-- FORM DELETE --}}
-                        <form method="POST" class="d-none" id="logout-form{{ $p->id_kegiatan }}"
-                          action="{{ route('rt.kegiatan.destroy', $p->id_kegiatan) }}" class="d-inline">
+                        <form method="POST"
+                          class="d-none"
+                          id="logout-form{{ $p->id_kegiatan }}"
+                          action="{{ route('rt.kegiatan.destroy', $p->id_kegiatan) }}"
+                          class="d-inline">
                           @csrf
                           @method('DELETE')
                         </form>

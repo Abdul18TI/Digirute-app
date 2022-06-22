@@ -197,7 +197,7 @@
             <div class="card-footer text-end">
               
               <button class="btn btn-primary" type="submit">Edit</button>
-              <button class="btn btn-light" type="reset" value="Batal" />
+              <button class="btn btn-light" type="reset" value="Batal" >Batal</button>
             </div>
           </form>
         </div>

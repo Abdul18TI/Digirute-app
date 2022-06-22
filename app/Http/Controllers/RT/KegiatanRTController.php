@@ -43,17 +43,27 @@ class KegiatanRTController extends Controller
             $validatedData['foto_kegiatan'] = $request->file('foto_kegiatan')->store('gambar-kegiatan');
         }
         $validatedData['status_kegiatan'] = 1;
-        try {
+        $validatedData['penanggung_jawab'] = 'RT';
+        $validatedData['id_penanggung_jawab'] = auth()->id();
+
+        // try {
             //Memasukan data inputan kedalam tabel kegiatan pada database
-            Kegiatan::create($validatedData);
+            $insertData = Kegiatan::create($validatedData);
             //mengembalikan ke halaman rt.kegiatan.index
+            if($insertData){
             return redirect()->route('rt.kegiatan.index')
                 ->with('success', 'Data berhasil ditambah!');
-        } catch (\Exception $e) {
-            //mengembalikan ke halaman rt.kegiatan.index dengan mengirimkan pesan
+            // return "data masuk";
+            }
+            // return "data gagal";
             return redirect()->route('rt.kegiatan.index')
-                ->with('error', 'Gagal menambahkan data!');
-        }
+            ->with('error', 'Gagal menambahkan data!');
+        
+    //     } catch (\Exception $e) {
+    // //mengembalikan ke halaman rt.kegiatan.index dengan mengirimkan pesan
+    // return redirect()->route('rt.kegiatan.index')
+    //     ->with('error', 'Gagal menambahkan data!' . $e);
+    //     }
     }
 
     public function edit(Kegiatan $kegiatan)
@@ -117,7 +127,7 @@ class KegiatanRTController extends Controller
     public function tanggal_publish($tanggal)
     {
         if (is_null($tanggal)) {
-            return "-";
+            return null;
         };
         return $tanggal->diffInDays(now()) > 7 ? $tanggal : $tanggal->diffForHumans();
     }
