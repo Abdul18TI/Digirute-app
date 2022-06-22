@@ -32,7 +32,7 @@ class CreateWargasTable extends Migration
             $table->string('nama_lengkap'); ////
             $table->string('tempat_lahir'); ////
             $table->timestamp('tgl_lahir')->nullable(); ////
-            $table->integer('jenis_kelamin'); ////
+            $table->integer('jenis_kelamin')->comment('1 => Laki-laki 2 => Perempuan'); ////
             $table->foreignId('agama'); ////
             $table->foreignId('golongan_darah'); ////
             $table->foreignId('pendidikan'); ////

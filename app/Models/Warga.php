@@ -16,10 +16,22 @@ class Warga extends Authenticatable
     protected $table = 'wargas';
     protected $primaryKey = 'id_warga';
     protected $guarded = ['id_warga'];
+    protected $with = ['pekerjaan'];
 
     public function getRouteKeyName()
     {
         return 'id_warga';
+    }
+
+    public function pekerjaan()
+    {
+        return $this->belongsTo(Pekerjaan::class, 'pekerjaan', 'id_pekerjaan')->select(['id_pekerjaan','nama_pekerjaan']);;
+        // return $this->belongsTo(rt::class);
+    }
+    public function pendidikan()
+    {
+        return $this->belongsTo(Pendidikan::class, 'pendidikan', 'id_pendidikan')->select(['id_pendidikan', 'nama_pendidikan']);;
+        // return $this->belongsTo(rt::class);
     }
 
     public function pengaduan()

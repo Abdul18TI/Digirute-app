@@ -20,7 +20,6 @@ class WargaController extends Controller
             'RT.warga.warga-rt',
             [
                 'warga' => $warga,
-                'title' => 'Warga'
             ]
         );
     }
@@ -35,7 +34,6 @@ class WargaController extends Controller
             [
                 'warga' => $warga,
                 'pekerjaan' => $data,
-                'title' => 'Tambah Data Warga'
             ]
         );
     }
@@ -123,7 +121,6 @@ class WargaController extends Controller
             [
                 'warga' => $warga,
                 'pekerjaan' => $data,
-                'title' => 'Edit Data Warga'
             ]
         );
     }
