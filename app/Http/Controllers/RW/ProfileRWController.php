@@ -13,8 +13,8 @@ class ProfileRWController extends Controller
     {
         $rw = rw::with('identitas_rw')->first();
 
-        $keluarga = Warga::where('no_kk', $rw->identitas_rw->no_kk)->get();
-        dd($keluarga);
+        $keluarga = Warga::where('no_kk', $rw->identitas_rw->no_kk)->whereNotIn('nik', [$rw->identitas_rw->nik])->get();
+        // dd($keluarga);
 
         return view('RW.ProfileRW.profile-rw-tes', [
             'rw' => $rw,

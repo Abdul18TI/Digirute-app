@@ -10,7 +10,7 @@
                     <div class="card-header pb-0">
                         <div class="row">
                             <div class="col-9">
-                                @foreach($kelola_rw as $kr)
+                                @foreach($identitas_rw as $kr)
                                 @if($kr->no_rw < 10)
                                 <h5>RW 0{{ $kr->no_rw }}</h5>
                                 @else

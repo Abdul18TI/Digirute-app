@@ -101,15 +101,34 @@ class KelolaRTController extends Controller
 
     public function show($id)
     {
-        $kelola_rw = rw::where('id_rw', $id)->get();
-        $identitas_rw = rw::with('identitas_rw')->where('id_rw', $id)->get();
-        $identitas_rt = rt::with('identitas_rt')->where('id_rw', $id)->get();
+        $rt = rt::where('id_rt', $id)->first();
+        // $kelola_rw = rw::where('id_rw', $id)->get();
+        $identitas_rw = rw::with('identitas_rw')->where('id_rw', $rt->id_rw)->get();
+        $identitas_rt = rt::with('identitas_rt')->where('id_rw', $rt->id_rw)->get();
         // dd($kelola_rw);
         return view('Admin.Kelola_rtrw.rt.detail_rt', [
-            'kelola_rw' => $kelola_rw,
+            // 'kelola_rw' => $kelola_rw,
             'identitas_rw' => $identitas_rw,
             'identitas_rt' => $identitas_rt,
             'title' => 'detail-rtrw'
         ]);
+    }
+
+    public function updateStatus(Request $request)
+    {
+        $pre_status = $request->status_rt;
+
+        // var_dump($pre_status);
+        // echo "<br>/";
+        $status = $request->status_rt == 0 ? 1 : 0;
+        $product = Rt::find($request->id_rt);
+        $product->status_rt = $pre_status;
+        // var_dump($status);
+        // echo "<br>/";
+        // dd($product);
+        $product->save();
+        return response()->json(['success' => 'Status change successfully.', 'status' => $status, 'product' => $product]);
+        // return redirect()->route('rt.kegiatan.index')
+        //     ->with('error', 'Gagal menghapus data!');
     }
 }

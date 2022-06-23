@@ -34,6 +34,7 @@
                                         <th>No</th>
                                         <th>Nama RT</th>
                                         <th>Aksi</th>
+                                        <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -41,6 +42,14 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $rt->identitas_rt->nama_lengkap }}</td>
+                                        <td><div class="media-body text-center icon-state">
+                                            <label class="switch">
+                                              <input type="checkbox"
+                                                {{ $rt->status_rt == 1 ? 'checked' : '' }}
+                                                data-id="{{ $rt->id_rt}}"
+                                                class="toggle-class"><span class="switch-state"></span>
+                                            </label>
+                                          </div></td>
                                         <td>
                                             <a class="btn btn-info btn-sm p-2" href="rt/{{ $rt->id_rt }}"><span
                                                 class="fa fa-eye"></span></a>
@@ -64,4 +73,23 @@
         </div>
     </div>
 </div>
+<script>
+    $('.toggle-class').change(function() {
+      var status = $(this).prop('checked') == true ? 1 : 0;
+      var product_id = $(this).data('id');
+      // alert(status);
+      $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: "{{ route('rt.update.status') }}",
+        data: {
+          'status_rt': status,
+          'id_rt': product_id
+        },
+        success: function(data) {
+          console.log(data.success)
+        }
+      });
+    });
+  </script>
 @endsection

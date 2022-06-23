@@ -8,7 +8,7 @@
 	            <!-- user profile header start-->
 	            <div class="col-sm-12">
 	                <div class="card profile-header">
-	                    <img class="img-fluid bg-img-cover" src="{{asset('assets/images/user-profile/bg-profile.jpg')}}" alt="" />
+	                    <img class="img-fluid bg-img-cover" src="{{asset('assets/images/user-profile/bg-profile-tes3.jpg')}}" alt="" />
 	                    <div class="profile-img-wrrap"><img class="img-fluid bg-img-cover" src="{{asset('assets/images/user-profile/bg-profile.jpg')}}" alt="" /></div>
 	                    <div class="userpro-box">
 	                        <div class="img-wrraper">
@@ -98,7 +98,7 @@
                                             @foreach ($keluarga as $k)
 	                                        <div class="media">
 	                                            <img class="img-50 img-fluid m-r-20 rounded-circle" alt="" src="{{asset('assets/images/user/2.png')}}" />
-	                                            <div class="media-body"><span class="d-block">Bucky Barnes</span><a href="javascript:void(0)">Add Friend</a></div>
+	                                            <div class="media-body"><span class="d-block">{{ $k->nama_lengkap }}</span><a>{{ $k->status_hubungan_dalam_keluarga }}</a></div>
 	                                        </div>
                                             @endforeach
 	                                    </div>

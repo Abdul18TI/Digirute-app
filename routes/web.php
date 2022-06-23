@@ -104,6 +104,8 @@ Route::group(['prefix' => 'RW'], function () {
     // route::resource('pembayaran', PembayaranRWController::class)->except('store');
 });
 
+Route::get('/status/update', [KelolaRTController::class, 'updateStatus'])->name('rt.update.status');
+
 //Prosedur
 Route::get('/prosedure', function () {
     return view('prosedure', [
