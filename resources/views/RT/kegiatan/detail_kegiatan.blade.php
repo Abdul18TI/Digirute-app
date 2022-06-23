@@ -29,7 +29,7 @@
               <div class="card-body">
                 <div class="blog-details">
                   <ul class="blog-social">
-                    <li class="middle">Publish : {{ tanggal_indo($kegiatan->tanggal_publish) }}</li>
+                    <li class="middle">Publish : {{ $kegiatan->tanggal_publish == true ? $kegiatan->tanggal_publish : $kegiatan->created_at->diffForHumans()  }}</li>
                     <li class="middle">Status :
                       @if ($kegiatan->status_kegiatan == 1)
                         <span id="status_aja" class="badge badge-success">Aktif</span>
@@ -60,7 +60,7 @@
                       <div class="single-blog-content-top txt-dark">
                         <p class="text-center">
                           <img class="img-fluid w-75 " src="{{ asset('storage/' . $kegiatan->foto_kegiatan) }}"
-                            alt="blog-main" />
+                            alt="Foto {{$kegiatan->nama_kegiatan}} " />
                         </p>
                       </div>
                 </div>
@@ -69,7 +69,7 @@
                 {{-- TOMBOL AKTIF NON AKTIF --}}
                 <button class='btn @php echo $kegiatan->status_kegiatan == 0 ? 'btn-success' : 'btn-warning' @endphp
                   btn-lg' id="ubah_status" data-id="{{ $kegiatan->id_kegiatan }}"
-                  data-status="{{ $kegiatan->status_kegiatan }}"
+                  data-status="{{ $kegiatan->status_kegiatan == 1 ? 0:1 }}"
                   href="{{ route('rt.kegiatan.edit', $kegiatan->id_kegiatan) }}"><span class="fa fa-edit"></span>
                   {{ $kegiatan->status_kegiatan == 0 ? 'Aktif' : 'Non-Aktif' }}</button>
                 {{-- END TOMBOL AKTIF NON AKTIF --}}
@@ -122,7 +122,7 @@
           // console.log(data.status);
           // $('#ubah_status').data('status', data.status);
           $('#ubah_status').attr("data-status", data.status);
-          if (data.status == 1) {
+          if (data.status == 0) {
             //Mengubah status tidak aktif menjadi aktif
             $("#status_aja")
               .addClass("badge-success")

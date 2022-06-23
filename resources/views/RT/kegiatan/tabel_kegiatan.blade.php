@@ -151,6 +151,7 @@
     $('.toggle-class').change(function() {
       var status = $(this).prop('checked') == true ? 1 : 0;
       var product_id = $(this).data('id');
+      // alert(status);
       $.ajax({
         type: "GET",
         dataType: "json",

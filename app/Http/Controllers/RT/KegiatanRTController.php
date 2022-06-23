@@ -119,6 +119,10 @@ class KegiatanRTController extends Controller
     {
         $kegiatan = Kegiatan::find($id);
         $kegiatan['tanggal_publish'] = $this->tanggal_publish($kegiatan->created_at);
+        // var_dump($this->tanggal_publish($kegiatan->created_at));
+        // var_dump($kegiatan['tanggal_publish']);
+        // dd($kegiatan['tanggal_publish']);
+        // dd($kegiatan['tanggal_publish'] == false ? $kegiatan->created_at->diffForHumans() : tanggal_indo($kegiatan->created_at) );
         return view('RT.kegiatan.detail_kegiatan', [
             'kegiatan' => $kegiatan,
         ]);
@@ -129,16 +133,24 @@ class KegiatanRTController extends Controller
         if (is_null($tanggal)) {
             return null;
         };
-        return $tanggal->diffInDays(now()) > 7 ? $tanggal : $tanggal->diffForHumans();
+        // return $tanggal->diffInDays(now()) > 7 ? $tanggal : $tanggal->diffForHumans();
+        return $tanggal->diffInDays(now()) > 7 ? tanggal_indo($tanggal) : $tanggal->diffForHumans();
     }
 
     public function updateStatus(Request $request)
     {
+        $pre_status = $request->status_kegiatan;
+        
+        // var_dump($pre_status);
+        // echo "<br>/";
         $status = $request->status_kegiatan == 0 ? 1 : 0;
         $product = Kegiatan::find($request->id_kegiatan);
-        $product->status_kegiatan = $status;
+        $product->status_kegiatan = $pre_status;
+        // var_dump($status);
+        // echo "<br>/";
+        // dd($product);
         $product->save();
-        return response()->json(['success' => 'Status change successfully.', 'status' => $status]);
+        return response()->json(['success' => 'Status change successfully.', 'status' => $status, 'product' => $product]);
         // return redirect()->route('rt.kegiatan.index')
         //     ->with('error', 'Gagal menghapus data!');
     }

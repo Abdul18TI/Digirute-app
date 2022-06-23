@@ -22,7 +22,7 @@ class KegiatanSeeder extends Seeder
                     'kategori_kegiatan' => 1,
                     'id_penanggung_jawab' => 1,
                     'penanggung_jawab' => 'RW',
-                    'isi_kegiatan' => 'Pada hari minggu ku turut ayah ke kota',
+                    'isi_kegiatan' => '<p>Pada hari minggu ku turut ayah ke kota</p>',
                     'foto_kegiatan' => 'no-image.png',
                     'status_kegiatan' => 0,
                     'tgl_mulai_kegiatan' => '2022-06-08 13:04:16',
@@ -33,8 +33,8 @@ class KegiatanSeeder extends Seeder
                     'kategori_kegiatan' => 1,
                     'id_penanggung_jawab' => 1,
                     'penanggung_jawab' => 'RT',
-                    'isi_kegiatan' => ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus accusamus voluptates architecto, doloremque velit facere reiciendis sint earum error vel iste molestiae odit, doloribus saepe alias nostrum corrupti ut repellendus.
-                Rerum maiores dolorum sapiente, consequuntur aliquam beatae repellendus sit nemo eius delectus labore qui id sint voluptas reprehenderit maxime ea quae eveniet repellat mollitia quibusdam laboriosam nulla, porro dolor? Similique.',
+                    'isi_kegiatan' => '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus accusamus voluptates architecto, doloremque velit facere reiciendis sint earum error vel iste molestiae odit, doloribus saepe alias nostrum corrupti ut repellendus.
+                Rerum maiores dolorum sapiente, consequuntur aliquam beatae repellendus sit nemo eius delectus labore qui id sint voluptas reprehenderit maxime ea quae eveniet repellat mollitia quibusdam laboriosam nulla, porro dolor? Similique.</p>',
                     'foto_kegiatan' => 'no-image.png',
                     'status_kegiatan' => 0,
                     'tgl_mulai_kegiatan' => '2022-05-01 13:04:16',
