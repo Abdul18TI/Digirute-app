@@ -1,13 +1,18 @@
-@extends('layouts.main')
+@extends('layouts.main-rw')
+
+@push('css')
+  <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/datatables.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/custom.css') }}">
+@endpush
 
 @section('container')
-<div class="page-body">
+{{-- <div class="page-body">
     <div class="container-fluid">
         <div class="page-header">
             <div class="row">
             </div>
         </div>
-    </div>
+    </div> --}}
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
@@ -43,7 +48,7 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $p->judul_pengumuman }}</td>
-                                        <td>{{ $p->tgl_terbit }}</td>
+                                        <td>{{ tanggal_indo($p->tgl_terbit) }}</td>
                                         <td>@if ($p->status_pengumuman == 1)
                                             <span class="badge badge-success">aktif</span>
                                             @else
@@ -74,3 +79,15 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+  <script src="{{ asset('assets/js/datatable/datatables/jquery.dataTables.min.js') }}"></script>
+  <script src="{{ asset('assets/js/datatable/datatables/datatable.custom.js') }}"></script>
+  <script src="{{ asset('assets/js/tooltip-init.js') }}"></script>
+@endpush
+
+@push('scripts-custom')
+  <script>
+    $('#dataTable').DataTable();
+  </script>
+@endpush

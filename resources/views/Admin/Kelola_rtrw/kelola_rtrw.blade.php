@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.main-admin')
 
 @section('container')
 <div class="page-body">
@@ -7,8 +7,19 @@
             <!-- Zero Configuration  Starts-->
             <div class="col-sm-12">
                 <div class="card">
-                    <div class="card-header">
-                        <h5>Pengurus RT/RW</h5>
+                    <div class="card-header pb-0">
+                        <div class="row">
+                            <div class="col-9">
+                                <h5>Kelola RT/RW</h5>
+                            </div>
+                            <div class="col-3">
+                                <div class="bookmark">
+
+                                    <a class="btn btn-primary btn-lg" href="{{ route('kategori_kegiatan.create') }}" data-bs-original-title="" title=""> <span class="fa fa-plus-square"></span> Tambah Data</a>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                     <div class="card-body">
                         <div class="container-fluid user-card">

@@ -14,6 +14,7 @@ class rt extends Authenticatable
     protected $table = 'rts';
     protected $primaryKey = 'id_rt';
     protected $guarded = ['id_rt'];
+    protected $dates = ['tgl_awal_jabatan_rt', 'tgl_akhir_jabatan_rt'];
 
     public function getRouteKeyName()
     {

@@ -12,6 +12,7 @@ class rw extends Model
     protected $table = 'rws';
     protected $primaryKey = 'id_rw';
     protected $guarded = ['id_rw'];
+    protected $dates = ['tgl_awal_jabatan_rw', 'tgl_akhir_jabatan_rw'];
 
     public function getRouteKeyName()
     {
@@ -22,6 +23,12 @@ class rw extends Model
     {
         //hasMany(namamodel, foreign key tabel warga, primary key tabel sendiri)
         return $this->belongsTo(Warga::class, 'id_warga', 'id_warga');
+    }
+
+    public function keluarga()
+    {
+        //hasMany(namamodel, foreign key tabel warga, primary key tabel sendiri)
+        return $this->belongsTo(Warga::class, 'no_kk', 'no_kk');
     }
     public function rt_rel()
     {

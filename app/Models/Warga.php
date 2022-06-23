@@ -25,7 +25,7 @@ class Warga extends Authenticatable
 
     public function pekerjaan()
     {
-        return $this->belongsTo(Pekerjaan::class, 'pekerjaan', 'id_pekerjaan')->select(['id_pekerjaan','nama_pekerjaan']);;
+        return $this->belongsTo(Pekerjaan::class, 'pekerjaan', 'id_pekerjaan')->select(['id_pekerjaan', 'nama_pekerjaan']);;
         // return $this->belongsTo(rt::class);
     }
     public function pendidikan()
@@ -42,6 +42,18 @@ class Warga extends Authenticatable
     public function pembayaran()
     {
         return $this->hasMany(Pembayaran::class);
+    }
+
+    public function identitas_rws()
+    {
+        //hasMany(namamodel, foreign key tabel warga, primary key tabel sendiri)
+        return $this->belongsTo(rw::class, 'id_warga', 'id_warga');
+    }
+
+    public function keluargas()
+    {
+        //hasMany(namamodel, foreign key tabel warga, primary key tabel sendiri)
+        return $this->belongsTo(rw::class, 'no_kk', 'no_kk');
     }
 
     public function rt_rel()
