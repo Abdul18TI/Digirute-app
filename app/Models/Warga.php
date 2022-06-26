@@ -16,9 +16,9 @@ class Warga extends Authenticatable
     protected $table = 'wargas';
     protected $primaryKey = 'id_warga';
     protected $guarded = ['id_warga'];
-    protected $with = ['pekerjaan','pekerjaans'];
+    protected $with = ['pekerjaan', 'pekerjaans'];
     protected $dates = ['tgl_lahir'];
-   
+
 
     public function getRouteKeyName()
     {
@@ -27,13 +27,13 @@ class Warga extends Authenticatable
 
     public function pekerjaans()
     {
-        return $this->belongsTo(Pekerjaan::class, 'pekerjaans', 'id_pekerjaan')->select(['id_pekerjaan', 'nama_pekerjaan']);;
+        return $this->belongsTo(Pekerjaan::class, 'pekerjaan', 'id_pekerjaan')->select(['id_pekerjaan', 'nama_pekerjaan']);;
         // return $this->belongsTo(Pekerjaan::class, 'pekerjaan', 'id_pekerjaan')->select(['id_pekerjaan','nama_pekerjaan']);
         // return $this->belongsTo(rt::class);
     }
     public function pekerjaan()
     {
-        return $this->belongsTo(Pekerjaan::class, 'pekerjaan', 'id_pekerjaan')->select(['id_pekerjaan','nama_pekerjaan']);
+        return $this->belongsTo(Pekerjaan::class, 'pekerjaan', 'id_pekerjaan')->select(['id_pekerjaan', 'nama_pekerjaan']);
         // return $this->belongsTo(rt::class);
     }
     // public function agama()
