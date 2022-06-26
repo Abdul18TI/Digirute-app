@@ -5,7 +5,7 @@
         <div class="badge-bottom"><span class="badge badge-primary">Warga</span></div>
         <a href="user-profile"> <h6 class="mt-3 f-14 f-w-600">{{ auth()->user()->nama_lengkap }}</h6></a>
         <p class="mb-0 font-roboto">RT {{ auth()->user()->rt_rel->no_rt }} RW {{auth()->user()->rt_rel->rw_rel->no_rw }}</p>
-        <ul>
+        {{-- <ul>
             <li>
                 <span><span class="counter">19.8</span>k</span>
                 <p>Follow</p>
@@ -18,7 +18,7 @@
                 <span><span class="counter">95.2</span>k</span>
                 <p>Follower</p>
             </li>
-        </ul>
+        </ul> --}}
     </div>
     <nav>
         <div class="main-navbar">
@@ -26,11 +26,11 @@
             <div id="mainnav">
                 <ul class="nav-menu custom-scrollbar">
                     <li class="back-btn">
-                        <div class="mobile-back text-end"><span>Back</span><i class="fa fa-angle-right ps-2" aria-hidden="true"></i></div>
+                        <div class="mobile-back text-end"><span>Kembali</span><i class="fa fa-angle-right ps-2" aria-hidden="true"></i></div>
                     </li>
                     <li class="sidebar-main-title">
                         <div>
-                            <h6>General</h6>
+                            <h6>Menu</h6>
                         </div>
                     </li>
                     <li class="dropdown">

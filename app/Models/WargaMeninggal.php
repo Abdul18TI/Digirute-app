@@ -15,7 +15,12 @@ class WargaMeninggal extends Model
     protected $with = ['wargas'];
     public function wargas()
     {
-        return $this->belongsTo(Warga::class, 'warga', 'id_warga')->select('nik','id_warga', 'nama_lengkap', 'jenis_kelamin', 'pekerjaan', 'agama', 'tempat_lahir', 'tgl_lahir', 'alamat');
+        return $this->belongsTo(Warga::class, 'warga', 'id_warga')->select('nik','id_warga', 'nama_lengkap', 'jenis_kelamin', 'pekerjaan', 'agama', 'tempat_lahir', 'tgl_lahir', 'alamat','status_warga');
+        // return $this->belongsTo(rt::class);
+    }
+    public function rts()
+    {
+        return $this->belongsTo(rt::class, 'warga', 'id_warga');
         // return $this->belongsTo(rt::class);
     }
     // public function getRouteKeyName()

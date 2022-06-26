@@ -4,6 +4,8 @@ namespace App\Http\Controllers\RT;
 
 use App\Models\Warga;
 use App\Models\Kegiatan;
+// use Barryvdh\DomPDF\PDF;
+use PDF;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\WargaMeninggal as Kematian;
@@ -18,7 +20,9 @@ class WargaMeninggalController extends Controller
     public function index()
     {
         //
-        $kematian = Kematian::all();
+        $kematian = Kematian::orderBy('tgl_kematian', 'desc')->get();
+        // $kematian = Kematian::all();
+        // dd($kematian);
         return view('RT.kematian.tabel_kematian', [
             'kematian' => $kematian,
         ]);
@@ -74,13 +78,13 @@ class WargaMeninggalController extends Controller
         try {
             //Memasukan data inputan kedalam tabel kematian pada database
             $insertData = Kematian::create($dataentry);
+            
             //mengembalikan ke halaman rt.kematian.index
             if ($insertData) {
+                $dataWargaSame->update(['status_warga' =>1]);
                 return redirect()->route('rt.kematian.index')
                     ->with('success', 'Data berhasil ditambah!');
-                // return "data masuk";
             }
-            //     // return "data gagal";
             return redirect()->route('rt.kematian.index')
                 ->with('error', 'Gagal menambahkan data!');
         } catch (\Exception $e) {
@@ -99,11 +103,11 @@ class WargaMeninggalController extends Controller
     public function show(Kematian $kematian)
     {
         //
-        $dataKematian = Kematian::find($kematian->warga)->first();
+        // $dataKematian = Kematian::find($kematian->warga)->first();
         // dd($dataKematian->wargas);
-    //   return response()->json([ 'data' => $dataEntry]);
+        //   return response()->json([ 'data' => $dataEntry]);
         return view('RT.kematian.detail_kematian', [
-            'kematian' => $dataKematian,
+            'kematian' => $kematian,
         ]);
     }
 
@@ -140,32 +144,57 @@ class WargaMeninggalController extends Controller
     public function destroy(Kematian $kematian)
     {
         //
-        // dd($kematian);
-        
+    
+        // $kematian->wargas->status_warga = 0;
+        // $kematian->save();
+        // $dataWargaSame->update(['status_warga' => 1]);
+
         try {
+            $warga = Warga::find($kematian->warga);
+            $warga->status_warga = 0;
+            $warga->save();           
             $kematian->delete();
             return redirect()->route('rt.kematian.index')
-            ->with('success', 'data berhasil dihapus!');
+                ->with('success', 'data berhasil dihapus!');
         } catch (\Exception $e) {
             return redirect()->route('rt.kematian.index')
-            ->with('error', 'Gagal menghapus data!');
+                ->with('error', 'Gagal menghapus data!');
         }
-
     }
 
     // public function show_jenazah(Warga $warga){
     public function show_warga(Request $request)
     {
         // $jenazah= Warga::where('nik', $warga->nik)->first();
-        $jenazah = Warga::select('id_warga','nama_lengkap', 'jenis_kelamin', 'pekerjaan', 'agama', 'tempat_lahir', 'tgl_lahir', 'alamat')
+        $jenazah = Warga::select('id_warga', 'nama_lengkap', 'jenis_kelamin', 'pekerjaan', 'agama', 'tempat_lahir', 'tgl_lahir', 'alamat')
             ->where('nik', $request->id)
             ->where('rt', auth()->id())
+            ->where('status_warga', 0)
             ->first();
-            dd($jenazah->pekerjaan);
         if ($jenazah) {
             return response()->json(['success' => 'Data ditemukan.', 'data' => $jenazah]);
         }
         return response()->json(['success' => 'Data tidak ditemukan.', 'data' => $jenazah]);
         // dd($jenazah);
+    }
+
+    public function print($kematian)
+    {
+        //
+        $dataKematian = Kematian::find($kematian);
+
+        //jika data tidak ditemukan
+        if (!$dataKematian) {
+            return redirect()->route('rt.kematian.index')
+                ->with('error', 'Print Gagal! Data tidak temukan');
+        }
+
+        // $data = $dataKematian->get();
+        $dataKematian['rt'] = auth()->user();
+        $dataKematian['rw'] = auth()->user()->rw_rel;
+        // dd($dataKematian['rt']);
+    //    return view('rt.kematian.surat_kematian_pdf', ['kematian' => $dataKematian]);
+        $pdf = PDF::loadview('rt.kematian.surat_kematian_pdf', ['kematian' => $dataKematian]);
+        return $pdf->stream();
     }
 }

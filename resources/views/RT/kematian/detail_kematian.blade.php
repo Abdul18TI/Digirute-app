@@ -14,8 +14,9 @@
       <h3>
         Detail Data Kematian</h3>
     @endslot
+    <li class="breadcrumb-item">Warga</li>
     <li class="breadcrumb-item">Kematian</li>
-    <li class="breadcrumb-item active">Detail Data Kematian</li>
+    <li class="breadcrumb-item active">Detail  Data Kematian</li>
   @endcomponent
   <!-- Form Tambah Warga -->
   <div class="container-fluid">
@@ -287,8 +288,10 @@
             <div class="card-footer text-end">
               {{-- <button class="btn btn-primary"
                 type="submit">Simpan</button> --}}
+                <a href="{{ route('rt.kematian.print_surat', $kematian->id) }}">
               <button type="button"
                 class="btn btn-success btn-lg"> <span class="fa fa-print"></span> Cetak Surat</button>
+                </a>
             </div>
           </form>
         </div>

@@ -14,6 +14,7 @@
       <h3>
         Tambah Data Kematian</h3>
     @endslot
+    <li class="breadcrumb-item">Warga</li>
     <li class="breadcrumb-item">Kematian</li>
     <li class="breadcrumb-item active">Tambah Data Kematian</li>
   @endcomponent

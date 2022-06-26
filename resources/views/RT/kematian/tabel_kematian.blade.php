@@ -16,6 +16,7 @@
       <h3>Warga Meninggal</h3>
     @endslot
     {{-- <li class="breadcrumb-item">Pengaduan</li> --}}
+    <li class="breadcrumb-item active">Warga</li>
     <li class="breadcrumb-item active">Warga Meninggal</li>
   @endcomponent
 
@@ -80,13 +81,13 @@
                     <tr>
                       <td class="text-center">{{ $loop->iteration }}</td>
                       <td>{{ $p->warga }}</td>
-                      <td>{{ $p->id }}</td>
+                      <td>{{ $p->wargas->nama_lengkap }}</td>
                       <td>{{ tanggal_indo($p->tgl_kematian) }}</td>
                       <td class="aksi">
                    <a class="btn btn-secondary btn-sm p-2" href="{{ route('rt.kematian.show', $p->id) }}"><span
                             class="fa fa-eye"></span></a> 
                         <a class="btn btn-primary btn-sm p-2"
-                          href="{{ route('rt.kematian.edit', $p->id) }}"><span class="fa fa-print"></span></a>
+                          href="{{ route('rt.kematian.print_surat', $p->id) }}"><span class="fa fa-print"></span></a>
                         <a class="btn btn-danger btn-sm p-2 sweet"
                           href="{{ route('rt.kematian.destroy', $p->id) }}"
                           onclick="event.preventDefault();
