@@ -10,11 +10,12 @@ class KegiatanWargaController extends Controller
 {
     public function index()
     {
-        $kegiatan = Kegiatan::where('status_kegiatan', 1)->get();
+        // dd(request('search'));
+        // $kegiatan = Kegiatan::where('status_kegiatan', 1)->latest()->get();
         // dd($kegiatan[1]->status_kegiatan);
 
         return view('Warga.kegiatan.kegiatan_warga', [
-            'kegiatan' => $kegiatan,
+            'kegiatan' => Kegiatan::where('status_kegiatan', 1)->latest()->filter(request(['search']))->get(),
             "title" => "kegiatan-warga"
         ]);
     }

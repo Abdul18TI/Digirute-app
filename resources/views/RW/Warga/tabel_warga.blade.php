@@ -1,6 +1,13 @@
 @extends('layouts.main')
 
 @section('container')
+    @component('components.RW.breadcrumb')
+        @slot('breadcrumb_title')
+        <h3>Kegiatan</h3>
+        @endslot
+        {{-- <li class="breadcrumb-item">Pengaduan</li> --}}
+        <li class="breadcrumb-item active">Kegiatan</li>
+    @endcomponent
 <div class="page-body">
     <div class="container-fluid">
         <div class="page-header">

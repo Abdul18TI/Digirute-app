@@ -15,12 +15,21 @@
         {{-- <li class="breadcrumb-item">Pengaduan</li> --}}
         <li class="breadcrumb-item active">Kegiatan</li>
     @endcomponent
-    @if($kegiatan === null)
+    @if($kegiatan->count() )
 	<div class="container-fluid blog-page">
-		Tidak ada kegiatan
-	</div>
-	@else
-    <div class="container-fluid blog-page">
+		<div class="feature-products">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="pro-filter-sec">
+						<div class="product-search">
+							<form action="kegiatan_warga">
+								<div class="form-group m-0"><input class="form-control" type="search" name="search" placeholder="Search.." data-original-title="" title="" value="{{ request('search') }}" /><i type="submit" class="fa fa-search"></i></div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	    <div class="row">
 	        <div class="col-xxl-6 set-col-12 box-col-12 xl-40">
 	            <div class="card">
@@ -32,12 +41,12 @@
 						@endif
 	                    <div class="blog-details">
 	                        <p>{{ tanggal_indo($kegiatan[0]->tgl_mulai_kegiatan) }}</p>
-	                        <h4>{{ $kegiatan[0]->nama_kegiatan }}.</h4>
+	                        <h4>{{ $kegiatan[0]->nama_kegiatan }}</h4>
 							<ul class="blog-social">
 								<li>oleh: {{ $kegiatan[0]->penanggung_jawab }}</li>
 							</ul>
 							<hr />
-							<article class="mt-0 text-light">{!! Str::limit($kegiatan[1]->isi_kegiatan, 100) !!}</article>
+							<article class="mt-0 text-light">{!! Str::limit($kegiatan[0]->isi_kegiatan, 100) !!}</article>
 							<div class="mt-3 pull-right">
 							<a href="kegiatan_warga/{{ $kegiatan[0]->id_kegiatan }}" class="btn btn-square btn-sm btn-secondary pull-right" type="button">Baca Selengkapnya</a>
 							</div>
@@ -87,7 +96,7 @@
 	            <div class="card">
 	                <div class="blog-box blog-grid">
 	                    <div class="blog-wrraper">
-							@if($kegiatan != null)
+							@if($kk->foto_kegiatan != null)
 	                        <a href="kegiatan_warga/{{ $kk->id_kegiatan }}"><img class="p-0" src="{{asset('storage/'. $kk->foto_kegiatan)}}" width="421" height="263" alt="" /></a>
 							@else
 	                        <a href="kegiatan_warga/{{ $kk->id_kegiatan }}"><img class="img-fluid top-radius-blog" src="{{asset('assets/images/blog/blog-6.jpg')}}" alt="" /></a>
@@ -108,6 +117,23 @@
 	        </div>
 			@endforeach
 	    </div>
+	</div>
+	@else
+    <div class="container-fluid blog-page">
+		<div class="feature-products">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="pro-filter-sec">
+						<div class="product-search">
+							<form action="kegiatan_warga">
+								<div class="form-group m-0"><input class="form-control" type="search" name="search" placeholder="Search.." data-original-title="" title="" value="{{ request('search') }}" /><i type="submit" class="fa fa-search"></i></div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<p>Kegiatan yang dicari tidak ada</p>	
 	</div>
 	@endif
 
