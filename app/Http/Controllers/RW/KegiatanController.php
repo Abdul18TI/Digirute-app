@@ -45,6 +45,9 @@ class KegiatanController extends Controller
         }
 
         $validatedData['status_kegiatan'] = 1;
+        $validatedData['id_penanggung_jawab'] = 1;
+        $validatedData['id_penanggung_jawab'] = 1;
+        $validatedData['penanggung_jawab'] = "RW";
 
         try {
             Kegiatan::create($validatedData);
@@ -110,12 +113,12 @@ class KegiatanController extends Controller
     public function show($id)
     {
         try {
-        $kegiatan = Kegiatan::find($id);
-        return view('RW.kegiatan.detail_kegiatan', [
-            'kegiatan' => $kegiatan,
-            'title' => 'detail-kegiatan'
-        ]);
-         } catch (\Exception $e) {
+            $kegiatan = Kegiatan::find($id);
+            return view('RW.kegiatan.detail_kegiatan', [
+                'kegiatan' => $kegiatan,
+                'title' => 'detail-kegiatan'
+            ]);
+        } catch (\Exception $e) {
             return redirect()->route('kegiatan.index')
                 ->with('error', 'Gagal menghapus data!');
         }

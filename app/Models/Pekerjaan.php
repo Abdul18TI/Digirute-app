@@ -17,4 +17,9 @@ class Pekerjaan extends Model
     {
         return 'id_pekerjaan';
     }
+
+    public function Pekerjaans()
+    {
+        return $this->hasMany(Warga::class);
+    }
 }

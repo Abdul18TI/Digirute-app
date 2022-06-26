@@ -13,7 +13,7 @@
 	                    <div class="userpro-box">
 	                        <div class="img-wrraper">
 	                            <div class="avatar"><img class="img-fluid" alt="" src="{{asset('assets/images/user/7.jpg')}}" /></div>
-	                            <a class="icon-wrapper" href="#"><i class="icofont icofont-pencil-alt-5"></i></a>
+	                            <a class="icon-wrapper" href="profile/{{ $rw->identitas_rw->id_warga }}/edit"><i class="icofont icofont-pencil-alt-5"></i></a>
 	                        </div>
 	                        <div class="user-designation">
 	                            <div class="title">

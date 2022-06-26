@@ -113,6 +113,13 @@ Route::get('/prosedure', function () {
     ]);
 });
 
+//Kegiatan warga
+// Route::get('/kegiatan-warga', function () {
+//     return view('kegiatan_warga', [
+//         "title" => "kegiatan-warga"
+//     ]);
+// });
+
 Route::get('tabledit/action', 'IuranController@action')->name('tabledit.action');
 
 //Admin
