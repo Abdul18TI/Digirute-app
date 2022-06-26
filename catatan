@@ -56,3 +56,7 @@ $registeredAt = $user->created_at->isoFormat('dddd, D MMMM Y');
 
 $lastUpdated = $post->updated_at->diffForHumans(); 
 // "2 hari yang lalu"         
+
+Membuat Sekaligus
+php artisan make:model -a office --> membuat model, controller, factory, seeder. migration
+php artisan make:model -cm office --> membuat model, controller, migration
