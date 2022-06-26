@@ -25,6 +25,9 @@ class RedirectIfAuthenticated
             if (Auth::guard($guard)->check()) {
                 if ($guard === 'rt') {
                     return redirect()->route('rt.home');
+                }else if($guard === 'rt'){
+                    return redirect()->route('rw.dashboard.home');
+
                 }
                 return redirect()->route('warga.home');
                 // return redirect(RouteServiceProvider::HOME);

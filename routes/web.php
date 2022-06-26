@@ -1,23 +1,24 @@
 <?php
 
-use App\Http\Controllers\RW\IuranController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RW\RwController;
+use App\Http\Controllers\RW\IuranController;
+use App\Http\Controllers\RW\LoginRWController;
 use App\Http\Controllers\RW\WargaRWController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\RW\KegiatanController;
+use App\Http\Controllers\RW\ProfileRWController;
 use App\Http\Controllers\RW\PengumumanController;
+use App\Http\Controllers\Admin\KelolaRTController;
+use App\Http\Controllers\Admin\KelolaRWController;
 use App\Http\Controllers\RW\PengaduanRWController;
 use App\Http\Controllers\RW\PembayaranRWController;
-use App\Http\Controllers\RW\ProfileRWController;
-use App\Http\Controllers\RW\KegiatanController;
-use App\Http\Controllers\Admin\KategoriPengumumanController;
-use App\Http\Controllers\Admin\KategoriPengaduanController;
-use App\Http\Controllers\Admin\KategoriKegiatanController;
 use App\Http\Controllers\Admin\JenisIuranController;
 use App\Http\Controllers\Admin\KelolaRTRWController;
-use App\Http\Controllers\Admin\KelolaRWController;
-use App\Http\Controllers\Admin\KelolaRTController;
+use App\Http\Controllers\Admin\KategoriKegiatanController;
+use App\Http\Controllers\Admin\KategoriPengaduanController;
+use App\Http\Controllers\Admin\KategoriPengumumanController;
 
 
 
@@ -90,17 +91,25 @@ Route::get('/', function () {
 
 
 // });
+//    Route::prefix('RT')
+//    ->middleware('web')
 
 //RW
-Route::group(['prefix' => 'RW'], function () {
-    Route::get('/', [RWController::class, 'home_rw'])->name('rw.dashboard.home');
-    route::resource('pengumuman', PengumumanController::class);
-    route::resource('iuran', IuranController::class);
-    route::resource('kegiatan', kegiatanController::class);
-    route::resource('warga', WargaRWController::class);
-    route::resource('pengaduan', PengaduanRWController::class);
-    route::resource('profile', ProfileRWController::class);
-    route::post('pembayaran/store', [PembayaranRWController::class, 'store'])->name("pembayaran.store");
+Route::prefix('RW')->name('rw.')->group( function () {
+    Route::middleware(['guest:rw', 'PreventBackHistory'])->group(function () {
+        Route::view('/', 'RW.login ')->name('login');
+        Route::post('/', [LoginRWController::class, 'authenticate'])->name('check-login');
+    });
+    Route::middleware(['auth:rw', 'PreventBackHistory'])->group(function () {
+        Route::get('dashboard', [RWController::class, 'home_rw'])->name('dashboard.home');
+        route::resource('pengumuman', PengumumanController::class);
+        route::resource('iuran', IuranController::class);
+        route::resource('kegiatan', kegiatanController::class);
+        route::resource('warga', WargaRWController::class);
+        route::resource('pengaduan', PengaduanRWController::class);
+        route::resource('profile', ProfileRWController::class);
+        route::post('pembayaran/store', [PembayaranRWController::class, 'store'])->name("pembayaran.store");
+    });
     // route::resource('pembayaran', PembayaranRWController::class)->except('store');
 });
 

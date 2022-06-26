@@ -3,7 +3,7 @@
     <!-- Page Sidebar Start-->
     <header class="main-nav">
         <div class="sidebar-user text-center"><a class="setting-primary" href="javascript:void(0)"><i data-feather="settings"></i></a><img class="img-90 rounded-circle" src="{{ asset("assets/images/dashboard/1.png")}}" alt="">
-            <div class="badge-bottom"><span class="badge badge-primary">RW</span></div><a href="{{ route('profile.index') }}">
+            <div class="badge-bottom"><span class="badge badge-primary">RW</span></div><a href="{{ route('rw.profile.index') }}">
                 <h6 class="mt-3 f-14 f-w-600">Sahid</h6>
             </a>
             <p class="mb-0 font-roboto">RW 04</p>
@@ -25,19 +25,19 @@
                             <a class="nav-link menu-title link-nav" href="{{ route('rw.dashboard.home') }}"><i data-feather="home"></i><span>Dashboard</span></a>
                         </li>
                         <li>
-                            <a class="nav-link menu-title link-nav" href="{{ route('warga.index') }}"><i data-feather="users"></i><span>Warga</span></a>
+                            <a class="nav-link menu-title link-nav" href="{{ route('rw.warga.index') }}"><i data-feather="users"></i><span>Warga</span></a>
                         </li>
                         <li>
-                            <a class="nav-link menu-title link-nav" href="{{ route('kegiatan.index') }}"><i data-feather="calendar"></i><span>Kegiatan</span></a>
+                            <a class="nav-link menu-title link-nav" href="{{ route('rw.kegiatan.index') }}"><i data-feather="calendar"></i><span>Kegiatan</span></a>
                         </li>
                         <li>
-                            <a class="nav-link menu-title link-nav" href="{{ route('pengumuman.index') }}"><i data-feather="airplay"></i><span>Pengumuman</span></a>
+                            <a class="nav-link menu-title link-nav" href="{{ route('rw.pengumuman.index') }}"><i data-feather="airplay"></i><span>Pengumuman</span></a>
                         </li>
                         <li>
-                            <a class="nav-link menu-title link-nav" href="{{ route('iuran.index') }}"><i data-feather="dollar-sign"></i><span>Iuran</span></a>
+                            <a class="nav-link menu-title link-nav" href="{{ route('rw.iuran.index') }}"><i data-feather="dollar-sign"></i><span>Iuran</span></a>
                         </li>
                         <li>
-                            <a class="nav-link menu-title link-nav" href="{{ route('iuran.index') }}"><i data-feather="user"></i><span>Profil saya</span></a>
+                            <a class="nav-link menu-title link-nav" href="{{ route('rw.iuran.index') }}"><i data-feather="user"></i><span>Profil saya</span></a>
                         </li>
                     </ul>
                 </div>
