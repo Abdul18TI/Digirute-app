@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('container')
-    @component('components.RW.breadcrumb')
+    @component('components.r-w.breadcrumb')
         @slot('breadcrumb_title')
         <h3>Kegiatan</h3>
         @endslot

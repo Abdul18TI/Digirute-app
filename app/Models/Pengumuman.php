@@ -13,4 +13,10 @@ class Pengumuman extends Model
     protected $primaryKey = 'id_pengumuman';
     protected $guarded = ['id_pengumuman'];
     protected $dates = ['tgl_terbit'];
+
+    public function Kategori_pengumuman()
+    {
+        return $this->belongsTo(KategoriPengumuman::class, 'kategori_pengumuman', 'id_kategori_pengumuman')->select(['id_kategori_pengumuman', 'nama_kategori_pengumuman']);
+        // return $this->belongsTo(rt::class);
+    }
 }

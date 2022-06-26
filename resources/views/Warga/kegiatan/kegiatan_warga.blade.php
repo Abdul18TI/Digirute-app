@@ -34,7 +34,7 @@
 	        <div class="col-xxl-6 set-col-12 box-col-12 xl-40">
 	            <div class="card">
 	                <div class="blog-box blog-shadow">
-						@if($kegiatan[0]->foto_kegiatan == null)
+						@if($kegiatan[0]->foto_kegiatan == 'no-image.jpg')
 	                    <img class="img-fluid bg-img-cover" src="{{asset('assets/images/blog/blog.jpg')}}" alt="" />
 						@else
 						<img class="img-fluid bg-img-cover" src="{{asset('storage/'. $kegiatan[0]->foto_kegiatan)}}" alt="" />
@@ -62,7 +62,7 @@
 	                        <div class="blog-box blog-list row">
 	                            <div class="col-xl-6 col-12">
 	                                <div class="blog-wrraper">
-										@if($k->foto_kegiatan == null)
+										@if($k->foto_kegiatan == 'no-image.jpg')
 	                                    <a href="kegiatan_warga/{{ $k->id_kegiatan }}"><img class="img-fluid sm-100-wp p-0" src="{{asset('assets/images/blog/blog-2.jpg')}}" alt="" /></a>
 										@else
 										<a href="kegiatan_warga/{{ $k->id_kegiatan }}"><img class="p-0" src="{{asset('storage/'. $k->foto_kegiatan)}}" width="316" height="225" alt="" /></a>
@@ -96,7 +96,7 @@
 	            <div class="card">
 	                <div class="blog-box blog-grid">
 	                    <div class="blog-wrraper">
-							@if($kk->foto_kegiatan != null)
+							@if($kk->foto_kegiatan != 'no-image.jpg')
 	                        <a href="kegiatan_warga/{{ $kk->id_kegiatan }}"><img class="p-0" src="{{asset('storage/'. $kk->foto_kegiatan)}}" width="421" height="263" alt="" /></a>
 							@else
 	                        <a href="kegiatan_warga/{{ $kk->id_kegiatan }}"><img class="img-fluid top-radius-blog" src="{{asset('assets/images/blog/blog-6.jpg')}}" alt="" /></a>

@@ -44,8 +44,13 @@
                                 <a class="nav-link menu-title link-nav" href="{{ route('pengumuman.index') }}"><i data-feather="airplay"></i><span>Pengumuman</span></a>
                             </li>
                             <li>
+                                <a class="nav-link menu-title link-nav" href="{{ route('pengaduan.index') }}"><i data-feather="archive"></i><span>Pengaduan</span></a>
+                            </li>
+                            <li>
                                 <a class="nav-link menu-title link-nav" href="{{ route('iuran.index') }}"><i data-feather="dollar-sign"></i><span>Iuran</span></a>
                             </li>
+                            <li>
+                                <a class="nav-link menu-title link-nav" href="{{ route('iuran.index') }}"><i data-feather="user"></i><span>Profil saya</span></a>
                             </li>
                         </ul>
                     </div>

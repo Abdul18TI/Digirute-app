@@ -6,6 +6,13 @@
 @endpush
 
 @section('container')
+@component('components.r-w.breadcrumb')
+        @slot('breadcrumb_title')
+        <h3>Pengumuman</h3>
+        @endslot
+        {{-- <li class="breadcrumb-item">Pengaduan</li> --}}
+        <li class="breadcrumb-item active">Pengumuman</li>
+    @endcomponent
 {{-- <div class="page-body">
     <div class="container-fluid">
         <div class="page-header">
@@ -49,11 +56,14 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $p->judul_pengumuman }}</td>
                                         <td>{{ tanggal_indo($p->tgl_terbit) }}</td>
-                                        <td>@if ($p->status_pengumuman == 1)
-                                            <span class="badge badge-success">aktif</span>
-                                            @else
-                                            <span class="badge badge-warning">tidak aktif</span>
-                                            @endif</td>
+                                            <td><div class="media-body text-center icon-state">
+                                                <label class="switch">
+                                                  <input type="checkbox"
+                                                    {{ $p->status_pengumuman == 1 ? 'checked' : '' }}
+                                                    data-id="{{ $p->id_pengumuman}}"
+                                                    class="toggle-class"><span class="switch-state"></span>
+                                                </label>
+                                              </div></td>
                                         <td>
                                             <a class="btn btn-info btn-sm p-2" href="pengumuman/{{ $p->id_pengumuman }}"><span
                                                     class="fa fa-eye"></span></a>
@@ -89,5 +99,23 @@
 @push('scripts-custom')
   <script>
     $('#dataTable').DataTable();
+
+    $('.toggle-class').change(function() {
+      var status = $(this).prop('checked') == true ? 1 : 0;
+      var product_id = $(this).data('id');
+      // alert(status);
+      $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: "{{ route('pengumuman.update.status') }}",
+        data: {
+          'status_pengumuman': status,
+          'id_pengumuman': product_id
+        },
+        success: function(data) {
+          console.log(data.success)
+        }
+      });
+    });
   </script>
 @endpush

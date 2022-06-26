@@ -110,10 +110,29 @@ class PengumumanController extends Controller
     }
     public function show($id)
     {
-        $pengumuman = Pengumuman::find($id);
+        $pengumuman = Pengumuman::with('Kategori_pengumuman')->find($id);
+        // dd($pengumuman);
         return view('RW.Pengumuman.detail_pengumuman', [
             'pengumuman' => $pengumuman,
             'title' => 'detail-pengumuman'
         ]);
+    }
+
+    public function updateStatus(Request $request)
+    {
+        $pre_status = $request->status_pengumuman;
+
+        // var_dump($pre_status);
+        // echo "<br>/";
+        $status = $request->status_pengumuman == 0 ? 1 : 0;
+        $product = Pengumuman::find($request->id_pengumuman);
+        $product->status_pengumuman = $pre_status;
+        // var_dump($status);
+        // echo "<br>/";
+        // dd($product);
+        $product->save();
+        return response()->json(['success' => 'Status change successfully.', 'status' => $status, 'product' => $product]);
+        // return redirect()->route('rt.kegiatan.index')
+        //     ->with('error', 'Gagal menghapus data!');
     }
 }

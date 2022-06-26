@@ -13,7 +13,7 @@
                 <li><a class="text-dark" href="#!" onclick="javascript:toggleFullScreen()"><i
                             data-feather="maximize"></i></a></li>
                 <li class="onhover-dropdown p-0">
-                    <form action="{{ route('rt.logout') }}" class="m-0" method="POST">
+                    <form action="{{ route('rw.logout') }}" class="m-0" method="POST">
                         @csrf
                         <button class="btn btn-primary-light"><i data-feather="log-out"></i>Keluar</a></button>
                     </form>

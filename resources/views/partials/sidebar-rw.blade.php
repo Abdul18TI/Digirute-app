@@ -22,17 +22,22 @@
                         <a class="nav-link menu-title link-nav" href="{{ route('rw.dashboard.home') }}"><i data-feather="home"></i><span>Dashboard</span></a>
                     </li>
                     <li>
-                        <a class="nav-link menu-title link-nav" href="{{ route('warga.index') }}"><i data-feather="users"></i><span>Warga</span></a>
+                        <a class="nav-link menu-title link-nav" href="{{ route('rw.warga.index') }}"><i data-feather="users"></i><span>Warga</span></a>
                     </li>
                     <li>
-                        <a class="nav-link menu-title link-nav" href="{{ route('kegiatan.index') }}"><i data-feather="calendar"></i><span>Kegiatan</span></a>
+                        <a class="nav-link menu-title link-nav" href="{{ route('rw.kegiatan.index') }}"><i data-feather="calendar"></i><span>Kegiatan</span></a>
                     </li>
                     <li>
-                        <a class="nav-link menu-title link-nav" href="{{ route('pengumuman.index') }}"><i data-feather="airplay"></i><span>Pengumuman</span></a>
+                        <a class="nav-link menu-title link-nav" href="{{ route('rw.pengumuman.index') }}"><i data-feather="airplay"></i><span>Pengumuman</span></a>
                     </li>
                     <li>
-                        <a class="nav-link menu-title link-nav" href="{{ route('iuran.index') }}"><i data-feather="dollar-sign"></i><span>Iuran</span></a>
+                        <a class="nav-link menu-title link-nav" href="{{ route('rw.pengaduan.index') }}"><i data-feather="archive"></i><span>Pengaduan</span></a>
                     </li>
+                    <li>
+                        <a class="nav-link menu-title link-nav" href="{{ route('rw.iuran.index') }}"><i data-feather="dollar-sign"></i><span>Iuran</span></a>
+                    </li>
+                    <li>
+                        <a class="nav-link menu-title link-nav" href="{{ route('rw.iuran.index') }}"><i data-feather="user"></i><span>Profil saya</span></a>
                     </li>
                 </ul>
             </div>

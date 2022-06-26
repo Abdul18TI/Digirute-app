@@ -12,4 +12,9 @@ class KategoriPengumuman extends Model
     protected $table = "kategori_pengumuman";
     protected $primaryKey = 'id_kategori_pengumuman';
     protected $guarded = ['id_kategori_pengumuman'];
+
+    public function Kategori_pengumumans()
+    {
+        return $this->hasMany(Pengumuman::class);
+    }
 }

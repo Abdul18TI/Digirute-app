@@ -95,7 +95,7 @@ Route::get('/', function () {
 //    ->middleware('web')
 
 //RW
-Route::prefix('RW')->name('rw.')->group( function () {
+Route::prefix('RW')->name('rw.')->group(function () {
     Route::middleware(['guest:rw', 'PreventBackHistory'])->group(function () {
         Route::view('/', 'RW.login ')->name('login');
         Route::post('/', [LoginRWController::class, 'authenticate'])->name('check-login');
@@ -109,11 +109,14 @@ Route::prefix('RW')->name('rw.')->group( function () {
         route::resource('pengaduan', PengaduanRWController::class);
         route::resource('profile', ProfileRWController::class);
         route::post('pembayaran/store', [PembayaranRWController::class, 'store'])->name("pembayaran.store");
+        Route::post('logout', [LoginRWController::class, 'logout'])->name('logout');
     });
     // route::resource('pembayaran', PembayaranRWController::class)->except('store');
 });
 
 Route::get('/status/update', [KelolaRTController::class, 'updateStatus'])->name('rt.update.status');
+Route::get('/status/update', [KegiatanController::class, 'updateStatus'])->name('kegiatan.update.status');
+Route::get('/status/update', [PengumumanController::class, 'updateStatus'])->name('pengumuman.update.status');
 
 //Prosedur
 Route::get('/prosedure', function () {

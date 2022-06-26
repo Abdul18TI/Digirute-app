@@ -7,20 +7,24 @@
             <div class="col-sm-12">
                 <div class="blog-single">
                     <div class="blog-box blog-details">
-                        <div class="banner-wrraper"><img class="img-fluid w-100 bg-img-cover"
-                                src="{{asset('storage/'. $pengumuman->foto_pengumuman)}}" alt="blog-main" /></div>
+                        @if($pengumuman->foto_pengumuman == 'no-image.jpg')
+                        <div class="banner-wrraper"><img class="img-fluid w-100 bg-img-cover" src="{{asset('assets/images/blog/blog-2.jpg')}}" alt="blog-main" /></div>
+						@else
+                        <div class="banner-wrraper"><img class="img-fluid w-100 bg-img-cover" src="{{asset('storage/'. $pengumuman->foto_pengumuman)}}" alt="blog-main" /></div>
+                        @endif
                         <div class="card">
                             <div class="card-body">
                                 <div class="blog-details">
-                                    <h4>
-                                        {{ $pengumuman->judul_pengumuman }}.
-                                    </h4>
                                     <ul class="blog-social">
-                                        <li>{{ $pengumuman->kategori_pengumuman }}</li>
+                                        <li>{{ tanggal_indo($pengumuman->tgl_terbit) }}</li>
+                                        <li><i class="icofont icofont-user"></i>Kategori : <span>{{ $pengumuman->Kategori_pengumuman->nama_kategori_pengumuman }} </span></li>
                                     </ul>
+                                    <h4>
+                                        {{ $pengumuman->judul_pengumuman }}
+                                    </h4>
                                     <div class="single-blog-content-top">
                                         <article>
-                                            {!! $pengumuman->isi_pengumuman !!}.
+                                            {!! $pengumuman->isi_pengumuman !!}
                                         </article>
                                     </div>
                                 </div>

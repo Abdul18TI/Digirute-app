@@ -4,7 +4,7 @@
         <div class="col-lg-10">
           {{ $breadcrumb_title ?? '' }}
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Beranda</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('warga.home') }}">Beranda</a></li>
               {{ $slot ?? ''}}
           </ol>
         </div>

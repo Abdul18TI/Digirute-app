@@ -34,6 +34,9 @@
                             <a class="nav-link menu-title link-nav" href="{{ route('rw.pengumuman.index') }}"><i data-feather="airplay"></i><span>Pengumuman</span></a>
                         </li>
                         <li>
+                            <a class="nav-link menu-title link-nav" href="{{ route('rw.pengaduan.index') }}"><i data-feather="archive"></i><span>Pengaduan</span></a>
+                        </li>
+                        <li>
                             <a class="nav-link menu-title link-nav" href="{{ route('rw.iuran.index') }}"><i data-feather="dollar-sign"></i><span>Iuran</span></a>
                         </li>
                         <li>

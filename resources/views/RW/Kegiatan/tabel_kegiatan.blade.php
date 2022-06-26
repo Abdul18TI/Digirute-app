@@ -44,12 +44,15 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $p->nama_kegiatan }}</td>
                                         <td>{{ tanggal_indo($p->tgl_mulai_kegiatan) }}</td>
-                                        <td>@if ($p->status_kegiatan == 1)
-                                            <span class="badge badge-success">aktif</span>
-                                            @else
-                                            <span class="badge badge-warning">tidak aktif</span>
-                                            @endif</td>
-                                        <td>
+                                            <td><div class="media-body text-center icon-state">
+                                                <label class="switch">
+                                                  <input type="checkbox"
+                                                    {{ $p->status_kegiatan == 1 ? 'checked' : '' }}
+                                                    data-id="{{ $p->id_kegiatan}}"
+                                                    class="toggle-class"><span class="switch-state"></span>
+                                                </label>
+                                              </div></td>
+                                              <td>
                                             <a class="btn btn-info btn-sm p-2" href="kegiatan/{{ $p->id_kegiatan }}"><span
                                                     class="fa fa-eye"></span></a>
                                             <a class="btn btn-secondary btn-sm p-2" href="kegiatan/{{ $p->id_kegiatan }}/edit"><span
@@ -73,4 +76,23 @@
         </div>
     </div>
 </div>
+<script>
+    $('.toggle-class').change(function() {
+      var status = $(this).prop('checked') == true ? 1 : 0;
+      var product_id = $(this).data('id');
+      // alert(status);
+      $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: "{{ route('kegiatan.update.status') }}",
+        data: {
+          'status_kegiatan': status,
+          'id_kegiatan': product_id
+        },
+        success: function(data) {
+          console.log(data.success)
+        }
+      });
+    });
+  </script>
 @endsection
