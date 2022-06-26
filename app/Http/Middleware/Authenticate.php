@@ -16,9 +16,9 @@ class Authenticate extends Middleware
     {
         if (!$request->expectsJson()) {
             //jika name dari route tidak mengandung "rt"
-            if ($request->routeIs('rt.*')) {
+            if ($request->routeIs('rt.*') ) {
                 return route('rt.login');
-            //jika name dari route tidak mengandung "rw"
+            //jika name dari route tidak mengandung "r"
             }else if($request->routeIs('rw.*')){
                 return route('rw.login');
             }else{
