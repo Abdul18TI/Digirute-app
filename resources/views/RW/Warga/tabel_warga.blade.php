@@ -24,11 +24,6 @@
                             <div class="col-9">
                                 <h5>Data Warga</h5>
                             </div>
-                            <div class="col-3">
-                                <div class="bookmark">
-                                    <a class="btn btn-primary btn-lg" href="{{ route('rt.warga.create') }}" data-bs-original-title="" title=""> <span class="fa fa-plus-square"></span> Tambah Data</a>
-                                </div>
-                            </div>
                         </div>
 
                     </div>

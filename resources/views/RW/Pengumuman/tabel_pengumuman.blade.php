@@ -32,7 +32,7 @@
                             <div class="col-3">
                                 <div class="bookmark">
 
-                                    <a class="btn btn-primary btn-lg" href="{{ route('pengumuman.create') }}" data-bs-original-title="" title=""> <span class="fa fa-plus-square"></span> Tambah Data</a>
+                                    <a class="btn btn-primary btn-lg" href="{{ route('rw.pengumuman.create') }}" data-bs-original-title="" title=""> <span class="fa fa-plus-square"></span> Tambah Data</a>
                                 </div>
                             </div>
                         </div>
@@ -65,11 +65,11 @@
                                                 </label>
                                               </div></td>
                                         <td>
-                                            <a class="btn btn-info btn-sm p-2" href="pengumuman/{{ $p->id_pengumuman }}"><span
+                                            <a class="btn btn-info btn-sm p-2" href="RW/pengumuman/{{ $p->id_pengumuman }}"><span
                                                     class="fa fa-eye"></span></a>
-                                            <a class="btn btn-secondary btn-sm p-2" href="pengumuman/{{ $p->id_pengumuman }}/edit"><span
+                                            <a class="btn btn-secondary btn-sm p-2" href="RW/pengumuman/{{ $p->id_pengumuman }}/edit"><span
                                                     class="fa fa-edit"></span></a>
-                                            <form method="POST" action="{{ route('pengumuman.destroy', $p->id_pengumuman)}}" class="d-inline">
+                                            <form method="POST" action="{{ route('rw.pengumuman.destroy', $p->id_pengumuman)}}" class="d-inline">
                                                 @csrf
                                                <input name="_method" type="hidden" value="DELETE">
                                                <button type="submit" class="btn btn-danger btn-sm p-2 border-0 sweet" data-toggle="tooltip" title='Delete'><span
@@ -107,7 +107,7 @@
       $.ajax({
         type: "GET",
         dataType: "json",
-        url: "{{ route('pengumuman.update.status') }}",
+        url: "{{ route('rw.pengumuman.update.status') }}",
         data: {
           'status_pengumuman': status,
           'id_pengumuman': product_id

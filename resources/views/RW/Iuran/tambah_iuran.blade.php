@@ -17,7 +17,7 @@
                     <div class="card-header pb-0">
                         <h5>Form tambah iuran</h5>
                     </div>
-                    <form class="form theme-form" name="f1" method="POST" action="{{ route('iuran.store') }}">
+                    <form class="form theme-form" name="f1" method="POST" action="{{ route('rw.iuran.store') }}">
                         @csrf
                         <div class="card-body">
                             <div class="row">

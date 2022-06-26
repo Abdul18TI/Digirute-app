@@ -20,7 +20,7 @@
                             <div class="col-3">
                                 <div class="bookmark">
 
-                                    <a class="btn btn-primary btn-lg" href="{{ route('kegiatan.create') }}" data-bs-original-title="" title=""> <span class="fa fa-plus-square"></span> Tambah Data</a>
+                                    <a class="btn btn-primary btn-lg" href="{{ route('rw.kegiatan.create') }}" data-bs-original-title="" title=""> <span class="fa fa-plus-square"></span> Tambah Data</a>
                                 </div>
                             </div>
                         </div>
@@ -57,7 +57,7 @@
                                                     class="fa fa-eye"></span></a>
                                             <a class="btn btn-secondary btn-sm p-2" href="kegiatan/{{ $p->id_kegiatan }}/edit"><span
                                                     class="fa fa-edit"></span></a>
-                                            <form method="POST" action="{{ route('kegiatan.destroy', $p->id_kegiatan)}}" class="d-inline">
+                                            <form method="POST" action="{{ route('rw.kegiatan.destroy', $p->id_kegiatan)}}" class="d-inline">
                                                 @csrf
                                                <input name="_method" type="hidden" value="DELETE">
                                                <button type="submit" class="btn btn-danger btn-sm p-2 border-0 sweet" data-toggle="tooltip" title='Delete'><span
@@ -84,7 +84,7 @@
       $.ajax({
         type: "GET",
         dataType: "json",
-        url: "{{ route('kegiatan.update.status') }}",
+        url: "{{ route('rw.kegiatan.update.status') }}",
         data: {
           'status_kegiatan': status,
           'id_kegiatan': product_id

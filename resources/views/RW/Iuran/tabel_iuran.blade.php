@@ -20,7 +20,7 @@
                             <div class="col-3">
                                 <div class="bookmark">
 
-                                    <a class="btn btn-primary btn-lg" href="{{ route('iuran.create') }}" data-bs-original-title="" title=""> <span class="fa fa-plus-square"></span> Tambah Data</a>
+                                    <a class="btn btn-primary btn-lg" href="{{ route('rw.iuran.create') }}" data-bs-original-title="" title=""> <span class="fa fa-plus-square"></span> Tambah Data</a>
                                 </div>
                             </div>
                         </div>
@@ -52,11 +52,11 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <a class="btn btn-info btn-sm p-2" href="{{ route('iuran.show',$i->id_iuran ) }}"><span
+                                            <a class="btn btn-info btn-sm p-2" href="{{ route('rw.iuran.show',$i->id_iuran ) }}"><span
                                                     class="fa fa-eye"></span></a>
                                             <a class="btn btn-secondary btn-sm p-2" href="iuran/{{ $i->id_iuran }}/edit"><span
                                                     class="fa fa-edit"></span></a>
-                                            <form method="POST" action="{{ route('iuran.destroy', $i->id_iuran)}}" class="d-inline">
+                                            <form method="POST" action="{{ route('rw.iuran.destroy', $i->id_iuran)}}" class="d-inline">
                                                 @csrf
                                                <input name="_method" type="hidden" value="DELETE">
                                                <button type="submit" class="btn btn-danger btn-sm p-2 border-0 sweet" data-toggle="tooltip" title='Delete'><span

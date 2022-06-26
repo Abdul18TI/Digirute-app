@@ -55,7 +55,7 @@
                                             @csrf
                                             <input id="name_aja" class="get_value" value="{{ $iuran->target_iuran }}" type="text" />
                                             <input id="{{ $loop->iteration }}" class="get_value" value="{{ $iuran->target_iuran }}" type="checkbox" />
-                                            <label for="{{ $loop->iteration }}">&nbsp;</label>{{ route('pembayaran.store') }}
+                                            <label for="{{ $loop->iteration }}">&nbsp;</label>{{ route('rw.pembayaran.store') }}
                                         </div></td>
                                     </tr>
                                     @endforeach
@@ -63,7 +63,7 @@
                                 </tbody>
                             </table>
                             <h4 id="result"></h4>
-                        <form action="{{ route('pembayaran.store') }}" method="post">
+                        <form action="{{ route('rw.pembayaran.store') }}" method="post">
                             @csrf
                             <input type="text" name="coba" value="coba">
                             <button type="submit" id="submit">Simpan</button>
@@ -89,7 +89,7 @@
                 console.log(insert);
                 $.ajax({
                 method: "POST",
-                url: `{{ route('pembayaran.store') }}`,
+                url: `{{ route('rw.pembayaran.store') }}`,
                 data: { somefield: "Some field value", _token: '{{csrf_token()}}' },
                 success: function (data) {
                     console.log(data);

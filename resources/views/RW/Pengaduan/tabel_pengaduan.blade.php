@@ -82,7 +82,7 @@
                                                     @endif
                                                 </td>
                                         <td>
-                                            <a href="" onclick="detail({{ $dt->id_pengaduan }}, '{{ route('pengaduan.show',$dt->id_pengaduan)}}')"
+                                            <a href="" onclick="detail({{ $dt->id_pengaduan }}, '{{ route('rw.pengaduan.show',$dt->id_pengaduan)}}')"
                                                 class="btn btn-success btn-sm p-2" role="button" data-bs-toggle="modal"
                                                 data-original-title="test" data-bs-target="#exampleModal"><span
                                                     class="fa fa-list"></span></a>

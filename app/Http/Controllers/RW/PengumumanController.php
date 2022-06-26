@@ -51,10 +51,10 @@ class PengumumanController extends Controller
         try {
             Pengumuman::create($validatedData);
 
-            return redirect()->route('pengumuman.index')
+            return redirect()->route('rw.pengumuman.index')
                 ->with('success', 'Data berhasil ditambah!');
         } catch (\Exception $e) {
-            return redirect()->route('pengumuman.index')
+            return redirect()->route('rw.pengumuman.index')
                 ->with('error', 'Gagal menambahkan data!');
         }
     }
@@ -85,7 +85,7 @@ class PengumumanController extends Controller
 
         Pengumuman::where('id_pengumuman', $pengumuman->id_pengumuman)
             ->update($validatedData);
-        return redirect()->route('pengumuman.index')->with('success', 'Data berhasil diubah!');
+        return redirect()->route('rw.pengumuman.index')->with('success', 'Data berhasil diubah!');
     }
 
     public function destroy(Pengumuman $pengumuman)
@@ -94,17 +94,17 @@ class PengumumanController extends Controller
         // if ($pengumuman->foto_pengumuman) {
         //     Storage::delete($pengumuman->foto_pengumuman);
         // }
-        // return redirect()->route('pengumuman.index');
+        // return redirect()->route('rw.pengumuman.index');
 
         try {
             $pengumuman->delete();
             if ($pengumuman->foto_pengumuman) {
                 Storage::delete($pengumuman->foto_pengumuman);
             }
-            return redirect()->route('pengumuman.index')
+            return redirect()->route('rw.pengumuman.index')
                 ->with('success', 'data berhasil dihapus!');
         } catch (\Exception $e) {
-            return redirect()->route('pengumuman.index')
+            return redirect()->route('rw.pengumuman.index')
                 ->with('error', 'Gagal menghapus data!');
         }
     }

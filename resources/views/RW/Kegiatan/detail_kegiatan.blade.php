@@ -7,8 +7,11 @@
             <div class="col-sm-12">
                 <div class="blog-single">
                     <div class="blog-box blog-details">
-                        <div class="banner-wrraper"><img class="img-fluid w-100 bg-img-cover"
-                                src="{{asset('storage/'. $kegiatan->foto_kegiatan)}}" alt="blog-main" /></div>
+                        <@if($kegiatan->foto_kegiatan == 'no-image.jpg')
+                        <div class="banner-wrraper"><img class="img-fluid w-100 bg-img-cover" src="{{asset('assets/images/blog/blog-2.jpg')}}" alt="blog-main" /></div>
+						@else
+                        <div class="banner-wrraper"><img class="img-fluid w-100 bg-img-cover" src="{{asset('storage/'. $kegiatan->foto_kegiatan)}}" alt="blog-main" /></div>
+                        @endif
                         <div class="card">
                             <div class="card-body">
                                 <div class="blog-details">

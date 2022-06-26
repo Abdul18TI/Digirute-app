@@ -17,7 +17,7 @@
                     <div class="card-header pb-0">
                         <h5>Form tambah Kegiatan</h5>
                     </div>
-                    <form class="form theme-form" method="POST" enctype="multipart/form-data" action="{{ route('kegiatan.store')}}">
+                    <form class="form theme-form" method="POST" enctype="multipart/form-data" action="{{ route('rw.kegiatan.store')}}">
                         @csrf
                         <div class="card-body">
                             <div class="row">

@@ -7,6 +7,7 @@ use App\Models\Rw;
 use App\Models\Warga;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 
 class KelolaRTController extends Controller
 {
@@ -43,7 +44,7 @@ class KelolaRTController extends Controller
             'tgl_awal_jabatan_rt' => 'required',
             'tgl_akhir_jabatan_rt' => 'required',
         ]);
-
+        $validatedData['password'] = Hash::make($request->password);
         $validatedData['status_rt'] = 0;
         $validatedData['ketua_rt'] = "tes";
 
@@ -81,7 +82,7 @@ class KelolaRTController extends Controller
             'tgl_awal_jabatan_rt' => 'required',
             'tgl_akhir_jabatan_rt' => 'required',
         ]);
-
+        $validatedData['password'] = Hash::make($request->password);
         rt::where('id_rt', $rt->id_rt)
             ->update($validatedData);
         return redirect()->route('rt.index')->with('success', 'Data berhasil diubah!');

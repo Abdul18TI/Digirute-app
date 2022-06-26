@@ -52,10 +52,10 @@ class KegiatanController extends Controller
         try {
             Kegiatan::create($validatedData);
 
-            return redirect()->route('kegiatan.index')
+            return redirect()->route('rw.kegiatan.index')
                 ->with('success', 'Data berhasil ditambah!');
         } catch (\Exception $e) {
-            return redirect()->route('kegiatan.index')
+            return redirect()->route('rw.kegiatan.index')
                 ->with('error', 'Gagal menambahkan data!');
         }
     }
@@ -87,7 +87,7 @@ class KegiatanController extends Controller
 
         Kegiatan::where('id_kegiatan', $kegiatan->id_kegiatan)
             ->update($validatedData);
-        return redirect()->route('kegiatan.index')->with('success', 'Data berhasil diubah!');
+        return redirect()->route('rw.kegiatan.index')->with('success', 'Data berhasil diubah!');
     }
 
     public function destroy(kegiatan $kegiatan)
@@ -96,17 +96,17 @@ class KegiatanController extends Controller
         // if ($kegiatan->foto_kegiatan) {
         //     Storage::delete($kegiatan->foto_kegiatan);
         // }
-        // return redirect()->route('kegiatan.index');
+        // return redirect()->route('rw.kegiatan.index');
 
         try {
             $kegiatan->delete();
             if ($kegiatan->foto_kegiatan) {
                 Storage::delete($kegiatan->foto_kegiatan);
             }
-            return redirect()->route('kegiatan.index')
+            return redirect()->route('rw.kegiatan.index')
                 ->with('success', 'data berhasil dihapus!');
         } catch (\Exception $e) {
-            return redirect()->route('kegiatan.index')
+            return redirect()->route('rw.kegiatan.index')
                 ->with('error', 'Gagal menghapus data!');
         }
     }
@@ -119,7 +119,7 @@ class KegiatanController extends Controller
                 'title' => 'detail-kegiatan'
             ]);
         } catch (\Exception $e) {
-            return redirect()->route('kegiatan.index')
+            return redirect()->route('rw.kegiatan.index')
                 ->with('error', 'Gagal menghapus data!');
         }
     }

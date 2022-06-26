@@ -48,10 +48,10 @@ class IuranController extends Controller
         try {
             Iuran::create($validatedData);
 
-            return redirect()->route('iuran.index')
+            return redirect()->route('rw.iuran.index')
                 ->with('success', 'Data berhasil ditambah!');
         } catch (\Exception $e) {
-            return redirect()->route('iuran.index')
+            return redirect()->route('rw.iuran.index')
                 ->with('error', 'Gagal menambahkan data!');
         }
     }
@@ -83,7 +83,7 @@ class IuranController extends Controller
         iuran::where('id_iuran', $iuran->id_iuran)
             ->update($validatedData);
 
-        return redirect()->route('iuran.index')->with('success', 'Data berhasil diubah!');
+        return redirect()->route('rw.iuran.index')->with('success', 'Data berhasil diubah!');
     }
 
     public function destroy(Iuran $iuran)
@@ -91,10 +91,10 @@ class IuranController extends Controller
 
         try {
             $iuran->delete();
-            return redirect()->route('iuran.index')
+            return redirect()->route('rw.iuran.index')
                 ->with('success', 'data berhasil dihapus!');
         } catch (\Exception $e) {
-            return redirect()->route('iuran.index')
+            return redirect()->route('rw.iuran.index')
                 ->with('error', 'Gagal menghapus data!');
         }
     }

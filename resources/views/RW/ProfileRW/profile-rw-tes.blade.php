@@ -13,7 +13,7 @@
 	                    <div class="userpro-box">
 	                        <div class="img-wrraper">
 	                            <div class="avatar"><img class="img-fluid" alt="" src="{{asset('assets/images/user/7.jpg')}}" /></div>
-	                            <a class="icon-wrapper" href="profile/{{ $rw->identitas_rw->id_warga }}/edit"><i class="icofont icofont-pencil-alt-5"></i></a>
+	                            <a class="icon-wrapper" href="{{route('rw.profile.edit',$rw->identitas_rw->id_warga)}}"><i class="icofont icofont-pencil-alt-5"></i></a>
 	                        </div>
 	                        <div class="user-designation">
 	                            <div class="title">
@@ -76,6 +76,24 @@
 	                                                </div>
 	                                            </li>
 	                                        </ul>
+	                                    </div>
+	                                </div>
+									<div class="card-header">
+	                                    <h5 class="p-0">
+	                                        <button class="btn btn-link ps-0" data-bs-toggle="collapse" data-bs-target="#collapseicon3" aria-expanded="true" aria-controls="collapseicon3">Ubah Username</button>
+	                                    </h5>
+	                                </div>
+	                                <div class="collapse" id="collapseicon3" aria-labelledby="collapseicon3" data-parent="#accordion">
+	                                    <div class="card-body post-about">
+	                                    </div>
+	                                </div>
+									<div class="card-header">
+	                                    <h5 class="p-0">
+	                                        <button class="btn btn-link ps-0" data-bs-toggle="collapse" data-bs-target="#collapseicon4" aria-expanded="true" aria-controls="collapseicon4">Ubah Password</button>
+	                                    </h5>
+	                                </div>
+	                                <div class="collapse" id="collapseicon4" aria-labelledby="collapseicon4" data-parent="#accordion">
+	                                    <div class="card-body post-about">
 	                                    </div>
 	                                </div>
 	                            </div>
