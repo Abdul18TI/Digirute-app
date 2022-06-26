@@ -21,6 +21,10 @@ return [
         'driver' => 'eloquent',
         'model' => App\Models\rt::class,
     ],
+    'rt' => [
+        'driver' => 'eloquent',
+        'model' => App\Models\rw::class,
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -47,6 +51,10 @@ return [
         'rt' => [
             'driver' => 'session',
             'provider' => 'rts',
+        ],
+        'rw' => [
+            'driver' => 'session',
+            'provider' => 'rws',
         ],
     ],
 
@@ -75,6 +83,10 @@ return [
         'rts' => [
             'driver' => 'eloquent',
             'model' => App\Models\rt::class,
+        ],
+        'rws' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\rw::class,
         ],
 
 
@@ -109,6 +121,10 @@ return [
         'rts' => [
             'driver' => 'eloquent',
             'model' => App\Models\rt::class,
+        ],
+        'rws' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\rw::class,
         ],
     ],
 

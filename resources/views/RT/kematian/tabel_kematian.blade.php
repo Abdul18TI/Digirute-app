@@ -16,7 +16,7 @@
       <h3>Warga Meninggal</h3>
     @endslot
     {{-- <li class="breadcrumb-item">Pengaduan</li> --}}
-    <li class="breadcrumb-item active">Warga</li>
+    <li class="breadcrumb-item">Warga</li>
     <li class="breadcrumb-item active">Warga Meninggal</li>
   @endcomponent
 
