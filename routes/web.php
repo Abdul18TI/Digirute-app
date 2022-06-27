@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\JenisIuranController;
 use App\Http\Controllers\Admin\KelolaRTRWController;
 use App\Http\Controllers\Admin\KategoriKegiatanController;
 use App\Http\Controllers\Admin\KategoriPengaduanController;
+use App\Http\Controllers\Admin\AgamaController;
 use App\Http\Controllers\Admin\KategoriPengumumanController;
 
 
@@ -142,6 +143,7 @@ Route::group(['prefix' => 'Admin'], function () {
     route::resource('jenis_iuran', JenisIuranController::class);
     route::resource('kategori_kegiatan', KategoriKegiatanController::class);
     route::resource('kategori_pengaduan', KategoriPengaduanController::class);
+    route::resource('agama', AgamaController::class);
     route::resource('kelola_rtrw', KelolaRTRWController::class);
     route::resource('rw', KelolaRWController::class);
     route::resource('rt', KelolaRTController::class);
