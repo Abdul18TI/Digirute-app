@@ -37,7 +37,7 @@
                         <a class="nav-link menu-title link-nav" href="{{ route('rw.iuran.index') }}"><i data-feather="dollar-sign"></i><span>Iuran</span></a>
                     </li>
                     <li>
-                        <a class="nav-link menu-title link-nav" href="{{ route('rw.iuran.index') }}"><i data-feather="user"></i><span>Profil saya</span></a>
+                        <a class="nav-link menu-title link-nav" href="{{ route('rw.profile.show',auth()->user()->id_rw) }}"><i data-feather="user"></i><span>Profil saya</span></a>
                     </li>
                 </ul>
             </div>

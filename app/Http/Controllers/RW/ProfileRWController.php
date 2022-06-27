@@ -29,6 +29,7 @@ class ProfileRWController extends Controller
     public function show($id)
     {
         $rw = rw::with('identitas_rw')->where('id_rw', $id)->first();
+        // dd($rw);
         $keluarga = Warga::where('no_kk', $rw->identitas_rw->no_kk)->whereNotIn('nik', [$rw->identitas_rw->nik])->get();
 
         return view('RW.ProfileRW.profile-rw-tes', [
@@ -55,6 +56,26 @@ class ProfileRWController extends Controller
 
     public function update(Request $request, Warga $warga)
     {
+        // dd($request->id);
+        if ($request->username) {
+            $validatedData = $request->validate([
+                'username' => 'required|unique:rws,username'
+            ]);
+            rw::where('id_rw', $request->id)
+                ->update($validatedData);
+            return redirect()->route('rw.profile.index')->with('success', 'Username berhasil diubah!');
+        }
+
+        if ($request->password) {
+            $validatedData = $request->validate([
+                'password' => 'required'
+            ]);
+            $validatedData['password'] = Hash::make($request->password);
+            rw::where('id_rw', $request->id)
+                ->update($validatedData);
+            return redirect()->route('rw.profile.index')->with('success', 'Password berhasil diubah!');
+        }
+
         $validatedData = $request->except(['_token', '_method']);
         $validatedData = $request->validate([
             'no_kk' => 'required|numeric',
