@@ -64,7 +64,7 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $dt->judul_pengaduan }}</td>
-                                            <td>{{ $dt->kategori_pengaduan }}</td>
+                                            <td>{{ $dt->kategori_pengaduans->nama_kategori_pengaduan }}</td>
                                             <td>{{ Str::limit($dt->deskripsi_pengaduan, 100, '...') }}</td>
                                             <td>{{ $dt->created_at->isoFormat('ddd, D MMM Y') }}</td>
                                             <td>
