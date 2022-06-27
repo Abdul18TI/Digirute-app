@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\JenisIuranController;
 use App\Http\Controllers\Admin\KelolaRTRWController;
 use App\Http\Controllers\Admin\KategoriKegiatanController;
 use App\Http\Controllers\Admin\KategoriPengaduanController;
+use App\Http\Controllers\Admin\AgamaController;
 use App\Http\Controllers\Admin\KategoriPengumumanController;
 
 
@@ -104,26 +105,27 @@ Route::prefix('RW')->name('rw.')->group(function () {
         Route::get('dashboard', [RWController::class, 'home_rw'])->name('dashboard.home');
         route::resource('pengumuman', PengumumanController::class);
         route::resource('iuran', IuranController::class);
-        route::resource('kegiatan', kegiatanController::class);
+        Route::get('/kegiatan/status/update', [KegiatanController::class, 'updateStatus'])->name('kegiatan.update.status');
+        route::resource('kegiatan', KegiatanController::class);
         route::resource('warga', WargaRWController::class);
         route::resource('pengaduan', PengaduanRWController::class);
         route::resource('profile', ProfileRWController::class);
         route::post('pembayaran/store', [PembayaranRWController::class, 'store'])->name("pembayaran.store");
         Route::post('logout', [LoginRWController::class, 'logout'])->name('logout');
+        Route::get('/pengumuman/status/update', [PengumumanController::class, 'updateStatus'])->name('pengumuman.update.status');
     });
     // route::resource('pembayaran', PembayaranRWController::class)->except('store');
 });
 
-Route::get('/status/update', [KelolaRTController::class, 'updateStatus'])->name('rt.update.status');
-Route::get('/status/update', [KegiatanController::class, 'updateStatus'])->name('kegiatan.update.status');
-Route::get('/status/update', [PengumumanController::class, 'updateStatus'])->name('pengumuman.update.status');
+// Route::get('/status/update', [KelolaRTController::class, 'updateStatus'])->name('rt.update.status');
 
-//Prosedur
-Route::get('/prosedure', function () {
-    return view('prosedure', [
-        "title" => "prosedure"
-    ]);
-});
+
+// //Prosedur
+// Route::get('/prosedure', function () {
+//     return view('prosedure', [
+//         "title" => "prosedure"
+//     ]);
+// });
 
 //Kegiatan warga
 // Route::get('/kegiatan-warga', function () {
@@ -132,7 +134,7 @@ Route::get('/prosedure', function () {
 //     ]);
 // });
 
-Route::get('tabledit/action', 'IuranController@action')->name('tabledit.action');
+// Route::get('tabledit/action', 'IuranController@action')->name('tabledit.action');
 
 //Admin
 Route::group(['prefix' => 'Admin'], function () {
@@ -141,31 +143,32 @@ Route::group(['prefix' => 'Admin'], function () {
     route::resource('jenis_iuran', JenisIuranController::class);
     route::resource('kategori_kegiatan', KategoriKegiatanController::class);
     route::resource('kategori_pengaduan', KategoriPengaduanController::class);
+    route::resource('agama', AgamaController::class);
     route::resource('kelola_rtrw', KelolaRTRWController::class);
     route::resource('rw', KelolaRWController::class);
     route::resource('rt', KelolaRTController::class);
 });
 
-//route kegiatan
-Route::get('/view-kegiatan', function () {
-    return view('RW.Kegiatan.table_kegiatan', [
-        'title' => 'table-kegiatan'
-    ]);
-});
+// //route kegiatan
+// Route::get('/view-kegiatan', function () {
+//     return view('RW.Kegiatan.table_kegiatan', [
+//         'title' => 'table-kegiatan'
+//     ]);
+// });
 
-//route kelahiran
-Route::get('/view-kelahiran', function () {
-    return view('RT.Kelahiran.kelahiran-rt', [
-        'title' => 'table-kelahiran'
-    ]);
-});
-Route::get('/create-kelahiran', function () {
-    return view('RT.kelahiran.kelahiran-tambah-rt', [
-        'title' => 'table-kelahiran'
-    ]);
-});
-Route::get('/create-kematian', function () {
-    return view('RT.kematian.kematian-tambah-rt', [
-        'title' => 'table-kematian'
-    ]);
-});
+// //route kelahiran
+// Route::get('/view-kelahiran', function () {
+//     return view('RT.Kelahiran.kelahiran-rt', [
+//         'title' => 'table-kelahiran'
+//     ]);
+// });
+// Route::get('/create-kelahiran', function () {
+//     return view('RT.kelahiran.kelahiran-tambah-rt', [
+//         'title' => 'table-kelahiran'
+//     ]);
+// });
+// Route::get('/create-kematian', function () {
+//     return view('RT.kematian.kematian-tambah-rt', [
+//         'title' => 'table-kematian'
+//     ]);
+// });

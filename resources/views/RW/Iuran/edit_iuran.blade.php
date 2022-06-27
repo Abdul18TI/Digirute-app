@@ -1,7 +1,24 @@
-@extends('layouts.main')
+@extends('layouts.main-rw')
+
+@push('css')
+<link rel="stylesheet" type="text/css" href={{ asset("assets/css/trix.css")}}>
+<link rel="stylesheet" type="text/css" href={{ asset("assets/css/trix.css")}}>
+    <script type="text/javascript" src={{ asset("assets/js/trix.js")}}></script>
+    <style>
+        trix-toolbar [data-trix-button-group="file-tools"] {
+            display: none;
+        }
+    </style>
+@endpush
 
 @section('container')
-<div class="page-body">
+@component('components.r-w.breadcrumb')
+        @slot('breadcrumb_title')
+        <h3>Iuran</h3>
+        @endslot
+        <li class="breadcrumb-item"><a href="{{ route('rw.iuran.index') }}">Iuran</a></li>
+        <li class="breadcrumb-item active">Edit iuran</li>
+    @endcomponent
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
@@ -116,5 +133,48 @@
             </div>
         </div>
     </div>
-</div>
-@endsection
+    <script>
+        function previewImage(){
+            const image = document.querySelector('#image');
+            const imgPreview = document.querySelector('.img-preview');
+    
+            imgPreview.style.display = 'block';
+            
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.files[0]);
+    
+            oFReader.onload = function(oFREvent) {
+                imgPreview.src = oFREvent.target.result;
+            }
+        }
+    
+        document.addEventListener('trix-file-accept', function(e) {
+            e.preventDefault();
+        })
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#dataTable').DataTable()
+        })
+    
+        function enable_text(status) {
+            if(status){
+                document.f1.target_iuran.disabled = false;
+            }else{
+                document.f1.target_iuran.disabled = true;
+                document.f1.target_iuran.value = "";
+            }
+        }
+        function enable_text2(status) {
+            if(status){
+                document.f1.jumlah_iuran.disabled = false;
+            }else{
+                document.f1.jumlah_iuran.disabled = true;
+                document.f1.jumlah_iuran.value = "";
+              }
+        }
+    </script>
+    @endsection
+    
+    <script type="text/javascript" src={{ asset("assets/js/trix.js")}}></script>
+

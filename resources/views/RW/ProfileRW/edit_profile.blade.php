@@ -1,7 +1,13 @@
-@extends('layouts.main')
+@extends('layouts.main-rw')
 
 @section('container')
-<div class="page-body">
+@component('components.r-w.breadcrumb')
+        @slot('breadcrumb_title')
+        <h3>Profile</h3>
+        @endslot
+        <li class="breadcrumb-item"><a href="{{ route('rw.profile.index') }}">Profile-RW</a></li>
+        <li class="breadcrumb-item active">Profile</li>
+    @endcomponent
   <!-- Form Tambah Warga -->
     <div class="container-fluid">
         <div class="row">
@@ -32,18 +38,6 @@
                                         </div>
                                         <div class="col-sm-4">
                                             <input class="form-control " type="text" id="rw" name="rw" readonly placeholder="RT" value="2">
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 row">
-                                        <label class="col-sm-3 col-form-label">username <span class="text-danger">*</span></label>
-                                        <div class="col-sm-9">
-                                            <input class="form-control" type="text" id="username" name="username" value="{{ old('username',$warga->identitas_rw->username) }}"placeholder="Username">
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 row">
-                                        <label class="col-sm-3 col-form-label">Password <span class="text-danger">*</span></label>
-                                        <div class="col-sm-9">
-                                            <input class="form-control" type="password" id="password" name="password" value="{{ old('password',$warga->identitas_rw->password) }}"placeholder="Password">
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
@@ -366,7 +360,6 @@
             </div>
         </div>
     </div>
-</div>
 @endsection
 <script>
     function previewImage(){

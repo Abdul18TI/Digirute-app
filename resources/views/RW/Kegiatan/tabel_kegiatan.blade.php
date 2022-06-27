@@ -1,13 +1,18 @@
-@extends('layouts.main')
+@extends('layouts.main-rw')
+
+@push('css')
+  <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/datatables.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/custom.css') }}">
+@endpush
 
 @section('container')
-<div class="page-body">
-    <div class="container-fluid">
-        <div class="page-header">
-            <div class="row">
-            </div>
-        </div>
-    </div>
+@component('components.r-w.breadcrumb')
+        @slot('breadcrumb_title')
+        <h3>Kegiatan</h3>
+        @endslot
+        {{-- <li class="breadcrumb-item">Pengaduan</li> --}}
+        <li class="breadcrumb-item active">Kegiatan</li>
+    @endcomponent
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
@@ -20,7 +25,7 @@
                             <div class="col-3">
                                 <div class="bookmark">
 
-                                    <a class="btn btn-primary btn-lg" href="{{ route('kegiatan.create') }}" data-bs-original-title="" title=""> <span class="fa fa-plus-square"></span> Tambah Data</a>
+                                    <a class="btn btn-primary btn-lg" href="{{ route('rw.kegiatan.create') }}" data-bs-original-title="" title=""> <span class="fa fa-plus-square"></span> Tambah Data</a>
                                 </div>
                             </div>
                         </div>
@@ -57,7 +62,7 @@
                                                     class="fa fa-eye"></span></a>
                                             <a class="btn btn-secondary btn-sm p-2" href="kegiatan/{{ $p->id_kegiatan }}/edit"><span
                                                     class="fa fa-edit"></span></a>
-                                            <form method="POST" action="{{ route('kegiatan.destroy', $p->id_kegiatan)}}" class="d-inline">
+                                            <form method="POST" action="{{ route('rw.kegiatan.destroy', $p->id_kegiatan)}}" class="d-inline">
                                                 @csrf
                                                <input name="_method" type="hidden" value="DELETE">
                                                <button type="submit" class="btn btn-danger btn-sm p-2 border-0 sweet" data-toggle="tooltip" title='Delete'><span
@@ -75,8 +80,18 @@
             </div>
         </div>
     </div>
-</div>
+@endsection
+
+@push('scripts')
+  <script src="{{ asset('assets/js/datatable/datatables/jquery.dataTables.min.js') }}"></script>
+  <script src="{{ asset('assets/js/datatable/datatables/datatable.custom.js') }}"></script>
+  <script src="{{ asset('assets/js/tooltip-init.js') }}"></script>
+@endpush
+
+@push('scripts-custom')
 <script>
+    $('#dataTable').DataTable();
+
     $('.toggle-class').change(function() {
       var status = $(this).prop('checked') == true ? 1 : 0;
       var product_id = $(this).data('id');
@@ -84,7 +99,7 @@
       $.ajax({
         type: "GET",
         dataType: "json",
-        url: "{{ route('kegiatan.update.status') }}",
+        url: "{{ route('rw.kegiatan.update.status') }}",
         data: {
           'status_kegiatan': status,
           'id_kegiatan': product_id
@@ -95,4 +110,4 @@
       });
     });
   </script>
-@endsection
+@endpush

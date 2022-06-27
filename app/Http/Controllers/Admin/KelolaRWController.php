@@ -7,6 +7,7 @@ use App\Models\Rt;
 use App\Models\Warga;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 
 class KelolaRWController extends Controller
 {
@@ -41,7 +42,7 @@ class KelolaRWController extends Controller
             'tgl_awal_jabatan_rw' => 'required',
             'tgl_akhir_jabatan_rw' => 'required',
         ]);
-
+        $validatedData['password'] = Hash::make($request->password);
         $validatedData['status_rw'] = 0;
         $validatedData['ketua_rw'] = "tes";
 
@@ -76,6 +77,7 @@ class KelolaRWController extends Controller
             'tgl_awal_jabatan_rw' => 'required',
             'tgl_akhir_jabatan_rw' => 'required',
         ]);
+        $validatedData['password'] = Hash::make($request->password);
 
         rw::where('id_rw', $rw->id_rw)
             ->update($validatedData);

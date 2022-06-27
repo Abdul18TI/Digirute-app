@@ -1,19 +1,33 @@
-@extends('layouts.main')
+@extends('layouts.main-rw')
 
 @section('container')
-<div class="page-body">
+@component('components.r-w.breadcrumb')
+        @slot('breadcrumb_title')
+        <h3>Profile-RW</h3>
+        @endslot
+        {{-- <li class="breadcrumb-item">Pengaduan</li> --}}
+        <li class="breadcrumb-item active">Profile-RW</li>
+    @endcomponent
     <div class="container-fluid">
 	    <div class="user-profile">
 	        <div class="row">
 	            <!-- user profile header start-->
 	            <div class="col-sm-12">
+					@if ($errors->any())
+                <div class="alert alert-danger dark alert-dismissible fade show" role="alert"><strong>Terjadi kesalahan</strong>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                    <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                  @endif
 	                <div class="card profile-header">
 	                    <img class="img-fluid bg-img-cover" src="{{asset('assets/images/user-profile/bg-profile-tes3.jpg')}}" alt="" />
 	                    <div class="profile-img-wrrap"><img class="img-fluid bg-img-cover" src="{{asset('assets/images/user-profile/bg-profile.jpg')}}" alt="" /></div>
 	                    <div class="userpro-box">
 	                        <div class="img-wrraper">
 	                            <div class="avatar"><img class="img-fluid" alt="" src="{{asset('assets/images/user/7.jpg')}}" /></div>
-	                            <a class="icon-wrapper" href="profile/{{ $rw->identitas_rw->id_warga }}/edit"><i class="icofont icofont-pencil-alt-5"></i></a>
+	                            <a class="icon-wrapper" href="{{route('rw.profile.edit',$rw->identitas_rw->id_warga)}}"><i class="icofont icofont-pencil-alt-5"></i></a>
 	                        </div>
 	                        <div class="user-designation">
 	                            <div class="title">
@@ -78,6 +92,58 @@
 	                                        </ul>
 	                                    </div>
 	                                </div>
+									<div class="card-header">
+	                                    <h5 class="p-0">
+	                                        <button class="btn btn-link ps-0" data-bs-toggle="collapse" data-bs-target="#collapseicon3" aria-expanded="true" aria-controls="collapseicon3">Ubah Username</button>
+	                                    </h5>
+	                                </div>
+	                                <div class="collapse" id="collapseicon3" aria-labelledby="collapseicon3" data-parent="#accordion">       
+										<div class="col-xl-12">
+											<form class="card" method="post" action="/RW/profile/{{ $rw->id_rw }}">
+												@method('PUT')  
+                        						@csrf
+												<input type="hidden" name="id" value="{{ $rw->id_rw }}">
+													<div class="card-body">
+														<div class="row">
+															<div class="col-md-12">
+																<div class="mb-3">
+																	<input class="form-control" name="username" value="{{ $rw->username }}" type="text" placeholder="username" />
+																</div>
+																<div class="col-md-3 text-end">
+																<button class="btn btn-primary" type="submit">Ubah</button>
+															</div>
+														</div>
+													</div>
+												</div>
+											</form>
+										</div>
+	                                </div>
+									<div class="card-header">
+	                                    <h5 class="p-0">
+	                                        <button class="btn btn-link ps-0" data-bs-toggle="collapse" data-bs-target="#collapseicon4" aria-expanded="true" aria-controls="collapseicon4">Ubah Password</button>
+	                                    </h5>
+	                                </div>
+	                                <div class="collapse" id="collapseicon4" aria-labelledby="collapseicon4" data-parent="#accordion">
+	                                    <div class="col-xl-12">
+											<form class="card" method="post" action="/RW/profile/{{ $rw->id_rw }}">
+												@method('PUT')  
+                        						@csrf
+												<input type="hidden" name="id" value="{{ $rw->id_rw }}">
+													<div class="card-body">
+														<div class="row">
+															<div class="col-md-12">
+																<div class="mb-3">
+																	<input class="form-control" name="password" value="{{ $rw->password }}" type="password" placeholder="password" />
+																</div>
+																<div class="col-md-3 text-end">
+																<button class="btn btn-primary" type="submit">Ubah</button>
+															</div>
+														</div>
+													</div>
+												</div>
+											</form>
+										</div>
+	                                </div>
 	                            </div>
 	                        </div>
 	                    </div>
@@ -111,5 +177,4 @@
 	        </div>
 	    </div>
 	</div>
-</div>
 @endsection
