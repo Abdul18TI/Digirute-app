@@ -12,6 +12,13 @@
 @endpush
 
 @section('container')
+@component('components.r-w.breadcrumb')
+        @slot('breadcrumb_title')
+        <h3>Pengumuman</h3>
+        @endslot
+        <li class="breadcrumb-item"><a href="{{ route('rw.pengumuman.index') }}">Pengumuman</a></li>
+        <li class="breadcrumb-item active">Tambah pengumuman</li>
+    @endcomponent
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">

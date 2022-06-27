@@ -1,7 +1,24 @@
-@extends('layouts.main')
+@extends('layouts.main-rw')
+
+@push('css')
+<link rel="stylesheet" type="text/css" href={{ asset("assets/css/trix.css")}}>
+<link rel="stylesheet" type="text/css" href={{ asset("assets/css/trix.css")}}>
+    <script type="text/javascript" src={{ asset("assets/js/trix.js")}}></script>
+    <style>
+        trix-toolbar [data-trix-button-group="file-tools"] {
+            display: none;
+        }
+    </style>
+@endpush
 
 @section('container')
-<div class="page-body">
+@component('components.r-w.breadcrumb')
+        @slot('breadcrumb_title')
+        <h3>Kegiatan</h3>
+        @endslot
+        <li class="breadcrumb-item"><a href="{{ route('rw.kegiatan.index') }}">Kegiatan</a></li>
+        <li class="breadcrumb-item active">Tambah kegiatan</li>
+    @endcomponent
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
@@ -109,7 +126,6 @@
             </div>
         </div>
     </div>
-</div>
 <script>
     function previewImage(){
         const image = document.querySelector('#image');
@@ -130,3 +146,4 @@
     })
 </script>
 @endsection
+<script type="text/javascript" src={{ asset("assets/js/trix.js")}}></script>

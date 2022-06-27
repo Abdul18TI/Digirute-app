@@ -1,7 +1,13 @@
-@extends('layouts.main')
+@extends('layouts.main-rw')
 
 @section('container')
-<div class="page-body">
+@component('components.r-w.breadcrumb')
+        @slot('breadcrumb_title')
+        <h3>Profile</h3>
+        @endslot
+        <li class="breadcrumb-item"><a href="{{ route('rw.profile.index') }}">Profile-RW</a></li>
+        <li class="breadcrumb-item active">Profile</li>
+    @endcomponent
   <!-- Form Tambah Warga -->
     <div class="container-fluid">
         <div class="row">
@@ -354,7 +360,6 @@
             </div>
         </div>
     </div>
-</div>
 @endsection
 <script>
     function previewImage(){

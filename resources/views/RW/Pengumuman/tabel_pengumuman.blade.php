@@ -65,9 +65,9 @@
                                                 </label>
                                               </div></td>
                                         <td>
-                                            <a class="btn btn-info btn-sm p-2" href="RW/pengumuman/{{ $p->id_pengumuman }}"><span
+                                            <a class="btn btn-info btn-sm p-2" href="{{ route('rw.pengumuman.show', $p->id_pengumuman) }}"><span
                                                     class="fa fa-eye"></span></a>
-                                            <a class="btn btn-secondary btn-sm p-2" href="RW/pengumuman/{{ $p->id_pengumuman }}/edit"><span
+                                            <a class="btn btn-secondary btn-sm p-2" href="{{ route('rw.pengumuman.edit', $p->id_pengumuman) }}"><span
                                                     class="fa fa-edit"></span></a>
                                             <form method="POST" action="{{ route('rw.pengumuman.destroy', $p->id_pengumuman)}}" class="d-inline">
                                                 @csrf

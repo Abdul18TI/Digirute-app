@@ -1,13 +1,18 @@
-@extends('layouts.main')
+@extends('layouts.main-rw')
+
+@push('css')
+  <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/datatables.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/custom.css') }}">
+@endpush
 
 @section('container')
-<div class="page-body">
-    <div class="container-fluid">
-        <div class="page-header">
-            <div class="row">
-            </div>
-        </div>
-    </div>
+@component('components.r-w.breadcrumb')
+        @slot('breadcrumb_title')
+        <h3>Iuran</h3>
+        @endslot
+        {{-- <li class="breadcrumb-item">Pengaduan</li> --}}
+        <li class="breadcrumb-item active">Iuran</li>
+    @endcomponent
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
@@ -74,5 +79,16 @@
             </div>
         </div>
     </div>
-</div>
 @endsection
+
+@push('scripts')
+  <script src="{{ asset('assets/js/datatable/datatables/jquery.dataTables.min.js') }}"></script>
+  <script src="{{ asset('assets/js/datatable/datatables/datatable.custom.js') }}"></script>
+  <script src="{{ asset('assets/js/tooltip-init.js') }}"></script>
+@endpush
+
+@push('scripts-custom')
+  <script>
+    $('#dataTable').DataTable();
+</script>
+@endpush

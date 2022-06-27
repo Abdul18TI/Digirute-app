@@ -1,33 +1,18 @@
-@extends('layouts.main')
+@extends('layouts.main-rw')
 
 @push('css')
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/datatables.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/datatables.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/custom.css') }}">
 @endpush
 
 @section('container')
-    <div class="page-body">
-        <div class="container-fluid">
-            {{-- <div class="page-header">
-            <div class="row">
-                <div class="col-sm-6">
-                    <h3>Pengaduan Warga</h3>
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Pengaduan</a></li>
-                        <li class="breadcrumb-item active">Data Pengaduan</li>
-                    </ol>
-                </div>
-                <div class="col-sm-6">
-                    <!-- Bookmark Start-->
-                    <div class="bookmark">
-                        <ul>
-                            
-                        </ul>
-                    </div>
-                    <!-- Bookmark Ends-->
-                </div>
-            </div>
-        </div> --}}
-        </div>
+@component('components.r-w.breadcrumb')
+        @slot('breadcrumb_title')
+        <h3>Pengaduan</h3>
+        @endslot
+        {{-- <li class="breadcrumb-item">Pengaduan</li> --}}
+        <li class="breadcrumb-item active">Pengaduan</li>
+    @endcomponent
         <!-- Form Tambah Warga -->
         <div class="container-fluid">
             <div class="row">
@@ -115,7 +100,6 @@
                     </div>
             </div>
         </div>
-    </div>
         {{-- MODAL DETAIL DATA --}}
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -188,9 +172,14 @@
         </div>
     </div>
     {{-- END DETAIL MODAL --}}
-
+@endsection
 @push('scripts')
+  <script src="{{ asset('assets/js/datatable/datatables/jquery.dataTables.min.js') }}"></script>
+  <script src="{{ asset('assets/js/datatable/datatables/datatable.custom.js') }}"></script>
+  <script src="{{ asset('assets/js/tooltip-init.js') }}"></script>
+@endpush
     <!-- Plugins JS start-->
+    @push('scripts-custom')
     <script>
         $('#tabelpengaduan-warga').DataTable();
          //membuat modal detail
@@ -226,4 +215,4 @@
     </script>
     @endpush
     <!-- Plugins JS Ends-->
-@endsection
+

@@ -1,7 +1,13 @@
-@extends('layouts.main')
+@extends('layouts.main-rw')
 
 @section('container')
-<div class="page-body">
+@component('components.r-w.breadcrumb')
+        @slot('breadcrumb_title')
+        <h3>Pengumuman</h3>
+        @endslot
+        <li class="breadcrumb-item"><a href="{{ route('rw.pengumuman.index') }}">Pengumuman</a></li>
+        <li class="breadcrumb-item active">Detail pengumuman</li>
+    @endcomponent
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
@@ -35,5 +41,4 @@
             </div>
         </div>
     </div>
-</div>
 @endsection

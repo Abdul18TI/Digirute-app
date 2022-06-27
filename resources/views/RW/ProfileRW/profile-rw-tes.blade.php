@@ -1,7 +1,13 @@
-@extends('layouts.main')
+@extends('layouts.main-rw')
 
 @section('container')
-<div class="page-body">
+@component('components.r-w.breadcrumb')
+        @slot('breadcrumb_title')
+        <h3>Profile-RW</h3>
+        @endslot
+        {{-- <li class="breadcrumb-item">Pengaduan</li> --}}
+        <li class="breadcrumb-item active">Profile-RW</li>
+    @endcomponent
     <div class="container-fluid">
 	    <div class="user-profile">
 	        <div class="row">
@@ -171,5 +177,4 @@
 	        </div>
 	    </div>
 	</div>
-</div>
 @endsection
