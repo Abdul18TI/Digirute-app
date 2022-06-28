@@ -1,7 +1,18 @@
-@extends('layouts.main')
+@extends('layouts.main-admin')
+
+@push('css')
+<link rel="stylesheet" type="text/css" href={{ asset("assets/css/trix.css")}}>
+<link rel="stylesheet" type="text/css" href={{ asset("assets/css/trix.css")}}>
+@endpush
 
 @section('container')
-<div class="page-body">
+@component('components.admin.breadcrumb')
+        @slot('breadcrumb_title')
+        <h3>Kategori pengaduan</h3>
+        @endslot
+        <li class="breadcrumb-item"><a href="{{ route('kategori_pengaduan.index') }}">Kategori pengaduan</a></li>
+        <li class="breadcrumb-item active">Tambah kategori pengaduan</li>
+    @endcomponent
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">

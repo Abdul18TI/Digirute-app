@@ -117,7 +117,8 @@ Route::prefix('RW')->name('rw.')->group(function () {
     // route::resource('pembayaran', PembayaranRWController::class)->except('store');
 });
 
-// Route::get('/status/update', [KelolaRTController::class, 'updateStatus'])->name('rt.update.status');
+Route::get('/status/update', [KelolaRTController::class, 'updateStatus'])->name('rt.update.status');
+Route::get('/rw/status/update', [KelolaRWController::class, 'updateStatus'])->name('rw.update.status');
 
 
 // //Prosedur

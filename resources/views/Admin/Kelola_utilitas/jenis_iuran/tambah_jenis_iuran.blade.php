@@ -1,13 +1,24 @@
 @extends('layouts.main-admin')
 
+@push('css')
+<link rel="stylesheet" type="text/css" href={{ asset("assets/css/trix.css")}}>
+<link rel="stylesheet" type="text/css" href={{ asset("assets/css/trix.css")}}>
+@endpush
+
 @section('container')
-<div class="page-body">
+@component('components.admin.breadcrumb')
+        @slot('breadcrumb_title')
+        <h3>Jenis iuran</h3>
+        @endslot
+        <li class="breadcrumb-item"><a href="{{ route('jenis_iuran.index') }}">Jenis iuran</a></li>
+        <li class="breadcrumb-item active">Tambah jenis iuran</li>
+    @endcomponent
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header pb-0">
-                        <h5>Form tambah jensi iuran</h5>
+                        <h5>Form tambah jenis iuran</h5>
                     </div>
                     <form class="form theme-form" name="f1" method="POST" action="{{ route('jenis_iuran.store')}}">
                         @csrf
@@ -37,3 +48,4 @@
     </div>
 </div>
 @endsection
+<script type="text/javascript" src={{ asset("assets/js/trix.js")}}></script>

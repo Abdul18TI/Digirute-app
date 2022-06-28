@@ -1,7 +1,13 @@
 @extends('layouts.main-admin')
 
 @section('container')
-<div class="page-body">
+@component('components.admin.breadcrumb')
+        @slot('breadcrumb_title')
+        <h3>RW</h3>
+        @endslot
+        <li class="breadcrumb-item"><a href="{{ route('rw.index') }}">RW</a></li>
+        <li class="breadcrumb-item active">Detail RW</li>
+    @endcomponent
     <div class="container-fluid">
         <div class="row">
             <!-- Zero Configuration  Starts-->

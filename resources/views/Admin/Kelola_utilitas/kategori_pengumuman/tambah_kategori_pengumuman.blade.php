@@ -1,7 +1,24 @@
-@extends('layouts.main')
+@extends('layouts.main-admin')
+
+@push('css')
+<link rel="stylesheet" type="text/css" href={{ asset("assets/css/trix.css")}}>
+<link rel="stylesheet" type="text/css" href={{ asset("assets/css/trix.css")}}>
+    <script type="text/javascript" src={{ asset("assets/js/trix.js")}}></script>
+    <style>
+        trix-toolbar [data-trix-button-group="file-tools"] {
+            display: none;
+        }
+    </style>
+@endpush
 
 @section('container')
-<div class="page-body">
+@component('components.admin.breadcrumb')
+        @slot('breadcrumb_title')
+        <h3>Kategori pengumuman</h3>
+        @endslot
+        <li class="breadcrumb-item"><a href="{{ route('kategori_pengumuman.index') }}">Kategori pengumuman</a></li>
+        <li class="breadcrumb-item active">Tambah kategori pengumuman</li>
+    @endcomponent
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
@@ -37,3 +54,4 @@
     </div>
 </div>
 @endsection
+<script type="text/javascript" src={{ asset("assets/js/trix.js")}}></script>
