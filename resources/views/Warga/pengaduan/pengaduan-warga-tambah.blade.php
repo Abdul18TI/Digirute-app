@@ -48,9 +48,9 @@
                           <label class="col-sm-3 col-form-label" for="kategori_pengaduan">Kategori</label>
                           <div class="col-sm-9">
                             <select class="form-select digits" name="kategori_pengaduan" id="kategori_pengaduan">
-                              <option value="Kerusakan Fasilitas Umum">Kerusakan Fasilitas Umum</option>
-                              <option value="Sampah">Sampah</option>
-                              <option value="Lainnya">Lainnya</option>
+                              @foreach ($pengaduan as $p)
+                              <option value="{{ $p->id_kategori_pengaduan }}">{{ $p->nama_kategori_pengaduan }}</option>
+                              @endforeach
                             </select>
                           </div>
                         </div>

@@ -6,6 +6,7 @@ use App\Models\Warga;
 use App\Models\pengaduan;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\KategoriPengaduan;
 use Illuminate\Support\Facades\Auth;
 
 class PengaduanController extends Controller
@@ -20,9 +21,9 @@ class PengaduanController extends Controller
         // dd(Auth::user()->load(['rt_rel'])->rt_rel->ketua_rt);
         // dd(Auth::user()->rt_rel->ketua_rt);
         // dd();
-        $data = pengaduan::where('id_rt', Auth::id())->get();
-        $title = "Pengaduan";
-        return view('warga.pengaduan.pengaduan-warga', compact('title', 'data'));
+        $data = pengaduan::where('id_rt', auth()->user()->rt)->get();
+       
+        return view('warga.pengaduan.pengaduan-warga', compact('data'));
     }
 
     /**
@@ -33,7 +34,8 @@ class PengaduanController extends Controller
     public function create()
     {
         //
-        return view('warga.pengaduan.pengaduan-warga-tambah');
+        $pengaduan = KategoriPengaduan::get();
+        return view('warga.pengaduan.pengaduan-warga-tambah', compact('pengaduan'));
     }
 
     /**
@@ -49,12 +51,11 @@ class PengaduanController extends Controller
         $request->validate([
             'judul_pengaduan' => 'required|string',
             'deskripsi_pengaduan' => 'required|string',
-            // 'bukti_pengaduan' => 'image|mimes:jpeg,jpg,png'
+            'bukti_pengaduan' => 'image|mimes:jpeg,jpg,png'
         ]);
         $data['nik'] = auth()->user()->nik;
         $data['id_rt'] = auth()->user()->rt;
 
-        // dd($data);
         pengaduan::create($data);
         return redirect()->route('warga.pengaduan.index')->with('success', 'Data berhasil ditambahkan');
     }
@@ -73,8 +74,8 @@ class PengaduanController extends Controller
 
     public function pengaduan_pribadi()
     {
-        $data = pengaduan::where('id_rt', Auth::id())
-            ->where('nik', Auth::user()->nik)
+        $data = pengaduan::where('id_rt', auth()->user()->rt)
+            ->where('nik', auth()->user()->nik)
             ->get();
         return view('warga.pengaduan.pengaduan-warga-pribadi', compact('data'));
     }

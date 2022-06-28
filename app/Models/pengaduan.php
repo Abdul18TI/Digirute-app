@@ -12,10 +12,16 @@ class pengaduan extends Model
 
     protected $guarded = ['id_pengaduan'];
     protected $primaryKey = 'id_pengaduan';
+    protected $with = ['warga','kategori_pengaduans'];
+    // protected $casts = [
+    //     'created_at' => "datetime:Y-m-d\TH:i:s",
+    //     'updated_at' => "datetime:Y-m-d\TH:i:s",
+    // ];
+
 
     public function warga()
     {
-        return $this->belongsTo(Warga::class);
+        return $this->belongsTo(Warga::class, 'nik','nik')->select('id_warga','nik','nama_lengkap','pekerjaan');
     }
     public function getRouteKeyName()
     {

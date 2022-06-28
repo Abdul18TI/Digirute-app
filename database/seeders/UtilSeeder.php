@@ -24,7 +24,9 @@ class UtilSeeder extends Seeder
             'nama_kategori_pengumuman' => 'Umum'
         ]);
         DB::table('kategori_pengaduan')->insert([
-            'nama_kategori_pengaduan' => 'Kenyamanan'
+            ['nama_kategori_pengaduan' => 'Kenyamanan'],
+            ['nama_kategori_pengaduan' => 'Kesalahan Data'],
+            ['nama_kategori_pengaduan' => 'Sistem'],
         ]);
     }
 }

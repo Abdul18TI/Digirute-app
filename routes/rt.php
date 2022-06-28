@@ -35,9 +35,6 @@ Route::middleware(['auth:rt', 'PreventBackHistory'])->group(function () {
         Route::get('/', [PengaduanRTController::class, 'index'])->name('home');
         Route::get('/show/{pengaduan}', [PengaduanRTController::class, 'show'])->name('show');
     });
-    Route::get('/test/{id}', function ($id) {
-        return Warga::find($id);
-    });
     Route::post('logout', [LoginRTController::class, 'logout'])->name('logout');
 });
 // });
