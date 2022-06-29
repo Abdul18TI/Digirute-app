@@ -16,4 +16,9 @@ class Pendidikan extends Model
     {
         return 'id_pendidikan';
     }
+
+    public function Agamass()
+    {
+        return $this->hasMany(Warga::class);
+    }
 }

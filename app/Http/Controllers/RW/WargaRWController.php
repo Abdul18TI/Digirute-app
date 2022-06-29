@@ -5,6 +5,7 @@ namespace App\Http\Controllers\RW;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Warga;
+use App\Models\Pekerjaan;
 
 class WargaRWController extends Controller
 {
@@ -52,7 +53,12 @@ class WargaRWController extends Controller
      */
     public function show($id)
     {
-        //
+        $warga = Warga::with(['identitas_rws', 'rt_rel', 'pekerjaan', 'agamas', 'pendidikans'])->where('id_warga', $id)->first();
+        // dd($warga->pendidikans->nama_pendidikan);
+
+        return view('RW.Warga.detail_warga', [
+            'warga' => $warga,
+        ]);
     }
 
     /**

@@ -20,6 +20,6 @@ class Pekerjaan extends Model
 
     public function Pekerjaans()
     {
-        return $this->hasMany(Warga::class);
+        return $this->hasMany(Warga::class, 'pekerjaan', 'id_pekerjaan');
     }
 }
