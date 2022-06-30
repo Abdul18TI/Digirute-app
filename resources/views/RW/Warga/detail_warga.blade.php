@@ -116,32 +116,32 @@
                             <div class="col-sm-6 col-md-4">
                                 <div class="mb-3">
                                     <label class="form-label">Kode pos</label>
-                                    <input class="form-control" type="number" disabled value="{{ $warga->kode_pos }}"/>
+                                    <input class="form-control" type="text" disabled value="{{ $warga->kode_pos }}"/>
                                 </div>
                             </div>
                             <div class="col-sm-6 col-md-4">
                                 <div class="mb-3">
                                     <label class="form-label">Tempat lahir</label>
-                                    <input class="form-control" type="number" disabled value="{{ $warga->tempat_lahir }}"/>
+                                    <input class="form-control" type="text" disabled value="{{ $warga->tempat_lahir }}"/>
                                 </div>
                             </div>
                             {{-- Line --}}
                             <div class="col-sm-6 col-md-4">
                                 <div class="mb-3">
                                     <label class="form-label">Tanggal lahir</label>
-                                    <input class="form-control" type="number" disabled value="{{ $warga->tgl_lahir }}" />
+                                    <input class="form-control" type="text" disabled value="{{ $warga->tgl_lahir }}" />
                                 </div>
                             </div>
                             <div class="col-sm-6 col-md-4">
                                 <div class="mb-3">
                                     <label class="form-label">Jenis kelamin</label>
-                                    <input class="form-control" type="number" disabled value="{{ $warga->jenis_kelamin }}" />
+                                    <input class="form-control" type="text" disabled value="{{ $warga->jenis_kelamin }}" />
                                 </div>
                             </div>
                             <div class="col-sm-6 col-md-4">
                                 <div class="mb-3">
                                     <label class="form-label">Agama</label>
-                                    <input class="form-control" type="number" disabled value="{{ $warga->agamas->agama }}" />
+                                    <input class="form-control" type="text" disabled value="{{ $warga->agamas->agama }}" />
                                 </div>
                             </div>
                             {{-- Line --}}

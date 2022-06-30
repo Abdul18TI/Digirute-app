@@ -49,14 +49,10 @@ class CreateWargasTable extends Migration
             $table->timestamp('tgl_keluar_kk')->nullable(); ////
             $table->string('foto_warga')->default('no-image.png'); ////
             $table->timestamp('tgl_perkawinan')->nullable(); ////
-            $table->integer('status_akta_kawin'); ////
             $table->string('akta_kawin')->nullable(); ////
-            $table->integer('status_akta_cerai'); ////
             $table->string('akta_cerai')->nullable(); ////
             $table->timestamp('tgl_cerai')->nullable(); ////
-            $table->integer('status_akta_kelahiran'); ////
             $table->string('akta_kelahiran')->nullable(); ////
-            $table->integer('status_kelainan'); ////
             $table->string('kelainan')->nullable(); ////
             $table->string('email_warga')->nullable(); //
             $table->string('no_hp_warga')->nullable(); //

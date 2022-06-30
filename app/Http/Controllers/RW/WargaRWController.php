@@ -53,8 +53,8 @@ class WargaRWController extends Controller
      */
     public function show($id)
     {
-        $warga = Warga::with(['identitas_rws', 'rt_rel', 'pekerjaan', 'agamas', 'pendidikans'])->where('id_warga', $id)->first();
-        // dd($warga->pendidikans->nama_pendidikan);
+        $warga = Warga::with(['identitas_rws', 'rt_rel', 'pekerjaan', 'agamas', 'pendidikans', 'kelurahans'])->where('id_warga', $id)->first();
+        dd($warga->kelurahans);
 
         return view('RW.Warga.detail_warga', [
             'warga' => $warga,

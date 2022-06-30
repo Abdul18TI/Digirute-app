@@ -12,6 +12,7 @@
   <link rel="stylesheet"
     type="text/css"
     href="{{ asset('assets/css/custom.css') }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}"/>
 @endpush
 
 @section('container')
@@ -98,12 +99,14 @@
                                         <label class="col-sm-3 col-form-label">Desa/Kabupaten/Provinsi <span class="text-danger">*</span></label>
                                         <div class="col-sm-5">
                                             <select class="form-select select2" id="provinsi" name="provinsi">
-                                                <option value="1" selected>Pilih Provinsi</option>
+                                                <option selected>Pilih Provinsi</option>
+                                                @foreach ($provinsi as $pro)
+                                                <option value="{{ $pro->id_prov }}" >{{ $pro->nama }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         <div class="col-sm-4">
                                             <select class="form-select select2" id="kabupaten" name="kabupaten">
-                                                <option value="1" selected>Pilih Kabupaten</option>
                                             </select>
                                         </div>
                                     </div>
@@ -145,21 +148,6 @@
                                         </div>
                                         <div class="col-sm-5">
                                             <input class="form-control digits" name="tgl_lahir" value="" id="example-datetime-local-input" type="date" data-bs-original-title="" title="">
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 row">
-                                        <label class="col-sm-3 col-form-label">Akta Kelahiran <span class="text-danger">*</span></label>
-                                        <div class="col-sm-9">
-                                            <div class="form-group mt-2 m-checkbox-inline mb-0 custom-radio-ml">
-                                                <div class="radio radio-primary">
-                                                    <input id="ake_a" type="radio" name="status_akta_kelahiran" value="1" {{ old('status_akta_kelahiran') == 1 ? "checked" : ""}}>
-                                                    <label class="mb-0" for="ake_a">Ada</label>
-                                                </div>
-                                                <div class="radio radio-primary">
-                                                    <input id="ad_ta" type="radio" name="status_akta_kelahiran" value="2" {{ old('status_akta_kelahiran') == 2 ? "checked" : ""}}>
-                                                    <label class="mb-0" for="ad_ta">Tidak ada</label>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
@@ -436,5 +424,38 @@
             imgPreview.src = oFREvent.target.result;
         }
     }
+</script>
+<script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</script>
+<script>
+    $(document).ready(function() {
+            $('#provinsi').on('change', function() {
+               var categoryID = $(this).val();
+               if(categoryID) {
+                   $.ajax({
+                       url: 'getKab/'+categoryID,
+                       type: "GET",
+                       data : {"_token":"{{ csrf_token() }}"},
+                       dataType: "json",
+                       success:function(data)
+                       {
+                         if(data){
+                            $('#kabupaten').empty();
+                            $('#kabupaten').append('<option hidden>Pilih kabupaten</option>'); 
+                            $.each(data, function(key, kab){
+                                $('select[name="kabupaten"]').append('<option value="'+ key +'">' + kab.nama+ '</option>');
+                            });
+                        }else{
+                            $('#kabupaten').empty();
+                        }
+                     }
+                   });
+               }else{
+                 $('#kabupaten').empty();
+               }
+            });
+            });
 </script>
 @endsection

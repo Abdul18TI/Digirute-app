@@ -101,7 +101,7 @@
                                         <label class="col-sm-3 col-form-label">Desa/Kabupaten/Provinsi <span class="text-danger">*</span></label>
                                         <div class="col-sm-5">
                                             <select class="form-select select2" id="provinsi" name="provinsi">
-                                                <option value="1" selected>Pilih Provinsi</option>
+                                                <option value="{{ $warga->provinsis }}" selected>Pilih Provinsi</option>
                                             </select>
                                         </div>
                                         <div class="col-sm-4">

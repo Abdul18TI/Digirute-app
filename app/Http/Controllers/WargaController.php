@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Warga;
 use App\Helper\Helpers;
 use App\Models\Pekerjaan;
+use App\Models\Kabupaten;
+use App\Models\Kecamatan;
+use App\Models\Kelurahan;
+use App\Models\Provinsi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -29,11 +33,19 @@ class WargaController extends Controller
     {
         $warga = Warga::all();
         $data = Pekerjaan::all();
+        $datakab = Kabupaten::all();
+        $datakec = Kecamatan::all();
+        $datakel = Kelurahan::all();
+        $datapro = Provinsi::all();
         return view(
             'RT.warga.warga-tambah-rt',
             [
                 'warga' => $warga,
                 'pekerjaan' => $data,
+                'kabupaten' => $datakab,
+                'kecamatan' => $datakec,
+                'kelurahan' => $datakel,
+                'provinsi' => $datapro,
             ]
         );
     }
@@ -63,7 +75,6 @@ class WargaController extends Controller
             'nama_lengkap' => 'required',
             'tempat_lahir' => 'required',
             'tgl_lahir' => 'required|date',
-            'status_akta_kelahiran' => 'required', //
             'akta_kelahiran' => 'nullable|numeric', //
             'jenis_kelamin' => 'required',
             'agama' => 'required',
@@ -73,9 +84,7 @@ class WargaController extends Controller
             'status_hubungan' => 'required', //
             'status_perkawinan' => 'required', //
             'tgl_perkawinan' => 'nullable|date', //
-            'status_akta_kawin' => 'required', //
             'akta_kawin' => 'nullable|numeric', //
-            'status_akta_cerai' => 'required', //
             'akta_cerai' => 'nullable|numeric', //
             'tgl_cerai' => 'nullable|date', //
             'nomor_passport' => 'nullable|numeric|unique:wargas,nomor_passport', //
@@ -86,7 +95,6 @@ class WargaController extends Controller
             'nik_ibu' => 'required', //
             'nama_ibu' => 'required', //
             'tgl_keluar_kk' => 'date', //
-            'status_kelainan' => 'required', //
             'kelainan' => 'nullable', //
             'foto_warga' => 'image|file|max:2048', //
             'email_warga' => 'required',
