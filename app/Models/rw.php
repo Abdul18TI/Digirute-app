@@ -14,6 +14,7 @@ class rw extends Authenticatable
     protected $primaryKey = 'id_rw';
     protected $guarded = ['id_rw'];
     protected $dates = ['tgl_awal_jabatan_rw', 'tgl_akhir_jabatan_rw'];
+    protected $with =['identitas_rw'];
 
     public function getRouteKeyName()
     {
