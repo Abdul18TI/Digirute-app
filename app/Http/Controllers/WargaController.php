@@ -195,6 +195,17 @@ class WargaController extends Controller
         return redirect()->route('rt.warga.index')->with('success', 'Data berhasil diubah!');
     }
 
+    public function show($id)
+    {
+        //
+        $warga = Warga::with(['identitas_rws', 'rt_rel', 'pekerjaan', 'agamas', 'pendidikans','golongan_darahs'])->where('id_warga', $id)->first();
+        // dd($warga->pendidikans->nama_pendidikan);
+
+        return view('RT.Warga.detail_warga', [
+            'warga' => $warga,
+        ]);
+    }
+
     public function destroy(Warga $warga)
     {
         // $warga->delete();
