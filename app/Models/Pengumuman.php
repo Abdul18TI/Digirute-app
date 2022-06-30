@@ -19,4 +19,13 @@ class Pengumuman extends Model
         return $this->belongsTo(KategoriPengumuman::class, 'kategori_pengumuman', 'id_kategori_pengumuman')->select(['id_kategori_pengumuman', 'nama_kategori_pengumuman']);
         // return $this->belongsTo(rt::class);
     }
+
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['search'] ?? false, function ($query, $search) {
+            return $query->where('status_pengumuman', 1)
+                ->where('judul_pengumuman', 'like', '%' . $search . '%')
+                ->orWhere('isi_pengumuman', 'like', '%' . $search . '%');
+        });
+    }
 }

@@ -9,6 +9,7 @@ use App\Http\Controllers\Warga\LoginWargaController;
 use App\Http\Controllers\Warga\DashboardWargaController;
 use App\Http\Controllers\Warga\PengaduanController as WargaPengaduanController;
 use App\Http\Controllers\Warga\KegiatanWargaController;
+use App\Http\Controllers\Warga\PengumumanWargaController;
 
 // Route::prefix('Warga')->name('warga.')->group(function () {
 Route::middleware(['guest', 'PreventBackHistory'])->group(function () {
@@ -20,6 +21,7 @@ Route::middleware(['auth', 'PreventBackHistory'])->group(function () {
     Route::get('pengaduan/pribadi', [WargaPengaduanController::class, 'pengaduan_pribadi'])->name('pengaduan.pribadi');
     Route::resource('pengaduan', WargaPengaduanController::class);
     Route::resource('kegiatan_warga', KegiatanWargaController::class);
+    Route::resource('pengumuman_warga', PengumumanWargaController::class);
     Route::get('/rw-rt', [OtherController::class, 'rtrw'])->name('rw-rt');
     Route::prefix('iuran')->name('iuran.')->group(function () {
         Route::get('/', [IuranWargaController::class, 'index'])->name('home');
