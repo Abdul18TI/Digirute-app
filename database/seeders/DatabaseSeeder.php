@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             GolonganDarahSeeder::class,
             UtilSeeder::class,
             KegiatanSeeder::class,
+            AgamaSeeder::class,
         ]);
     }
 }
