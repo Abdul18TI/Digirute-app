@@ -42,6 +42,9 @@ class CreateWargasTable extends Migration
             $table->string('nomor_passport')->unique()->nullable(); ////
             $table->timestamp('tgl_akhir_passport')->nullable(); ////
             $table->string('nomor_kitaskitap')->unique()->nullable(); ////
+            $table->string('status_akta_cerai')->nullable(); ////
+            $table->string('status_akta_kawin')->nullable(); ////
+            $table->string('status_akta_kelahiran')->nullable(); ////
             $table->string('nik_ayah'); ////
             $table->string('nama_ayah'); ////
             $table->string('nik_ibu'); ////
@@ -54,6 +57,7 @@ class CreateWargasTable extends Migration
             $table->timestamp('tgl_cerai')->nullable(); ////
             $table->string('akta_kelahiran')->nullable(); ////
             $table->string('kelainan')->nullable(); ////
+            $table->string('status_kelainan')->default('0'); ////
             $table->string('email_warga')->nullable(); //
             $table->string('no_hp_warga')->nullable(); //
             $table->foreignId('rt')->nullable(); //
