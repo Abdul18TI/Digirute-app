@@ -10,6 +10,7 @@ use App\Http\Controllers\Warga\DashboardWargaController;
 use App\Http\Controllers\Warga\PengaduanController as WargaPengaduanController;
 use App\Http\Controllers\Warga\KegiatanWargaController;
 use App\Http\Controllers\Warga\PengumumanWargaController;
+use App\Http\Controllers\Warga\SuratWargaController;
 
 // Route::prefix('Warga')->name('warga.')->group(function () {
 Route::middleware(['guest', 'PreventBackHistory'])->group(function () {
@@ -33,6 +34,12 @@ Route::middleware(['auth', 'PreventBackHistory'])->group(function () {
         $kab = App\Models\Kabupaten::where('id_prov', $id)->get();
         return response()->json($kab)->name('getkab');
     });
+    Route::prefix('surat')->name('surat.')->group(function () {
+        Route::get('/', [SuratWargaController::class, 'surat_pengantar'])->name('form.surat_pengantar');
+        Route::get('/detail/{id}', [IuranWargaController::class, 'show'])->name('show');
+        // Route::get('/show/{pengaduan}', [PengaduanRTController::class, 'show'])->name('show');
+    });
+
 });
 
 

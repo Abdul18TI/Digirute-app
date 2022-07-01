@@ -51,6 +51,13 @@
                         </ul>
                     </li>
                     <li class="dropdown">
+                        <a class="nav-link menu-title  {{  prefixActive('warga.surat.*') }}" ><i data-feather="inbox"></i><span>Surat</span></a>                  
+                        <ul class="nav-submenu menu-content" style="display:{{  prefixBlock('warga.surat.*') }};">
+                            <li><a  href="{{ route('warga.surat.form.surat_pengantar') }}" class="{{  prefixActive('warga.surat.form.surat_pengantar') }}">Surat Pengantar</a></li>
+                            <li><a href="" class="">Riwayat</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
                         <a class="nav-link menu-title link-nav {{routeActive('warga.rw-rt')}}" href="{{ route('warga.rw-rt') }}"><i data-feather="users"></i><span>Profile RT RW</span></a>
                     </li>
                     
