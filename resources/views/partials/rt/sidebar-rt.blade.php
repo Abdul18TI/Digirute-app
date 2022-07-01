@@ -58,6 +58,10 @@
             <a class="nav-link menu-title  link-nav {{ prefixActive('rt.kegiatan.*') }}"
               href="{{ route('rt.kegiatan.index') }}"><i data-feather="calendar"></i><span>Kegiatan</span></a>
           </li>
+          <li>
+            <a class="nav-link menu-title  link-nav {{ prefixActive('rt.pengumuman.*') }}"
+              href="{{ route('rt.pengumuman.index') }}"><i data-feather="calendar"></i><span>pengumuman</span></a>
+          </li>
           {{-- <li>
             <a class="nav-link menu-title  link-nav {{ prefixActive('rt.kematian.*') }}"
               href="{{ route('rt.kematian.index') }}"><i data-feather="calendar"></i><span>Kegiatan</span></a>

@@ -29,10 +29,6 @@ Route::middleware(['auth', 'PreventBackHistory'])->group(function () {
         // Route::get('/show/{pengaduan}', [PengaduanRTController::class, 'show'])->name('show');
     });
     Route::post('logout', [LoginWargaController::class, 'logout'])->name('logout');
-    Route::get('getKab/{id}', function ($id) {
-        $kab = App\Models\Kabupaten::where('id_prov', $id)->get();
-        return response()->json($kab)->name('getkab');
-    });
 });
 
 

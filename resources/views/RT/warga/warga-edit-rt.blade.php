@@ -100,13 +100,19 @@
                                     <div class="mb-3 row">
                                         <label class="col-sm-3 col-form-label">Desa/Kabupaten/Provinsi <span class="text-danger">*</span></label>
                                         <div class="col-sm-5">
-                                            <select class="form-select select2" id="provinsi" name="provinsi">
-                                                <option value="{{ $warga->provinsis }}" selected>Pilih Provinsi</option>
+                                            <select class='form-select' name='provinsi' id='provinsi' >
+                                                <option value='00'>-- Pilih --</option>
+                                                @foreach ($provinsi as $p)
+                                                <option value='{{ $p->id_prov }}' {{ old('provinsi',$warga->provinsi) ==  $p->id_prov ? "selected" : "" }}>{{ $p->nama }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         <div class="col-sm-4">
-                                            <select class="form-select select2" id="kabupaten" name="kabupaten">
-                                                <option value="1" selected>Pilih Kabupaten</option>
+                                            <select class='form-select' name='kabupaten' id='kabupaten' >
+                                                <option value='00'>-- Pilih --</option>
+                                                @foreach ($kabupaten as $p)
+                                                <option value='{{ $p->id_kab }}' {{ old('kabupaten',$warga->kabupaten) ==  $p->id_kab ? "selected" : "" }}>{{ $p->nama }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -151,21 +157,6 @@
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
-                                        <label class="col-sm-3 col-form-label">Akta Kelahiran <span class="text-danger">*</span></label>
-                                        <div class="col-sm-9">
-                                            <div class="form-group mt-2 m-checkbox-inline mb-0 custom-radio-ml">
-                                                <div class="radio radio-primary">
-                                                    <input id="ake_a" type="radio" name="status_akta_kelahiran" value="1" {{ old('status_akta_kelahiran',$warga->status_akta_kelahiran) == 1 ? "checked" : ""}}>
-                                                    <label class="mb-0" for="ake_a">Ada</label>
-                                                </div>
-                                                <div class="radio radio-primary">
-                                                    <input id="ad_ta" type="radio" name="status_akta_kelahiran" value="2" {{ old('status_akta_kelahiran',$warga->status_akta_kelahiran) == 2 ? "checked" : ""}}>
-                                                    <label class="mb-0" for="ad_ta">Tidak ada</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 row">
                                         <label class="col-sm-3 col-form-label">Nomor Akta Kelahiran</label>
                                         <div class="col-sm-9">
                                             <input class="form-control " type="number" id="akta_kelahiran" name="akta_kelahiran" value="{{ old('akta_kelahiran',$warga->akta_kelahiran) }}" placeholder="">
@@ -207,15 +198,6 @@
                                                 @foreach ($pekerjaan as $p)
                                                 <option value='{{ $p->id_pekerjaan }}' {{ old('pekerjaan',$warga->pekerjaan) ==  $p->id_pekerjaan ? "selected" : "" }}>{{ $p->nama_pekerjaan }}</option>
                                                 @endforeach
-                                                {{-- <option value='1' {{ old('pekerjaan') == '1' ? "selected" : ""}}>BELUM/TIDAK BEKERJA</option>
-                                                <option value='3' {{ old('pekerjaan') == '3' ? "selected" : ""}}>PELAJAR/MAHASISWA</option>
-                                                <option value='4' {{ old('pekerjaan') == '4' ? "selected" : ""}}>PENSIUNAN</option>
-                                                <option value='5' {{ old('pekerjaan') == '5' ? "selected" : ""}}>PEGAWAI NEGERI SIPIL</option>
-                                                <option value='6' {{ old('pekerjaan') == '6' ? "selected" : ""}}>TENTARA NASIONAL INDONESIA</option>
-                                                <option value='7' {{ old('pekerjaan') == '7' ? "selected" : ""}}>KEPOLISIAN RI</option>
-                                                <option value='8' {{ old('pekerjaan') == '8' ? "selected" : ""}}>PERDAGANGAN</option>
-                                                <option value='9' {{ old('pekerjaan') == '9' ? "selected" : ""}}>PETANI/PEKEBUN</option>
-                                                <option value='10' {{ old('pekerjaan') == '10' ? "selected" : ""}}>PETERNAK</option> --}}
                                             </select>
                                         </div>
                                     </div>
@@ -250,21 +232,6 @@
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
-                                        <label class="col-sm-3 col-form-label">Akta kawin <span class="text-danger">*</span></label>
-                                        <div class="col-sm-9">
-                                            <div class="form-group mt-2 m-checkbox-inline mb-0 custom-radio-ml">
-                                                <div class="radio radio-primary">
-                                                    <input id="gg_a" type="radio" name="status_akta_kawin" value="1" {{ old('status_akta_kawin',$warga->status_akta_kawin) == 1 ? "checked" : ""}}>
-                                                    <label class="mb-0" for="gg_a">Ada</label>
-                                                </div>
-                                                <div class="radio radio-primary">
-                                                    <input id="gg_ta" type="radio" name="status_akta_kawin" value="2" {{ old('status_akta_kawin',$warga->status_akta_kawin) == 2 ? "checked" : ""}}>
-                                                    <label class="mb-0" for="gg_ta">Tidak ada</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 row">
                                         <label class="col-sm-3 col-form-label">Nomor Akta Kawin</label>
                                         <div class="col-sm-9">
                                             <input class="form-control " type="number" id="akta_kawin" name="akta_kawin" value="{{ old('akta_kawin',$warga->akta_kawin) }}" placeholder="">
@@ -274,21 +241,6 @@
                                         <label class="col-sm-3 col-form-label">Tanggal Perceraian <span class="text-danger">*</span> </label>
                                         <div class="col-sm-9">
                                             <input class="form-control digits" name="tgl_cerai" type="date"  value="">
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 row">
-                                        <label class="col-sm-3 col-form-label">Akta Cerai <span class="text-danger">*</span></label>
-                                        <div class="col-sm-9">
-                                            <div class="form-group mt-2 m-checkbox-inline mb-0 custom-radio-ml">
-                                                <div class="radio radio-primary">
-                                                    <input id="cc_a" type="radio" name="status_akta_cerai" value="1" {{ old('status_akta_cerai',$warga->status_akta_cerai) == 1 ? "checked" : ""}}>
-                                                    <label class="mb-0" for="cc_a">Ada</label>
-                                                </div>
-                                                <div class="radio radio-primary">
-                                                    <input id="cc_ta" type="radio" name="status_akta_cerai" value="2" {{ old('status_akta_cerai',$warga->status_akta_cerai) == 2 ? "checked" : ""}}>
-                                                    <label class="mb-0" for="cc_ta">Tidak ada</label>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
@@ -379,21 +331,6 @@
                                         @endif
                                         <div class="col-sm-9">
                                             <input class="form-control" name="foto_warga" onchange="previewImage()" id="image" type="file" />
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 row">
-                                        <label class="col-sm-3 col-form-label">Kelainan Fisik Dan Mental <span class="text-danger">*</span></label>
-                                        <div class="col-sm-9">
-                                            <div class="form-group mt-2 m-checkbox-inline mb-0 custom-radio-ml">
-                                                <div class="radio radio-primary">
-                                                    <input id="hh_a" type="radio" name="status_kelainan" value="1" {{ old('status_kelainan',$warga->status_kelainan) == 1 ? "checked" : ""}}>
-                                                    <label class="mb-0" for="hh_a">Ada</label>
-                                                </div>
-                                                <div class="radio radio-primary">
-                                                    <input id="hh_ta" type="radio" name="status_kelainan" value="2" {{ old('status_kelainan',$warga->status_kelainan) == 2 ? "checked" : ""}}>
-                                                    <label class="mb-0" for="hh_ta">Tidak ada</label>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                     <div class="mb-3 row">

@@ -1,7 +1,7 @@
 @extends('layouts.main-rt')
 
 @section('title')
-  Detail Kegiatan
+  Detail Pengumuman
   {{ $title }}
 @endsection
 
@@ -12,10 +12,10 @@
   @component('components.warga.breadcrumb')
     @slot('breadcrumb_title')
       <h3>
-        Detail Kegiatan</h3>
+        Detail Pengumuman</h3>
     @endslot
-    <li class="breadcrumb-item">Kegiatan</li>
-    <li class="breadcrumb-item active">Detail Kegiatan</li>
+    <li class="breadcrumb-item">Pengumuman</li>
+    <li class="breadcrumb-item active">Detail Pengumuman</li>
   @endcomponent
 
   <div class="container-fluid">
@@ -23,18 +23,15 @@
       <div class="col-sm-12">
         <div class="blog-single">
           <div class="blog-box blog-details">
-            @if($kegiatan->foto_kegiatan == 'no-image.jpg')
-            <div class="banner-wrraper"><img class="img-fluid w-100 bg-img-cover" src="{{asset('assets/images/blog/blog-2.jpg')}}" alt="blog-main" /></div>
-@else
-            <div class="banner-wrraper"><img class="img-fluid w-100 bg-img-cover" src="{{asset('storage/'. $kegiatan->foto_kegiatan)}}" alt="blog-main" /></div>
-            @endif
+            <div class="banner-wrraper"><img class="img-fluid w-100 bg-img-cover" {{-- src="{{ asset('assets/images/blog/blog-single.jpg') }}" alt="blog-main" /></div> --}}
+                src="{{ asset('storage/' . $pengumuman->foto_pengumuman) }}" alt="blog-main" /></div>
             <div class="card">
               <div class="card-body">
                 <div class="blog-details">
                   <ul class="blog-social">
-                    <li class="middle">Publish : {{ $kegiatan->tanggal_publish == true ? $kegiatan->tanggal_publish : $kegiatan->created_at->diffForHumans()  }}</li>
+                    <li class="middle">Publish : {{ tanggal_waktu_indo($pengumuman->tgl_terbit) }}</li>
                     <li class="middle">Status :
-                      @if ($kegiatan->status_kegiatan == 1)
+                      @if ($pengumuman->status_pengumuman == 1)
                         <span id="status_aja" class="badge badge-success">Aktif</span>
                       @else
                         <span id="status_aja" class="badge badge-warning">Tidak Aktif</span>
@@ -43,51 +40,40 @@
                     </li>
                   </ul>
                   <h4>
-                    {{ $kegiatan->nama_kegiatan }}
+                    {{ $pengumuman->nama_pengumuman }}
                   </h4>
                   <div class="single-blog-content-top txt-dark">
-                    {!! $kegiatan->isi_kegiatan !!}.
+                    {!! $pengumuman->isi_pengumuman !!}.
                   </div>
-                  <h6>Waktu</h5>
-                    <div class="single-blog-content-top txt-dark mb-2">
-                      <p>
-                        <strong>Tanggal Mulai Kegiatan :</strong>
-                        {{ tanggal_waktu_indo($kegiatan->tgl_mulai_kegiatan) }}
-                      </p>
-                      <p>
-                        <strong>Tanggal Selesai Kegiatan :</strong>
-                        {{ tanggal_waktu_indo($kegiatan->tgl_selesai_kegiatan) }}
+                  @if($pengumuman->foto_pengumuman != null)
+                  <h6>Lampiran</h5>
+                    <div class="single-blog-content-top txt-dark">
+                      <p class="text-center">
+                        <img class="img-fluid w-75 " src="{{ asset('storage/' . $pengumuman->foto_pengumuman) }}"
+                          alt="Foto {{$pengumuman->nama_pengumuman}} " />
                       </p>
                     </div>
-                    @if($kegiatan->foto_kegiatan != 'no-image.jpg')
-                    <h6>Lampiran</h5>
-                      <div class="single-blog-content-top txt-dark">
-                        <p class="text-center">
-                          <img class="img-fluid w-75 " src="{{ asset('storage/' . $kegiatan->foto_kegiatan) }}"
-                            alt="Foto {{$kegiatan->nama_kegiatan}} " />
-                        </p>
-                      </div>
-                      @else
-                      @endif
+                    @else
+                    @endif
                 </div>
               </div>
               <div class="card-footer text-end">
                 {{-- TOMBOL AKTIF NON AKTIF --}}
-                <button class='btn @php echo $kegiatan->status_kegiatan == 0 ? 'btn-success' : 'btn-warning' @endphp
-                  btn-lg' id="ubah_status" data-id="{{ $kegiatan->id_kegiatan }}"
-                  data-status="{{ $kegiatan->status_kegiatan == 1 ? 0:1 }}"
-                  href="{{ route('rt.kegiatan.edit', $kegiatan->id_kegiatan) }}"><span class="fa fa-edit"></span>
-                  {{ $kegiatan->status_kegiatan == 0 ? 'Aktif' : 'Non-Aktif' }}</button>
+                <button class='btn @php echo $pengumuman->status_pengumuman == 0 ? 'btn-success' : 'btn-warning' @endphp
+                  btn-lg' id="ubah_status" data-id="{{ $pengumuman->id_pengumuman }}"
+                  data-status="{{ $pengumuman->status_pengumuman == 1 ? 0:1 }}"
+                  href="{{ route('rt.pengumuman.edit', $pengumuman->id_pengumuman) }}"><span class="fa fa-edit"></span>
+                  {{ $pengumuman->status_pengumuman == 0 ? 'Aktif' : 'Non-Aktif' }}</button>
                 {{-- END TOMBOL AKTIF NON AKTIF --}}
 
                 {{-- TOMBOL EDIT --}}
                 <a class="btn btn-secondary btn-lg"
-                  href="{{ route('rt.kegiatan.edit', $kegiatan->id_kegiatan) }}"><span
+                  href="{{ route('rt.pengumuman.edit', $pengumuman->id_pengumuman) }}"><span
                     class="fa fa-edit"></span>Edit</a>
                 {{-- END TOMBOL EDIT --}}
 
                 {{-- TOMBOL DELETE --}}
-                <form method="POST" action="{{ route('rt.kegiatan.destroy', $kegiatan->id_kegiatan) }}"
+                <form method="POST" action="{{ route('rt.pengumuman.destroy', $pengumuman->id_pengumuman) }}"
                   class="d-inline">
                   @csrf
                   @method('DELETE')
@@ -111,17 +97,17 @@
   <script>
     $('#ubah_status').click(function() {
       let status = null;
-      const id_kegiatan = $(this).data('id');
-      alert("ID" + id_kegiatan);
+      const id_pengumuman = $(this).data('id');
+      alert("ID" + id_pengumuman);
       status = $(this).data('status');
       alert("STATUS" + status);
       $.ajax({
         type: "GET",
         dataType: "json",
-        url: "{{ route('rt.kegiatan.update.status') }}",
+        url: "{{ route('rt.pengumumanrt.update.status') }}",
         data: {
-          'status_kegiatan': status,
-          'id_kegiatan': id_kegiatan
+          'status_pengumuman': status,
+          'id_pengumuman': id_pengumuman
         },
         success: function(data) {
           // console.log(data);

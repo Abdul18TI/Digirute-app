@@ -15,8 +15,13 @@ class CreateFasilitasUmumsTable extends Migration
     {
         Schema::create('fasilitas_umums', function (Blueprint $table) {
             $table->id('id_fasilitas_umum');
-            $table->foreignId('kategpri_fasilitas_umum');
+            $table->foreignId('kategori_fasilitas_umum');
             $table->string('fasilitas_umum');
+            $table->string('deskripsi_fasilitas');
+            $table->string('koordinant_fasilitas');
+            $table->string('foto_fasilitas');
+            $table->integer('status_fasilitas');
+            $table->string('alamat_fasilitas');
             $table->timestamps();
         });
     }

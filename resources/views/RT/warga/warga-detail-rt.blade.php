@@ -1,4 +1,4 @@
-@extends('layouts.main-rw')
+@extends('layouts.main-rt')
 
 @section('title')
   Data Warga
@@ -19,7 +19,7 @@
     @slot('breadcrumb_title')
       <h3>Data Warga</h3>
     @endslot
-    <li class="breadcrumb-item"><a href="{{ route('rw.warga.index') }}">Warga</a></li>
+    <li class="breadcrumb-item"><a href="{{ route('rt.warga.index') }}">Warga</a></li>
     <li class="breadcrumb-item active">Detail Warga</li>
   @endcomponent
   <!-- Form Tambah Warga -->

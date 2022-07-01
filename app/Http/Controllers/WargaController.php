@@ -124,11 +124,19 @@ class WargaController extends Controller
     {
         // dd($warga->all());
         $data = Pekerjaan::all();
+        $datakab = Kabupaten::all();
+        $datakec = Kecamatan::all();
+        $datakel = Kelurahan::all();
+        $datapro = Provinsi::all();
         return view(
             'RT.warga.warga-edit-rt',
             [
                 'warga' => $warga,
                 'pekerjaan' => $data,
+                'kabupaten' => $datakab,
+                'kecamatan' => $datakec,
+                'kelurahan' => $datakel,
+                'provinsi' => $datapro,
             ]
         );
     }
@@ -154,7 +162,6 @@ class WargaController extends Controller
             'nama_lengkap' => 'required',
             'tempat_lahir' => 'required',
             'tgl_lahir' => 'required|date',
-            'status_akta_kelahiran' => 'required', //
             'akta_kelahiran' => 'nullable|numeric', //
             'jenis_kelamin' => 'required',
             'agama' => 'required',
@@ -164,9 +171,7 @@ class WargaController extends Controller
             'status_hubungan' => 'required', //
             'status_perkawinan' => 'required', //
             'tgl_perkawinan' => 'nullable|date', //
-            'status_akta_kawin' => 'required', //
             'akta_kawin' => 'nullable|numeric', //
-            'status_akta_cerai' => 'required', //
             'akta_cerai' => 'nullable|numeric', //
             'tgl_cerai' => 'nullable|date', //
             'nomor_passport' => 'nullable|numeric', //
@@ -177,7 +182,6 @@ class WargaController extends Controller
             'nik_ibu' => 'required', //
             'nama_ibu' => 'required', //
             'tgl_keluar_kk' => 'date', //
-            'status_kelainan' => 'required', //
             'kelainan' => 'nullable', //
             'email_warga' => 'required',
             'no_hp_warga' => 'required',
@@ -214,5 +218,15 @@ class WargaController extends Controller
             return redirect()->route('rt.warga.index')
                 ->with('error', 'Gagal menghapus data!');
         }
+    }
+
+    public function show($id)
+    {
+        $warga = Warga::with(['pekerjaan', 'agamas'])->where('id_warga', $id)->first();
+        // dd($warga->agamas);
+
+        return view('rt.warga.warga-detail-rt', [
+            'warga' => $warga,
+        ]);
     }
 }

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WargaController;
 use App\Http\Controllers\RT\LoginRTController;
 use App\Http\Controllers\RT\KegiatanRTController;
+use App\Http\Controllers\RT\PengumumanRTController;
 use App\Http\Controllers\RT\DashboardRTController;
 use App\Http\Controllers\RT\PengaduanRTController;
 use App\Http\Controllers\RT\WargaMeninggalController;
@@ -25,8 +26,22 @@ Route::middleware(['auth:rt', 'PreventBackHistory'])->group(function () {
     // Route::put('/update/{id}', [WargaController::class, 'update'])->name('warga.update');
     route::resource('warga', WargaController::class);
     // });
+    Route::get('/warga/getKab/{id}', function ($id) {
+        $kab = App\Models\Kabupaten::where('id_prov', $id)->get();
+        return response()->json($kab);
+    });
+    Route::get('/warga/getKec/{id}', function ($id) {
+        $kec = App\Models\Kecamatan::where('id_kab', $id)->get();
+        return response()->json($kec);
+    });
+    Route::get('/warga/getKel/{id}', function ($id) {
+        $kel = App\Models\Kelurahan::where('id_kec', $id)->get();
+        return response()->json($kel);
+    });
     Route::get('/status/update', [KegiatanRTController::class, 'updateStatus'])->name('kegiatan.update.status');
+    Route::get('/pengumuman/status2/update', [PengumumanRTController::class, 'updateStatus'])->name('pengumumanrt.update.status');
     route::resource('kegiatan', KegiatanRTController::class);
+    route::resource('pengumuman', PengumumanRTController::class);
     route::get('kematian/show_jenazah', [WargaMeninggalController::class, 'show_warga'])->name('kematian.show_jenazah');
     route::get('kematian/show_warga', [WargaMeninggalController::class, 'show_warga'])->name('kematian.show_pelapor');
     route::get('kematian/{kematian}/print_surat', [WargaMeninggalController::class, 'print'])->name('kematian.print_surat');
@@ -37,4 +52,5 @@ Route::middleware(['auth:rt', 'PreventBackHistory'])->group(function () {
     });
     Route::post('logout', [LoginRTController::class, 'logout'])->name('logout');
 });
+
 // });

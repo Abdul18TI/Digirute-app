@@ -53,7 +53,10 @@
                     <li class="dropdown">
                         <a class="nav-link menu-title link-nav {{routeActive('warga.rw-rt')}}" href="{{ route('warga.rw-rt') }}"><i data-feather="users"></i><span>Profile RT RW</span></a>
                     </li>
-                    
+                    <li class="dropdown">
+                        <a class="nav-link menu-title link-nav {{routeActive('warga.kegiatan')}}" href="{{ route('warga.kegiatan_warga.index') }}"><i data-feather="archive"></i><span>Kegiatan</span></a>
+                        <a class="nav-link menu-title link-nav {{routeActive('warga.pengumuman')}}" href="{{ route('warga.pengumuman_warga.index') }}"><i data-feather="calendar"></i><span>Pengumuman</span></a>
+                    </li>
                 </ul>
             </div>
             <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>

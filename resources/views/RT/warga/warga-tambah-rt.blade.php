@@ -112,14 +112,12 @@
                                     </div>
                                     <div class="mb-3 row">
                                         <label class="col-sm-3 col-form-label"></label>
-                                        <div class="col-sm-5">
+                                        <div class="col-sm-4">
                                             <select class="form-select select2" id="kecamatan" name="kecamatan">
-                                                <option value="1" selected>Pilih Kecamatan</option>
                                             </select>
                                         </div>
                                         <div class="col-sm-4">
                                             <select class="form-select select2" id="kelurahan" name="kelurahan">
-                                                <option value="1" selected>Pilih Kelurahan</option>
                                             </select>
                                         </div>
                                     </div>
@@ -235,21 +233,6 @@
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
-                                        <label class="col-sm-3 col-form-label">Akta kawin <span class="text-danger">*</span></label>
-                                        <div class="col-sm-9">
-                                            <div class="form-group mt-2 m-checkbox-inline mb-0 custom-radio-ml">
-                                                <div class="radio radio-primary">
-                                                    <input id="gg_a" type="radio" name="status_akta_kawin" value="1" {{ old('status_akta_kawin') == 1 ? "checked" : ""}}>
-                                                    <label class="mb-0" for="gg_a">Ada</label>
-                                                </div>
-                                                <div class="radio radio-primary">
-                                                    <input id="gg_ta" type="radio" name="status_akta_kawin" value="2" {{ old('status_akta_kawin') == 2 ? "checked" : ""}}>
-                                                    <label class="mb-0" for="gg_ta">Tidak ada</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 row">
                                         <label class="col-sm-3 col-form-label">Nomor Akta Kawin</label>
                                         <div class="col-sm-9">
                                             <input class="form-control " type="number" id="akta_kawin" name="akta_kawin" value="{{ old('akta_kawin') }}" placeholder="">
@@ -259,21 +242,6 @@
                                         <label class="col-sm-3 col-form-label">Tanggal Perceraian <span class="text-danger">*</span> </label>
                                         <div class="col-sm-9">
                                             <input class="form-control digits" name="tgl_cerai" type="date"  value="">
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 row">
-                                        <label class="col-sm-3 col-form-label">Akta Cerai <span class="text-danger">*</span></label>
-                                        <div class="col-sm-9">
-                                            <div class="form-group mt-2 m-checkbox-inline mb-0 custom-radio-ml">
-                                                <div class="radio radio-primary">
-                                                    <input id="cc_a" type="radio" name="status_akta_cerai" value="1" {{ old('status_akta_cerai') == 1 ? "checked" : ""}}>
-                                                    <label class="mb-0" for="cc_a">Ada</label>
-                                                </div>
-                                                <div class="radio radio-primary">
-                                                    <input id="cc_ta" type="radio" name="status_akta_cerai" value="2" {{ old('status_akta_cerai') == 2 ? "checked" : ""}}>
-                                                    <label class="mb-0" for="cc_ta">Tidak ada</label>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
@@ -362,21 +330,6 @@
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
-                                        <label class="col-sm-3 col-form-label">Kelainan Fisik Dan Mental <span class="text-danger">*</span></label>
-                                        <div class="col-sm-9">
-                                            <div class="form-group mt-2 m-checkbox-inline mb-0 custom-radio-ml">
-                                                <div class="radio radio-primary">
-                                                    <input id="hh_a" type="radio" name="status_kelainan" value="1" {{ old('status_kelainan') == 1 ? "checked" : ""}}>
-                                                    <label class="mb-0" for="hh_a">Ada</label>
-                                                </div>
-                                                <div class="radio radio-primary">
-                                                    <input id="hh_ta" type="radio" name="status_kelainan" value="2" {{ old('status_kelainan') == 2 ? "checked" : ""}}>
-                                                    <label class="mb-0" for="hh_ta">Tidak ada</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 row">
                                         <label class="col-sm-3 col-form-label">Penyandang Cacat</label>
                                         <div class="col-sm-9">
                                             <input class="form-control " type="text" id="kelainan" name="kelainan" value="{{ old('kelainan') }}" placeholder="">
@@ -445,7 +398,7 @@
                             $('#kabupaten').empty();
                             $('#kabupaten').append('<option hidden>Pilih kabupaten</option>'); 
                             $.each(data, function(key, kab){
-                                $('select[name="kabupaten"]').append('<option value="'+ key +'">' + kab.nama+ '</option>');
+                                $('select[name="kabupaten"]').append('<option value="'+ kab.id_kab +'">' + kab.nama+ '</option>');
                             });
                         }else{
                             $('#kabupaten').empty();
@@ -454,6 +407,56 @@
                    });
                }else{
                  $('#kabupaten').empty();
+               }
+            });
+            $('#kabupaten').on('change', function() {
+               var kabupatenID = $(this).val();
+               if(kabupatenID) {
+                   $.ajax({
+                       url: 'getKec/'+kabupatenID,
+                       type: "GET",
+                       data : {"_token":"{{ csrf_token() }}"},
+                       dataType: "json",
+                       success:function(data)
+                       {
+                         if(data){
+                            $('#kecamatan').empty();
+                            $('#kecamatan').append('<option hidden>Pilih kecamatan</option>'); 
+                            $.each(data, function(key, kec){
+                                $('select[name="kecamatan"]').append('<option value="'+ kec.id_kec +'">' + kec.nama+ '</option>');
+                            });
+                        }else{
+                            $('#kecamatan').empty();
+                        }
+                     }
+                   });
+               }else{
+                 $('#kecamatan').empty();
+               }
+            });
+            $('#kecamatan').on('change', function() {
+               var kecamatanID = $(this).val();
+               if(kecamatanID) {
+                   $.ajax({
+                       url: 'getKel/'+kecamatanID,
+                       type: "GET",
+                       data : {"_token":"{{ csrf_token() }}"},
+                       dataType: "json",
+                       success:function(data)
+                       {
+                         if(data){
+                            $('#kelurahan').empty();
+                            $('#kelurahan').append('<option hidden>Pilih kelurahan</option>'); 
+                            $.each(data, function(key, kel){
+                                $('select[name="kelurahan"]').append('<option value="'+ kel.id_kel +'">' + kel.nama+ '</option>');
+                            });
+                        }else{
+                            $('#kelurahan').empty();
+                        }
+                     }
+                   });
+               }else{
+                 $('#kelurahan').empty();
                }
             });
             });
