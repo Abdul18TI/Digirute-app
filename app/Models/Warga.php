@@ -42,6 +42,11 @@ class Warga extends Authenticatable
         return $this->belongsTo(Agama::class, 'agama', 'id_agama')->select(['id_agama', 'agama']);
         // return $this->belongsTo(rt::class);
     }
+    public function golongan_darahs()
+    {
+        return $this->belongsTo(GolonganDarah::class, 'golongan_darah', 'id')->select(['id', 'golongan_darah']);
+        // return $this->belongsTo(rt::class);
+    }
     // public function agama()
     // {
     //     return $this->belongsTo(Agama::class, 'agama', 'id_agama')->select(['id_pekerjaan', 'nama_pekerjaan']);

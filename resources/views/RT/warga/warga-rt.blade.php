@@ -95,7 +95,7 @@
                         <a class="btn btn-info btn-sm p-2"
                           href="{{ route('rt.warga.show',$dw->id_warga) }}"><span class="fa fa-eye"></span></a>
                         <a class="btn btn-secondary btn-sm p-2"
-                          href="warga/{{ $dw->id_warga }}/edit"><span class="fa fa-edit"></span></a>
+                          href="{{ route('rt.warga.edit', $dw->id_warga) }}"><span class="fa fa-edit"></span></a>
                         <form method="POST"
                           action="{{ route('rt.warga.destroy', $dw->id_warga) }}"
                           class="d-inline">

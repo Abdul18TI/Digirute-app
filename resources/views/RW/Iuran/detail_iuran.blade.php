@@ -135,7 +135,7 @@
             //         }
             //     });
             //     $.ajax({
-            //         url: "{{ route('pembayaran.store') }}",
+            //         url: "route('pembayaran.store')",
             //         type: "POST",
             //         data: {
             //              "_token" : "{{ csrf_token() }}",

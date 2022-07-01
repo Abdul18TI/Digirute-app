@@ -59,7 +59,7 @@
                                         <td>
                                             <a class="btn btn-info btn-sm p-2" href="{{ route('rw.iuran.show',$i->id_iuran ) }}"><span
                                                     class="fa fa-eye"></span></a>
-                                            <a class="btn btn-secondary btn-sm p-2" href="iuran/{{ $i->id_iuran }}/edit"><span
+                                            <a class="btn btn-secondary btn-sm p-2" href="{{ route('rw.iuran.edit',  $i->id_iuran) }}"><span
                                                     class="fa fa-edit"></span></a>
                                             <form method="POST" action="{{ route('rw.iuran.destroy', $i->id_iuran)}}" class="d-inline">
                                                 @csrf

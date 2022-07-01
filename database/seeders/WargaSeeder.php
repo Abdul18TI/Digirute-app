@@ -94,6 +94,7 @@ class WargaSeeder extends Seeder
                     'pekerjaan' => '1',
                     'status_hubungan' => '1',
                     'status_perkawinan' => 'belum_kawin',
+                    'status_akta_cerai' => '1',
                     'nomor_passport' => NULL,
                     'tgl_akhir_passport' => NULL,
                     'nomor_kitaskitap' => NULL,
