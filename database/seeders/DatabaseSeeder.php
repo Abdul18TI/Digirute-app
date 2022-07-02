@@ -17,7 +17,6 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RtSeeder::class,
             RwSeeder::class,
-            WargaSeeder::class,
             PekerjaanSeeder::class,
             PendidikanSeeder::class,
             DaerahSeeder::class,
@@ -25,6 +24,7 @@ class DatabaseSeeder extends Seeder
             UtilSeeder::class,
             KegiatanSeeder::class,
             AgamaSeeder::class,
+            WargaSeeder::class,
         ]);
     }
 }

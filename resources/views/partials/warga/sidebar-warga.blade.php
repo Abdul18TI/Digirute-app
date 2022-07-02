@@ -37,7 +37,13 @@
                         <a class="nav-link menu-title link-nav {{routeActive('warga.home')}}" href="{{ route('warga.home') }}"><i data-feather="home"></i><span>Dashboard</span></a>
                     </li>
                     <li class="dropdown">
-                        <a class="nav-link menu-title {{  prefixActive('warga.pengaduan.*') }}" href="javascript:void(0)"><i data-feather="message-circle"></i><span>Pengaduan</span></a>                  
+                        <a class="nav-link menu-title  {{  prefixActive('warga.surat.*') }}" ><i data-feather="inbox"></i><span>Surat</span></a>                  
+                        <ul class="nav-submenu menu-content" style="display:{{  prefixBlock('warga.surat.*') }};">
+                            <li><a  href="{{ route('warga.surat.form.surat_keterangan') }}" class="{{  prefixActive('warga.surat.form.surat_keterangan') }}">Surat Keterangan</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="nav-link menu-title {{  prefixActive('warga.pengaduan.*') }}" href="javascript:void(0)"><i data-feather="archive"></i><span>Pengaduan</span></a>                  
                         <ul class="nav-submenu menu-content" style="display: {{ prefixBlock('warga.pengaduan.*') }};">
                             <li><a  href="{{ route('warga.pengaduan.index') }}" class="{{routeActive('warga.pengaduan.index')}}">Pengaduan Warga</a></li>
                             <li><a href="{{ route('warga.pengaduan.pribadi') }}" class="{{routeActive('warga.pengaduan.pribadi')}}">Pengaduan Pribadi</a></li>
@@ -47,22 +53,15 @@
                         <a class="nav-link menu-title  {{  prefixActive('warga.iuran.*') }}" ><i data-feather="dollar-sign"></i><span>Iuran</span></a>                  
                         <ul class="nav-submenu menu-content" style="display:{{  prefixBlock('warga.iuran.*') }};">
                             <li><a  href="{{ route('warga.iuran.home') }}" class="{{  prefixActive('warga.iuran.home') }}">Iuran Warga</a></li>
-                            <li><a href="" class="">Riwayat</a></li>
                         </ul>
                     </li>
+                  
                     <li class="dropdown">
-                        <a class="nav-link menu-title  {{  prefixActive('warga.surat.*') }}" ><i data-feather="inbox"></i><span>Surat</span></a>                  
-                        <ul class="nav-submenu menu-content" style="display:{{  prefixBlock('warga.surat.*') }};">
-                            <li><a  href="{{ route('warga.surat.form.surat_pengantar') }}" class="{{  prefixActive('warga.surat.form.surat_pengantar') }}">Surat Pengantar</a></li>
-                            <li><a href="" class="">Riwayat</a></li>
-                        </ul>
+                        <a class="nav-link menu-title link-nav {{routeActive('warga.kegiatan')}}" href="{{ route('warga.kegiatan_warga.index') }}"><i data-feather="calendar"></i><span>Kegiatan</span></a>
+                        <a class="nav-link menu-title link-nav {{routeActive('warga.pengumuman')}}" href="{{ route('warga.pengumuman_warga.index') }}"><i data-feather="airplay"></i><span>Pengumuman</span></a>
                     </li>
-                    <li class="dropdown">
+                    <li>
                         <a class="nav-link menu-title link-nav {{routeActive('warga.rw-rt')}}" href="{{ route('warga.rw-rt') }}"><i data-feather="users"></i><span>Profile RT RW</span></a>
-                    </li>
-                    <li class="dropdown">
-                        <a class="nav-link menu-title link-nav {{routeActive('warga.kegiatan')}}" href="{{ route('warga.kegiatan_warga.index') }}"><i data-feather="archive"></i><span>Kegiatan</span></a>
-                        <a class="nav-link menu-title link-nav {{routeActive('warga.pengumuman')}}" href="{{ route('warga.pengumuman_warga.index') }}"><i data-feather="calendar"></i><span>Pengumuman</span></a>
                     </li>
                 </ul>
             </div>

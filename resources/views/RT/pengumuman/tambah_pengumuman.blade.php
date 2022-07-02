@@ -12,7 +12,7 @@
 @endpush
 
 @section('container')
-@component('components.r-w.breadcrumb')
+@component('components.r-t.breadcrumb')
         @slot('breadcrumb_title')
         <h3>Pengumuman</h3>
         @endslot

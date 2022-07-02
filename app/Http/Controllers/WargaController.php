@@ -202,7 +202,7 @@ class WargaController extends Controller
     public function show($id)
     {
         //
-        $warga = Warga::with(['identitas_rws', 'rt_rel', 'pekerjaan', 'agamas', 'pendidikans','golongan_darahs'])->where('id_warga', $id)->first();
+        $warga = Warga::with(['identitas_rws', 'rt_rel', 'pekerjaan', 'agamas', 'pendidikans', 'golongan_darahs'])->where('id_warga', $id)->first();
         // dd($warga->pendidikans->nama_pendidikan);
 
         return view('RT.Warga.detail_warga', [
@@ -231,13 +231,13 @@ class WargaController extends Controller
         }
     }
 
-    public function show($id)
-    {
-        $warga = Warga::with(['pekerjaan', 'agamas'])->where('id_warga', $id)->first();
-        // dd($warga->agamas);
+    // public function show($id)
+    // {
+    //     $warga = Warga::with(['pekerjaan', 'agamas'])->where('id_warga', $id)->first();
+    //     // dd($warga->agamas);
 
-        return view('rt.warga.warga-detail-rt', [
-            'warga' => $warga,
-        ]);
-    }
+    //     return view('rt.warga.warga-detail-rt', [
+    //         'warga' => $warga,
+    //     ]);
+    // }
 }

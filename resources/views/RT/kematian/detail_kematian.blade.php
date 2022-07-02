@@ -9,7 +9,7 @@
 @endpush
 
 @section('container')
-  @component('components.warga.breadcrumb')
+  @component('components.r-t.breadcrumb')
     @slot('breadcrumb_title')
       <h3>
         Detail Data Kematian</h3>

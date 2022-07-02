@@ -15,7 +15,7 @@
 @endpush
 
 @section('container')
-  @component('components.warga.breadcrumb')
+  @component('components.r-t.breadcrumb')
     @slot('breadcrumb_title')
       <h3>Kegiatan</h3>
     @endslot

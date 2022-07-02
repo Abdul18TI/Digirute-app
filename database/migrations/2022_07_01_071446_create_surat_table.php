@@ -17,9 +17,8 @@ class CreateSuratTable extends Migration
             $table->id('id_surat');
             $table->string('nomor_surat');
             $table->string('jenis_surat');
-            $table->string('status_surat',25);
+            $table->string('status_surat', 25);
             $table->json('propertie_surat');
-
             $table->timestamps();
         });
     }

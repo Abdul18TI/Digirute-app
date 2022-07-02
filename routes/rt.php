@@ -6,6 +6,7 @@ use App\Http\Controllers\WargaController;
 use App\Http\Controllers\RT\LoginRTController;
 use App\Http\Controllers\RT\KegiatanRTController;
 use App\Http\Controllers\RT\PengumumanRTController;
+use App\Http\Controllers\RT\ProfileRTController;
 use App\Http\Controllers\RT\DashboardRTController;
 use App\Http\Controllers\RT\PengaduanRTController;
 use App\Http\Controllers\RT\WargaMeninggalController;
@@ -42,6 +43,7 @@ Route::middleware(['auth:rt', 'PreventBackHistory'])->group(function () {
     Route::get('/pengumuman/status2/update', [PengumumanRTController::class, 'updateStatus'])->name('pengumumanrt.update.status');
     route::resource('kegiatan', KegiatanRTController::class);
     route::resource('pengumuman', PengumumanRTController::class);
+    route::resource('profileRT', ProfileRTController::class);
     route::get('kematian/show_jenazah', [WargaMeninggalController::class, 'show_warga'])->name('kematian.show_jenazah');
     route::get('kematian/show_warga', [WargaMeninggalController::class, 'show_warga'])->name('kematian.show_pelapor');
     route::get('kematian/{kematian}/print_surat', [WargaMeninggalController::class, 'print'])->name('kematian.print_surat');

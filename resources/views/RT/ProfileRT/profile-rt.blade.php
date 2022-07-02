@@ -1,12 +1,12 @@
-@extends('layouts.main-rw')
+@extends('layouts.main-rt')
 
 @section('container')
-@component('components.r-w.breadcrumb')
+@component('components.r-t.breadcrumb')
         @slot('breadcrumb_title')
-        <h3>Profile-RW</h3>
+        <h3>Profile-RT</h3>
         @endslot
         {{-- <li class="breadcrumb-item">Pengaduan</li> --}}
-        <li class="breadcrumb-item active">Profile-RW</li>
+        <li class="breadcrumb-item active">Profile-RT</li>
     @endcomponent
     <div class="container-fluid">
 	    <div class="user-profile">
@@ -26,18 +26,18 @@
 	                    <div class="profile-img-wrrap"><img class="img-fluid bg-img-cover" src="{{asset('assets/images/user-profile/bg-profile.jpg')}}" alt="" /></div>
 	                    <div class="userpro-box">
 	                        <div class="img-wrraper">
-	                            @if($rt->identitas_rt->foto_warga == 'no-image.png')
+								@if($rt->identitas_rt->foto_warga == 'no-image.png')
 	                            <div class="avatar"><img class="img-fluid" alt="" src="{{ asset('assets/images/dashboard/1.png') }}" /></div>
 								@else
 								<div class="avatar"><img class="img-fluid" alt="" src="{{ asset('storage/' . $rt->identitas_rt->foto_warga) }}" /></div>
 								@endif
-	                            <a class="icon-wrapper" href="{{route('rw.profile.edit',$rw->identitas_rw->id_warga)}}"><i class="icofont icofont-pencil-alt-5"></i></a>
+	                            <a class="icon-wrapper" href="{{route('rt.profileRT.edit',$rt->identitas_rt->id_warga)}}"><i class="icofont icofont-pencil-alt-5"></i></a>
 	                        </div>
 	                        <div class="user-designation">
 	                            <div class="title">
 	                                <a target="_blank" href="">
-	                                    <h4>{{ $rw->identitas_rw->nama_lengkap }}</h4>
-	                                    <h6>RW 0{{ $rw->no_rw }}</h6>
+	                                    <h4>{{ $rt->identitas_rt->nama_lengkap }}</h4>
+	                                    <h6>RT 0{{ $rt->no_rt }}</h6>
 	                                </a>
 	                            </div>
 	                        </div>
@@ -61,35 +61,35 @@
                                                 <li>
                                                     <div class="icon"><i data-feather="tag"></i></div>
                                                     <div>
-                                                        <h5>{{ $rw->identitas_rw->nik }}</h5>
+                                                        <h5>{{ $rt->identitas_rt->nik }}</h5>
                                                         <p>NIK</p>
                                                     </div>
                                                 </li>
 	                                            <li>
 	                                                <div class="icon"><i data-feather="mail"></i></div>
 	                                                <div>
-	                                                    <h5>{{ $rw->identitas_rw->email_warga }}</h5>
+	                                                    <h5>{{ $rt->identitas_rt->email_warga }}</h5>
                                                         <p>email</p>
 	                                                </div>
 	                                            </li>
 	                                            <li>
 	                                                <div class="icon"><i data-feather="phone"></i></div>
 	                                                <div>
-	                                                    <h5>{{ $rw->identitas_rw->no_hp_warga }}</h5>
+	                                                    <h5>{{ $rt->identitas_rt->no_hp_warga }}</h5>
                                                         <p>nomor hp</p>
 	                                                </div>
 	                                            </li>
 	                                            <li>
 	                                                <div class="icon"><i data-feather="map-pin"></i></div>
 	                                                <div>
-	                                                    <h5>{{ $rw->identitas_rw->alamat }}</h5>
+	                                                    <h5>{{ $rt->identitas_rt->alamat }}</h5>
                                                         <p>alamat</p>
 	                                                </div>
 	                                            </li>
 	                                            <li>
 	                                                <div class="icon"><i data-feather="inbox"></i></div>
 	                                                <div>
-	                                                    <h5>{{ $rw->identitas_rw->kode_pos }}</h5>
+	                                                    <h5>{{ $rt->identitas_rt->kode_pos }}</h5>
 	                                                    <p>kode pos</p>
 	                                                </div>
 	                                            </li>
@@ -103,15 +103,15 @@
 	                                </div>
 	                                <div class="collapse" id="collapseicon3" aria-labelledby="collapseicon3" data-parent="#accordion">       
 										<div class="col-xl-12">
-											<form class="card" method="post" action="/RW/profile/{{ $rw->id_rw }}">
+											<form class="card" method="post" action="/RT/profile/{{ $rt->id_rt }}">
 												@method('PUT')  
                         						@csrf
-												<input type="hidden" name="id" value="{{ $rw->id_rw }}">
+												<input type="hidden" name="id" value="{{ $rt->id_rt }}">
 													<div class="card-body">
 														<div class="row">
 															<div class="col-md-12">
 																<div class="mb-3">
-																	<input class="form-control" name="username" value="{{ $rw->username }}" type="text" placeholder="username" />
+																	<input class="form-control" name="username" value="{{ $rt->username }}" type="text" placeholder="username" />
 																</div>
 																<div class="col-md-3 text-end">
 																<button class="btn btn-primary" type="submit">Ubah</button>
@@ -129,15 +129,15 @@
 	                                </div>
 	                                <div class="collapse" id="collapseicon4" aria-labelledby="collapseicon4" data-parent="#accordion">
 	                                    <div class="col-xl-12">
-											<form class="card" method="post" action="/RW/profile/{{ $rw->id_rw }}">
+											<form class="card" method="post" action="/RT/profile/{{ $rt->id_rt }}">
 												@method('PUT')  
                         						@csrf
-												<input type="hidden" name="id" value="{{ $rw->id_rw }}">
+												<input type="hidden" name="id" value="{{ $rt->id_rt }}">
 													<div class="card-body">
 														<div class="row">
 															<div class="col-md-12">
 																<div class="mb-3">
-																	<input class="form-control" name="password" value="{{ $rw->password }}" type="password" placeholder="password" />
+																	<input class="form-control" name="password" value="{{ $rt->password }}" type="password" placeholder="password" />
 																</div>
 																<div class="col-md-3 text-end">
 																<button class="btn btn-primary" type="submit">Ubah</button>
