@@ -96,7 +96,7 @@ class WargaController extends Controller
             'nama_ibu' => 'required', //
             'tgl_keluar_kk' => 'date', //
             'kelainan' => 'nullable', //
-            'foto_warga' => 'image|file|max:2048', //
+            'foto_warga' => 'image|file|max:4095', //
             'email_warga' => 'required',
             'no_hp_warga' => 'required',
             'rt' => 'required|nullable',

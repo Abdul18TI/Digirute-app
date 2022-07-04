@@ -51,7 +51,7 @@ class PembayaranRWController extends Controller
             'judul_pembayaran' => 'required',
             'kategori_pembayaran' => 'required',
             'isi_pembayaran' => 'required',
-            'foto_pembayaran' => 'image|file|max:2048',
+            'foto_pembayaran' => 'image|file|max:4095',
             'tgl_terbit' => 'required'
         ]);
 

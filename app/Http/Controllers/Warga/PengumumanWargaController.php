@@ -15,7 +15,7 @@ class PengumumanWargaController extends Controller
         // dd($pengumuman[1]->status_pengumuman);
 
         return view('Warga.pengumuman.pengumuman_warga', [
-            'pengumuman' => Pengumuman::where('status_pengumuman', 1)->latest()->filter(request(['search']))->get(),
+            'pengumuman' => Pengumuman::where('status_pengumuman', 1)->latest()->filter(request(['search', 'category']))->paginate(7)->withQueryString(),
             "title" => "pengumuman-warga"
         ]);
     }
@@ -28,6 +28,16 @@ class PengumumanWargaController extends Controller
         return view('Warga.pengumuman.detail_pengumuman_warga', [
             'pengumuman' => $pengumuman,
             "title" => "pengumuman-warga"
+        ]);
+    }
+
+    public function filter_kategori_pengumuman($id)
+    {
+        $pengumuman = Pengumuman::with('Kategori_pengumumans')->where('kategori_pengumuman', $id)->where('status_pengumuman', 1)->latest()->get();
+        // dd($pengumuman);
+        return view('Warga.pengumuman.kategori_pengumuman_warga', [
+            'pengumuman' => $pengumuman,
+            'title' => 'kategori-pengumuman'
         ]);
     }
 }

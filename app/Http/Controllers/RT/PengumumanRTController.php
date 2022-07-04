@@ -35,7 +35,7 @@ class PengumumanRTController extends Controller
             'judul_pengumuman' => 'required',
             'kategori_pengumuman' => 'required',
             'isi_pengumuman' => 'required',
-            'foto_pengumuman' => 'image|file|max:2048',
+            'foto_pengumuman' => 'image|file|max:4095',
             'tgl_terbit' => 'required'
         ]);
 
@@ -71,7 +71,7 @@ class PengumumanRTController extends Controller
             'judul_pengumuman' => 'required',
             'kategori_pengumuman' => 'required',
             'isi_pengumuman' => 'required',
-            'foto_pengumuman' => 'image|file|max:2048',
+            'foto_pengumuman' => 'image|file|max:4095',
             'tgl_terbit' => 'required'
         ]);
 

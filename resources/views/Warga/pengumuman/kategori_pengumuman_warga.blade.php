@@ -5,7 +5,6 @@
 @endsection
 
 @push('css')
-	
 @endpush
 
 @section('container')
@@ -13,8 +12,8 @@
         @slot('breadcrumb_title')
         <h3>Pengumuman</h3>
         @endslot
-        <li class="breadcrumb-item active">Pengumuman</li>
-        {{-- <li class="breadcrumb-item active">Kategori_Pengumuman</li> --}}
+        <li class="breadcrumb-item"><a href="{{ route('warga.pengumuman_warga.index') }}">Pengumuman</a></li>
+        <li class="breadcrumb-item active">Kategori Pengumuman</li>
     @endcomponent
     @if($pengumuman->count() )
 	<div class="container-fluid blog-page">
@@ -24,9 +23,6 @@
 					<div class="pro-filter-sec">
 						<div class="product-search">
 							<form action="pengumuman_warga">
-								@if (request('category'))
-								<input type="hidden" name="category" value="{{ request('category') }}">
-								@endif
 								<div class="form-group m-0"><input class="form-control" type="search" name="search" placeholder="Search.." data-original-title="" title="" value="{{ request('search') }}" /><i type="submit" class="fa fa-search"></i></div>
 							</form>
 						</div>
@@ -48,7 +44,7 @@
 	                        <h4>{{ $pengumuman[0]->nama_pengumuman }}</h4>
 							<ul class="blog-social">
 								<li>oleh: {{ $pengumuman[0]->penanggung_jawab }}</li>
-								<li>Kategori: <a href="/Warga/pengumuman_warga?category={{ $pengumuman[0]->kategori_pengumuman }}">{{ $pengumuman[0]->Kategori_pengumumans->nama_kategori_pengumuman }}</a></li>
+								<li>Kategori: <a href="/warga/filter_kategori?category={{ $pengumuman[0]->kategori_pengumuman }}">{{ $pengumuman[0]->Kategori_pengumumans->nama_kategori_pengumuman }}</a></li>
 							</ul>
 							<hr />
 							<article class="mt-0 text-light">{!! Str::limit($pengumuman[0]->isi_pengumuman, 100) !!}</article>
@@ -81,7 +77,7 @@
 	                                    <div class="blog-bottom-content">
 	                                        <ul class="blog-social">
 	                                            <li>oleh: {{ $k->penanggung_jawab }}</li>
-												<li>Kategori: <a href="/Warga/pengumuman_warga?category={{ $k->kategori_pengumuman }}">{{ $k->Kategori_pengumumans->nama_kategori_pengumuman }}</a></li>
+												<li>Kategori: <a href="/warga/filter_kategori?category={{$k->kategori_pengumuman}}">{{ $k->Kategori_pengumumans->nama_kategori_pengumuman }}</a></li>
 	                                        </ul>
 	                                        <hr />
 	                                        <article class="mt-0 text-dark">{!! Str::limit($k->isi_pengumuman, 100) !!}.</article>
@@ -113,7 +109,7 @@
 	                        <a href="{{route('warga.pengumuman_warga.show',$kk->id_pengumuman)}}"> <h6 class="blog-bottom-details">{{ $kk->nama_pengumuman }}</h6></a>
 							<ul class="blog-social">
 								<li>oleh: {{ $kk->penanggung_jawab }}</li>
-								<li>Kategori: <a href="/Warga/pengumuman_warga?category={{ $kk->kategori_pengumuman }}">{{ $kk->Kategori_pengumumans->nama_kategori_pengumuman }}</a></li>
+								<li>Kategori: <a href="/warga/filter_kategori?category={{ $kk->kategori_pengumuman }}">{{ $kk->Kategori_pengumumans->nama_kategori_pengumuman }}</a></li>
 							</ul>
 							<hr />
 	                        <article class="mt-0 text-dark">{!! Str::limit($kk->isi_pengumuman, 100) !!}.</article>
@@ -143,10 +139,6 @@
 		<p>Pengumuman yang dicari tidak ada</p>	
 	</div>
 	@endif
-
-<div class="d-flex justify-content-end mb-3">
-	{{ $pengumuman->links() }}
-</div>
 
 @endsection
 

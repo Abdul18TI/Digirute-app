@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Warga\OtherController;
-use App\Http\Controllers\RT\PengaduanRTController;
 use App\Http\Controllers\Warga\IuranWargaController;
 use App\Http\Controllers\Warga\LoginWargaController;
 use App\Http\Controllers\Warga\DashboardWargaController;
@@ -23,6 +22,7 @@ Route::middleware(['auth', 'PreventBackHistory'])->group(function () {
     Route::resource('pengaduan', WargaPengaduanController::class);
     Route::resource('kegiatan_warga', KegiatanWargaController::class);
     Route::resource('pengumuman_warga', PengumumanWargaController::class);
+    Route::get('/kategori_pengumuman/{id}', [PengumumanWargaController::class, 'filter_kategori_pengumuman'])->name('filter_kategori');
     Route::get('/rw-rt', [OtherController::class, 'rtrw'])->name('rw-rt');
     Route::prefix('iuran')->name('iuran.')->group(function () {
         Route::get('/', [IuranWargaController::class, 'index'])->name('home');

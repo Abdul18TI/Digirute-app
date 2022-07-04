@@ -43,7 +43,7 @@
         <div class="page-body-wrapper sidebar-icon">
             <!-- Page Sidebar Start-->
             @includeIf('partials.admin.sidebar-admin')
-            {{-- @include('sweetalert::alert') --}}
+            @include('sweetalert::alert')
             <!-- Page Sidebar Ends-->
             <div class="page-body">
                 <!-- Container-fluid starts-->

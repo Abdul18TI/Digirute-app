@@ -3,13 +3,10 @@
 namespace App\Http\Controllers\RW;
 
 use App\Models\Pengumuman;
-use Illuminate\Contracts\Cache\Store;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use App\Models\KategoriPengumuman;
-use RealRashid\SweetAlert\Facades\Alert;
 
 class PengumumanController extends Controller
 {
@@ -38,7 +35,7 @@ class PengumumanController extends Controller
             'judul_pengumuman' => 'required',
             'kategori_pengumuman' => 'required',
             'isi_pengumuman' => 'required',
-            'foto_pengumuman' => 'image|file|max:2048',
+            'foto_pengumuman' => 'image|file|max:4095',
             'tgl_terbit' => 'required'
         ]);
 
@@ -74,7 +71,7 @@ class PengumumanController extends Controller
             'judul_pengumuman' => 'required',
             'kategori_pengumuman' => 'required',
             'isi_pengumuman' => 'required',
-            'foto_pengumuman' => 'image|file|max:2048',
+            'foto_pengumuman' => 'image|file|max:4095',
             'tgl_terbit' => 'required'
         ]);
 
@@ -110,7 +107,7 @@ class PengumumanController extends Controller
     }
     public function show($id)
     {
-        $pengumuman = Pengumuman::with('Kategori_pengumuman')->find($id);
+        $pengumuman = Pengumuman::with('Kategori_pengumumans')->find($id);
         // dd($pengumuman);
         return view('RW.Pengumuman.detail_pengumuman', [
             'pengumuman' => $pengumuman,

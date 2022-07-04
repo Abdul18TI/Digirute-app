@@ -38,6 +38,7 @@
                       @endif
                       </span>
                     </li>
+                    <li class="middle">Kategori :<a href="/Warga/pengumuman_warga?category={{ $pengumuman->kategori_pengumuman }}"> {{ $pengumuman->Kategori_pengumumans->nama_kategori_pengumuman }}</a></li>
                   </ul>
                   <h4>
                     {{ $pengumuman->judul_pengumuman }}

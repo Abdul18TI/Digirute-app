@@ -34,7 +34,7 @@ class KegiatanRTController extends Controller
             'nama_kegiatan' => 'required',
             'kategori_kegiatan' => 'required',
             'isi_kegiatan' => 'required',
-            'foto_kegiatan' => 'image|file|max:2048',
+            'foto_kegiatan' => 'image|file|max:4095',
             'tgl_mulai_kegiatan' => 'required',
             'tgl_selesai_kegiatan' => 'required'
         ]);
@@ -47,23 +47,23 @@ class KegiatanRTController extends Controller
         $validatedData['id_penanggung_jawab'] = auth()->id();
 
         // try {
-            //Memasukan data inputan kedalam tabel kegiatan pada database
-            $insertData = Kegiatan::create($validatedData);
-            //mengembalikan ke halaman rt.kegiatan.index
-            if($insertData){
+        //Memasukan data inputan kedalam tabel kegiatan pada database
+        $insertData = Kegiatan::create($validatedData);
+        //mengembalikan ke halaman rt.kegiatan.index
+        if ($insertData) {
             return redirect()->route('rt.kegiatan.index')
                 ->with('success', 'Data berhasil ditambah!');
             // return "data masuk";
-            }
-            // return "data gagal";
-            return redirect()->route('rt.kegiatan.index')
+        }
+        // return "data gagal";
+        return redirect()->route('rt.kegiatan.index')
             ->with('error', 'Gagal menambahkan data!');
-        
-    //     } catch (\Exception $e) {
-    // //mengembalikan ke halaman rt.kegiatan.index dengan mengirimkan pesan
-    // return redirect()->route('rt.kegiatan.index')
-    //     ->with('error', 'Gagal menambahkan data!' . $e);
-    //     }
+
+        //     } catch (\Exception $e) {
+        // //mengembalikan ke halaman rt.kegiatan.index dengan mengirimkan pesan
+        // return redirect()->route('rt.kegiatan.index')
+        //     ->with('error', 'Gagal menambahkan data!' . $e);
+        //     }
     }
 
     public function edit(Kegiatan $kegiatan)
@@ -80,7 +80,7 @@ class KegiatanRTController extends Controller
             'nama_kegiatan' => 'required',
             'kategori_kegiatan' => 'required',
             'isi_kegiatan' => 'required',
-            'foto_kegiatan' => 'image|file|max:2048',
+            'foto_kegiatan' => 'image|file|max:4095',
             'tgl_mulai_kegiatan' => 'required',
             'tgl_selesai_kegiatan' => 'required'
         ]);
@@ -140,7 +140,7 @@ class KegiatanRTController extends Controller
     public function updateStatus(Request $request)
     {
         $pre_status = $request->status_kegiatan;
-        
+
         // var_dump($pre_status);
         // echo "<br>/";
         $status = $request->status_kegiatan == 0 ? 1 : 0;

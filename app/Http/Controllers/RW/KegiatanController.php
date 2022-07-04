@@ -35,7 +35,7 @@ class KegiatanController extends Controller
             'nama_kegiatan' => 'required',
             'kategori_kegiatan' => 'required',
             'isi_kegiatan' => 'required',
-            'foto_kegiatan' => 'image|file|max:2048',
+            'foto_kegiatan' => 'image|file|max:4095',
             'tgl_mulai_kegiatan' => 'required',
             'tgl_selesai_kegiatan' => 'required'
         ]);
@@ -75,7 +75,7 @@ class KegiatanController extends Controller
             'nama_kegiatan' => 'required',
             'kategori_kegiatan' => 'required',
             'isi_kegiatan' => 'required',
-            'foto_kegiatan' => 'image|file|max:2048',
+            'foto_kegiatan' => 'image|file|max:4095',
             'tgl_mulai_kegiatan' => 'required',
             'tgl_selesai_kegiatan' => 'required'
         ]);
