@@ -26,10 +26,10 @@
 	                    <div class="profile-img-wrrap"><img class="img-fluid bg-img-cover" src="{{asset('assets/images/user-profile/bg-profile.jpg')}}" alt="" /></div>
 	                    <div class="userpro-box">
 	                        <div class="img-wrraper">
-	                            @if($rt->identitas_rt->foto_warga == 'no-image.png')
+	                            @if($rw->identitas_rw->foto_warga == 'no-image.png')
 	                            <div class="avatar"><img class="img-fluid" alt="" src="{{ asset('assets/images/dashboard/1.png') }}" /></div>
 								@else
-								<div class="avatar"><img class="img-fluid" alt="" src="{{ asset('storage/' . $rt->identitas_rt->foto_warga) }}" /></div>
+								<div class="avatar"><img class="img-fluid" alt="" src="{{ asset('storage/' . $rw->identitas_rw->foto_warga) }}" /></div>
 								@endif
 	                            <a class="icon-wrapper" href="{{route('rw.profile.edit',$rw->identitas_rw->id_warga)}}"><i class="icofont icofont-pencil-alt-5"></i></a>
 	                        </div>

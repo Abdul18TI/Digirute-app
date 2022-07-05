@@ -13,8 +13,8 @@ class Kelurahan extends Model
     protected $primaryKey = 'id_kel';
     protected $guarded = ['id_kel'];
 
-    public function kelurahan()
+    public function kelurahanss()
     {
-        return $this->hasMany(Warga::class);
+        return $this->hasMany(Warga::class,);
     }
 }

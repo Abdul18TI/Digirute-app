@@ -23,8 +23,11 @@
       <div class="col-sm-12">
         <div class="blog-single">
           <div class="blog-box blog-details">
-            <div class="banner-wrraper"><img class="img-fluid w-100 bg-img-cover" {{-- src="{{ asset('assets/images/blog/blog-single.jpg') }}" alt="blog-main" /></div> --}}
-                src="{{ asset('storage/' . $pengumuman->foto_pengumuman) }}" alt="blog-main" /></div>
+
+           @if($pengumuman->foto_pengumuman == null)     
+            @else
+            <div class="banner-wrraper"><img class="img-fluid w-100 bg-img-cover" src="{{asset('storage/'. $pengumuman->foto_pengumuman)}}" alt="blog-main" /></div>
+            @endif
             <div class="card">
               <div class="card-body">
                 <div class="blog-details">

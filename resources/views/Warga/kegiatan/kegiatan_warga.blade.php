@@ -44,6 +44,7 @@
 	                        <h4>{{ $kegiatan[0]->nama_kegiatan }}</h4>
 							<ul class="blog-social">
 								<li>oleh: {{ $kegiatan[0]->penanggung_jawab }}</li>
+								<li>Kategori: <a href="/Warga/kegiatan_warga?category={{ $kegiatan[0]->kategori_kegiatan }}">{{ $kegiatan[0]->Kategori_kegiatans->kategori_kegiatan }}</a></li>
 							</ul>
 							<hr />
 							<article class="mt-0 text-light">{!! Str::limit($kegiatan[0]->isi_kegiatan, 100) !!}</article>
@@ -76,6 +77,7 @@
 	                                    <div class="blog-bottom-content">
 	                                        <ul class="blog-social">
 	                                            <li>oleh: {{ $k->penanggung_jawab }}</li>
+												<li>Kategori: <a href="/Warga/kegiatan_warga?category={{ $k->kategori_kegiatan }}">{{ $k->Kategori_kegiatans->kategori_kegiatan }}</a></li>
 	                                        </ul>
 	                                        <hr />
 	                                        <article class="mt-0 text-dark">{!! Str::limit($k->isi_kegiatan, 100) !!}.</article>
@@ -107,6 +109,7 @@
 	                        <a href="kegiatan_warga/{{ $kk->id_kegiatan }}"> <h6 class="blog-bottom-details">{{ $kk->nama_kegiatan }}</h6></a>
 							<ul class="blog-social">
 								<li>oleh: {{ $kk->penanggung_jawab }}</li>
+								<li>Kategori: <a href="/Warga/kegiatan_warga?category={{ $kk->kategori_kegiatan }}">{{ $kk->Kategori_kegiatans->kategori_kegiatan }}</a></li>
 							</ul>
 							<hr />
 	                        <article class="mt-0 text-dark">{!! Str::limit($kk->isi_kegiatan, 100) !!}.</article>

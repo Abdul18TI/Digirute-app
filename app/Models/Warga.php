@@ -109,4 +109,10 @@ class Warga extends Authenticatable
         return $this->belongsTo(Provinsi::class, 'provinsi', 'id_prov')->select(['id_prov', 'nama']);;
         // return $this->belongsTo(rt::class);
     }
+
+    public function hubungans()
+    {
+        return $this->belongsTo(Status_hubungan::class, 'status_hubungan_dalam_keluarga', 'id_status_hubungan')->select(['id_status_hubungan', 'status_hubungan']);;
+        // return $this->belongsTo(rt::class);
+    }
 }

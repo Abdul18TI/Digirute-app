@@ -74,7 +74,7 @@
                             <div class="col-sm-6 col-md-4">
                                 <div class="mb-3">
                                     <label class="form-label">No KK</label>
-                                    <input class="form-control" disabled value="{{ $warga->no_kk }}" type="text" Company" />
+                                    <input class="form-control" disabled value="{{ $warga->no_kk }}" type="text"/>
                                 </div>
                             </div>
                             <div class="col-sm-6 col-md-4">
@@ -135,7 +135,11 @@
                             <div class="col-sm-6 col-md-4">
                                 <div class="mb-3">
                                     <label class="form-label">Jenis kelamin</label>
-                                    <input class="form-control" type="text" disabled value="{{ $warga->jenis_kelamin }}" />
+                                    @if($warga->jenis_kelamin == 1)
+                                    <input class="form-control" type="text" disabled value="Laki Laki" />
+                                    @else
+                                    <input class="form-control" type="text" disabled value="Perempuan" />
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-sm-6 col-md-4">
@@ -148,7 +152,7 @@
                             <div class="col-sm-6 col-md-4">
                                 <div class="mb-3">
                                     <label class="form-label">Golongan darah</label>
-                                    <input class="form-control" type="text" disabled value="{{ $warga->golongan_darah }}" />
+                                    <input class="form-control" type="text" disabled value="{{ $warga->golongan_darahs->golongan_darah }}" />
                                 </div>
                             </div>
                             <div class="col-sm-6 col-md-4">
@@ -167,7 +171,7 @@
                             <div class="col-sm-6 col-md-4">
                                 <div class="mb-3">
                                     <label class="form-label">Status hubungan</label>
-                                    <input class="form-control" type="text" disabled value="{{ $warga->golongan_darah }}" />
+                                    <input class="form-control" type="text" disabled value="{{ $warga->hubungans->status_hubungan    }}" />
                                 </div>
                             </div>
                             <div class="col-sm-6 col-md-4">
