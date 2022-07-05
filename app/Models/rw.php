@@ -14,12 +14,19 @@ class rw extends Authenticatable
     protected $primaryKey = 'id_rw';
     protected $guarded = ['id_rw'];
     protected $dates = ['tgl_awal_jabatan_rw', 'tgl_akhir_jabatan_rw'];
-    protected $with =['identitas_rw'];
+    // protected $with =['identitas_rw'];
 
     public function getRouteKeyName()
     {
         return 'id_rw';
     }
+
+    public function _warga()
+    {
+        //hasMany(namamodel, foreign key tabel warga, primary key tabel sendiri)
+        return $this->hasMany(Warga::class, 'rw', 'id_rw');
+    }
+
 
     public function identitas_rw()
     {

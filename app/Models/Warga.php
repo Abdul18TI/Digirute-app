@@ -16,7 +16,7 @@ class Warga extends Authenticatable
     protected $table = 'wargas';
     protected $primaryKey = 'id_warga';
     protected $guarded = ['id_warga'];
-    protected $with = ['pekerjaan', 'pekerjaans'];
+    // protected $with = ['pekerjaan', 'pekerjaans'];
     protected $dates = ['tgl_lahir'];
 
 
@@ -68,12 +68,6 @@ class Warga extends Authenticatable
         return $this->hasMany(Pembayaran::class);
     }
 
-    public function identitas_rws()
-    {
-        //hasMany(namamodel, foreign key tabel warga, primary key tabel sendiri)
-        return $this->belongsTo(rw::class, 'id_warga', 'id_warga');
-    }
-
     public function keluargas()
     {
         //hasMany(namamodel, foreign key tabel warga, primary key tabel sendiri)
@@ -83,7 +77,15 @@ class Warga extends Authenticatable
     public function rt_rel()
     {
         return $this->belongsTo(rt::class, 'rt', 'id_rt');
-        // return $this->belongsTo(rt::class);
+    }
+    public function rw_rel()
+    {
+        return $this->belongsTo(rw::class, 'rw', 'id_rw');
+    }
+    public function identitas_rws()
+    {
+        //hasMany(namamodel, foreign key tabel warga, primary key tabel sendiri)
+        return $this->belongsTo(rw::class, 'rw', 'id_rw');
     }
 
     public function kabupatens()
