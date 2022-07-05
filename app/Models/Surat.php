@@ -12,7 +12,7 @@ class Surat extends Model
     protected $table = 'surat';
     protected $casts = [
         'propertie_surat' => 'json',
-        'status_surat' => 'boolean'
+        // 'status_surat' => 'boolean'
     ];
     protected $guarded = ['id_surat'];
     // protected $fillable = ['nomor_surat', 'jenis_surat','status_surat', 'propertie_surat'];

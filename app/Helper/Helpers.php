@@ -2,12 +2,25 @@
 
 // namespace App\Helper;
 
+use App\Models\Agama;
 use App\Models\Pekerjaan;
 
 
 
 // class Helpers
 // {
+    function getAgama($agama)
+{
+    $dataAgama = Agama::pluck('agama','id_agama');
+    // dd($dataAgama);
+    foreach ($dataAgama as $id => $name){
+    echo '<option value='.$id.'>'.$name.'</option>';
+    }
+    foreach ($dataAgama as $a){
+        return $agama == $a->id_agama ? $a : '-';
+    }
+    // return $catdata;
+}
 #Get Category Data From Category Model
 function get_catdata()
 {

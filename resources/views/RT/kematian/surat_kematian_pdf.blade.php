@@ -124,7 +124,7 @@
     <p>Demikian surat keterangan kematian ini kami buat untuk dapat dipergunakan sebagaimana mestinya.</p>
 <div style="width:50%; text-align: center; float: right;">
         <p class="m-0">Pekanbaru, {{ $kematian->created_at->isoFormat('D MMMM Y') }}</p>
-        <p class="mb-5 pb-5">Ketua RT. {{ $kematian->rt->no_rw }} RW. {{ $kematian->rw->no_rw }}</p>
+        <p class="mb-5 pb-5">Ketua RT. {{ $kematian->rt->no_rt }} RW. {{ $kematian->rw->no_rw }}</p>
         <p >{{ $kematian->rt->identitas_rt->nama_lengkap }}</p>
 </div>
   </div>

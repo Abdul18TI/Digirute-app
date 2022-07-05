@@ -39,6 +39,7 @@
                     <li class="dropdown">
                         <a class="nav-link menu-title  {{  prefixActive('warga.surat.*') }}" ><i data-feather="inbox"></i><span>Surat</span></a>                  
                         <ul class="nav-submenu menu-content" style="display:{{  prefixBlock('warga.surat.*') }};">
+                            <li><a  href="{{ route('warga.surat.index') }}" class="{{  prefixActive('warga.surat.index') }}">Daftar Pengajuan Surat</a></li>
                             <li><a  href="{{ route('warga.surat.form.surat_keterangan') }}" class="{{  prefixActive('warga.surat.form.surat_keterangan') }}">Surat Keterangan</a></li>
                         </ul>
                     </li>

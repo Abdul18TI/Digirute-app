@@ -29,14 +29,21 @@
                   </div>
                   @endif --}}
 
+                  @if (session()->has('success'))
+                      <div class="alert alert-success dark alert-dismissible fade show" role="alert">
+                          <strong>Sukses ! </strong> {{ session('success') }}.
+                          <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"
+                              data-bs-original-title="" title=""></button>
+                      </div>
+                  @endif
+                  @if (session()->has('error'))
+                      <div class="alert alert-danger dark alert-dismissible fade show" role="alert">
+                          <strong>Gagal ! </strong> {{ session('error') }}.
+                          <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"
+                              data-bs-original-title="" title=""></button>
+                      </div>
+                  @endif
                 <div class="card">
-                    @if (session()->has('success'))
-                        <div class="alert alert-success dark alert-dismissible fade show" role="alert">
-                            <strong>Sukses ! </strong> {{ session('success') }}.
-                            <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"
-                                data-bs-original-title="" title=""></button>
-                        </div>
-                    @endif
                     <div class="card-header pb-0">
                         <h5>Form Surat Keterangan</h5>
                     </div>
@@ -50,28 +57,19 @@
                                 <h6 class="mb-2">Data Pengaju Surat</h4>
                                     <hr />
                                     <div class="row">
-                                        <div class="col-md col-lg-9">
+                                        <div class="col">
                                             {{-- <div class="mb-3"> --}}
                                             <label class="form-label" for="nik">NIK</label>
                                             <input class="form-control @error('nik') is-invalid @enderror" type="text"
-                                                id="nik" name="nik" value="{{ old('nik') }}" placeholder="NIK"
-                                                autofocus>  
+                                                id="nik" name="nik" value="{{ old('nik', $warga->nik) }}" placeholder="NIK"
+                                                >  
                                             {{-- <div class="text-danger mr-3">Data warga tidak ditemukan</div> --}}
-                                            <input name="pengaju" type="text" value="{{ old('pengaju') }}"
+                                            <input name="pengaju" type="hidden" value="{{ old('pengaju', $warga->id_warga) }}"
                                                 id="pengaju">
                                             @error('pengaju')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                             {{-- </div> --}}
-                                        </div>
-                                        <div class="col col-lg-3">
-                                            <div class="mb-3">
-                                                <label class="form-label" for="cek_jenaza">&nbsp;</label>
-                                                <button onclick="getDataPengaju()" type="button" id="cek_jenaza"
-                                                    class="btn btn-secondary form-control text-white"><span
-                                                        class="fa fa-search"></span> Cek
-                                                    Data</button>
-                                            </div>
                                         </div>
                                     </div>
                                     <div class="col">
@@ -79,7 +77,7 @@
                                             <label class="form-label" for="alamat">No Kartu Keluarga</label>
                                             <input class="form-control @error('no_kk') is-invalid @enderror" name="no_kk"
                                                 type="text" id="no_kk" name="no_kk" placeholder="No Kartu Keluarga"
-                                                value="{{ old('no_kk') }}" readonly>
+                                                value="{{ old('no_kk',$warga->no_kk) }}" readonly>
                                             @error('no_kk')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
@@ -90,7 +88,7 @@
                                             <label class="form-label" for="nama_lengkap">Nama</label>
                                             <input class="form-control @error('nama_lengkap') is-invalid @enderror"
                                                 name="nama_lengkap" type="text" id="nama_lengkap" name="nama_lengkap"
-                                                placeholder="Nama" value="{{ old('nama_lengkap') }}" readonly>
+                                                placeholder="Nama" value="{{ old('nama_lengkap',$warga->nama_lengkap) }}" readonly>
                                             @error('nama_lengkap')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
@@ -99,9 +97,12 @@
                                     <div class="col">
                                         <div class="mb-3">
                                             <label class="form-label" for="jenis_kelamin">Jenis Kelamin</label>
+                                            @php
+                                                $jenis_kelamin = $warga->jenis_kelamin == 1 ? 'Laki-laki' : 'Perempuan';
+                                            @endphp
                                             <input class="form-control @error('jenis_kelamin') is-invalid @enderror"
                                                 name="jenis_kelamin" type="text" id="jenis_kelamin" name="jenis_kelamin"
-                                                placeholder="Jenis Kelamin" value="{{ old('jenis_kelamin') }}" readonly>
+                                                placeholder="Jenis Kelamin" value="{{ old('jenis_kelamin', $jenis_kelamin) }}" readonly>
                                             @error('jenis_kelamin')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
@@ -112,7 +113,7 @@
                                             <label class="form-label" for="agama">Agama</label>
                                             <input class="form-control @error('agama') is-invalid @enderror" name="agama"
                                                 type="text" id="agama" name="agama" placeholder="Agama"
-                                                value="{{ old('agama') }}" readonly>
+                                                value="{{ old('agama', $warga->agamas->agama) }}" readonly>
                                             @error('agama')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
@@ -123,7 +124,7 @@
                                             <label class="form-label" for="agama">Pekerjaan</label>
                                             <input class="form-control @error('pekerjaan') is-invalid @enderror"
                                                 name="pekerjaan" type="text" id="pekerjaan" name="pekerjaan"
-                                                placeholder="Pekerjaan" value="{{ old('pekerjaan') }}" readonly>
+                                                placeholder="Pekerjaan" value="{{ old('pekerjaan',$warga->pekerjaans->nama_pekerjaan) }}" readonly>
                                             @error('pekerjaan')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
@@ -136,7 +137,7 @@
                                                 <input class="form-control @error('tempat_lahir') is-invalid @enderror"
                                                     name="tempat_lahir" type="text" id="tempat_lahir"
                                                     name="tempat_lahir" placeholder="Tanggal Lahir"
-                                                    value="{{ old('tempat_lahir') }}" readonly>
+                                                    value="{{ old('tempat_lahir', $warga->tempat_lahir) }}" readonly>
                                                 @error('tempat_lahir')
                                                     <div class="invalid-feedback">{{ $message }}</div>
                                                 @enderror
@@ -147,7 +148,7 @@
                                                 <label class="form-label" for="tgl_lahir">&nbsp;</label>
                                                 <input class="form-control @error('tgl_lahir') is-invalid @enderror"
                                                     name="tgl_lahir" type="text" id="tgl_lahir" name="tgl_lahir"
-                                                    placeholder="Tanggal Lahir" value="{{ old('tgl_lahir') }}"
+                                                    placeholder="Tanggal Lahir" value="{{ old('tgl_lahir', tanggal_indo($warga->tgl_lahir)) }}"
                                                     readonly>
                                                 @error('tgl_lahir')
                                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -160,7 +161,7 @@
                                             <div class="mb-5">
                                                 <label class="form-label" for="alamat">Alamat</label>
                                                 <textarea name="alamat" class="form-control @error('alamat') is-invalid @enderror" id="alamat"
-                                                    placeholder="Alamat" readonly>{{ old('alamat') }}</textarea>
+                                                    placeholder="Alamat" readonly>{{ old('alamat', $warga->alamat) }}</textarea>
                                                 @error('alamat')
                                                     <div class="invalid-feedback">{{ $message }}</div>
                                                 @enderror
@@ -328,7 +329,7 @@
                 },
                 dataType: 'json',
                 success: function(res) {
-                    // console.log(res.data);
+                    console.log(res.data);
                     if (res.data != null) {
                         let databaru = res.data;
                         console.log(databaru);

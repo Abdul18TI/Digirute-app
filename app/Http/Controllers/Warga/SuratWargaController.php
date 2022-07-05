@@ -9,15 +9,28 @@ use PDF;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\WargaMeninggal as Kematian;
 
 class SuratWargaController extends Controller
 {
     //
+    public function index()
+    {
+        //
+        $kematian = Kematian::orderBy('tgl_kematian', 'desc')->get();
+        // $kematian = Kematian::all();
+        // dd($kematian);
+        return view('warga.surat.surat', [
+            'kematian' => $kematian,
+        ]);
+    }
     public function surat_keterangan()
     {
-       $surat = Surat::find(4);
+        $warga = auth()->user();
+    //    dd($warga->agamas->agama);
+    // getAgama($warga->agama);
         // return $surat->propertie_surat->jenis_surat;
-        return view('warga.surat.surat_keterangan_form');
+        return view('warga.surat.surat_keterangan_form', compact('warga'));
     }
 
     public function surat_keterangan_store(Request $request){
@@ -51,7 +64,14 @@ class SuratWargaController extends Controller
     public function print($id)
     {
         //
+        
         $data = Surat::find($id);
+        if (!$data) {
+            return redirect()->route('warga.surat.form.surat_keterangan')
+                ->with('error', 'Data tidak temukan');
+        }
+
+
         $warga = $data->wargas;
         $warga['rt'] = auth()->user()->rt_rel;
         $warga['rw'] = auth()->user()->rw_rel;

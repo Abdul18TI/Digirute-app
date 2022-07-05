@@ -16,7 +16,7 @@ class Warga extends Authenticatable
     protected $table = 'wargas';
     protected $primaryKey = 'id_warga';
     protected $guarded = ['id_warga'];
-    // protected $with = ['pekerjaan', 'pekerjaans'];
+    protected $with = ['pekerjaan', 'pekerjaans', 'agamas'];
     protected $dates = ['tgl_lahir'];
 
 
