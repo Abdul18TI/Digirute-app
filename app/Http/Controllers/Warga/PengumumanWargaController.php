@@ -16,7 +16,7 @@ class PengumumanWargaController extends Controller
 
         return view('Warga.pengumuman.pengumuman_warga', [
             'pengumuman' => Pengumuman::where('status_pengumuman', 1)->latest()->filter(request(['search', 'category']))->paginate(7)->withQueryString(),
-            "title" => "pengumuman-warga"
+            "title" => "Pengumuman"
         ]);
     }
 

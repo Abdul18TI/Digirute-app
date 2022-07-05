@@ -35,12 +35,12 @@
     <center>
       <h5>
         <strong style="border-bottom: 3px solid black;padding-bottom: 5px;">
-          SURAT KETERANGAN MENINGGAL DUNIA
+          SURAT KETERANGAN
         </strong>
       </h5>
       <h6 class="mt-3">No. ......./INT/......</h6>
     </center>
-    <p>Yang bertanda tangan di bawah ini Ketua RT. {{ $kematian->rt->no_rt }} RW. {{ $kematian->rw->no_rw }},
+    <p>Yang bertanda tangan di bawah ini Ketua RT. {{ $warga->rts->no_rt }} RW. {{ $wargas->rws->no_rw }},
       Kelurahanan Umban Sari, Kecamatan Rumbai, Kota Pekanbaru,
       Menerangkan bahwa : </p>
 
@@ -124,7 +124,7 @@
     <p>Demikian surat keterangan kematian ini kami buat untuk dapat dipergunakan sebagaimana mestinya.</p>
 <div style="width:50%; text-align: center; float: right;">
         <p class="m-0">Pekanbaru, {{ $kematian->created_at->isoFormat('D MMMM Y') }}</p>
-        <p class="mb-5 pb-5">Ketua RT. {{ $kematian->rt->no_rt }} RW. {{ $kematian->rw->no_rw }}</p>
+        <p class="mb-5 pb-5">Ketua RT. {{ $kematian->rt->no_rw }} RW. {{ $kematian->rw->no_rw }}</p>
         <p >{{ $kematian->rt->identitas_rt->nama_lengkap }}</p>
 </div>
   </div>

@@ -35,8 +35,11 @@ Route::middleware(['auth', 'PreventBackHistory'])->group(function () {
         return response()->json($kab)->name('getkab');
     });
     Route::prefix('surat')->name('surat.')->group(function () {
-        Route::get('/', [SuratWargaController::class, 'surat_keterangan'])->name('form.surat_keterangan');
+        Route::get('/', [SuratWargaController::class, 'index'])->name('index');
+        Route::get('/surat_keterangan', [SuratWargaController::class, 'surat_keterangan'])->name('form.surat_keterangan');
+        Route::get('/surat_keterangan/{id}/print_surat', [SuratWargaController::class, 'print'])->name('print.surat_keterangan');
         Route::get('/detail/{id}', [SuratWargaController::class, 'show'])->name('show');
+        Route::post('/surat_keterangan/store', [SuratWargaController::class, 'surat_keterangan_store'])->name('store.surat_keterangan');
         route::get('/show_pengaju', [SuratWargaController::class, 'show_pengaju'])->name('show_pengaju');
         // Route::get('/show/{pengaduan}', [PengaduanRTController::class, 'show'])->name('show');
     });

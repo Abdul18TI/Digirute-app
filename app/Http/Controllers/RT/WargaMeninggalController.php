@@ -166,7 +166,7 @@ class WargaMeninggalController extends Controller
     public function show_warga(Request $request)
     {
         // $jenazah= Warga::where('nik', $warga->nik)->first();
-        $jenazah = Warga::select('id_warga', 'nama_lengkap', 'jenis_kelamin', 'pekerjaan', 'agama', 'tempat_lahir', 'tgl_lahir', 'alamat')
+        $jenazah = Warga::with('pekerjaans')->select('id_warga', 'nama_lengkap', 'jenis_kelamin', 'pekerjaan', 'agama', 'tempat_lahir', 'tgl_lahir', 'alamat')
             ->where('nik', $request->id)
             ->where('rt', auth()->id())
             ->where('status_warga', 0)
