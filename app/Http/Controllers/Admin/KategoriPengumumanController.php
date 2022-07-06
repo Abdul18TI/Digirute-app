@@ -4,9 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\KategoriPengumuman;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use RealRashid\SweetAlert\Facades\Alert;
 
 class KategoriPengumumanController extends Controller
 {
@@ -36,10 +34,10 @@ class KategoriPengumumanController extends Controller
         try {
             KategoriPengumuman::create($validatedData);
 
-            return redirect()->route('kategori_pengumuman.index')
+            return redirect()->route('rt.kategori_pengumuman.index')
                 ->with('success', 'Data berhasil ditambah!');
         } catch (\Exception $e) {
-            return redirect()->route('kategori_pengumuman.index')
+            return redirect()->route('rt.kategori_pengumuman.index')
                 ->with('error', 'Gagal menambahkan data!');
         }
     }
@@ -60,17 +58,17 @@ class KategoriPengumumanController extends Controller
 
         KategoriPengumuman::where('id_kategori_pengumuman', $kategoriPengumuman->id_kategori_pengumuman)
             ->update($validatedData);
-        return redirect()->route('kategori_pengumuman.index')->with('success', 'Data berhasil diubah!');
+        return redirect()->route('rt.kategori_pengumuman.index')->with('success', 'Data berhasil diubah!');
     }
 
     public function destroy(KategoriPengumuman $kategoriPengumuman)
     {
         try {
             $kategoriPengumuman->delete();
-            return redirect()->route('kategori_pengumuman.index')
+            return redirect()->route('rt.kategori_pengumuman.index')
                 ->with('success', 'data berhasil dihapus!');
         } catch (\Exception $e) {
-            return redirect()->route('kategori_pengumuman.index')
+            return redirect()->route('rt.kategori_pengumuman.index')
                 ->with('error', 'Gagal menghapus data!');
         }
 

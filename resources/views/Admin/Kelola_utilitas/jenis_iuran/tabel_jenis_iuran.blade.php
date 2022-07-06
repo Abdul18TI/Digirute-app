@@ -1,4 +1,4 @@
-@extends('layouts.main-admin')
+@extends('layouts.main-rt')
 
 @push('css')
   <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/datatables.css') }}">
@@ -6,7 +6,7 @@
 @endpush
 
 @section('container')
-@component('components.admin.breadcrumb')
+@component('components.r-t.breadcrumb')
         @slot('breadcrumb_title')
         <h3>Jenis iuran</h3>
         @endslot
@@ -31,7 +31,7 @@
                             <div class="col-3">
                                 <div class="bookmark">
 
-                                    <a class="btn btn-primary btn-lg" href="{{ route('jenis_iuran.create') }}" data-bs-original-title="" title=""> <span class="fa fa-plus-square"></span> Tambah Data</a>
+                                    <a class="btn btn-primary btn-lg" href="{{ route('rt.jenis_iuran.create') }}" data-bs-original-title="" title=""> <span class="fa fa-plus-square"></span> Tambah Data</a>
                                 </div>
                             </div>
                         </div>
@@ -54,7 +54,7 @@
                                         <td>{{ $ji->nama_jenis_iuran }}</td>
                                         <td>
                                             <a class="btn btn-success btn-sm p-2" href="jenis_iuran/{{ $ji->id_jenis_iuran }}/edit"><span class="fa fa-pencil"></span></a>
-                                            <form method="POST" action="{{ route('jenis_iuran.destroy', $ji->id_jenis_iuran)}}" class="d-inline">
+                                            <form method="POST" action="{{ route('rt.jenis_iuran.destroy', $ji->id_jenis_iuran)}}" class="d-inline">
                                                 @csrf
                                             <input name="_method" type="hidden" value="DELETE">
                                             <button type="submit" class="btn btn-danger btn-sm p-2 border-0 sweet" data-toggle="tooltip" title='Delete'><span

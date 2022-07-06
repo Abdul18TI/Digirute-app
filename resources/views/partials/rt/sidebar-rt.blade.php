@@ -43,10 +43,14 @@
                             </li>
                         </ul>
                     </li>
-                    <li>
-                        <a class="nav-link menu-title  link-nav {{ prefixActive('rt.kegiatan.*') }}"
-                            href="{{ route('rt.kegiatan.index') }}"><i
-                                data-feather="calendar"></i><span>Kegiatan</span></a>
+                    <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="airplay"></i><span>Utilitas form</span></a>
+                        <ul class="nav-submenu menu-content">
+                            <li><a href="{{ route('rt.kategori_pengumuman.index') }}">Kategori pengumuman</a></li>
+                            <li><a href="{{ route('rt.jenis_iuran.index') }}">Jenis iuran</a></li>
+                            <li><a href="{{ route('rt.kategori_kegiatan.index') }}">Kategori kegiatan</a></li>
+                            <li><a href="{{ route('rt.kategori_pengaduan.index') }}">Kategori Pengaduan</a></li>
+                            <li><a href="{{ route('rt.agama.index') }}">Agama</a></li>
+                        </ul>
                     </li>
                     {{-- <li>
                         <a class="nav-link menu-title link-nav" href=""><i

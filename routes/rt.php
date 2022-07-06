@@ -1,15 +1,21 @@
 <?php
 
-use App\Models\Warga;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WargaController;
 use App\Http\Controllers\RT\LoginRTController;
 use App\Http\Controllers\RT\KegiatanRTController;
 use App\Http\Controllers\RT\PengumumanRTController;
+use App\Http\Controllers\RT\FasilitasUmumRTController;
 use App\Http\Controllers\RT\ProfileRTController;
 use App\Http\Controllers\RT\DashboardRTController;
 use App\Http\Controllers\RT\PengaduanRTController;
 use App\Http\Controllers\RT\WargaMeninggalController;
+use App\Http\Controllers\Admin\KategoriKegiatanController;
+use App\Http\Controllers\Admin\KategoriFasilitasUmumController;
+use App\Http\Controllers\Admin\KategoriPengaduanController;
+use App\Http\Controllers\Admin\AgamaController;
+use App\Http\Controllers\Admin\KategoriPengumumanController;
+use App\Http\Controllers\Admin\JenisIuranController;
 
 //  Route::prefix('RT')->name('rt.')->group(function () { 
 Route::middleware(['guest:rt', 'PreventBackHistory'])->group(function () {
@@ -39,10 +45,17 @@ Route::middleware(['auth:rt', 'PreventBackHistory'])->group(function () {
         $kel = App\Models\Kelurahan::where('id_kec', $id)->get();
         return response()->json($kel);
     });
+    route::resource('kategori_pengumuman', KategoriPengumumanController::class);
+    route::resource('jenis_iuran', JenisIuranController::class);
+    route::resource('kategori_kegiatan', KategoriKegiatanController::class);
+    route::resource('kategori_pengaduan', KategoriPengaduanController::class);
+    route::resource('kategori_fasilitas', KategoriFasilitasUmumController::class);
+    route::resource('agama', AgamaController::class);
     Route::get('/status/update', [KegiatanRTController::class, 'updateStatus'])->name('kegiatan.update.status');
     Route::get('/pengumuman/status2/update', [PengumumanRTController::class, 'updateStatus'])->name('pengumumanrt.update.status');
     route::resource('kegiatan', KegiatanRTController::class);
     route::resource('pengumuman', PengumumanRTController::class);
+    route::resource('fasilitasrt', FasilitasUmumRTController::class);
     route::resource('profileRT', ProfileRTController::class);
     route::get('kematian/show_jenazah', [WargaMeninggalController::class, 'show_warga'])->name('kematian.show_jenazah');
     route::get('kematian/show_warga', [WargaMeninggalController::class, 'show_warga'])->name('kematian.show_pelapor');

@@ -1,4 +1,4 @@
-@extends('layouts.main-admin')
+@extends('layouts.main-rt')
 
 @push('css')
 <link rel="stylesheet" type="text/css" href={{ asset("assets/css/trix.css")}}>
@@ -6,11 +6,11 @@
 @endpush
 
 @section('container')
-@component('components.admin.breadcrumb')
+@component('components.r-t.breadcrumb')
         @slot('breadcrumb_title')
         <h3>Kategori pengaduan</h3>
         @endslot
-        <li class="breadcrumb-item"><a href="{{ route('kategori_pengaduan.index') }}">Kategori pengaduan</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('rt.kategori_pengaduan.index') }}">Kategori pengaduan</a></li>
         <li class="breadcrumb-item active">Tambah kategori pengaduan</li>
     @endcomponent
     <div class="container-fluid">
@@ -20,7 +20,7 @@
                     <div class="card-header pb-0">
                         <h5>Form tambah kategori</h5>
                     </div>
-                    <form class="form theme-form" name="f1" method="POST" action="{{ route('kategori_pengaduan.store')}}">
+                    <form class="form theme-form" name="f1" method="POST" action="{{ route('rt.kategori_pengaduan.store')}}">
                         @csrf
                         <div class="card-body">
                             <div class="row">

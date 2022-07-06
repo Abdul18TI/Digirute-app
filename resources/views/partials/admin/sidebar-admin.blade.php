@@ -34,16 +34,6 @@
                             <li>
                                 <a class="nav-link menu-title link-nav" href="{{ route('admin.dashboard.home') }}"><i data-feather="home"></i><span>Dashboard</span></a>
                             </li>
-                            <li>
-                            <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="airplay"></i><span>Utilitas form</span></a>
-                                <ul class="nav-submenu menu-content">
-                                    <li><a href="{{ route('kategori_pengumuman.index') }}">Kategori pengumuman</a></li>
-                                    <li><a href="{{ route('jenis_iuran.index') }}">Jenis iuran</a></li>
-                                    <li><a href="{{ route('kategori_kegiatan.index') }}">Kategori kegiatan</a></li>
-                                    <li><a href="{{ route('kategori_pengaduan.index') }}">Kategori Pengaduan</a></li>
-                                    <li><a href="{{ route('agama.index') }}">Agama</a></li>
-                                </ul>
-                            </li>
                             <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="users"></i><span>Kelola RTRW</span></a>
                                 <ul class="nav-submenu menu-content">
                                     <li><a href="{{ route('rt.index') }}">Daftar RT</a></li>

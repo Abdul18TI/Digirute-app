@@ -32,68 +32,6 @@
 			</div>
 		</div>
 	    <div class="row">
-	        <div class="col-xxl-6 set-col-12 box-col-12 xl-40">
-	            <div class="card">
-	                <div class="blog-box blog-shadow">
-						@if($pengumuman[0]->foto_pengumuman == 'no-image.jpg')
-	                    <img class="img-fluid bg-img-cover" src="{{asset('assets/images/blog/blog.jpg')}}" alt="" />
-						@else
-						<img class="img-fluid bg-img-cover" src="{{asset('storage/'. $pengumuman[0]->foto_pengumuman)}}" alt="" />
-						@endif
-	                    <div class="blog-details">
-	                        <p>{{ tanggal_indo($pengumuman[0]->tgl_terbit) }}</p>
-	                        <h4>{{ $pengumuman[0]->nama_pengumuman }}</h4>
-							<ul class="blog-social">
-								<li>oleh: {{ $pengumuman[0]->penanggung_jawab }}</li>
-								<li>Kategori: <a href="/Warga/pengumuman_warga?category={{ $pengumuman[0]->kategori_pengumuman }}">{{ $pengumuman[0]->Kategori_pengumumans->nama_kategori_pengumuman }}</a></li>
-							</ul>
-							<hr />
-							<article class="mt-0 text-light">{!! Str::limit($pengumuman[0]->isi_pengumuman, 100) !!}</article>
-							<div class="mt-3 pull-right">
-							<a href="{{route('warga.pengumuman_warga.show',$pengumuman[0]->id_pengumuman)}}" class="btn btn-square btn-sm btn-secondary pull-right" type="button">Baca Selengkapnya</a>
-							</div>
-	                    </div>
-	                </div>
-	            </div>
-	        </div>
-	        <div class="col-xxl-6 set-col-12 box-col-12 xl-60">
-				<div class="row">
-					@foreach ($pengumuman->skip(1)->take(2) as $k)
-	                <div class="col-xl-12 col-md-6">
-	                    <div class="card">
-	                        <div class="blog-box blog-list row">
-	                            <div class="col-xl-6 col-12">
-	                                <div class="blog-wrraper">
-										@if($k->foto_pengumuman == 'no-image.jpg')
-	                                    <a href="{{route('warga.pengumuman_warga.show',$k->id_pengumuman)  }}"><img class="img-fluid sm-100-wp p-0" src="{{asset('assets/images/blog/blog-2.jpg')}}" alt="" /></a>
-										@else
-										<a href="{{route('warga.pengumuman_warga.show',$k->id_pengumuman)  }}"><img class="p-0" src="{{asset('storage/'. $k->foto_pengumuman)}}" width="316" height="225" alt="" /></a>
-										@endif
-	                                </div>
-	                            </div>
-	                            <div class="col-xl-6 col-12">
-	                                <div class="blog-details">
-	                                    <div class="blog-date">{{ tanggal_indo($k->tgl_terbit) }}</div>
-	                                    <a href="{{route('warga.pengumuman_warga.show',$k->id_pengumuman)  }}"> <h6>{{ $k->nama_pengumuman }}</h6></a>
-	                                    <div class="blog-bottom-content">
-	                                        <ul class="blog-social">
-	                                            <li>oleh: {{ $k->penanggung_jawab }}</li>
-												<li>Kategori: <a href="/Warga/pengumuman_warga?category={{ $k->kategori_pengumuman }}">{{ $k->Kategori_pengumumans->nama_kategori_pengumuman }}</a></li>
-	                                        </ul>
-	                                        <hr />
-	                                        <article class="mt-0 text-dark">{!! Str::limit($k->isi_pengumuman, 100) !!}.</article>
-											<div class="pull-right">
-												<a href="{{route('warga.pengumuman_warga.show',$k->id_pengumuman)  }}" class="btn btn-square btn-sm btn-secondary pull-right" type="button">Baca Selengkapnya</a>
-												</div>
-	                                    </div>
-	                                </div>
-	                            </div>
-	                        </div>
-	                    </div>
-	                </div>
-					@endforeach
-	            </div>
-	        </div>
 			@foreach ($pengumuman->skip(3) as $kk)
 	        <div class="col-sm-6 col-xl-3 box-col-6 des-xl-50">
 	            <div class="card">

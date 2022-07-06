@@ -33,10 +33,10 @@ class KategoriKegiatanController extends Controller
         try {
             KategoriKegiatan::create($validatedData);
 
-            return redirect()->route('kategori_kegiatan.index')
+            return redirect()->route('rt.kategori_kegiatan.index')
                 ->with('success', 'Data berhasil ditambah!');
         } catch (\Exception $e) {
-            return redirect()->route('kategori_kegiatan.index')
+            return redirect()->route('rt.kategori_kegiatan.index')
                 ->with('error', 'Gagal menambahkan data!');
         }
     }
@@ -57,17 +57,17 @@ class KategoriKegiatanController extends Controller
 
         KategoriKegiatan::where('id_kategori_kegiatan', $kategoriKegiatan->id_kategori_kegiatan)
             ->update($validatedData);
-        return redirect()->route('kategori_kegiatan.index')->with('success', 'Data berhasil diubah!');
+        return redirect()->route('rt.kategori_kegiatan.index')->with('success', 'Data berhasil diubah!');
     }
 
     public function destroy(KategoriKegiatan $kategoriKegiatan)
     {
         try {
             $kategoriKegiatan->delete();
-            return redirect()->route('kategori_kegiatan.index')
+            return redirect()->route('rt.kategori_kegiatan.index')
                 ->with('success', 'data berhasil dihapus!');
         } catch (\Exception $e) {
-            return redirect()->route('kategori_kegiatan.index')
+            return redirect()->route('rt.kategori_kegiatan.index')
                 ->with('error', 'Gagal menghapus data!');
         }
     }

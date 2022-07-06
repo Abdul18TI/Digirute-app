@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RW\RwController;
 use App\Http\Controllers\RW\IuranController;
 use App\Http\Controllers\RW\LoginRWController;
@@ -14,12 +13,8 @@ use App\Http\Controllers\Admin\KelolaRTController;
 use App\Http\Controllers\Admin\KelolaRWController;
 use App\Http\Controllers\RW\PengaduanRWController;
 use App\Http\Controllers\RW\PembayaranRWController;
-use App\Http\Controllers\Admin\JenisIuranController;
 use App\Http\Controllers\Admin\KelolaRTRWController;
-use App\Http\Controllers\Admin\KategoriKegiatanController;
-use App\Http\Controllers\Admin\KategoriPengaduanController;
-use App\Http\Controllers\Admin\AgamaController;
-use App\Http\Controllers\Admin\KategoriPengumumanController;
+
 
 
 
@@ -140,11 +135,6 @@ Route::get('/rw/status/update', [KelolaRWController::class, 'updateStatus'])->na
 //Admin
 Route::group(['prefix' => 'Admin'], function () {
     Route::get('/', [AdminController::class, 'home_admin'])->name('admin.dashboard.home');
-    route::resource('kategori_pengumuman', KategoriPengumumanController::class);
-    route::resource('jenis_iuran', JenisIuranController::class);
-    route::resource('kategori_kegiatan', KategoriKegiatanController::class);
-    route::resource('kategori_pengaduan', KategoriPengaduanController::class);
-    route::resource('agama', AgamaController::class);
     route::resource('kelola_rtrw', KelolaRTRWController::class);
     route::resource('rw', KelolaRWController::class);
     route::resource('rt', KelolaRTController::class);

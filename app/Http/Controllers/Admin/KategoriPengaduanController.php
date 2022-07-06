@@ -33,10 +33,10 @@ class KategoriPengaduanController extends Controller
         try {
             KategoriPengaduan::create($validatedData);
 
-            return redirect()->route('kategori_pengaduan.index')
+            return redirect()->route('rt.kategori_pengaduan.index')
                 ->with('success', 'Data berhasil ditambah!');
         } catch (\Exception $e) {
-            return redirect()->route('kategori_pengaduan.index')
+            return redirect()->route('rt.kategori_pengaduan.index')
                 ->with('error', 'Gagal menambahkan data!');
         }
     }
@@ -57,17 +57,17 @@ class KategoriPengaduanController extends Controller
 
         KategoriPengaduan::where('id_kategori_pengaduan', $kategoriPengaduan->id_kategori_pengaduan)
             ->update($validatedData);
-        return redirect()->route('kategori_pengaduan.index')->with('success', 'Data berhasil diubah!');
+        return redirect()->route('rt.kategori_pengaduan.index')->with('success', 'Data berhasil diubah!');
     }
 
     public function destroy(KategoriPengaduan $kategoriPengaduan)
     {
         try {
             $kategoriPengaduan->delete();
-            return redirect()->route('kategori_pengaduan.index')
+            return redirect()->route('rt.kategori_pengaduan.index')
                 ->with('success', 'data berhasil dihapus!');
         } catch (\Exception $e) {
-            return redirect()->route('kategori_pengaduan.index')
+            return redirect()->route('rt.kategori_pengaduan.index')
                 ->with('error', 'Gagal menghapus data!');
         }
         // dd($kategoriPengaduan->delete());

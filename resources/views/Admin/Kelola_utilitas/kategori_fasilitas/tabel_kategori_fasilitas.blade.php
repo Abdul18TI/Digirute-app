@@ -1,4 +1,4 @@
-@extends('layouts.main-admin')
+@extends('layouts.main-rt')
 
 @push('css')
   <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/datatables.css') }}">
@@ -6,7 +6,7 @@
 @endpush
 
 @section('container')
-@component('components.warga.breadcrumb')
+@component('components.r-t.breadcrumb')
         @slot('breadcrumb_title')
         <h3>Kategori fasilitas</h3>
         @endslot
@@ -24,7 +24,7 @@
                             </div>
                             <div class="col-3">
                                 <div class="bookmark">
-                                    <a class="btn btn-primary btn-lg" href="{{ route('kategori_fasilitas.create') }}" data-bs-original-title="" title=""> <span class="fa fa-plus-square"></span> Tambah Data</a>
+                                    <a class="btn btn-primary btn-lg" href="{{ route('rt.kategori_fasilitas.create') }}" data-bs-original-title="" title=""> <span class="fa fa-plus-square"></span> Tambah Data</a>
                                 </div>
                             </div>
                         </div>
@@ -45,8 +45,8 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $kp->kategori_fasilitas }}</td>
                                         <td>
-                                            <a class="btn btn-success btn-sm p-2" href="kategori_fasilitas/{{ $kp->id_kategori_fasilitas }}/edit"><span class="fa fa-pencil"></span></a>
-                                            <form method="POST" action="{{ route('kategori_fasilitas.destroy', $kp->id_kategori_fasilitas)}}" class="d-inline">
+                                            <a class="btn btn-success btn-sm p-2" href="{{ route('rt.kategori_fasilitas.edit', $kp->id_kategori_fasilitas)}}"><span class="fa fa-pencil"></span></a>
+                                            <form method="POST" action="{{ route('rt.kategori_fasilitas.destroy', $kp->id_kategori_fasilitas)}}" class="d-inline">
                                                 @csrf
                                                <input name="_method" type="hidden" value="DELETE">
                                                <button type="submit" class="btn btn-danger btn-sm p-2 border-0 sweet" data-toggle="tooltip" title='Delete'><span

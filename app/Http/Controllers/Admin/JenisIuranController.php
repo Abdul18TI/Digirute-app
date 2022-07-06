@@ -49,10 +49,10 @@ class JenisIuranController extends Controller
         try {
             JenisIuran::create($validatedData);
 
-            return redirect()->route('jenis_iuran.index')
+            return redirect()->route('rt.jenis_iuran.index')
                 ->with('success', 'Data berhasil ditambah!');
         } catch (\Exception $e) {
-            return redirect()->route('jenis_iuran.index')
+            return redirect()->route('rt.jenis_iuran.index')
                 ->with('error', 'Gagal menambahkan data!');
         }
     }
@@ -97,7 +97,7 @@ class JenisIuranController extends Controller
 
         jenisIuran::where('id_jenis_iuran', $jenisIuran->id_jenis_iuran)
             ->update($validatedData);
-        return redirect()->route('jenis_iuran.index')->with('success', 'Data berhasil diubah!');
+        return redirect()->route('rt.jenis_iuran.index')->with('success', 'Data berhasil diubah!');
     }
 
     /**
@@ -110,10 +110,10 @@ class JenisIuranController extends Controller
     {
         try {
             $jenisIuran->delete();
-            return redirect()->route('jenis_iuran.index')
+            return redirect()->route('rt.jenis_iuran.index')
                 ->with('success', 'data berhasil dihapus!');
         } catch (\Exception $e) {
-            return redirect()->route('jenis_iuran.index')
+            return redirect()->route('rt.jenis_iuran.index')
                 ->with('error', 'Gagal menghapus data!');
         }
     }

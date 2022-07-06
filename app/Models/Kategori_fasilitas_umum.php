@@ -10,8 +10,8 @@ class Kategori_fasilitas_umum extends Model
     use HasFactory;
 
     protected $table = "kategori_fasilitas_umums";
-    protected $primaryKey = 'id_kategori_fasilitas_umum';
-    protected $guarded = ['id_kategori_fasilitas_umum'];
+    protected $primaryKey = 'id_kategori_fasilitas';
+    protected $guarded = ['id_kategori_fasilitas'];
 
     public function fasilitas_umum()
     {

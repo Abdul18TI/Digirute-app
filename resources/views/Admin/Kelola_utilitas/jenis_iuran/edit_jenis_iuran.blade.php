@@ -1,4 +1,4 @@
-@extends('layouts.main-admin')
+@extends('layouts.main-rt')
 
 @push('css')
 <link rel="stylesheet" type="text/css" href={{ asset("assets/css/trix.css")}}>
@@ -6,11 +6,11 @@
 @endpush
 
 @section('container')
-@component('components.admin.breadcrumb')
+@component('components.r-t.breadcrumb')
         @slot('breadcrumb_title')
         <h3>Jenis iuran</h3>
         @endslot
-        <li class="breadcrumb-item"><a href="{{ route('jenis_iuran.index') }}">Jenis iuran</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('rt.jenis_iuran.index') }}">Jenis iuran</a></li>
         <li class="breadcrumb-item active">Edit jenis iuran</li>
     @endcomponent
     <div class="container-fluid">
@@ -20,7 +20,7 @@
                     <div class="card-header pb-0">
                         <h5>Form edit iuran</h5>
                     </div>
-                    <form class="form theme-form" name="f1" method="POST" action="/Admin/jenis_iuran/{{ $jenis_iuran->id_jenis_iuran }}">
+                    <form class="form theme-form" name="f1" method="POST" action="/RT/jenis_iuran/{{ $jenis_iuran->id_jenis_iuran }}">
                         @method('put')
                         @csrf
                         <input type="hidden" name="id" value="{{ $jenis_iuran->id_jenis_iuran }}">
