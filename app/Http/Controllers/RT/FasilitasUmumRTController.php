@@ -12,8 +12,8 @@ class FasilitasUmumRTController extends Controller
 {
     public function index()
     {
-        $fasilitas = Fasilitas_umum::all();
-
+        $fasilitas = Fasilitas_umum::where('status_fasilitas', 1)->get();
+        // dd($fasilitas);
         return view('RT.fasilitas.fasilitas_umum', [
             'fasilitas' => $fasilitas,
             "title" => "tabel-fasilitas"
@@ -32,11 +32,12 @@ class FasilitasUmumRTController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'judul_fasilitas' => 'required',
-            'kategori_fasilitas' => 'required',
-            'isi_fasilitas' => 'required',
+            'fasilitas_umum' => 'required',
+            'kategori_fasilitas_umum' => 'required',
+            'deskripsi_fasilitas' => 'required',
             'foto_fasilitas' => 'image|file|max:4095',
-            'tgl_terbit' => 'required'
+            'alamat_fasilitas' => 'required',
+            'koordinant_fasilitas' => 'required'
         ]);
 
         if ($request->file('foto_fasilitas')) {
@@ -56,23 +57,24 @@ class FasilitasUmumRTController extends Controller
         }
     }
 
-    public function edit(Fasilitas_umum $fasilitas)
+    public function edit(Fasilitas_umum $fasilitasrt)
     {
         return view('RT.fasilitas.edit_fasilitas', [
-            'fasilitas' => $fasilitas,
+            'fasilitas' => $fasilitasrt,
             'kategori_fasilitas' => Kategori_fasilitas_umum::all(),
             'title' => 'edit-fasilitas'
         ]);
     }
 
-    public function update(Request $request, Fasilitas_umum $fasilitas)
+    public function update(Request $request, Fasilitas_umum $fasilitasrt)
     {
         $validatedData = $request->validate([
-            'judul_fasilitas' => 'required',
-            'kategori_fasilitas' => 'required',
-            'isi_fasilitas' => 'required',
+            'fasilitas_umum' => 'required',
+            'kategori_fasilitas_umum' => 'required',
+            'deskripsi_fasilitas' => 'required',
             'foto_fasilitas' => 'image|file|max:4095',
-            'tgl_terbit' => 'required'
+            'alamat_fasilitas' => 'required',
+            'koordinant_fasilitas' => 'required'
         ]);
 
         if ($request->file('foto_fasilitas')) {
@@ -80,12 +82,12 @@ class FasilitasUmumRTController extends Controller
             $validatedData['foto_fasilitas'] = $request->file('foto_fasilitas')->store('gambar-fasilitas');
         }
 
-        Fasilitas_umum::where('id_fasilitas', $fasilitas->id_fasilitas)
+        Fasilitas_umum::where('id_fasilitas_umum', $fasilitasrt->id_fasilitas_umum)
             ->update($validatedData);
-        return redirect()->route('rw.fasilitas.index')->with('success', 'Data berhasil diubah!');
+        return redirect()->route('rt.fasilitasrt.index')->with('success', 'Data berhasil diubah!');
     }
 
-    public function destroy(Fasilitas_umum $fasilitas)
+    public function destroy(Fasilitas_umum $fasilitasrt)
     {
         // $fasilitas->delete();
         // if ($fasilitas->foto_fasilitas) {
@@ -94,9 +96,9 @@ class FasilitasUmumRTController extends Controller
         // return redirect()->route('rw.fasilitas.index');
 
         try {
-            $fasilitas->delete();
-            if ($fasilitas->foto_fasilitas) {
-                Storage::delete($fasilitas->foto_fasilitas);
+            $fasilitasrt->delete();
+            if ($fasilitasrt->foto_fasilitas) {
+                Storage::delete($fasilitasrt->foto_fasilitas);
             }
             return redirect()->route('rt.fasilitasrt.index')
                 ->with('success', 'data berhasil dihapus!');
@@ -107,8 +109,8 @@ class FasilitasUmumRTController extends Controller
     }
     public function show($id)
     {
-        $fasilitas = Fasilitas_umum::with('Kategori_fasilitas')->find($id);
-        // dd($fasilitas);
+        $fasilitas = Fasilitas_umum::with('fasilitas_umumss')->find($id);
+        // dd($fasilitas->id_fasilitas_umum);
         return view('RT.fasilitas.detail_fasilitas', [
             'fasilitas' => $fasilitas,
             'title' => 'detail-fasilitas'

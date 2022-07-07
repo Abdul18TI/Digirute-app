@@ -14,10 +14,10 @@
 @section('container')
 @component('components.r-t.breadcrumb')
         @slot('breadcrumb_title')
-        <h3>Pengumuman</h3>
+        <h3>Fasilitas</h3>
         @endslot
-        <li class="breadcrumb-item"><a href="{{ route('rt.pengumuman.index') }}">Pengumuman</a></li>
-        <li class="breadcrumb-item active">Tambah pengumuman</li>
+        <li class="breadcrumb-item"><a href="{{ route('rt.fasilitasrt.index') }}">Fasilitas</a></li>
+        <li class="breadcrumb-item active">Tambah fasilitas</li>
     @endcomponent
     <div class="container-fluid">
         <div class="row">
@@ -32,18 +32,17 @@
                 @endif
                 <div class="card">
                     <div class="card-header pb-0">
-                        <h5>Form tambah pengumuman</h5>
+                        <h5>Form tambah fasilitas</h5>
                     </div>
-                    <form class="form theme-form" method="POST" enctype="multipart/form-data" action="{{ route('rw.pengumuman.store')}}">
+                    <form class="form theme-form" method="POST" enctype="multipart/form-data" action="{{ route('rt.fasilitasrt.store')}}">
                         @csrf
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">
                                     <div class="mb-3">
-                                        <label class="form-label" for="exampleFormControlInput1">Judul
-                                            pengumuman</label>
-                                        <input class="form-control @error('judul_pengumuman') is-invalid @enderror" name="judul_pengumuman" id="exampleFormControlInput1" type="text" autofocus value="{{ old('judul_pengumuman') }}"/>
-                                        @error('judul_pengumuman')
+                                        <label class="form-label" for="exampleFormControlInput1">Nama fasilitas</label>
+                                        <input class="form-control @error('fasilitas_umum') is-invalid @enderror" name="fasilitas_umum" id="exampleFormControlInput1" type="text" autofocus value="{{ old('fasilitas_umum') }}"/>
+                                        @error('fasilitas_umum')
                                         <div class="invalid-feedback">
                                             {{ $message }}
                                         </div>
@@ -54,13 +53,13 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="mb-3">
-                                        <label class="form-label" for="validationCustom02">Kategori pengumuman</label>
-                                        <select class="form-select" name="kategori_pengumuman" id="validationDefault04" required>
-                                            @foreach ($kategori_pengumuman as $k)
-                                                @if(old('kategori_pengumuman') == $k->id_kategori_pengumuman)
-                                                    <option value="{{ $k->id_kategori_pengumuman }}" selected>{{ $k->nama_kategori_pengumuman }}</option>
+                                        <label class="form-label" for="validationCustom02">Kategori fasilitas</label>
+                                        <select class="form-select" name="kategori_fasilitas_umum" id="validationDefault04" required>
+                                            @foreach ($kategori_fasilitas as $k)
+                                                @if(old('kategori_fasilitas_umum') == $k->id_kategori_fasilitas)
+                                                    <option value="{{ $k->id_kategori_fasilitas }}" selected>{{ $k->kategori_fasilitas }}</option>
                                                 @else
-                                                    <option value="{{ $k->id_kategori_pengumuman }}">{{ $k->nama_kategori_pengumuman }}</option>
+                                                    <option value="{{ $k->id_kategori_fasilitas }}">{{ $k->kategori_fasilitas }}</option>
                                                 @endif
                                             @endforeach
                                         </select>
@@ -70,11 +69,11 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="mb-3">
-                                        <label class="form-label" for="isi_pengumuman">Isi pengumuman</label>
-                                        <input id="isi_pengumuman" type="hidden" value="{{ old('isi_pengumuman') }}" name="isi_pengumuman">
-                                        <trix-editor input="isi_pengumuman"></trix-editor>
+                                        <label class="form-label" for="deskripsi_fasilitas">Deskirpsi fasilitas</label>
+                                        <input id="deskripsi_fasilitas" type="hidden" value="{{ old('deskripsi_fasilitas') }}" name="deskripsi_fasilitas">
+                                        <trix-editor input="deskripsi_fasilitas"></trix-editor>
                                     </div>
-                                    @error('isi_pengumuman')
+                                    @error('deskripsi_fasilitas')
                                     <a class="text-danger">
                                         {{ $message }}
                                     </a>
@@ -84,25 +83,39 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="mb-3 row">
-                                        <label class="form-label">Foto pengumuman</label>
+                                        <label class="form-label">Foto fasilitas</label>
                                         <div class="col-sm-9">
                                             <img class="img-preview img-fluid mb-3 col-sm-5">
-                                            <input class="form-control" name="foto_pengumuman" onchange="previewImage()" id="image" type="file" />
+                                            <input class="form-control" name="foto_fasilitas" onchange="previewImage()" id="image" type="file" />
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="mb-3 row">
-                                <label class="form-label">Waktu terbit</label>
-                                <div class="col-sm-9">
-                                    <input class="form-control digits" id="example-datetime-local-input"
-                                        type="datetime-local" name="tgl_terbit" value="{{ old('tgl_terbit') }}" />
+                            <div class="row">
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="exampleFormControlInput1">Alamat fasilitas</label>
+                                        <input class="form-control @error('alamat_fasilitas') is-invalid @enderror" name="alamat_fasilitas" id="exampleFormControlInput1" type="text" autofocus value="{{ old('alamat_fasilitas') }}"/>
+                                        @error('alamat_fasilitas')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
                                 </div>
-                                @error('tgl_terbit')
-                                    <a class="text-danger">
-                                        {{ $message }}
-                                    </a>
-                                    @enderror
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="exampleFormControlInput1">Koordinat fasilitas</label>
+                                        <input class="form-control @error('koordinant_fasilitas') is-invalid @enderror" name="koordinant_fasilitas" id="exampleFormControlInput1" type="text" autofocus value="{{ old('koordinant_fasilitas') }}"/>
+                                        @error('koordinant_fasilitas')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="card-footer text-end">

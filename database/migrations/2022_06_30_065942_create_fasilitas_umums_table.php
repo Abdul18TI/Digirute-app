@@ -17,8 +17,8 @@ class CreateFasilitasUmumsTable extends Migration
             $table->id('id_fasilitas_umum');
             $table->foreignId('kategori_fasilitas_umum');
             $table->string('fasilitas_umum');
-            $table->string('deskripsi_fasilitas');
-            $table->string('koordinant_fasilitas');
+            $table->text('deskripsi_fasilitas');
+            $table->text('koordinant_fasilitas')->nullable();
             $table->string('foto_fasilitas');
             $table->integer('status_fasilitas');
             $table->string('alamat_fasilitas');

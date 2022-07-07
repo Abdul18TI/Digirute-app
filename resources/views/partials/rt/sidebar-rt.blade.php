@@ -80,6 +80,10 @@
             <a class="nav-link menu-title  link-nav {{ prefixActive('rt.pengumuman.*') }}"
               href="{{ route('rt.pengumuman.index') }}"><i data-feather="airplay"></i><span>Pengumuman</span></a>
           </li>
+          <li>
+            <a class="nav-link menu-title  link-nav {{ prefixActive('rt.fasilitasrt.*') }}"
+              href="{{ route('rt.fasilitasrt.index') }}"><i data-feather="map"></i><span>Fasilitas</span></a>
+          </li>
           {{-- <li>
             <a class="nav-link menu-title  link-nav {{ prefixActive('rt.kematian.*') }}"
               href="{{ route('rt.kematian.index') }}"><i data-feather="calendar"></i><span>Kegiatan</span></a>

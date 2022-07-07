@@ -16,7 +16,7 @@
         @slot('breadcrumb_title')
         <h3>Pengumuman</h3>
         @endslot
-        <li class="breadcrumb-item"><a href="{{ route('rw.pengumuman.index') }}">Pengumuman</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('rt.pengumuman.index') }}">Pengumuman</a></li>
         <li class="breadcrumb-item active">Edit pengumuman</li>
     @endcomponent
     <div class="container-fluid">

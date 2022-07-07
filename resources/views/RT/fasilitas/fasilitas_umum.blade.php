@@ -16,43 +16,46 @@
         <li class="breadcrumb-item active">Fasilitas umum</li>
         {{-- <li class="breadcrumb-item active">Kategori_Fasilitas umum</li> --}}
     @endcomponent
-    @if($pengumuman->count() )
+    @if($fasilitas->count() )
 	<div class="container-fluid blog-page">
 		<div class="feature-products">
 			<div class="row">
-				<div class="col-md-12">
+				<div class="col-md-9">
 					<div class="pro-filter-sec">
 						<div class="product-search">
-							<form action="pengumuman_warga">
+							<form action="fasilitasrt">
 								<div class="form-group m-0"><input class="form-control" type="search" name="search" placeholder="Search.." data-original-title="" title="" value="{{ request('search') }}" /><i type="submit" class="fa fa-search"></i></div>
 							</form>
 						</div>
 					</div>
 				</div>
+				<div class="col-md-3">
+					<a class="btn btn-primary btn-lg"
+                    href="{{ route('rt.fasilitasrt.create') }}"
+                    data-bs-original-title=""
+                    title=""> <span class="fa fa-plus-square"></span>
+                    Tambah Data</a>
+				</div>
 			</div>
 		</div>
 	    <div class="row">
-			@foreach ($pengumuman->skip(3) as $kk)
+			@foreach ($fasilitas as $kk)
 	        <div class="col-sm-6 col-xl-3 box-col-6 des-xl-50">
 	            <div class="card">
 	                <div class="blog-box blog-grid">
 	                    <div class="blog-wrraper">
-							@if($kk->foto_pengumuman != 'no-image.jpg')
-	                        <a href="{{route('warga.pengumuman_warga.show',$kk->id_pengumuman)}}"><img class="p-0" src="{{asset('storage/'. $kk->foto_pengumuman)}}" width="421" height="263" alt="" /></a>
-							@else
-	                        <a href="{{route('warga.pengumuman_warga.show',$kk->id_pengumuman)}}"><img class="img-fluid top-radius-blog" src="{{asset('assets/images/blog/blog-6.jpg')}}" alt="" /></a>
-							@endif
+	                        <a href="{{ route('rt.fasilitasrt.show',$kk->id_fasilitas_umum) }}"><img class="p-0" src="{{ asset('storage/' . $kk->foto_fasilitas) }}" width="421" height="263" alt="" /></a>
 	                    </div>
 	                    <div class="blog-details-second">
-							<div class="blog-date">{{ tanggal_indo($kk->tgl_terbit) }}</div>
-	                        <a href="{{route('warga.pengumuman_warga.show',$kk->id_pengumuman)}}"> <h6 class="blog-bottom-details">{{ $kk->nama_pengumuman }}</h6></a>
-							<ul class="blog-social">
-								<li>oleh: {{ $kk->penanggung_jawab }}</li>
-								<li>Kategori: <a href="/Warga/pengumuman_warga?category={{ $kk->kategori_pengumuman }}">{{ $kk->Kategori_pengumumans->nama_kategori_pengumuman }}</a></li>
-							</ul>
-							<hr />
-	                        <article class="mt-0 text-dark">{!! Str::limit($kk->isi_pengumuman, 100) !!}.</article>
-								<a href="{{route('warga.pengumuman_warga.show',$kk->id_pengumuman)}}" class="btn btn-square btn-sm btn-secondary pull-right mb-3 mt-3" type="button">Baca Selengkapnya</a>
+	                        <a href="{{ route('rt.fasilitasrt.show',$kk->id_fasilitas_umum) }}">
+							<h6 class="blog-bottom-details">{{ Str::limit($kk->fasilitas_umum, 20) }}</h6></a>
+	                        <article class="mt-0 text-dark mb-3">{!! Str::limit($kk->deskripsi_fasilitas, 40) !!}</article>
+							{{-- <p>Alamat : {{  Str::limit($kk->alamat_fasilitas,20) }}</p> --}}
+	                        <div class="detail-footer">
+	                            <ul class="sociyal-list">
+	                                <li><i class="fa fa-building-o"></i>{{ $kk->fasilitas_umumss->kategori_fasilitas }}</li>
+	                            </ul>
+	                        </div>
 	                    </div>
 	                </div>
 	            </div>
@@ -67,7 +70,7 @@
 				<div class="col-md-12">
 					<div class="pro-filter-sec">
 						<div class="product-search">
-							<form action="pengumuman_warga">
+							<form action="fasilitasrt">
 								<div class="form-group m-0"><input class="form-control" type="search" name="search" placeholder="Search.." data-original-title="" title="" value="{{ request('search') }}" /><i type="submit" class="fa fa-search"></i></div>
 							</form>
 						</div>
@@ -75,13 +78,13 @@
 				</div>
 			</div>
 		</div>
-		<p>Fasilitas umum yang dicari tidak ada</p>	
+		<p>Fasilitas yang dicari tidak ada</p>	
 	</div>
 	@endif
 
-<div class="d-flex justify-content-end mb-3">
-	{{ $pengumuman->links() }}
-</div>
+{{-- <div class="d-flex justify-content-end mb-3">
+	{{ $fasilitas->links() }}
+</div> --}}
 
 @endsection
 

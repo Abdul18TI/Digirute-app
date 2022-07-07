@@ -49,10 +49,10 @@ class KategoriFasilitasUmumController extends Controller
         try {
             Kategori_fasilitas_umum::create($validatedData);
 
-            return redirect()->route('kategori_fasilitas.index')
+            return redirect()->route('rt.kategori_fasilitas.index')
                 ->with('success', 'Data berhasil ditambah!');
         } catch (\Exception $e) {
-            return redirect()->route('kategori_fasilitas.index')
+            return redirect()->route('rt.kategori_fasilitas.index')
                 ->with('error', 'Gagal menambahkan data!');
         }
     }
@@ -106,7 +106,7 @@ class KategoriFasilitasUmumController extends Controller
 
         Kategori_fasilitas_umum::where('id_kategori_fasilitas', $kategori_fasilita->id_kategori_fasilitas)
             ->update($validatedData);
-        return redirect()->route('kategori_fasilitas.index')->with('success', 'Data berhasil diubah!');
+        return redirect()->route('rt.kategori_fasilitas.index')->with('success', 'Data berhasil diubah!');
     }
 
     /**
@@ -119,10 +119,10 @@ class KategoriFasilitasUmumController extends Controller
     {
         try {
             $kategori_fasilita->delete();
-            return redirect()->route('kategori_fasilitas.index')
+            return redirect()->route('rt.kategori_fasilitas.index')
                 ->with('success', 'data berhasil dihapus!');
         } catch (\Exception $e) {
-            return redirect()->route('kategori_fasilitas.index')
+            return redirect()->route('rt.kategori_fasilitas.index')
                 ->with('error', 'Gagal menghapus data!');
         }
     }
