@@ -17,13 +17,16 @@ class SuratWargaController extends Controller
     public function index()
     {
         //
+        // dd(setJenisSuratKeterangan('s_ktp'));
         $kematian = Kematian::orderBy('tgl_kematian', 'desc')->get();
+        $surat = Surat::where('pengaju', auth()->user()->id_warga)->get();
         // $kematian = Kematian::all();
         // dd($kematian);
         return view('warga.surat.surat', [
-            'kematian' => $kematian,
+            'surat' => $surat,
         ]);
     }
+    
     public function surat_keterangan()
     {
         $warga = auth()->user();
@@ -43,23 +46,24 @@ class SuratWargaController extends Controller
         //     'tgl_selesai_kegiatan' => 'required'
         // ]);
         // $input = $request->only('jenis_surat');
+        // dd(auth()->user());
         $input['nomor_surat'] = Str::random(5);
         $input['pengaju'] = $request->pengaju;
-        $input['status_surat'] = '1';
-        $input['jenis_surat'] = 'TEST';
+        $input['rt'] = auth()->user()->rt;
+        $input['rw'] = auth()->user()->rw;
+        $input['pengaju'] = $request->pengaju;
+        $input['status_tandatangan'] = '1';
+        $input['status_surat'] = '0';
+        $input['jenis_surat'] = 'Surat Keterangan';
         $dataproperties['jenis_surat'] = $request->input('jenis_surat');
         $input['propertie_surat'] =  $dataproperties;
-        // dd($request->input('jenis_surat'));
         Surat::create($input);
         // $surat = Surat::find('5');
         // dd($surat);
         // foreach($surat as $s) {
         //     echo $s->propertie_surat;
         //     };
-        return  $input;
-
-
-
+        return  redirect()->route('warga.surat.index')->with('success', 'Pengajuan berhasil<br/>Data anda sedang diproses!!!');
     }
     public function print($id)
     {

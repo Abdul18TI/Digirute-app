@@ -62,6 +62,7 @@ class WargaMeninggalController extends Controller
             'sebab_kematian' => 'required',
             'tgl_kematian' => 'required',
             'nik_pelapor' => 'required',
+            'hubungan_jenazah' => 'required',
             'nama_pelapor' => 'required',
             'tempat_lahir_pelapor' => 'required',
             'tgl_lahir_pelapor' => 'required',
