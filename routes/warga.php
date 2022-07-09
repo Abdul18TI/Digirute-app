@@ -36,6 +36,7 @@ Route::middleware(['auth', 'PreventBackHistory'])->group(function () {
     });
     Route::prefix('surat')->name('surat.')->group(function () {
         Route::get('/', [SuratWargaController::class, 'index'])->name('index');
+        Route::delete('/{surat}', [SuratWargaController::class, 'destroy'])->name('destroy');
         Route::get('/surat_keterangan', [SuratWargaController::class, 'surat_keterangan'])->name('form.surat_keterangan');
         Route::get('/surat_keterangan/{id}/print_surat', [SuratWargaController::class, 'print'])->name('print.surat_keterangan');
         Route::get('/detail/{id}', [SuratWargaController::class, 'show'])->name('show');
