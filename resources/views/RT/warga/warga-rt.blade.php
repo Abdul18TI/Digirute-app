@@ -104,7 +104,7 @@
                             type="hidden"
                             value="DELETE">
                           <button type="submit"
-                            class="btn btn-danger btn-sm p-2 border-0 sweet"
+                            class="btn btn-danger btn-sm sweet"
                             data-toggle="tooltip"
                             title='Delete'><span class="fa fa-trash-o"></span></button>
                         </form>

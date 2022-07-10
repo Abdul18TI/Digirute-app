@@ -299,7 +299,7 @@
                   <div class="mb-3">
                     <label class="form-label"
                       for="">&nbsp;</label>
-                    <button type="button"
+                    <button type="button" onclick="getDataPelapor()"
                       id="cek_pelapor"
                       class="btn btn-secondary form-control text-white"><span class="fa fa-search"></span> Cek
                       Data</button>
@@ -446,7 +446,7 @@
 
     function getDataPelapor() {
       // var id = $('#nik').val();
-      let id = $("input[name=nik]").val();
+      let id = $("input[name=nik_pelapor]").val();
       const root_url = "{{ URL::to('/') }}";
       const url = `${root_url}/RT/kematian/show_warga`;
       // alert(url);
@@ -462,47 +462,17 @@
           console.log(res.data);
           if (res.data != null) {
             let databaru = res.data;
-            console.log(databaru);
-            let dataagama = [{
-              nama: "Islam",
-              value: 1
-            }, {
-              nama: "Kristen",
-              value: 2
-            }, {
-              nama: "Hindu",
-              value: 3
-            }, {
-              nama: "Budha",
-              value: 4
-            }, {
-              nama: "Katolik",
-              value: 5
-            }, {
-              nama: "Konghucu",
-              value: 6
-            }];
-            let agama = dataagama.filter((agama) => (agama.value == databaru.agama));
-            $('#warga').val(databaru.id_warga);
-            $('#nama_lengkap').val(databaru.nama_lengkap.toUpperCase());
-            $('#jenis_kelamin').val((databaru.jenis_kelamin == 1) ? "Laki-laki" : "Perempuan");
-            $('#agama').val(agama[0].nama.toUpperCase());
-            $('#pekerjaan').val(databaru.pekerjaan.nama_pekerjaan.toUpperCase());
-            $('#tempat_lahir').val(databaru.tempat_lahir.toUpperCase());
-            const event = new Date(databaru.tgl_lahir);
-            const options = {
-              weekday: 'long',
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric'
-            };
-            $('#tgl_lahir').val(event.toLocaleDateString('id-ID', options));
+            $('#nama_pelapor').val(databaru.nama_lengkap.toUpperCase());
+            $('#tempat_lahir_pelapor').val(databaru.tempat_lahir.toUpperCase());
+            $('#tgl_lahir_pelapor').val(databaru.tgl_lahir.split("T")[0]);
             $('#alamat').val(databaru.alamat.toUpperCase());
           } else {
-            // let input_nik = $("#nik");
-            // let parentGuest = document.getElementById("nik");
-            // console.log(input_nik);
-            // console.log("gagal");
+            swal({
+                title: `Data Warga Tidak Ditemukan`,
+                text: `NIK ${id} tidak tedapat dalam sistem`,
+                icon: "warning",
+                timer: 1500
+            })
           }
         }
       });

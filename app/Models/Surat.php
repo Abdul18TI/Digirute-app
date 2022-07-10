@@ -41,8 +41,8 @@ class Surat extends Model
     {
         return $this->attributes['propertie_surat'] = json_decode($value);
     }
-    public function getJenisSuratAttribute($value)
-    {
-        return strtoupper($value);
-    }
+    // public function getJenisSuratAttribute($value)
+    // {
+    //     return strtoupper($value);
+    // }
 }

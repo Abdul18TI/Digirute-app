@@ -57,7 +57,7 @@
                                             <form method="POST" action="{{ route('rt.jenis_iuran.destroy', $ji->id_jenis_iuran)}}" class="d-inline">
                                                 @csrf
                                             <input name="_method" type="hidden" value="DELETE">
-                                            <button type="submit" class="btn btn-danger btn-sm p-2 border-0 sweet" data-toggle="tooltip" title='Delete'><span
+                                            <button type="submit" class="btn btn-danger btn-sm sweet" data-toggle="tooltip" title='Delete'><span
                                                 class="fa fa-trash"></span></button>
                                             </form>
                                         </td>

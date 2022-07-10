@@ -70,10 +70,10 @@
                                             <td>
                                                 @if ($dt->status == 1)
                                                     <span class="badge badge-success">Ditanggapi</span>
+                                                    @elseif($dt->status == 0)
+                                                        <span class="badge badge-warning">Proses</span></td>
+                                                @endif
                                             </td>
-                                        @elseif($dt->status == 0)
-                                            <span class="badge badge-warning">Proses</span></td>
-                                    @endif
                                     <td>
                                         <a href="" onclick="detail({{ $dt->id_pengaduan }},'{{route('warga.pengaduan.show',$dt->id_pengaduan)}}')"
                                             class="btn btn-success btn-sm p-2" role="button" data-bs-toggle="modal"

@@ -58,10 +58,10 @@
                                     <hr />
                                     <div class="row">
                                         <div class="col">
-                                            {{-- <div class="mb-3"> --}}
+                                            <div class="mb-3">
                                             <label class="form-label" for="nik">NIK</label>
                                             <input class="form-control @error('nik') is-invalid @enderror" type="text"
-                                                id="nik" name="nik" value="{{ old('nik', $warga->nik) }}" placeholder="NIK"
+                                                id="nik" name="nik" value="{{ old('nik', $warga->nik) }}" placeholder="NIK" readonly
                                                 >  
                                             {{-- <div class="text-danger mr-3">Data warga tidak ditemukan</div> --}}
                                             <input name="pengaju" type="hidden" value="{{ old('pengaju', $warga->id_warga) }}"
@@ -69,7 +69,7 @@
                                             @error('pengaju')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
-                                            {{-- </div> --}}
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col">

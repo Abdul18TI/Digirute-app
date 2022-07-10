@@ -64,7 +64,7 @@
                                                     class="toggle-class"><span class="switch-state"></span>
                                                 </label>
                                               </div></td>
-                                        <td>
+                                        <td class="aksi">
                                             <a class="btn btn-info btn-sm p-2" href="{{ route('rt.pengumuman.show', $p->id_pengumuman) }}"><span
                                                     class="fa fa-eye"></span></a>
                                             <a class="btn btn-secondary btn-sm p-2" href="{{ route('rt.pengumuman.edit', $p->id_pengumuman) }}"><span
@@ -72,7 +72,7 @@
                                             <form method="POST" action="{{ route('rt.pengumuman.destroy', $p->id_pengumuman)}}" class="d-inline">
                                                 @csrf
                                                <input name="_method" type="hidden" value="DELETE">
-                                               <button type="submit" class="btn btn-danger btn-sm p-2 border-0 sweet" data-toggle="tooltip" title='Delete'><span
+                                               <button type="submit" class="btn btn-danger btn-sm sweet" data-toggle="tooltip" title='Delete'><span
                                                 class="fa fa-trash"></span></button>
                                             </form>
                                         </td>

@@ -20,6 +20,7 @@ class CreateWargaMeniggalTable extends Migration
             $table->string('tempat_kematian');
             $table->date('tgl_kematian');
             $table->string('nik_pelapor');
+            $table->string('hubungan_jenazah');
             $table->string('nama_pelapor');
             $table->string('tempat_lahir_pelapor');
             $table->date('tgl_lahir_pelapor');
