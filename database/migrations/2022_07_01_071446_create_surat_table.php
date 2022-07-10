@@ -22,8 +22,9 @@ class CreateSuratTable extends Migration
             $table->string('nomor_surat')->nullable();
             $table->string('jenis_surat');
             $table->smallInteger('status_tandatangan')->comment('0 = RT ; 1 = RT RW; 2 = RW ?');
-            $table->string('status_surat', 25);
+            $table->string('status_surat', 25)->comment('0 = Baru Diajukan ; 1 = Diterima RT; 2 = Ditolak RT; 3 = Diterima RW; 4 = Selesai ?');;
             $table->json('propertie_surat');
+            $table->text('keperluan_surat')->nullable();
             $table->timestamps();
         });
     }
