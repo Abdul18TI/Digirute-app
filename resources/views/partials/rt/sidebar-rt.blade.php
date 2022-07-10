@@ -3,7 +3,7 @@
         <a class="setting-primary" href="javascript:void(0)"><i data-feather="settings"></i></a><img
             class="img-90 rounded-circle" src="{{ asset('assets/images/dashboard/1.png') }}" alt="" />
         <div class="badge-bottom"><span class="badge badge-primary">RT</span></div>
-        <a href="{{ route('rt.profileRT.show',auth()->user()->id_rt) }}">
+        <a href="{{ route('rt.profileRT.show', auth()->user()->id_rt) }}">
             <h6 class="mt-3 f-14 f-w-600">{{ auth()->user()->identitas_rt->nama_lengkap }}</h6>
         </a>
         <p class="mb-0 font-roboto">RT {{ auth()->user()->no_rt }} RW {{ auth()->user()->rw_rel->no_rw }}</p>
@@ -43,7 +43,52 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="airplay"></i><span>Utilitas form</span></a>
+
+                    <li class="dropdown">
+                        <a class="nav-link menu-title  {{ prefixActive('rt.surat.*') }}"><i
+                                data-feather="inbox"></i><span>Surat</span></a>
+                        <ul class="nav-submenu menu-content" style="display:{{ prefixBlock('rt.surat.*') }};">
+                            <li><a href="{{ route('rt.surat.index') }}"
+                                    class="{{ prefixActive('rt.surat.index') }}">Daftar Pengajuan Surat</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="nav-link menu-title link-nav" href="{{ route('rt.pengaduan.home') }}"><i
+                                data-feather="archive"></i><span>Pengaduan</span></a>
+                    </li>
+                    {{-- <li>
+                        <a class="nav-link menu-title link-nav" href="{{ route('rw.iuran.index') }}"><i
+                                data-feather="dollar-sign"></i><span>Iuran</span></a>
+                    </li> --}}
+
+                    <li>
+                        <a class="nav-link menu-title  link-nav {{ prefixActive('rt.kegiatan.*') }}"
+                            href="{{ route('rt.kegiatan.index') }}"><i
+                                data-feather="calendar"></i><span>Kegiatan</span></a>
+                    </li>
+                    <li>
+                        <a class="nav-link menu-title  link-nav {{ prefixActive('rt.pengumuman.*') }}"
+                            href="{{ route('rt.pengumuman.index') }}"><i
+                                data-feather="airplay"></i><span>Pengumuman</span></a>
+                    </li>
+                    <li>
+                        <a class="nav-link menu-title  link-nav {{ prefixActive('rt.fasilitasrt.*') }}"
+                            href="{{ route('rt.fasilitasrt.index') }}"><i
+                                data-feather="map"></i><span>Fasilitas</span></a>
+                    </li>
+                    <li class="dropdown">
+                        <a class="nav-link menu-title" href="javascript:void(0)"><i
+                                data-feather="airplay"></i><span>Utilitas Form</span></a>
+                        <ul class="nav-submenu menu-content">
+                            <li><a href="{{ route('rt.kategori_pengumuman.index') }}">Kategori pengumuman</a></li>
+                            <li><a href="{{ route('rt.jenis_iuran.index') }}">Jenis iuran</a></li>
+                            <li><a href="{{ route('rt.kategori_kegiatan.index') }}">Kategori kegiatan</a></li>
+                            <li><a href="{{ route('rt.kategori_pengaduan.index') }}">Kategori Pengaduan</a></li>
+                            <li><a href="{{ route('rt.agama.index') }}">Agama</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i
+                                data-feather="airplay"></i><span>Utilitas form</span></a>
                         <ul class="nav-submenu menu-content">
                             <li><a href="{{ route('rt.kategori_pengumuman.index') }}">Kategori pengumuman</a></li>
                             <li><a href="{{ route('rt.jenis_iuran.index') }}">Jenis iuran</a></li>
@@ -54,45 +99,21 @@
                         </ul>
                     </li>
                     {{-- <li>
-                        <a class="nav-link menu-title link-nav" href=""><i
-                                data-feather="airplay"></i><span>Pengumuman</span></a>
-                    </li> --}}
-                    <li>
-                        <a class="nav-link menu-title link-nav" href="{{ route('rt.pengaduan.home') }}"><i
-                                data-feather="archive"></i><span>Pengaduan</span></a>
-                    </li>
-                    {{-- <li>
-                        <a class="nav-link menu-title link-nav" href="{{ route('rw.iuran.index') }}"><i
-                                data-feather="dollar-sign"></i><span>Iuran</span></a>
-                    </li> --}}
-                  {{--  <li>
                          <form action="{{ route('warga.logout') }}" method="POST" id="form-id">
                             @csrf
                             <a class="nav-link menu-title link-nav"
                                 onclick="document.getElementById('form-id').submit();"><i
                                     data-feather="log-out"></i><span>Keluar</span></a>
-                        </form> --}}
-          </li>
-          <li>
-            <a class="nav-link menu-title  link-nav {{ prefixActive('rt.kegiatan.*') }}"
-              href="{{ route('rt.kegiatan.index') }}"><i data-feather="calendar"></i><span>Kegiatan</span></a>
-          </li>
-          <li>
-            <a class="nav-link menu-title  link-nav {{ prefixActive('rt.pengumuman.*') }}"
-              href="{{ route('rt.pengumuman.index') }}"><i data-feather="airplay"></i><span>Pengumuman</span></a>
-          </li>
-          <li>
-            <a class="nav-link menu-title  link-nav {{ prefixActive('rt.fasilitasrt.*') }}"
-              href="{{ route('rt.fasilitasrt.index') }}"><i data-feather="map"></i><span>Fasilitas</span></a>
-          </li>
-          {{-- <li>
+                        </form>
+                    </li> --}}
+                    {{-- <li>
             <a class="nav-link menu-title  link-nav {{ prefixActive('rt.kematian.*') }}"
               href="{{ route('rt.kematian.index') }}"><i data-feather="calendar"></i><span>Kegiatan</span></a>
           </li> --}}
 
                 </ul>
+                <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
             </div>
-            <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
         </div>
     </nav>
 </header>
