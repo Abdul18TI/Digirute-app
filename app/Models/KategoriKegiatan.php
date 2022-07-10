@@ -12,4 +12,9 @@ class KategoriKegiatan extends Model
     protected $table = "kategori_kegiatan";
     protected $primaryKey = 'id_kategori_kegiatan';
     protected $guarded = ['id_kategori_kegiatan'];
+
+    public function Kategori_kegiatans()
+    {
+        return $this->hasMany(Kegiatan::class);
+    }
 }

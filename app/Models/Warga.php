@@ -17,7 +17,7 @@ class Warga extends Authenticatable
     protected $primaryKey = 'id_warga';
     protected $guarded = ['id_warga'];
     protected $with = ['pekerjaan', 'pekerjaans', 'agamas'];
-    protected $dates = ['tgl_lahir'];
+    protected $dates = ['tgl_lahir', 'tgl_akhir_passport', 'tgl_keluar_kk', 'tgl_perkawinan', 'tgl_cerai'];
 
 
     public function getRouteKeyName()

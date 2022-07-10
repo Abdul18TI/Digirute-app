@@ -49,6 +49,7 @@
                             <li><a href="{{ route('rt.jenis_iuran.index') }}">Jenis iuran</a></li>
                             <li><a href="{{ route('rt.kategori_kegiatan.index') }}">Kategori kegiatan</a></li>
                             <li><a href="{{ route('rt.kategori_pengaduan.index') }}">Kategori Pengaduan</a></li>
+                            <li><a href="{{ route('rt.kategori_fasilitas.index') }}">Kategori Fasilitas</a></li>
                             <li><a href="{{ route('rt.agama.index') }}">Agama</a></li>
                         </ul>
                     </li>

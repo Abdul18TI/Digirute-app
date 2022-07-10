@@ -1,34 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\RW;
+namespace App\Http\Controllers\Warga;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\rw;
 use App\Models\Warga;
 use App\Models\Pekerjaan;
-use App\Models\Kabupaten;
-use App\Models\Kecamatan;
-use App\Models\Kelurahan;
-use App\Models\Provinsi;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
 
-class ProfileRWController extends Controller
+class ProfileWargaController extends Controller
 {
-    public function index()
-    {
-        $rw = rw::with('identitas_rw')->first();
-
-        $keluarga = Warga::where('no_kk', $rw->identitas_rw->no_kk)->whereNotIn('nik', [$rw->identitas_rw->nik])->get();
-        // dd($rw);
-
-        return view('RW.ProfileRW.profile-rw-tes', [
-            'rw' => $rw,
-            'keluarga' => $keluarga,
-            "title" => "profile-rw"
-        ]);
-    }
 
     public function show($id)
     {
@@ -46,10 +29,6 @@ class ProfileRWController extends Controller
     public function edit($rws)
     {
         $data = Pekerjaan::all();
-        $datakab = Kabupaten::all();
-        $datakec = Kecamatan::all();
-        $datakel = Kelurahan::all();
-        $datapro = Provinsi::all();
         $profile = rw::with('identitas_rw')->where('id_rw', $rws)->first();
         // dd($profile);
         // $rw = rw::with('identitas_rw')->where('id_rw', $id)->get();
@@ -57,10 +36,6 @@ class ProfileRWController extends Controller
         return view('RW.profileRW.edit_profile', [
             'warga' => $profile,
             'pekerjaan' => $data,
-            'kabupaten' => $datakab,
-            'kecamatan' => $datakec,
-            'kelurahan' => $datakel,
-            'provinsi' => $datapro,
             // 'kategori_pengumuman' => Warga::all(),
             'title' => 'edit-pengumuman'
         ]);

@@ -15,7 +15,7 @@ class KegiatanWargaController extends Controller
         // dd($kegiatan[1]->status_kegiatan);
 
         return view('Warga.kegiatan.kegiatan_warga', [
-            'kegiatan' => Kegiatan::where('status_kegiatan', 1)->latest()->filter(request(['search', 'category']))->get(),
+            'kegiatan' => Kegiatan::where('status_kegiatan', 1)->latest()->filter(request(['search', 'category']))->paginate(7)->withQueryString(),
             "title" => "kegiatan-warga"
         ]);
     }

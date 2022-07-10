@@ -9,6 +9,8 @@ use App\Http\Controllers\Warga\DashboardWargaController;
 use App\Http\Controllers\Warga\PengaduanController as WargaPengaduanController;
 use App\Http\Controllers\Warga\KegiatanWargaController;
 use App\Http\Controllers\Warga\PengumumanWargaController;
+use App\Http\Controllers\Warga\FasilitasWargaController;
+use App\Http\Controllers\Warga\ProfileWargaController;
 use App\Http\Controllers\Warga\SuratWargaController;
 
 // Route::prefix('Warga')->name('warga.')->group(function () {
@@ -22,6 +24,8 @@ Route::middleware(['auth', 'PreventBackHistory'])->group(function () {
     Route::resource('pengaduan', WargaPengaduanController::class);
     Route::resource('kegiatan_warga', KegiatanWargaController::class);
     Route::resource('pengumuman_warga', PengumumanWargaController::class);
+    Route::resource('fasilitaswarga', FasilitasWargaController::class);
+    Route::resource('profilewarga', ProfileWargaController::class);
     Route::get('/kategori_pengumuman/{id}', [PengumumanWargaController::class, 'filter_kategori_pengumuman'])->name('filter_kategori');
     Route::get('/rw-rt', [OtherController::class, 'rtrw'])->name('rw-rt');
     Route::prefix('iuran')->name('iuran.')->group(function () {

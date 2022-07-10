@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Warga;
 use App\Helper\Helpers;
 use App\Models\Pekerjaan;
+use App\Models\Pendidikan;
 use App\Models\Kabupaten;
 use App\Models\Kecamatan;
 use App\Models\Kelurahan;
 use App\Models\Provinsi;
+use App\Models\Status_hubungan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -33,6 +35,8 @@ class WargaController extends Controller
     {
         $warga = Warga::all();
         $data = Pekerjaan::all();
+        $hubungan = Status_hubungan::all();
+        $pendidikan = Pendidikan::all();
         $datakab = Kabupaten::all();
         $datakec = Kecamatan::all();
         $datakel = Kelurahan::all();
@@ -42,6 +46,8 @@ class WargaController extends Controller
             [
                 'warga' => $warga,
                 'pekerjaan' => $data,
+                'hubungan' => $hubungan,
+                'pendidikan' => $pendidikan,
                 'kabupaten' => $datakab,
                 'kecamatan' => $datakec,
                 'kelurahan' => $datakel,
@@ -124,6 +130,8 @@ class WargaController extends Controller
     {
         // dd($warga->all());
         $data = Pekerjaan::all();
+        $hubungan = Status_hubungan::all();
+        $pendidikan = Pendidikan::all();
         $datakab = Kabupaten::all();
         $datakec = Kecamatan::all();
         $datakel = Kelurahan::all();
@@ -133,6 +141,8 @@ class WargaController extends Controller
             [
                 'warga' => $warga,
                 'pekerjaan' => $data,
+                'hubungan' => $hubungan,
+                'pendidikan' => $pendidikan,
                 'kabupaten' => $datakab,
                 'kecamatan' => $datakec,
                 'kelurahan' => $datakel,

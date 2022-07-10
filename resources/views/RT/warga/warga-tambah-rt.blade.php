@@ -20,7 +20,7 @@
     @slot('breadcrumb_title')
       <h3>Tambah Data Warga</h3>
     @endslot
-    <li class="breadcrumb-item">Warga</li>
+    <li class="breadcrumb-item"><a href="{{ route('rt.warga.index')}}">Warga</a></li>
     <li class="breadcrumb-item active">Tambah Data Warga</li>
   @endcomponent
     <div class="container-fluid">
@@ -35,9 +35,6 @@
                   </div>
                   @endif
                 <div class="card">
-                    <div class="card-header pb-0">
-                        <h5>Tambah Data Warga</h5>
-                    </div>
                     <form class="form theme-form" method="POST" enctype="multipart/form-data" action="{{ route('rt.warga.store')}}">
                         @csrf
                         <div class="card-body">
@@ -46,10 +43,10 @@
                                     <div class="mb-3 row">
                                         <label class="col-sm-3 col-form-label">RT/RW</label>
                                         <div class="col-sm-5">
-                                            <input class="form-control" type="text" id="rt" name="rt" readonly placeholder="RW" value="1">
+                                            <input class="form-control" type="text" id="rt" name="rt" readonly placeholder="RW" value="{{ auth()->user()->no_rt }}">
                                         </div>
                                         <div class="col-sm-4">
-                                            <input class="form-control " type="text" id="rw" name="rw" readonly placeholder="RT" value="2">
+                                            <input class="form-control " type="text" id="rw" name="rw" readonly placeholder="RT" value="{{ auth()->user()->rw_rel->no_rw }}">
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
@@ -75,12 +72,10 @@
                                         <div class="col-sm-9">
                                             <select name='status_hubungan_dalam_keluarga' id='status_hubungan_dalam_keluarga' class='form-select'>
                                                 <option value='00'>-- Pilih --</option>
-                                                <option value='1' {{ old('status_hubungan_dalam_keluarga') == '1' ? "selected" : ""}}>ISLAM</option>
-                                                <option value='2' {{ old('status_hubungan_dalam_keluarga') == '2' ? "selected" : ""}}>KRISTEN</option>
-                                                <option value='3' {{ old('status_hubungan_dalam_keluarga') == '3' ? "selected" : ""}}>HINDU</option>
-                                                <option value='4' {{ old('status_hubungan_dalam_keluarga') == '4' ? "selected" : ""}}>BUDHA</option>
-                                                <option value='5' {{ old('status_hubungan_dalam_keluarga') == '5' ? "selected" : ""}}>KATOLIK</option>
-                                                <option value='6' {{ old('status_hubungan_dalam_keluarga') == '6' ? "selected" : ""}}>KONGHUCU</option></select>
+                                                @foreach ($hubungan as $p)
+                                                <option value='{{ $p->id_status_hubungan }}' {{ old('status_hubungan_dalam_keluarga') ==  $p->id_status_hubungan ? "selected" : "" }}>{{ $p->status_hubungan }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
@@ -250,27 +245,15 @@
                                             <input class="form-control " type="number" id="akta_cerai" name="akta_cerai" value="{{ old('akta_cerai') }}" placeholder="">
                                         </div>
                                     </div>
-                                    <div class="mb-3 row">
-                                        <label class="col-sm-3 col-form-label">Status Hubungan <span class="text-danger">*</span></label>
-                                        <div class="col-sm-9">
-                                            <select name='status_hubungan' id='status_hubungan' class='form-select'  >
-                                                <option value='00'>-- Pilih --</option>
-                                                <option value='1' {{ old('status_hubungan') == '1' ? "selected" : ""}}>BELUM KAWIN</option>
-                                                <option value='2' {{ old('status_hubungan') == '2' ? "selected" : ""}}>KAWIN</option>
-                                                <option value='3' {{ old('status_hubungan') == '3' ? "selected" : ""}}>CERAI HIDUP</option>
-                                                <option value='4' {{ old('status_hubungan') == '4' ? "selected" : ""}}>CERAI MATI</option>
-                                            </select>                                              
-                                        </div>
-                                    </div>
+                                    
                                     <div class="mb-3 row">
                                         <label class="col-sm-3 col-form-label">Pendidikan <span class="text-danger">*</span></label>
                                         <div class="col-sm-9">
                                             <select name='pendidikan' id='pendidikan' class='form-select'  >
                                                 <option value='00'>-- Pilih --</option>
-                                                <option value='1' {{ old('pendidikan') == '1' ? "selected" : ""}}>BELUM KAWIN</option>
-                                                <option value='2' {{ old('pendidikan') == '2' ? "selected" : ""}}>KAWIN</option>
-                                                <option value='3' {{ old('pendidikan') == '3' ? "selected" : ""}}>CERAI HIDUP</option>
-                                                <option value='4' {{ old('pendidikan') == '4' ? "selected" : ""}}>CERAI MATI</option>
+                                                @foreach ($pendidikan as $p)
+                                                <option value='{{ $p->id_pendidikan  }}' {{ old('pendidikan') ==  $p->id_pendidikan  ? "selected" : "" }}>{{ $p->nama_pendidikan }}</option>
+                                                @endforeach
                                             </select>                                              
                                         </div>
                                     </div>

@@ -92,25 +92,25 @@
                             <div class="col-sm-6 col-md-4">
                                 <div class="mb-3">
                                     <label class="form-label">Kelurahan</label>
-                                    <input class="form-control" type="text" disabled value="{{ $warga->kelurahan }}" />
+                                    <input class="form-control" type="text" disabled value="{{ $warga->kelurahans->nama }}" />
                                 </div>
                             </div>
                             <div class="col-sm-6 col-md-4">
                                 <div class="mb-3">
                                     <label class="form-label">Kecamatan</label>
-                                    <input class="form-control" type="text" disabled value="{{ $warga->kecamatan }}"/>
+                                    <input class="form-control" type="text" disabled value="{{ $warga->kecamatans->nama }}"/>
                                 </div>
                             </div>
                             <div class="col-sm-6 col-md-4">
                                 <div class="mb-3">
                                     <label class="form-label">Kabupaten</label>
-                                    <input class="form-control" type="text" disabled value="{{ $warga->kabupaten }}"/>
+                                    <input class="form-control" type="text" disabled value="{{ $warga->kabupatens->nama }}"/>
                                 </div>
                             </div>
                             <div class="col-sm-6 col-md-4">
                                 <div class="mb-3">
                                     <label class="form-label">Provinsi</label>
-                                    <input class="form-control" type="text" disabled value="{{ $warga->provinsi }}"/>
+                                    <input class="form-control" type="text" disabled value="{{ $warga->provinsis->nama }}"/>
                                 </div>
                             </div>
                             <div class="col-sm-6 col-md-4">
@@ -129,7 +129,7 @@
                             <div class="col-sm-6 col-md-4">
                                 <div class="mb-3">
                                     <label class="form-label">Tanggal lahir</label>
-                                    <input class="form-control" type="text" disabled value="{{ $warga->tgl_lahir }}" />
+                                    <input class="form-control" type="text" disabled value="{{ tanggal_waktu_indo($warga->tgl_lahir) }}" />
                                 </div>
                             </div>
                             <div class="col-sm-6 col-md-4">
@@ -190,7 +190,7 @@
                             <div class="col-sm-6 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label">Tanggal akhir passport</label>
-                                    <input class="form-control" type="text" disabled value="{{ $warga->tgl_akhir_passport }}" />
+                                    <input class="form-control" type="text" disabled value="{{ tanggal_waktu_indo($warga->tgl_akhir_passport) }}" />
                                 </div>
                             </div>
                             <div class="col-sm-6 col-md-6">
@@ -229,13 +229,13 @@
                             <div class="col-sm-6 col-md-4">
                                 <div class="mb-3">
                                     <label class="form-label">Tanggal keluar KK</label>
-                                    <input class="form-control" type="text" disabled value="{{ $warga->tgl_keluar_kk }}" />
+                                    <input class="form-control" type="text" disabled value="{{ tanggal_waktu_indo($warga->tgl_keluar_kk) }}" />
                                 </div>
                             </div>
                             <div class="col-sm-6 col-md-4">
                                 <div class="mb-3">
                                     <label class="form-label">Tanggal perkawinan</label>
-                                    <input class="form-control" type="text" disabled value="{{ $warga->tgl_perkawinan }}" />
+                                    <input class="form-control" type="text" disabled value="{{ tanggal_waktu_indo($warga->tgl_perkawinan) }}" />
                                 </div>
                             </div>
                             <div class="col-sm-6 col-md-4">
@@ -255,7 +255,7 @@
                             <div class="col-sm-6 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label">Tanggal cerai</label>
-                                    <input class="form-control" type="text" disabled value="{{ $warga->tgl_cerai }}" />
+                                    <input class="form-control" type="text" disabled value="{{ tanggal_waktu_indo($warga->tgl_cerai) }}" />
                                 </div>
                             </div>
                             @else
@@ -270,7 +270,7 @@
                             <div class="col-sm-6 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label">Tanggal kelahiran</label>
-                                    <input class="form-control" type="text" disabled value="{{ $warga->tgl_kelahiran }}" />
+                                    <input class="form-control" type="text" disabled value="{{ tanggal_waktu_indo($warga->tgl_lahir) }}" />
                                 </div>
                             </div>
                             {{-- Line --}}
@@ -287,7 +287,7 @@
                              <div class="col-sm-6 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label">Email</label>
-                                    <input class="form-control" type="text" disabled value="{{ $warga->email }}" />
+                                    <input class="form-control" type="text" disabled value="{{ $warga->email_warga }}" />
                                 </div>
                             </div>
                             <div class="col-sm-6 col-md-6">

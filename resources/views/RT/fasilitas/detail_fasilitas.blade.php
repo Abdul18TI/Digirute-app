@@ -40,7 +40,7 @@
                       @endif
                       </span>
                     </li>
-                    {{-- <li class="middle">Kategori :<a href="/RT/fasilitas_warga?category={{ $fasilitas->kategori_fasilitas_umum }}"> {{ $fasilitas->fasilitas_umumss->kategori_fasilitas }}</a></li> --}}
+                    <li class="middle">Kategori :<a href="/RT/fasilitasrt?category={{ $fasilitas->kategori_fasilitas_umum }}"> {{ $fasilitas->fasilitas_umumss->kategori_fasilitas }}</a></li>
                   </ul>
                   <h4>
                     {{ $fasilitas->fasilitas_umum }}
