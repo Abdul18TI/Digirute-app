@@ -65,7 +65,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 xl-50 col-sm- box-col-3">
+            {{-- <div class="col-xl-3 xl-50 col-sm- box-col-3">
 
             </div>
             <div class="col-xl-3 xl-100 box-col-3">
@@ -137,7 +137,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
         <div class="col-xl-6 xl-100 box-col-12">
             <div class="card">
