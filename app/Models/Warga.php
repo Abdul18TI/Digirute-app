@@ -117,4 +117,8 @@ class Warga extends Authenticatable
         return $this->belongsTo(Status_hubungan::class, 'status_hubungan_dalam_keluarga', 'id_status_hubungan')->select(['id_status_hubungan', 'status_hubungan']);;
         // return $this->belongsTo(rt::class);
     }
+
+    public function surats(){
+        return $this->hasMany(Surat::class, 'pengaju','id_warga');
+    }
 }
