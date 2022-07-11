@@ -30,7 +30,7 @@
 					</div>
 				</div>
 				<div class="col-md-3">
-					<a class="btn btn-primary btn-lg"
+					<a class="btn btn-primary btn-lg btn-block"
                     href="{{ route('rt.fasilitasrt.create') }}"
                     data-bs-original-title=""
                     title=""> <span class="fa fa-plus-square"></span>

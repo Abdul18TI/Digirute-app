@@ -162,7 +162,7 @@
                 <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <img src="{{asset('assets/images/banner/TambahKoordinat copy.png')}}" width="760"/>
+                <img src="{{asset('assets/images/banner/TambahKoordinat.png')}}" width="760"/>
             </div>
         </div>
     </div>

@@ -8,11 +8,11 @@
         @endif
         <div class="badge-bottom"><span class="badge badge-primary">RT</span></div>
         <a href="user-profile">
-            <h6 class="mt-3 f-14 f-w-600">Nama lengkap</h6>
-            {{-- <h6 class="mt-3 f-14 f-w-600">{{ auth()->user()->identitas_rt->nama_lengkap }}</h6> --}}
+            {{-- <h6 class="mt-3 f-14 f-w-600">Nama lengkap</h6> --}}
+            <h6 class="mt-3 f-14 f-w-600">{{ auth()->user()->identitas_rw->nama_lengkap }}</h6>
         </a>
-        <p class="mb-0 font-roboto">RT 1 RW 1</p>
-        {{-- <p class="mb-0 font-roboto">RT {{ auth()->user()->no_rt }} RW {{ auth()->user()->rw_rel->no_rw }}</p> --}}
+        {{-- <p class="mb-0 font-roboto">RT 1 RW 1</p> --}}
+        <p class="mb-0 font-roboto">RW {{ auth()->user()->no_rw }}</p>
     </div>
     <nav>
         <header class="main-nav">
@@ -52,6 +52,11 @@
                             </li>
                             <li>
                                 <a class="nav-link menu-title link-nav" href="{{ route('rw.iuran.index') }}"><i data-feather="dollar-sign"></i><span>Iuran</span></a>
+                            </li>
+                            <li>
+                                <a class="nav-link menu-title  link-nav {{ prefixActive('rt.fasilitasrt.*') }}"
+                                    href="{{ route('rt.fasilitasrt.index') }}"><i
+                                        data-feather="map"></i><span>Fasilitas</span></a>
                             </li>
                         </ul>
                     </div>
