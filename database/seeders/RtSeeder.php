@@ -25,7 +25,7 @@ class RtSeeder extends Seeder
                     'password' => Hash::make('asdasd'),
                     'no_rt' => '01',
                     'id_warga' => '1',
-                    'ketua_rt' => 'Ahmad Sahidi',
+                    'ketua_rt' => 'Andra Hafiz',
                     'tgl_awal_jabatan_rt' => '2022-05-19 13:36:34',
                     'tgl_akhir_jabatan_rt' => '2027-05-19 13:36:34',
                     'status_rt' => '1'
