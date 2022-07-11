@@ -28,7 +28,7 @@ function get_catdata()
     return $catdata;
 }
 
-function setJenisSuratKeterangan($key)
+function setJenisSuratKeterangan($key = '')
 {
     $jenis_surat = array(
         "s_ktp" => "Kartu Tanda Penduduk(KTP)",
@@ -49,7 +49,9 @@ function setJenisSuratKeterangan($key)
         "s_belumpunyarumah" => "Surat Belum Memiliki Rumah",
         "s_sudahnikah" => "Surat Keterangan Sudah Menikah",
     );
-
+    if ($key == "") {
+        return $jenis_surat;
+    }
     return $jenis_surat[$key];
 }
 
