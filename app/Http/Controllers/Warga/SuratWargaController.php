@@ -43,17 +43,13 @@ class SuratWargaController extends Controller
 
     public function surat_keterangan_store(Request $request)
     {
-        // $validatedData = $request->validate([
-        //     'nama_kegiatan' => 'required',
-        //     'kategori_kegiatan' => 'required',
-        //     'isi_kegiatan' => 'required',
-        //     'foto_kegiatan' => 'image|file|max:2048',
-        //     'tgl_mulai_kegiatan' => 'required',
-        //     'tgl_selesai_kegiatan' => 'required'
-        // ]);
+        $validatedData = $request->validate([
+            'jenis_surat' => 'required',
+            'nik' => 'required|exists:wargas,nik',
+            'pengaju' => 'required|exists:wargas,id_warga',
+        ]);
         // $input = $request->only('jenis_surat');
         // dd(auth()->user());
-        $input['nomor_surat'] = Str::random(5);
         $input['pengaju'] = $request->pengaju;
         $input['rt'] = auth()->user()->rt;
         $input['rw'] = auth()->user()->rw;
@@ -91,7 +87,6 @@ class SuratWargaController extends Controller
     {
         $jenazah = Warga::select('id_warga', 'no_kk', 'nama_lengkap', 'jenis_kelamin', 'pekerjaan', 'agama', 'tempat_lahir', 'tgl_lahir', 'alamat')
             ->where('nik', $request->id)
-
             ->where('rt', auth()->id())
             ->where('status_warga', 0)
             ->first();
