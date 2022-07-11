@@ -20,14 +20,14 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
-                @if ($errors->any())
+                {{-- @if ($errors->any())
                 <div class="alert alert-danger dark alert-dismissible fade show" role="alert"><strong>Terjadi kesalahan</strong>
                     @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
                     @endforeach
                     <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
                   </div>
-                  @endif
+                  @endif --}}
 
                   @if (session()->has('success'))
                       <div class="alert alert-success dark alert-dismissible fade show" role="alert">

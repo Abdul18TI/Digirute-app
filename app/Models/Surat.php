@@ -16,11 +16,10 @@ class Surat extends Model
     ];
     protected $guarded = ['id_surat'];
     // protected $fillable = ['nomor_surat', 'jenis_surat','status_surat', 'propertie_surat'];
-    // protected $with = ['wargas'];
+    protected $with = ['wargas'];
     public function wargas()
     {
-        return $this->belongsTo(Warga::class, 'pengaju', 'id_warga')->select('nik','id_warga', 'nama_lengkap', 'jenis_kelamin', 'pekerjaan', 'agama', 'tempat_lahir', 'tgl_lahir', 'alamat','status_warga','rt','rw');
-        // return $this->belongsTo(rt::class);
+        return $this->belongsTo(Warga::class, 'pengaju', 'id_warga')->select('nik','no_kk','id_warga','nama_lengkap', 'jenis_kelamin', 'pekerjaan', 'agama', 'tempat_lahir', 'tgl_lahir', 'alamat','tempat_lahir');
     }
     // public function rts()
     // {

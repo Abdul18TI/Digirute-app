@@ -1,4 +1,4 @@
-@extends('layouts.main-warga')
+@extends('layouts.main-rt')
 
 @section('title')
     Pengjuan Surat
@@ -7,7 +7,6 @@
 
 @push('css')
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/datatables.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/custom.css') }}">
 @endpush
 
 @section('container')
@@ -50,7 +49,7 @@
                     <div class="card-body">
                         <div class="table-responsive overflow-hidden">
                             <table class="display" id="tabelpengaduan-warga">
-                                <thead class="text-center" >
+                                <thead>
                                     <tr>
                                         <th>No</th>
                                         <th>Nomor Surat</th>
@@ -65,18 +64,15 @@
                                     @foreach ($surat as $s)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td class="text-center">{!! $s->nomor_surat ?? ' <span class="badge badge-dark ">Nomor Surat Belum Terbit</span>' !!}</td>
+                                            <td>{{ $s->nomor_surat ?? 'Nomor Surat Belum Terbit' }}</td>
                                             <td>{{ $s->jenis_surat }}</td>
-                                            <td>
-                                                <ul>
-                                                    @foreach ($s->propertie_surat->jenis_surat as $jenis_surat)
-                                                        <li><i
-                                                                class="fa fa-caret-right txt-secondary m-r-10"></i>{!!setJenisSuratKeterangan($jenis_surat) !!}
-                                                        </li>
-                                                    @endforeach
-                                                </ul>
-                                            </td>
+                                            <td><ul>
+                                                @foreach ($s->propertie_surat->jenis_surat as $jenis_surat)
+                                                <li><i class="fa fa-caret-right txt-secondary m-r-10"></i>{!! setJenisSuratKeterangan($jenis_surat) !!}</li>
+                                                @endforeach
+                                            </ul> </td>
                                             <td>{{ tanggal_indo($s->created_at) }}</td>
+                                            {{-- <td>{{ $s->propertie_surat->jenis_surat }}</td> --}}
                                             <td>
                                                 @if ($s->status_surat == 0)
                                                     <span class="badge badge-warning">Diajukan</span>
@@ -91,23 +87,13 @@
                                                 @endif
                                             </td>
                                             <td class="aksi">
-                                                @if ($s->status_surat == 0)
-                                                    <form method="POST"
-                                                        action="{{ route('warga.surat.destroy', $s->id_surat) }}"
-                                                        class="d-inline">
-                                                          @method('delete')
-                                                        @csrf
-                                                        <input name="_method" type="hidden" value="DELETE">
-                                                        <button type="submit" class="btn btn-danger btn-sm sweet"
-                                                            data-toggle="tooltip" title='Delete'><span
-                                                                class="fa fa-trash-o"></span></button>
-                                                    </form>
-                                                @else 
-                                                   <span class="badge badge-light text-dark">Tidak Ada Aksi</span>
-                                                @endif
+                                                 <a class="btn btn-success btn-sm p-2"
+                                                    href="{{ route('rt.surat.detail.surat_keterangan', $s->id_surat) }}"><span
+                                                        class="fa fa-list"></span></a>
                                             </td>
                                         </tr>
                                     @endforeach
+                                    {{-- <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-original-title="test" data-bs-target="#exampleModal">Simple</button> --}}
                                 </tbody>
                                 <tfooter>
                                     <tr>
@@ -124,6 +110,7 @@
                         </div>
                     </div>
                 </div>
+                <!-- Form Pengaduan End -->
             </div>
         </div>
     </div>

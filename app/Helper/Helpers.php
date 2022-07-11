@@ -9,14 +9,14 @@ use App\Models\Pekerjaan;
 
 // class Helpers
 // {
-    function getAgama($agama)
+function getAgama($agama)
 {
-    $dataAgama = Agama::pluck('agama','id_agama');
+    $dataAgama = Agama::pluck('agama', 'id_agama');
     // dd($dataAgama);
-    foreach ($dataAgama as $id => $name){
-    echo '<option value='.$id.'>'.$name.'</option>';
+    foreach ($dataAgama as $id => $name) {
+        echo '<option value=' . $id . '>' . $name . '</option>';
     }
-    foreach ($dataAgama as $a){
+    foreach ($dataAgama as $a) {
         return $agama == $a->id_agama ? $a : '-';
     }
     // return $catdata;
@@ -28,28 +28,71 @@ function get_catdata()
     return $catdata;
 }
 
-function setJenisSuratKeterangan($key){
-    $jenis_surat =array(
-        "s_ktp"=>"Kartu Tanda Penduduk(KTP)", 
-        "s_kk"=>"Kartu Keluarga (KK)", 
-        "s_skbb"=>"Surat Keterangan Berkelakuan Baik (SKBB)",
-        "s_keteranganusaha"=>"Surat Keterangan Usaha",
-        "s_keterangandomisiliusaha"=>"Surat Keterangan Domisili Usaha",
-        "s_domisili"=>"Surat Domisili",
-        "s_belumnikah"=>"Surat Keterangan Belum Menikah",
-        "s_lingkungan"=>"Surat Keterangan Bersih Lingkungan",
-        "s_ahliwaris"=>"Surat Pernyataan dan Kuasa <p>Ahli Waris</p>",
-        "s_lahir"=>"Surat Keterangan Kelahiran",
-        "s_mati"=>"Surat Keterangan Kematian",
-        "s_pengantarnikah"=>"Surat Keterangan Pengantar Nikah (Model NA)",
-        "s_miskin"=>"Surat Keterangan Miskin / <p>Tidak Mampu</p>",
-        "s_pendatang"=>"Surat Keterangan Pendatang Baru",
-        "s_keteranganpenghasilan"=>"Surat Keterangan Penghasilan",
-        "s_belumpunyarumah"=>"Surat Belum Memiliki Rumah",
-        "s_sudahnikah"=>"Surat Keterangan Sudah Menikah",
+function setJenisSuratKeterangan($key)
+{
+    $jenis_surat = array(
+        "s_ktp" => "Kartu Tanda Penduduk(KTP)",
+        "s_kk" => "Kartu Keluarga (KK)",
+        "s_skbb" => "Surat Keterangan Berkelakuan Baik (SKBB)",
+        "s_keteranganusaha" => "Surat Keterangan Usaha",
+        "s_keterangandomisiliusaha" => "Surat Keterangan Domisili Usaha",
+        "s_domisili" => "Surat Domisili",
+        "s_belumnikah" => "Surat Keterangan Belum Menikah",
+        "s_lingkungan" => "Surat Keterangan Bersih Lingkungan",
+        "s_ahliwaris" => "Surat Pernyataan dan Kuasa <p>Ahli Waris</p>",
+        "s_lahir" => "Surat Keterangan Kelahiran",
+        "s_mati" => "Surat Keterangan Kematian",
+        "s_pengantarnikah" => "Surat Keterangan Pengantar Nikah (Model NA)",
+        "s_miskin" => "Surat Keterangan Miskin / <p>Tidak Mampu</p>",
+        "s_pendatang" => "Surat Keterangan Pendatang Baru",
+        "s_keteranganpenghasilan" => "Surat Keterangan Penghasilan",
+        "s_belumpunyarumah" => "Surat Belum Memiliki Rumah",
+        "s_sudahnikah" => "Surat Keterangan Sudah Menikah",
     );
 
     return $jenis_surat[$key];
+}
+
+function getRomawi($bulan)
+{
+    switch ($bulan) {
+        case 1:
+            return "I";
+            break;
+        case 2:
+            return "II";
+            break;
+        case 3:
+            return "III";
+            break;
+        case 4:
+            return "IV";
+            break;
+        case 5:
+            return "V";
+            break;
+        case 6:
+            return "VI";
+            break;
+        case 7:
+            return "VII";
+            break;
+        case 8:
+            return "VIII";
+            break;
+        case 9:
+            return "IX";
+            break;
+        case 10:
+            return "X";
+            break;
+        case 11:
+            return "XI";
+            break;
+        case 12:
+            return "XII";
+            break;
+    }
 }
 
 function FormatHP($nomorhp)
@@ -97,4 +140,3 @@ function ConvertTanggal($tanggal)
 {
     return is_null($tanggal) ? '-' : date('Y-m-d\TH:i', strtotime($tanggal));
 }
- 
