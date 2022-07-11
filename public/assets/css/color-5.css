@@ -11360,9 +11360,10 @@ label {
   line-height: 1.2; }
 
 .checkbox input[type="checkbox"]:disabled + label {
-  opacity: 0.65; }
+  opacity: 0.65;
+cursor: not-allowed; }
   .checkbox input[type="checkbox"]:disabled + label::before {
-    background-color: #e6edef;
+    background-color: #1b4c43;
     cursor: not-allowed; }
 
 .checkbox .checkbox-circle label::before {
