@@ -245,7 +245,6 @@
                                             <input class="form-control " type="number" id="akta_cerai" name="akta_cerai" value="{{ old('akta_cerai') }}" placeholder="">
                                         </div>
                                     </div>
-                                    
                                     <div class="mb-3 row">
                                         <label class="col-sm-3 col-form-label">Pendidikan <span class="text-danger">*</span></label>
                                         <div class="col-sm-9">
