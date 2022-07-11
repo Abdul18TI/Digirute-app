@@ -70,6 +70,8 @@ Route::middleware(['auth:rt', 'PreventBackHistory'])->group(function () {
         Route::get('/', [SuratRTController::class, 'index'])->name('index');
         Route::get('/surat_keterangan', [SuratRTController::class, 'surat_keterangan'])->name('form.surat_keterangan');
         Route::get('/surat_keterangan/{surat}', [SuratRTController::class, 'detailSuratKeterangan'])->name('detail.surat_keterangan');
+        Route::put('/surat_keterangan/{surat}/proses', [SuratRTController::class, 'prosesSurat'])->name('terima.surat_keterangan');
+        Route::put('/surat_keterangan/{surat}/tolak', [SuratRTController::class, 'tolakSuratKeterangan'])->name('tolak.surat_keterangan');
         Route::get('/surat_keterangan/{id}/print_surat', [SuratRTController::class, 'print'])->name('print.surat_keterangan');
       
         Route::get('/detail/{id}', [SuratRTController::class, 'show'])->name('show');
