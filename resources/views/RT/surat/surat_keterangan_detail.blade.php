@@ -1,11 +1,11 @@
 @extends('layouts.main-rt')
 
 @section('title')
-    Pengajuan Surat
-    {{ $title }}
+    Pengajuan Surat {{ $title }}
 @endsection
 
 @push('css')
+
     {{-- <link rel="stylesheet" type="text/css" href="{{asset('assets/css/datatables.css')}}"> --}}
 @endpush
 
@@ -43,14 +43,21 @@
                             data-bs-original-title="" title=""></button>
                     </div>
                 @endif
+                @if ($surat->status_surat == 2)
+                    <div class="alert alert-danger dark alert-dismissible fade show" role="alert">
+                        <strong>Surat Telah Di Tolak !</strong>
+                    </div>
+                @endif
+                @if ($surat->status_surat == 1)
+                    <div class="alert alert-primary dark alert-dismissible fade show" role="alert">
+                        <strong>Surat Telah Di Setujui !</strong>
+                    </div>
+                @endif
                 <div class="card">
                     <div class="card-header pb-0">
                         <h5>Form Surat Keterangan</h5>
                     </div>
-                    <form class="form theme-form" method="POST"
-                        action="{{ route('warga.surat.store.surat_keterangan') }}">
-                        @csrf
-                        @method('POST')
+                    <div class="form theme-form">
                         <div class="card-body">
                             {{-- INFORMASI PENGAJU --}}
                             <div id="informasi_pengaju">
@@ -249,10 +256,20 @@
                             {{-- END Jenis Surat Keterangan --}}
                         </div>
                         <div class="card-footer text-end">
-                            <button class="btn btn-primary" type="submit">Ajukan</button>
+                            <form class="d-inline" method="post" action="{{route('rt.surat.terima.surat_keterangan', $surat->id_surat)}}">
+                                @method('put')
+                                @csrf
+                                @if ($surat->status_surat == 0)
+                                <button class="btn btn-primary" name="proses" value="terima"><span class="fa fa-check"></span> Terima</button>
+                                {{-- @endif
+                                @if ($surat->status_surat != 2) --}}
+                                    <button class="btn btn-danger" name="proses" value="tolak"><span class="fa fa-ban"></span> Tolak</button>
+                                @endif
+                                {{-- <button name="someButton" value="SomeValue">Button</button> --}}
+                            </form>
                             <a href="{{url()->previous()}}" class="btn btn-light">Batal</a>
                         </div>
-                    </form>
+                    </div>
                 </div>
                 <!-- Form Pengaduan End -->
             </div>
@@ -260,71 +277,3 @@
     </div>
     </div>
 @endsection
-@push('scripts-custom')
-    <script>
-        function getDataPengaju() {
-            // var id = $('#nik').val();
-            let id = $("input[name=nik]").val();
-            const root_url = "{{ URL::to('/') }}";
-            const url = `${root_url}/Warga/surat/show_pengaju`;
-            // alert(url);
-            // ajax
-            $.ajax({
-                type: "GET",
-                url: url,
-                data: {
-                    id: id
-                },
-                dataType: 'json',
-                success: function(res) {
-                    console.log(res.data);
-                    if (res.data != null) {
-                        let databaru = res.data;
-                        console.log(databaru);
-                        let dataagama = [{
-                            nama: "Islam",
-                            value: 1
-                        }, {
-                            nama: "Kristen",
-                            value: 2
-                        }, {
-                            nama: "Hindu",
-                            value: 3
-                        }, {
-                            nama: "Budha",
-                            value: 4
-                        }, {
-                            nama: "Katolik",
-                            value: 5
-                        }, {
-                            nama: "Konghucu",
-                            value: 6
-                        }];
-                        let agama = dataagama.filter((agama) => (agama.value == databaru.agama));
-                        $('#pengaju').val(databaru.id_warga);
-                        $('#no_kk').val(databaru.no_kk);
-                        $('#nama_lengkap').val(databaru.nama_lengkap.toUpperCase());
-                        $('#jenis_kelamin').val((databaru.jenis_kelamin == 1) ? "LAKI-LAKI" : "PEREMPUAN");
-                        $('#agama').val(agama[0].nama.toUpperCase());
-                        $('#pekerjaan').val(databaru.pekerjaan.nama_pekerjaan.toUpperCase());
-                        $('#tempat_lahir').val(databaru.tempat_lahir.toUpperCase());
-                        const event = new Date(databaru.tgl_lahir);
-                        const options = {
-                            weekday: 'long',
-                            year: 'numeric',
-                            month: 'long',
-                            day: 'numeric'
-                        };
-                        $('#tgl_lahir').val(event.toLocaleDateString('id-ID', options));
-                        $('#alamat').val(databaru.alamat.toUpperCase());
-                    } else {
-                        // let input_nik = $("#nik");
-                        // let parentGuest = document.getElementById("nik");
-                        // console.log(input_nik);
-                        // console.log("gagal");
-                    }
-                }
-            });
-        }
-    </script>
-@endpush

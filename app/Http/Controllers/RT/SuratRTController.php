@@ -6,6 +6,7 @@ use App\Models\Surat;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Warga;
+use PDO;
 
 class SuratRTController extends Controller
 {
@@ -22,6 +23,27 @@ class SuratRTController extends Controller
     {
         $surat = $surat;
         return view('RT.surat.surat_keterangan_detail', compact('surat'));
+    }
+    public function prosesSurat(Request $request, Surat $surat)
+    {
+        $proses =  $request->input('proses');
+        if ($proses == 'terima') {
+            $this->approveSuratKeterangan($surat);
+            return redirect()->route('rt.surat.index')->with('success', 'Surat telah disetuji!');
+        } elseif ($proses == 'tolak') {
+            $this->tolakSuratKeterangan($surat);
+            return redirect()->route('rt.surat.index')->with('success', 'Surat ditolak!');
+        }
+        // $this->approveSuratKeterangan($surat);
+    }
+    public function approveSuratKeterangan(Surat $surat)
+    {
+        $surat->update(['status_surat' => 1]);
+    }
+
+    public function tolakSuratKeterangan(Surat $surat)
+    {
+        $surat->update(['status_surat' => 2]);
     }
 
     function CreateNomorSurat()
@@ -43,12 +65,11 @@ class SuratRTController extends Controller
             //Jika Nomor Surat Sudah Ada
             $nomorUrut = explode("/", $surat->nomor_surat)[0];
             $nomorSurat = '';
-            $nomorSurat = sprintf("%03s", ++$nomorUrut) . "/RT${no_rt}/RW${no_rw}/${jenis_surat}/${tanggal_romawi}/${tahun}";
-           ;
+            $nomorSurat = sprintf("%03s", ++$nomorUrut) . "/RT${no_rt}/RW${no_rw}/${jenis_surat}/${tanggal_romawi}/${tahun}";;
         } else {
             //Jika Nomor Surat Belum Ada
             $nomorSurat = "001/RT${no_rt}/RW${no_rw}/${jenis_surat}/${tanggal_romawi}/${tahun}";
         }
-         return $nomorSurat;
+        return $nomorSurat;
     }
 }
