@@ -54,8 +54,8 @@
                                 <a class="nav-link menu-title link-nav" href="{{ route('rw.iuran.index') }}"><i data-feather="dollar-sign"></i><span>Iuran</span></a>
                             </li>
                             <li>
-                                <a class="nav-link menu-title  link-nav {{ prefixActive('rt.fasilitasrt.*') }}"
-                                    href="{{ route('rt.fasilitasrt.index') }}"><i
+                                <a class="nav-link menu-title  link-nav {{ prefixActive('rw.fasilitasrw.*') }}"
+                                    href="{{ route('rw.fasilitasrw.index') }}"><i
                                         data-feather="map"></i><span>Fasilitas</span></a>
                             </li>
                         </ul>

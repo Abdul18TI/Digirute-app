@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\RW\KegiatanController;
 use App\Http\Controllers\RW\ProfileRWController;
 use App\Http\Controllers\RW\PengumumanController;
+use App\Http\Controllers\RW\FasilitasUmumRWController;
 use App\Http\Controllers\Admin\KelolaRTController;
 use App\Http\Controllers\Admin\KelolaRWController;
 use App\Http\Controllers\RW\PengaduanRWController;
@@ -99,6 +100,7 @@ Route::prefix('RW')->name('rw.')->group(function () {
     Route::middleware(['auth:rw', 'PreventBackHistory'])->group(function () {
         Route::get('dashboard', [RWController::class, 'home_rw'])->name('dashboard.home');
         route::resource('pengumuman', PengumumanController::class);
+        route::resource('fasilitasrw', FasilitasUmumRWController::class);
         route::resource('iuran', IuranController::class);
         Route::get('/kegiatan/status/update', [KegiatanController::class, 'updateStatus'])->name('kegiatan.update.status');
         route::resource('kegiatan', KegiatanController::class);
