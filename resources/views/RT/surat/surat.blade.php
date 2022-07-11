@@ -68,7 +68,7 @@
                                             <td>{{ $s->jenis_surat }}</td>
                                             <td><ul>
                                                 @foreach ($s->propertie_surat->jenis_surat as $jenis_surat)
-                                                <li><i class="fa fa-caret-right txt-secondary m-r-10"></i>{{ setJenisSuratKeterangan($jenis_surat) }}</li>
+                                                <li><i class="fa fa-caret-right txt-secondary m-r-10"></i>{!! setJenisSuratKeterangan($jenis_surat) !!}</li>
                                                 @endforeach
                                             </ul> </td>
                                             <td>{{ tanggal_indo($s->created_at) }}</td>

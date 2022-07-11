@@ -71,7 +71,7 @@
                                                 <ul>
                                                     @foreach ($s->propertie_surat->jenis_surat as $jenis_surat)
                                                         <li><i
-                                                                class="fa fa-caret-right txt-secondary m-r-10"></i>{{ setJenisSuratKeterangan($jenis_surat) }}
+                                                                class="fa fa-caret-right txt-secondary m-r-10"></i>{!!setJenisSuratKeterangan($jenis_surat) !!}
                                                         </li>
                                                     @endforeach
                                                 </ul>
