@@ -301,8 +301,7 @@
                             {{-- END Jenis Surat Keterangan --}}
                         </div>
                         <div class="card-footer text-end">
-                            <button class="btn btn-primary" type="submit">Ajukan</button>
-                            <input class="btn btn-light" type="reset" value="Batal" />
+                               <a href="{{url()->previous()}}" class="btn btn-light">Kembali</a>
                         </div>
                     </form>
                 </div>

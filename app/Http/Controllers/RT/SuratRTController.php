@@ -21,7 +21,7 @@ class SuratRTController extends Controller
     public function detailSuratKeterangan(Surat $surat)
     {
         $surat = $surat;
-        return view('RT.surat.surat_keterangan_form', compact('surat'));
+        return view('RT.surat.surat_keterangan_detail', compact('surat'));
     }
 
     function CreateNomorSurat()
