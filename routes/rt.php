@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\KategoriPengaduanController;
 use App\Http\Controllers\Admin\AgamaController;
 use App\Http\Controllers\Admin\KategoriPengumumanController;
 use App\Http\Controllers\Admin\JenisIuranController;
+use App\Http\Controllers\RT\SuratRTController;
 
 //  Route::prefix('RT')->name('rt.')->group(function () { 
 Route::middleware(['guest:rt', 'PreventBackHistory'])->group(function () {
@@ -64,6 +65,18 @@ Route::middleware(['auth:rt', 'PreventBackHistory'])->group(function () {
     Route::prefix('pengaduan')->name('pengaduan.')->group(function () {
         Route::get('/', [PengaduanRTController::class, 'index'])->name('home');
         Route::get('/show/{pengaduan}', [PengaduanRTController::class, 'show'])->name('show');
+    });
+    Route::prefix('surat')->name('surat.')->group(function () {
+        Route::get('/', [SuratRTController::class, 'index'])->name('index');
+        Route::get('/surat_keterangan', [SuratRTController::class, 'surat_keterangan'])->name('form.surat_keterangan');
+        Route::get('/surat_keterangan/{surat}', [SuratRTController::class, 'detailSuratKeterangan'])->name('detail.surat_keterangan');
+        Route::get('/surat_keterangan/{id}/print_surat', [SuratRTController::class, 'print'])->name('print.surat_keterangan');
+      
+        Route::get('/detail/{id}', [SuratRTController::class, 'show'])->name('show');
+        Route::post('/surat_keterangan/store', [SuratRTController::class, 'surat_keterangan_store'])->name('store.surat_keterangan');
+        route::get('/show_pengaju', [SuratRTController::class, 'show_pengaju'])->name('show_pengaju');
+        // Route::get('/show/{pengaduan}', [PengaduanRTController::class, 'show'])->name('show');
+        
     });
     Route::post('logout', [LoginRTController::class, 'logout'])->name('logout');
 });

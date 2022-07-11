@@ -1,6 +1,15 @@
 .aksi .fa-trash-o {
     width: 12.5px;
   }
+.aksi .btn-danger.btn-sm.btn-danger.sweet{
+  padding: 5px 8px;
+  }
 .aksi{
   text-align: center !important;
 }
+/* style="
+ padding-left: 8px;
+padding-right: 8px;
+padding-bottom: 6px;
+padding-top: 6px;
+" */

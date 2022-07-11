@@ -18,11 +18,13 @@ class SuratRTController extends Controller
         ]);
     }
 
-    public function detail_surat_keterangan(Surat $surat)
+    public function detailSuratKeterangan(Surat $surat)
     {
-        $data['wargas'] = $surat->with('wargas');
-        // $data['surat'] = $surat;
-        return $surat->load('wargas');
+        // $data['wargas'] = $surat->load('wargas');
+        $surat = $surat;
+        // $data['test'] = $surat;
+        // return $surat->load('wargas');
+        return view('RT.surat.surat_keterangan_form', compact('surat'));
     }
 
     function CreateNomorSurat()
