@@ -20,10 +20,7 @@ class SuratRTController extends Controller
 
     public function detailSuratKeterangan(Surat $surat)
     {
-        // $data['wargas'] = $surat->load('wargas');
         $surat = $surat;
-        // $data['test'] = $surat;
-        // return $surat->load('wargas');
         return view('RT.surat.surat_keterangan_form', compact('surat'));
     }
 
