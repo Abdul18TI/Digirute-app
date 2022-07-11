@@ -116,6 +116,14 @@
                                         @enderror
                                     </div>
                                 </div>
+                                <div class="col-3">
+                                    <div class="mb-3">
+                                      <label class="form-label"
+                                        for="">&nbsp;</label>
+                                      <button type="button" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg"
+                                        class="btn btn-secondary form-control text-white"><span class="fa fa-question-circle"></span> Koordinat</button>
+                                    </div>
+                                  </div>
                             </div>
                         </div>
                         <div class="card-footer text-end">
@@ -146,6 +154,19 @@
         e.preventDefault();
     })
 </script>
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myLargeModalLabel">Cara memasukkan koordinat</h4>
+                <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="{{asset('assets/images/banner/TambahKoordinat copy.png')}}" width="760"/>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 
 <script type="text/javascript" src={{ asset("assets/js/trix.js")}}></script>
