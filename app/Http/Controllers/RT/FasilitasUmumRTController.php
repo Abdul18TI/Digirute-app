@@ -16,7 +16,6 @@ class FasilitasUmumRTController extends Controller
         // dd($fasilitas);
         return view('RT.fasilitas.fasilitas_umum', [
             'fasilitas' => Fasilitas_umum::where('status_fasilitas', 1)->latest()->filter(request(['search', 'category']))->paginate(7)->withQueryString(),
-            "title" => "tabel-fasilitas"
         ]);
     }
 
@@ -45,6 +44,9 @@ class FasilitasUmumRTController extends Controller
         }
 
         $validatedData['status_fasilitas'] = 1;
+        $validatedData['rt'] = auth()->user()->id_rt;
+        $validatedData['rw'] = auth()->user()->id_rw;
+// dd($validatedData);
 
         try {
             Fasilitas_umum::create($validatedData);

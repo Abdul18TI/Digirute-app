@@ -24,10 +24,10 @@
         <div class="blog-single">
           <div class="blog-box blog-details">
 
-           @if($fasilitas->foto_fasilitas == null)     
+           {{-- @if($fasilitas->foto_fasilitas == null)     
             @else
             <div class="banner-wrraper"><img class="img-fluid w-100 bg-img-cover" src="{{asset('storage/'. $fasilitas->foto_fasilitas)}}" alt="blog-main" /></div>
-            @endif
+            @endif --}}
             <div class="card">
               <div class="card-body">
                 <div class="blog-details">
@@ -45,13 +45,15 @@
                   <h4>
                     {{ $fasilitas->fasilitas_umum }}
                   </h4>
-                  <div class="single-blog-content-top txt-dark">
+                  <div class="single-blog-content-top txt-dark ">
                     {!! $fasilitas->deskripsi_fasilitas !!}.
                   </div>
                   @if($fasilitas->koordinant_fasilitas != null)
                   <h6>Lampiran</h5>
-                    <div class="single-blog-content-top txt-dark">
+                    <div class="single-blog-content-top txt-dark ">
+                      <center class="mt-3">
                         {!! $fasilitas->koordinant_fasilitas !!}
+                      </center>
                       </div>
                     @else
                     @endif
@@ -60,8 +62,7 @@
               <div class="card-footer text-end">
               {{-- TOMBOL EDIT --}}
               <a class="btn btn-secondary btn-lg"
-              href="{{ route('rt.fasilitasrt.edit', $fasilitas->id_fasilitas_umum) }}"><span
-                class="fa fa-edit"></span>Edit</a>
+              href="{{ route('rt.fasilitasrt.edit', $fasilitas->id_fasilitas_umum) }}"><span class="fa fa-edit"></span> Edit</a>
             {{-- END TOMBOL EDIT --}}
 
             <form method="POST" action="{{ route('rt.fasilitasrt.destroy', $fasilitas->id_fasilitas_umum) }}"
@@ -69,8 +70,7 @@
                   @csrf
                   @method('DELETE')
                   {{-- <input name="_method" type="hidden" value="DELETE"> --}}
-                  <button type="submit" class="btn btn-danger btn-lg border-0 sweet"><span class="fa fa-trash"></span>
-                    Hapus</button>
+                  <button type="submit" class="btn btn-danger btn-lg border-0 sweet"><span class="fa fa-trash-o"></span> Hapus</button>
                 </form>
               </div>
             </div>

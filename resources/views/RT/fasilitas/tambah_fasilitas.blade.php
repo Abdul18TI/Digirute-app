@@ -1,15 +1,18 @@
 @extends('layouts.main-rt')
+@section('title')Tambah Fasilitas Umum
+ {{ $title }}
+@endsection
 
 @push('css')
-<link rel="stylesheet" type="text/css" href={{ asset("assets/css/trix.css")}}>
-<link rel="stylesheet" type="text/css" href={{ asset("assets/css/trix.css")}}>
-    <script type="text/javascript" src={{ asset("assets/js/trix.js")}}></script>
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/datatables.css') }}">
+    <link rel="stylesheet" type="text/css" href={{ asset('assets/css/trix.css') }}>
     <style>
         trix-toolbar [data-trix-button-group="file-tools"] {
             display: none;
         }
     </style>
 @endpush
+
 
 @section('container')
 @component('components.r-t.breadcrumb')
@@ -55,6 +58,7 @@
                                     <div class="mb-3">
                                         <label class="form-label" for="validationCustom02">Kategori fasilitas</label>
                                         <select class="form-select" name="kategori_fasilitas_umum" id="validationDefault04" required>
+                                            <option selected>Pilih Kategori</option>
                                             @foreach ($kategori_fasilitas as $k)
                                                 @if(old('kategori_fasilitas_umum') == $k->id_kategori_fasilitas)
                                                     <option value="{{ $k->id_kategori_fasilitas }}" selected>{{ $k->kategori_fasilitas }}</option>
@@ -135,26 +139,7 @@
             </div>
         </div>
     </div>
-<script>
-    function previewImage(){
-        const image = document.querySelector('#image');
-        const imgPreview = document.querySelector('.img-preview');
-
-        imgPreview.style.display = 'block';
-        
-        const oFReader = new FileReader();
-        oFReader.readAsDataURL(image.files[0]);
-
-        oFReader.onload = function(oFREvent) {
-            imgPreview.src = oFREvent.target.result;
-        }
-    }
-
-    document.addEventListener('trix-file-accept', function(e) {
-        e.preventDefault();
-    })
-</script>
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -168,5 +153,34 @@
     </div>
 </div>
 @endsection
+    
+@push('scripts')
+    <script src="{{ asset('assets/js/datatable/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/js/datatable/datatables/datatable.custom.js') }}"></script>
+    <script src="{{ asset('assets/js/tooltip-init.js') }}"></script>
+    <script type="text/javascript" src={{ asset('assets/js/trix.js') }}></script>
+@endpush
 
-<script type="text/javascript" src={{ asset("assets/js/trix.js")}}></script>
+@push('scripts-custom')
+    <script>
+         Trix.config.blockAttributes.default.tagName = "p";
+
+        function previewImage() {
+            const image = document.querySelector('#image');
+            const imgPreview = document.querySelector('.img-preview');
+
+            imgPreview.style.display = 'block';
+
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.files[0]);
+
+            oFReader.onload = function(oFREvent) {
+                imgPreview.src = oFREvent.target.result;
+            }
+        }
+
+        document.addEventListener('trix-file-accept', function(e) {
+            e.preventDefault();
+        })
+    </script>
+@endpush
