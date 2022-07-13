@@ -34,7 +34,7 @@ class FasilitasUmumRTController extends Controller
             'fasilitas_umum' => 'required',
             'kategori_fasilitas_umum' => 'required',
             'deskripsi_fasilitas' => 'required',
-            'foto_fasilitas' => 'image|file|max:4095',
+            'foto_fasilitas' => 'required|image|file|max:4095',
             'alamat_fasilitas' => 'required',
             'koordinant_fasilitas' => 'required'
         ]);
