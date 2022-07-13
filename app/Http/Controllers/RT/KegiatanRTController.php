@@ -109,10 +109,10 @@ class KegiatanRTController extends Controller
                 Storage::delete($kegiatan->foto_kegiatan);
             }
             return redirect()->route('rt.kegiatan.index')
-                ->with('success', 'data berhasil dihapus!');
+                ->with('success', 'Data berhasil dihapus');
         } catch (\Exception $e) {
             return redirect()->route('rt.kegiatan.index')
-                ->with('error', 'Gagal menghapus data!');
+                ->with('error', 'Gagal menghapus data');
         }
     }
     public function show($id)
