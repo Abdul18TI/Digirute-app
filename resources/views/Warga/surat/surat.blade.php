@@ -91,7 +91,7 @@
                                                 @endif
                                             </td>
                                             <td class="aksi">
-                                                @if ($s->status_surat == 0)
+                                                @if ($s->status_surat == 0 || $s->status_surat == 2)
                                                     <form method="POST"
                                                         action="{{ route('warga.surat.destroy', $s->id_surat) }}"
                                                         class="d-inline">
