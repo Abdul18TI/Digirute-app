@@ -1,9 +1,12 @@
 @extends('layouts.main-rt')
+@section('title')
+    Edit Fasilitas Umum
+    {{ $title }}
+@endsection
 
 @push('css')
-<link rel="stylesheet" type="text/css" href={{ asset("assets/css/trix.css")}}>
-<link rel="stylesheet" type="text/css" href={{ asset("assets/css/trix.css")}}>
-    <script type="text/javascript" src={{ asset("assets/js/trix.js")}}></script>
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/datatables.css') }}">
+    <link rel="stylesheet" type="text/css" href={{ asset('assets/css/trix.css') }}>
     <style>
         trix-toolbar [data-trix-button-group="file-tools"] {
             display: none;
@@ -148,25 +151,39 @@
             </div>
         </div>
     </div>
-<script>
-    function previewImage(){
-        const image = document.querySelector('#image');
-        const imgPreview = document.querySelector('.img-preview');
-
-        imgPreview.style.display = 'block';
-        
-        const oFReader = new FileReader();
-        oFReader.readAsDataURL(image.files[0]);
-
-        oFReader.onload = function(oFREvent) {
-            imgPreview.src = oFREvent.target.result;
-        }
-    }
-
-    document.addEventListener('trix-file-accept', function(e) {
-        e.preventDefault();
-    })
-</script>
 @endsection
+@push('scripts')
+    <script src="{{ asset('assets/js/datatable/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/js/datatable/datatables/datatable.custom.js') }}"></script>
+    <script src="{{ asset('assets/js/tooltip-init.js') }}"></script>
+    <script type="text/javascript" src={{ asset('assets/js/trix.js') }}></script>
+@endpush
 
-<script type="text/javascript" src={{ asset("assets/js/trix.js")}}></script>
+@push('scripts-custom')
+    <script>
+        $('#show_map').click(function() {
+            var teks = $("textarea[name=koordinant_fasilitas]").val();
+
+            $("#map-fasilitas").prepend(teks);
+        });
+        Trix.config.blockAttributes.default.tagName = "p";
+
+        function previewImage() {
+            const image = document.querySelector('#image');
+            const imgPreview = document.querySelector('.img-preview');
+
+            imgPreview.style.display = 'block';
+
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.files[0]);
+
+            oFReader.onload = function(oFREvent) {
+                imgPreview.src = oFREvent.target.result;
+            }
+        }
+
+        document.addEventListener('trix-file-accept', function(e) {
+            e.preventDefault();
+        })
+    </script>
+@endpush
