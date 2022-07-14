@@ -12,10 +12,10 @@ class FasilitasUmumRTController extends Controller
 {
     public function index()
     {
-        // $fasilitas = Fasilitas_umum::where('status_fasilitas', 1)->get();
+        $fasilitas = Fasilitas_umum::with('rts')->where('status_fasilitas', 1)->latest()->filter(request(['search', 'category']))->paginate(7)->withQueryString();
         // dd($fasilitas);
         return view('RT.fasilitas.fasilitas_umum', [
-            'fasilitas' => Fasilitas_umum::where('status_fasilitas', 1)->latest()->filter(request(['search', 'category']))->paginate(7)->withQueryString(),
+            'fasilitas' =>$fasilitas ,
         ]);
     }
 
