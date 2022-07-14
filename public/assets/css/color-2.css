@@ -16011,7 +16011,7 @@ p.data-attributes svg {
     .blog-box .blog-details-second .blog-post-date .blg-month, .blog-box .blog-details-second .blog-post-date .blg-date {
       padding: 5px;
       display: block;
-      width: 50px;
+      width: 30%;
       font-size: 12px;
       text-align: center;
       text-transform: capitalize;
