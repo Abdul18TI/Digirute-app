@@ -21,6 +21,10 @@ Route::middleware(['guest', 'PreventBackHistory'])->group(function () {
 Route::middleware(['auth', 'PreventBackHistory'])->group(function () {
     Route::get('/', [DashboardWargaController::class, 'index'])->name('home');
     Route::get('pengaduan/pribadi', [WargaPengaduanController::class, 'pengaduan_pribadi'])->name('pengaduan.pribadi');
+    Route::get('/persyaratan', function () {
+        // Route assigned name "admin.users"...
+        return view('warga.prosedure');
+    })->name('persyaratan');
     Route::resource('pengaduan', WargaPengaduanController::class);
     Route::resource('kegiatan_warga', KegiatanWargaController::class);
     Route::resource('pengumuman_warga', PengumumanWargaController::class);
@@ -53,7 +57,5 @@ Route::middleware(['auth', 'PreventBackHistory'])->group(function () {
 
 
 
-    // Route::get('/users', function () {
-    //     // Route assigned name "admin.users"...
-    // })->name('users');
+
 // });

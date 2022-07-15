@@ -140,18 +140,10 @@ class KegiatanRTController extends Controller
     public function updateStatus(Request $request)
     {
         $pre_status = $request->status_kegiatan;
-
-        // var_dump($pre_status);
-        // echo "<br>/";
         $status = $request->status_kegiatan == 0 ? 1 : 0;
         $product = Kegiatan::find($request->id_kegiatan);
         $product->status_kegiatan = $pre_status;
-        // var_dump($status);
-        // echo "<br>/";
-        // dd($product);
         $product->save();
         return response()->json(['success' => 'Status change successfully.', 'status' => $status, 'product' => $product]);
-        // return redirect()->route('rt.kegiatan.index')
-        //     ->with('error', 'Gagal menghapus data!');
     }
 }

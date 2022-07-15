@@ -21,7 +21,7 @@ class PengaduanController extends Controller
         // dd(Auth::user()->load(['rt_rel'])->rt_rel->ketua_rt);
         // dd(Auth::user()->rt_rel->ketua_rt);
         // dd();
-        $data = pengaduan::where('id_rt', auth()->user()->rt)->get();
+        $data = pengaduan::ShowOn()->where('id_rt', auth()->user()->rt)->get();
        
         return view('warga.pengaduan.pengaduan-warga', compact('data'));
     }
@@ -48,13 +48,19 @@ class PengaduanController extends Controller
     {
         //
         $data = $request->except('_token');
-        $request->validate([
+        $data = $request->validate([
             'judul_pengaduan' => 'required|string',
             'deskripsi_pengaduan' => 'required|string',
+            'kategori_pengaduan' => 'required',
             'bukti_pengaduan' => 'image|mimes:jpeg,jpg,png'
         ]);
         $data['nik'] = auth()->user()->nik;
         $data['id_rt'] = auth()->user()->rt;
+        //untuk mengecek apakah ada inputan gambar, jika ada gambar akan disimpan
+        if ($request->file('bukti_pengaduan')) {
+            $custom_file_name = time() . '-' . $request->file('bukti_pengaduan')->getClientOriginalName();
+            $data['bukti_pengaduan'] = $request->file('bukti_pengaduan')->storeAs('gambar-pengduan-warga', $custom_file_name);
+        }
 
         pengaduan::create($data);
         return redirect()->route('warga.pengaduan.index')->with('success', 'Data berhasil ditambahkan');
