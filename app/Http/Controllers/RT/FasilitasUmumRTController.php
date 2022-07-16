@@ -51,24 +51,24 @@ class FasilitasUmumRTController extends Controller
         try {
             Fasilitas_umum::create($validatedData);
 
-            return redirect()->route('rt.fasilitasrt.index')
+            return redirect()->route('rt.fasilitas.index')
                 ->with('success', 'Data berhasil ditambah!');
         } catch (\Exception $e) {
-            return redirect()->route('rt.fasilitasrt.index')
+            return redirect()->route('rt.fasilitas.index')
                 ->with('error', 'Gagal menambahkan data!');
         }
     }
 
-    public function edit(Fasilitas_umum $fasilitasrt)
+    public function edit(Fasilitas_umum $fasilita)
     {
         return view('RT.fasilitas.edit_fasilitas', [
-            'fasilitas' => $fasilitasrt,
+            'fasilitas' => $fasilita,
             'kategori_fasilitas' => Kategori_fasilitas_umum::all(),
             'title' => 'edit-fasilitas'
         ]);
     }
 
-    public function update(Request $request, Fasilitas_umum $fasilitasrt)
+    public function update(Request $request, Fasilitas_umum $fasilita)
     {
         $validatedData = $request->validate([
             'fasilitas_umum' => 'required',
@@ -84,12 +84,12 @@ class FasilitasUmumRTController extends Controller
             $validatedData['foto_fasilitas'] = $request->file('foto_fasilitas')->store('gambar-fasilitas');
         }
 
-        Fasilitas_umum::where('id_fasilitas_umum', $fasilitasrt->id_fasilitas_umum)
+        Fasilitas_umum::where('id_fasilitas_umum', $fasilita->id_fasilitas_umum)
             ->update($validatedData);
-        return redirect()->route('rt.fasilitasrt.index')->with('success', 'Data berhasil diubah!');
+        return redirect()->route('rt.fasilitas.index')->with('success', 'Data berhasil diubah!');
     }
 
-    public function destroy(Fasilitas_umum $fasilitasrt)
+    public function destroy(Fasilitas_umum $fasilita)
     {
         // $fasilitas->delete();
         // if ($fasilitas->foto_fasilitas) {
@@ -98,14 +98,14 @@ class FasilitasUmumRTController extends Controller
         // return redirect()->route('rw.fasilitas.index');
 
         try {
-            $fasilitasrt->delete();
-            if ($fasilitasrt->foto_fasilitas) {
-                Storage::delete($fasilitasrt->foto_fasilitas);
+            $fasilita->delete();
+            if ($fasilita->foto_fasilitas) {
+                Storage::delete($fasilita->foto_fasilitas);
             }
-            return redirect()->route('rt.fasilitasrt.index')
-                ->with('success', 'data berhasil dihapus!');
+            return redirect()->route('rt.fasilitas.index')
+                ->with('success', 'Data berhasil dihapus!');
         } catch (\Exception $e) {
-            return redirect()->route('rt.fasilitasrt.index')
+            return redirect()->route('rt.fasilitas.index')
                 ->with('error', 'Gagal menghapus data!');
         }
     }

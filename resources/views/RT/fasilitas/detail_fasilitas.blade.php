@@ -14,7 +14,7 @@
             <h3>
                 Detail Fasilitas</h3>
         @endslot
-        <li class="breadcrumb-item"><a href="{{ route('rt.fasilitasrt.index') }}">Fasilitas</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('rt.fasilitas.index') }}">Fasilitas</a></li>
         <li class="breadcrumb-item active">Detail Fasilitas</li>
     @endcomponent
 
@@ -54,7 +54,7 @@
                                         <div class="col-6">
                                             <h6 class="text-center">Map</h6>
                                             <div class="single-blog-content-top txt-dark">
-                                                @if ($fasilitas->koordinant_fasilitas == null)
+                                                @if ($fasilitas->koordinant_fasilitas != null)
                                                     <center class="mt-3">
                                                         {!! $fasilitas->koordinant_fasilitas !!}
                                                     </center>
@@ -83,11 +83,11 @@
                             <div class="card-footer text-end">
                                 {{-- TOMBOL EDIT --}}
                                 <a class="btn btn-secondary"
-                                    href="{{ route('rt.fasilitasrt.edit', $fasilitas->id_fasilitas_umum) }}"><span
+                                    href="{{ route('rt.fasilitas.edit', $fasilitas->id_fasilitas_umum) }}"><span
                                         class="fa fa-edit"></span> Edit</a>
                                 {{-- END TOMBOL EDIT --}}
                                 <form method="POST"
-                                    action="{{ route('rt.fasilitasrt.destroy', $fasilitas->id_fasilitas_umum) }}"
+                                    action="{{ route('rt.fasilitas.destroy', $fasilitas->id_fasilitas_umum) }}"
                                     class="d-inline">
                                     @csrf
                                     @method('DELETE')

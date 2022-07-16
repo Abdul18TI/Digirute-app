@@ -56,7 +56,7 @@ Route::middleware(['auth:rt', 'PreventBackHistory'])->group(function () {
     route::resource('kegiatan', KegiatanRTController::class);
     Route::get('/pengumuman/status2/update', [PengumumanRTController::class, 'updateStatus'])->name('pengumumanrt.update.status');
     route::resource('pengumuman', PengumumanRTController::class);
-    route::resource('fasilitasrt', FasilitasUmumRTController::class);
+    route::resource('fasilitas', FasilitasUmumRTController::class);
     route::resource('profileRT', ProfileRTController::class);
     route::get('kematian/show_jenazah', [WargaMeninggalController::class, 'show_warga'])->name('kematian.show_jenazah');
     route::get('kematian/show_warga', [WargaMeninggalController::class, 'show_warga'])->name('kematian.show_pelapor');

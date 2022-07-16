@@ -20,7 +20,7 @@
         @slot('breadcrumb_title')
             <h3>Fasilitas</h3>
         @endslot
-        <li class="breadcrumb-item"><a href="{{ route('rt.fasilitasrt.index') }}">Fasilitas</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('rt.fasilitas.index') }}">Fasilitas</a></li>
         <li class="breadcrumb-item active">Tambah fasilitas</li>
     @endcomponent
     <div class="container-fluid">
@@ -39,7 +39,7 @@
                         <h5>Form Tambah Fasilitas</h5>
                     </div>
                     <form class="form theme-form" method="POST" enctype="multipart/form-data"
-                        action="{{ route('rt.fasilitasrt.store') }}">
+                        action="{{ route('rt.fasilitas.store') }}">
                         @csrf
                         <div class="row">
                             <div class="col-7">

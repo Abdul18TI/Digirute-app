@@ -72,8 +72,8 @@
                                 data-feather="airplay"></i><span>Pengumuman</span></a>
                     </li>
                     <li>
-                        <a class="nav-link menu-title  link-nav {{ prefixActive('rt.fasilitasrt.*') }}"
-                            href="{{ route('rt.fasilitasrt.index') }}"><i
+                        <a class="nav-link menu-title  link-nav {{ prefixActive('rt.fasilitas.*') }}"
+                            href="{{ route('rt.fasilitas.index') }}"><i
                                 data-feather="map"></i><span>Fasilitas</span></a>
                     </li>
                     <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i

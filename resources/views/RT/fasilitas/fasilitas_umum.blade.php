@@ -31,7 +31,7 @@
 				</div>
 				<div class="col-md-3 ">
 					<a class="btn btn-primary btn-lg w-100"
-                    href="{{ route('rt.fasilitasrt.create') }}"
+                    href="{{ route('rt.fasilitas.create') }}"
                     data-bs-original-title=""
                     title=""> <span class="fa fa-plus-square"></span>
                     Tambah Data</a>
@@ -44,17 +44,17 @@
 	            <div class="card">
 	                <div class="blog-box blog-grid">
 	                    <div class="blog-wrraper">
-	                        <a href="{{ route('rt.fasilitasrt.show',$kk->id_fasilitas_umum) }}"><img class="p-0" src="{{ asset('storage/' . $kk->foto_fasilitas) }}" width="421" height="263" alt="" /></a>
+	                        <a href="{{ route('rt.fasilitas.show',$kk->id_fasilitas_umum) }}"><img class="p-0" src="{{ asset('storage/' . $kk->foto_fasilitas) }}" width="421" height="263" alt="" /></a>
 	                    </div>
 	                    <div class="blog-details-second">
 							 <div class="blog-post-date"><span class="blg-month">RT {{$kk->rts->no_rt}}</span><span class="blg-date">RW  {{$kk->rts->rw_rel->no_rw }}</span></div>
-	                        <a href="{{ route('rt.fasilitasrt.show',$kk->id_fasilitas_umum) }}">
+	                        <a href="{{ route('rt.fasilitas.show',$kk->id_fasilitas_umum) }}">
 							<h6 class="blog-bottom-details">{{ Str::limit($kk->fasilitas_umum, 20) }}</h6></a>
 	                        <article class="mt-0 text-dark mb-3">{!! Str::limit($kk->deskripsi_fasilitas, 40) !!}</article>
 							{{-- <p>Alamat : {{  Str::limit($kk->alamat_fasilitas,20) }}</p> --}}
 	                        <div class="detail-footer">
 	                            <ul class="sociyal-list">
-	                                <li><i class="fa fa-building-o"></i><a href="/RT/fasilitasrt?category={{ $kk->kategori_fasilitas_umum }}">{{ $kk->fasilitas_umumss->kategori_fasilitas }}</a></li>
+	                                <li><i class="fa fa-building-o"></i><a href="/RT/fasilitas?category={{ $kk->kategori_fasilitas_umum }}">{{ $kk->fasilitas_umumss->kategori_fasilitas }}</a></li>
 	                            </ul>
 	                        </div>
 	                    </div>
@@ -79,7 +79,7 @@
 				</div>
 				<div class="col-md-3">
 					<a class="btn btn-primary btn-lg w-100"
-                    href="{{ route('rt.fasilitasrt.create') }}"
+                    href="{{ route('rt.fasilitas.create') }}"
                     data-bs-original-title=""
                     title=""> <span class="fa fa-plus-square"></span>
                     Tambah Data</a>
