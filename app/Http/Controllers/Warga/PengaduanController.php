@@ -5,9 +5,10 @@ namespace App\Http\Controllers\Warga;
 use App\Models\Warga;
 use App\Models\pengaduan;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\KategoriPengaduan;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PengaduanController extends Controller
 {
@@ -18,9 +19,7 @@ class PengaduanController extends Controller
      */
     public function index()
     {
-        // dd(Auth::user()->load(['rt_rel'])->rt_rel->ketua_rt);
-        // dd(Auth::user()->rt_rel->ketua_rt);
-        // dd();
+        //Tampilakan Pengduan yang boleh ditampilkan baik dalam kondisi proses , ditanggapi ataupun di tolak
         $data = pengaduan::ShowOn()->where('id_rt', auth()->user()->rt)->get();
        
         return view('warga.pengaduan.pengaduan-warga', compact('data'));
@@ -63,7 +62,7 @@ class PengaduanController extends Controller
         }
 
         pengaduan::create($data);
-        return redirect()->route('warga.pengaduan.index')->with('success', 'Data berhasil ditambahkan');
+        return redirect()->route('warga.pengaduan.pribadi')->with('success', 'Data berhasil ditambahkan');
     }
 
     /**
@@ -118,5 +117,16 @@ class PengaduanController extends Controller
     public function destroy(pengaduan $pengaduan)
     {
         //
+        try {
+            $pengaduan->delete();
+            if ($pengaduan->bukti_pengaduan) {
+                Storage::delete($pengaduan->bukti_pengaduan);
+            }
+            return redirect()->route('warga.pengaduan.pribadi')
+            ->with('success', 'Data berhasil dihapus!');
+        } catch (\Exception $e) {
+            return redirect()->route('warga.pengaduan.pribadi')
+            ->with('error', 'Gagal menghapus data!');
+        }
     }
 }

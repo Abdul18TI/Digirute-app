@@ -34,7 +34,7 @@ class PengaduanRTController extends Controller
         //
         // dd( pengaduan::find($pengaduan->id_pengaduan));
         $data = Pengaduan::where('id_pengaduan', $request->id_validasi)
-                ->update(['tanggapan_pengaduan' => $request->tanggapan_rt, 'status_pengaduan' => 2]);
+                ->update(['tanggapan_pengaduan' => $request->tanggapan_rt, 'status_pengaduan' => 2, 'ditampilkan' => 1]);
         
         if($data){
             return redirect()->route('rt.pengaduan.home')

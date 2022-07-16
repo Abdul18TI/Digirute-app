@@ -34,8 +34,6 @@ class pengaduan extends Model
 
     public function scopeShowOn($query)
     {
-        return $query->where('ditampilkan', 1)
-            ->where('status_pengaduan', 0)
-            ->orWhere('status_pengaduan', 2);
+        return $query->where('ditampilkan', 1);
     }
 }
