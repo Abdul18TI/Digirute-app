@@ -10,7 +10,9 @@ class KegiatanWargaController extends Controller
 {
     public function index()
     {
-        $kegiatan = Kegiatan::where('status_kegiatan', 1)->latest()->filter(request(['search', 'category']))->paginate(7)->withQueryString();
+        // $kegiatan = Kegiatan::with(['rts','rws'])->where('penanggung_jawab', 'RW')->latest()->first();
+        $kegiatan = Kegiatan::with(['rts','rws'])->where('status_kegiatan', 1)->latest()->filter(request(['search', 'category']))->paginate(7)->withQueryString();
+        // dd($kegiatan); //
         return view('Warga.kegiatan.kegiatan_warga', [
             'kegiatan' => $kegiatan
         ]);

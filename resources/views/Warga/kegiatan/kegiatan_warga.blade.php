@@ -49,7 +49,11 @@
                                 <p>{{ tanggal_indo($kegiatan[0]->tgl_mulai_kegiatan) }}</p>
                                 <h4>{{ $kegiatan[0]->nama_kegiatan }}</h4>
                                 <ul class="blog-social">
-                                    <li>oleh: {{ $kegiatan[0]->penanggung_jawab }}</li>
+                                    @if ($kegiatan[0]->penanggung_jawab == 'RT')
+                                        <li>oleh: RT {{ $kegiatan[0]->rts->no_rt }}</li>
+                                    @else
+                                        <li>oleh: RW {{ $kegiatan[0]->rws->no_rw }}</li>
+                                    @endif
                                     <li>Kategori: <a
                                             href="/Warga/kegiatan_warga?category={{ $kegiatan[0]->kategori_kegiatan }}">{{ $kegiatan[0]->Kategori_kegiatans->kategori_kegiatan }}</a>
                                     </li>
@@ -80,8 +84,8 @@
                                                             alt="" /></a>
                                                 @else
                                                     <a href="kegiatan_warga/{{ $k->id_kegiatan }}"><img class="p-0"
-                                                            src="{{ asset('storage/' . $k->foto_kegiatan) }}" width="316"
-                                                            height="225" alt="" /></a>
+                                                            src="{{ asset('storage/' . $k->foto_kegiatan) }}"
+                                                            width="316" height="225" alt="" /></a>
                                                 @endif
                                             </div>
                                         </div>
@@ -93,7 +97,11 @@
                                                 </a>
                                                 <div class="blog-bottom-content">
                                                     <ul class="blog-social">
-                                                        <li>oleh: {{ $k->penanggung_jawab }}</li>
+                                                        @if ($k->penanggung_jawab == 'RT')
+                                                            <li>oleh: RT {{ $k->rts->no_rt }}</li>
+                                                        @else
+                                                            <li>oleh: RW {{ $k->rws->no_rw }}</li>
+                                                        @endif
                                                         <li>Kategori: <a
                                                                 href="/Warga/kegiatan_warga?category={{ $k->kategori_kegiatan }}">{{ $k->Kategori_kegiatans->kategori_kegiatan }}</a>
                                                         </li>
@@ -130,22 +138,23 @@
                                     @endif
                                 </div>
                                 <div class="blog-details-second">
-
-                                    <div class="blog-date">{{ tanggal_indo($kk->tgl_mulai_kegiatan) }}</div>
-                                    <a href="kegiatan_warga/{{ $kk->id_kegiatan }}">
-                                        <h6 class="blog-bottom-details">{{ $kk->nama_kegiatan }}</h6>
-                                    </a>
+                                    @if ($kk->penanggung_jawab == 'RT')
+                                        <div class="blog-post-date"><span class="blg-month">RT
+                                                {{ $kk->rts->no_rt }}</span></div>
+                                    @else
+                                        <div class="blog-post-date"><span class="blg-date">RW
+                                                {{ $kk->rws->no_rw }}</span></div>
+                                    @endif
+                                    <div class="blog-date mt-3">{{ tanggal_indo($kk->tgl_mulai_kegiatan) }}</div>
+                                    <a href="kegiatan_warga/{{ $kk->id_kegiatan }}"><h6 class="blog-bottom-details mt-2">{{ $kk->nama_kegiatan }}</h6></a>
                                     <ul class="blog-social">
-                                        <li>oleh: {{ $kk->penanggung_jawab }}</li>
-                                        <li>Kategori: <a
-                                                href="/Warga/kegiatan_warga?category={{ $kk->kategori_kegiatan }}">{{ $kk->Kategori_kegiatans->kategori_kegiatan }}</a>
+                                        <li>Kategori: <a href="/Warga/kegiatan_warga?category={{ $kk->kategori_kegiatan }}">{{ $kk->Kategori_kegiatans->kategori_kegiatan }}</a>
                                         </li>
                                     </ul>
                                     <hr />
                                     <article class="mt-0 text-dark">{!! Str::limit($kk->isi_kegiatan, 100) !!}.</article>
-                                    <a href="kegiatan_warga/{{ $kk->id_kegiatan }}"
-                                        class="btn btn-square btn-sm btn-secondary pull-right mb-3 mt-3" type="button">Baca
-                                        Selengkapnya</a>
+                                    <a href="kegiatan_warga/{{ $kk->id_kegiatan }}" class="btn btn-square btn-sm {{$kk->penanggung_jawab == 'RT' ? 'btn-primary' : 'btn-secondary'}} }} pull-right mb-3 mt-3" type="button">
+                                        Baca Selengkapnya</a>
                                 </div>
                             </div>
                         </div>
@@ -161,8 +170,8 @@
                         <div class="pro-filter-sec">
                             <div class="product-search">
                                 <form action="kegiatan_warga">
-                                    <div class="form-group m-0"><input class="form-control" type="search" name="search"
-                                            placeholder="Search.." data-original-title="" title=""
+                                    <div class="form-group m-0"><input class="form-control" type="search"
+                                            name="search" placeholder="Search.." data-original-title="" title=""
                                             value="{{ request('search') }}" /><i type="submit"
                                             class="fa fa-search"></i></div>
                                 </form>
