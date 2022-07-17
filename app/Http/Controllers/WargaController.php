@@ -87,7 +87,6 @@ class WargaController extends Controller
             'golongan_darah' => 'required',
             'pendidikan' => 'required',
             'pekerjaan' => 'required',
-            'status_hubungan' => 'required', //
             'status_perkawinan' => 'required', //
             'tgl_perkawinan' => 'nullable|date', //
             'akta_kawin' => 'nullable|numeric', //
@@ -112,16 +111,16 @@ class WargaController extends Controller
         if ($request->file('foto_warga')) {
             $validatedData['foto_warga'] = $request->file('foto_warga')->store('foto-warga');
         }
+        // dd($validatedData);
+        Warga::create($validatedData);
+        // try {
 
-        try {
-            Warga::create($validatedData);
-
-            return redirect()->route('rt.warga.index')
-                ->with('success', 'Data berhasil ditambah!');
-        } catch (\Exception $e) {
-            return redirect()->route('rt.warga.index')
-                ->with('error', 'Gagal menambahkan data!');
-        }
+        //     return redirect()->route('rt.warga.index')
+        //         ->with('success', 'Data berhasil ditambah!');
+        // } catch (\Exception $e) {
+        //     return redirect()->route('rt.warga.index')
+        //         ->with('error', 'Gagal menambahkan data!');
+        // }
 
         // return Warga::create($validatedData);
     }
@@ -178,7 +177,6 @@ class WargaController extends Controller
             'golongan_darah' => 'required',
             'pendidikan' => 'required',
             'pekerjaan' => 'required',
-            'status_hubungan' => 'required', //
             'status_perkawinan' => 'required', //
             'tgl_perkawinan' => 'nullable|date', //
             'akta_kawin' => 'nullable|numeric', //

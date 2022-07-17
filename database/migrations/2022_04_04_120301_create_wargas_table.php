@@ -37,7 +37,6 @@ class CreateWargasTable extends Migration
             $table->foreignId('golongan_darah'); ////
             $table->foreignId('pendidikan'); ////
             $table->foreignId('pekerjaan'); ////
-            $table->foreignId('status_hubungan'); ////
             $table->enum('status_perkawinan', ['belum_kawin', 'kawin', 'cerai_hidup', 'cerai']); ////
             $table->string('nomor_passport')->unique()->nullable(); ////
             $table->timestamp('tgl_akhir_passport')->nullable(); ////

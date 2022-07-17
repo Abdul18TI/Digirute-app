@@ -73,7 +73,7 @@
                                             <select name='status_hubungan_dalam_keluarga' id='status_hubungan_dalam_keluarga' class='form-select'>
                                                 <option value='00'>-- Pilih --</option>
                                                 @foreach ($hubungan as $p)
-                                                <option value='{{ $p->id_status_hubungan }}' {{ old('status_hubungan_dalam_keluarga') ==  $p->id_status_hubungan ? "selected" : "" }}>{{ $p->status_hubungan }}</option>
+                                                <option value='{{ $p->id_status_hubungan}}' {{ old('status_hubungan_dalam_keluarga') ==  $p->id_status_hubungan ? "selected" : "" }}>{{ $p->status_hubungan }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -222,27 +222,29 @@
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
-                                        <label class="col-sm-3 col-form-label">Tanggal Perkawinan <span class="text-danger">*</span> </label>
+                                        <label class="col-sm-3 col-form-label">Tanggal Perkawinan</label>
                                         <div class="col-sm-9">
                                             <input class="form-control digits" name="tgl_perkawinan" type="date"  value="">
+                                            <span class="text-danger">Kosongkan bila tidak ada</span>
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
                                         <label class="col-sm-3 col-form-label">Nomor Akta Kawin</label>
                                         <div class="col-sm-9">
-                                            <input class="form-control " type="number" id="akta_kawin" name="akta_kawin" value="{{ old('akta_kawin') }}" placeholder="">
+                                            <input class="form-control " type="number" id="akta_kawin" name="akta_kawin" value="{{ old('akta_kawin') }}" placeholder="Kosongkan bila tidak ada">
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
-                                        <label class="col-sm-3 col-form-label">Tanggal Perceraian <span class="text-danger">*</span> </label>
+                                        <label class="col-sm-3 col-form-label">Tanggal Perceraian</label>
                                         <div class="col-sm-9">
                                             <input class="form-control digits" name="tgl_cerai" type="date"  value="">
+                                            <span class="text-danger">Kosongkan bila tidak ada</span>
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
                                         <label class="col-sm-3 col-form-label">Nomor Akta Cerai</label>
                                         <div class="col-sm-9">
-                                            <input class="form-control " type="number" id="akta_cerai" name="akta_cerai" value="{{ old('akta_cerai') }}" placeholder="">
+                                            <input class="form-control " type="number" id="akta_cerai" name="akta_cerai" value="{{ old('akta_cerai') }}" placeholder="Kosongkan bila tidak ada">
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
