@@ -73,7 +73,7 @@
                                                 @csrf
                                                <input name="_method" type="hidden" value="DELETE">
                                                <button type="submit" class="btn btn-danger btn-sm sweet" data-toggle="tooltip" title='Delete'><span
-                                                class="fa fa-trash"></span></button>
+                                                class="fa fa-trash-o"></span></button>
                                             </form>
                                         </td>
                                     </tr>

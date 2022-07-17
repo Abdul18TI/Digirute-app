@@ -80,33 +80,22 @@
                                                             class="switch-state"></span>
                                                     </label>
                                                 </div>
-                                                {{-- @if ($p->status_kegiatan == 1)
-                          <span class="badge badge-success">aktif</span>
-                        @else
-                          <span class="badge badge-warning">tidak aktif</span>
-                        @endif --}}
                                             </td>
                                             <td class="aksi">
-                                                <a class="btn btn-info btn-sm p-2"
-                                                    href="{{ route('rt.kegiatan.show', $p->id_kegiatan) }}"><span
-                                                        class="fa fa-eye"></span></a>
-                                                <a class="btn btn-secondary btn-sm p-2"
-                                                    href="{{ route('rt.kegiatan.edit', $p->id_kegiatan) }}"><span
-                                                        class="fa fa-edit"></span></a>
-                                                <a class="btn btn-danger btn-sm p-2 sweet"
-                                                    href="{{ route('rt.kegiatan.destroy', $p->id_kegiatan) }}"
-                                                    onclick="event.preventDefault();
-                                                                                      document.getElementById('logout-form{{ $p->id_kegiatan }}').submit();">
-                                                    <span class="fa fa-trash-o"></span>
+                                                <a class="btn btn-info btn-sm p-2" href="{{ route('rt.kegiatan.show', $p->id_kegiatan) }}">
+                                                    <span class="fa fa-eye"></span>
                                                 </a>
-                                                {{-- FORM DELETE --}}
-                                                <form method="POST" class="d-none" id="logout-form{{ $p->id_kegiatan }}"
+                                                <a class="btn btn-secondary btn-sm p-2" href="{{ route('rt.kegiatan.edit', $p->id_kegiatan) }}">
+                                                    <span class="fa fa-edit"></span>
+                                                </a>
+                                                <form method="POST"
                                                     action="{{ route('rt.kegiatan.destroy', $p->id_kegiatan) }}"
                                                     class="d-inline">
                                                     @csrf
-                                                    @method('DELETE')
+                                                    <input name="_method" type="hidden" value="DELETE">
+                                                    <button type="submit" class="btn btn-danger btn-sm sweet" data-toggle="tooltip" title='Delete'>
+                                                        <span class="fa fa-trash-o"></span></button>
                                                 </form>
-                                                {{-- END FORM DELETE --}}
                                             </td>
                                         </tr>
                                     @endforeach
@@ -119,7 +108,6 @@
             </div>
         </div>
     </div>
-    {{-- </div> --}}
 @endsection
 
 @push('scripts')

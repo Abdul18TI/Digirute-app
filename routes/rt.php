@@ -53,10 +53,10 @@ Route::middleware(['auth:rt', 'PreventBackHistory'])->group(function () {
     route::resource('kategori_fasilitas', KategoriFasilitasUmumController::class);
     route::resource('agama', AgamaController::class);
     Route::get('/status/update', [KegiatanRTController::class, 'updateStatus'])->name('kegiatan.update.status');
-    Route::get('/pengumuman/status2/update', [PengumumanRTController::class, 'updateStatus'])->name('pengumumanrt.update.status');
     route::resource('kegiatan', KegiatanRTController::class);
+    Route::get('/pengumuman/status2/update', [PengumumanRTController::class, 'updateStatus'])->name('pengumumanrt.update.status');
     route::resource('pengumuman', PengumumanRTController::class);
-    route::resource('fasilitasrt', FasilitasUmumRTController::class);
+    route::resource('fasilitas', FasilitasUmumRTController::class);
     route::resource('profileRT', ProfileRTController::class);
     route::get('kematian/show_jenazah', [WargaMeninggalController::class, 'show_warga'])->name('kematian.show_jenazah');
     route::get('kematian/show_warga', [WargaMeninggalController::class, 'show_warga'])->name('kematian.show_pelapor');
@@ -65,6 +65,8 @@ Route::middleware(['auth:rt', 'PreventBackHistory'])->group(function () {
     Route::prefix('pengaduan')->name('pengaduan.')->group(function () {
         Route::get('/', [PengaduanRTController::class, 'index'])->name('home');
         Route::get('/show/{pengaduan}', [PengaduanRTController::class, 'show'])->name('show');
+        Route::post('/tanggapin', [PengaduanRTController::class, 'tanggapin'])->name('tanggapin');
+        Route::get('/ditampilkan', [PengaduanRTController::class, 'updateStatus'])->name('ditampilkan');
     });
     Route::prefix('surat')->name('surat.')->group(function () {
         Route::get('/', [SuratRTController::class, 'index'])->name('index');
@@ -72,7 +74,7 @@ Route::middleware(['auth:rt', 'PreventBackHistory'])->group(function () {
         Route::get('/surat_keterangan/{surat}', [SuratRTController::class, 'detailSuratKeterangan'])->name('detail.surat_keterangan');
         Route::put('/surat_keterangan/{surat}/proses', [SuratRTController::class, 'prosesSurat'])->name('terima.surat_keterangan');
         Route::put('/surat_keterangan/{surat}/tolak', [SuratRTController::class, 'tolakSuratKeterangan'])->name('tolak.surat_keterangan');
-        Route::get('/surat_keterangan/{id}/print_surat', [SuratRTController::class, 'print'])->name('print.surat_keterangan');
+        Route::get('/surat_keterangan/{surat}/print_surat', [SuratRTController::class, 'printSuratKeterangan'])->name('print.surat_keterangan');
       
         Route::get('/detail/{id}', [SuratRTController::class, 'show'])->name('show');
         Route::post('/surat_keterangan/store', [SuratRTController::class, 'surat_keterangan_store'])->name('store.surat_keterangan');

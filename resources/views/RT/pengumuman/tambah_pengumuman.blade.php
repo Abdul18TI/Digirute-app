@@ -34,7 +34,7 @@
                     <div class="card-header pb-0">
                         <h5>Form tambah pengumuman</h5>
                     </div>
-                    <form class="form theme-form" method="POST" enctype="multipart/form-data" action="{{ route('rw.pengumuman.store')}}">
+                    <form class="form theme-form" method="POST" enctype="multipart/form-data" action="{{ route('rt.pengumuman.store')}}">
                         @csrf
                         <div class="card-body">
                             <div class="row">
@@ -114,25 +114,38 @@
             </div>
         </div>
     </div>
-<script>
-    function previewImage(){
-        const image = document.querySelector('#image');
-        const imgPreview = document.querySelector('.img-preview');
-
-        imgPreview.style.display = 'block';
-        
-        const oFReader = new FileReader();
-        oFReader.readAsDataURL(image.files[0]);
-
-        oFReader.onload = function(oFREvent) {
-            imgPreview.src = oFREvent.target.result;
-        }
-    }
-
-    document.addEventListener('trix-file-accept', function(e) {
-        e.preventDefault();
-    })
-</script>
 @endsection
 
-<script type="text/javascript" src={{ asset("assets/js/trix.js")}}></script>
+@push('scripts')
+    <script src="{{ asset('assets/js/datatable/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/js/datatable/datatables/datatable.custom.js') }}"></script>
+    <script src="{{ asset('assets/js/tooltip-init.js') }}"></script>
+    <script type="text/javascript" src={{ asset('assets/js/trix.js') }}></script>
+@endpush
+
+@push('scripts-custom')
+    <script>
+         Trix.config.blockAttributes.default.tagName = "p";
+        $('#tabelpengumuman-rt').DataTable();
+
+        function previewImage() {
+            const image = document.querySelector('#image');
+            const imgPreview = document.querySelector('.img-preview');
+
+            imgPreview.style.display = 'block';
+
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.files[0]);
+
+            oFReader.onload = function(oFREvent) {
+                imgPreview.src = oFREvent.target.result;
+            }
+        }
+
+        document.addEventListener('trix-file-accept', function(e) {
+            e.preventDefault();
+        })
+    </script>
+@endpush
+
+

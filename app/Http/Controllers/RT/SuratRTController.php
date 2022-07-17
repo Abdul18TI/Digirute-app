@@ -38,7 +38,7 @@ class SuratRTController extends Controller
     }
     public function approveSuratKeterangan(Surat $surat)
     {
-        $surat->update(['status_surat' => 1]);
+        $surat->update(['status_surat' => 1, 'nomor_surat' => $this->CreateNomorSurat()]);
     }
 
     public function tolakSuratKeterangan(Surat $surat)

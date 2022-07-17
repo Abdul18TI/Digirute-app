@@ -26,7 +26,7 @@
 
            @if($pengumuman->foto_pengumuman == null)     
             @else
-            <div class="banner-wrraper"><img class="img-fluid w-100 bg-img-cover" src="{{asset('storage/'. $pengumuman->foto_pengumuman)}}" alt="blog-main" /></div>
+            {{-- <div class="banner-wrraper"><img class="img-fluid w-100 bg-img-cover" src="{{asset('storage/'. $pengumuman->foto_pengumuman)}}" alt="blog-main" /></div> --}}
             @endif
             <div class="card">
               <div class="card-body">
@@ -41,20 +41,24 @@
                       @endif
                       </span>
                     </li>
-                    <li class="middle">Kategori :<a href="/Warga/pengumuman_warga?category={{ $pengumuman->kategori_pengumuman }}"> {{ $pengumuman->Kategori_pengumumans->nama_kategori_pengumuman }}</a></li>
+                    <li class="middle">Kategori :<a href="/Warga/pengumuman_warga?category={{ $pengumuman->kategori_pengumumans }}"> {{ $pengumuman->Kategori_pengumumans->nama_kategori_pengumuman }}</a></li>
                   </ul>
                   <h4>
-                    {{ $pengumuman->nama_pengumuman }}
+                    {{ $pengumuman->judul_pengumuman }}
                   </h4>
+
                   <div class="single-blog-content-top txt-dark">
-                    {!! $pengumuman->isi_pengumuman !!}.
+                    <p>
+                    {!! $pengumuman->isi_pengumuman !!}
+                    </p>
                   </div>
+
                   @if($pengumuman->foto_pengumuman != null)
                   <h6>Lampiran</h5>
                     <div class="single-blog-content-top txt-dark">
                       <p class="text-center">
                         <img class="img-fluid w-75 " src="{{ asset('storage/' . $pengumuman->foto_pengumuman) }}"
-                          alt="Foto {{$pengumuman->nama_pengumuman}} " />
+                          alt="Foto {{$pengumuman->judul_pengumuman}} " />
                       </p>
                     </div>
                     @else
@@ -63,11 +67,11 @@
               </div>
               <div class="card-footer text-end">
                 {{-- TOMBOL AKTIF NON AKTIF --}}
-                <button class='btn @php echo $pengumuman->status_pengumuman == 0 ? 'btn-success' : 'btn-warning' @endphp
+                {{-- <button class='btn @php echo $pengumuman->status_pengumuman == 0 ? 'btn-success' : 'btn-warning' @endphp
                   btn-lg' id="ubah_status" data-id="{{ $pengumuman->id_pengumuman }}"
                   data-status="{{ $pengumuman->status_pengumuman == 1 ? 0:1 }}"
                   href="{{ route('rt.pengumuman.edit', $pengumuman->id_pengumuman) }}"><span class="fa fa-edit"></span>
-                  {{ $pengumuman->status_pengumuman == 0 ? 'Aktif' : 'Non-Aktif' }}</button>
+                  {{ $pengumuman->status_pengumuman == 0 ? 'Aktif' : 'Non-Aktif' }}</button> --}}
                 {{-- END TOMBOL AKTIF NON AKTIF --}}
 
                 {{-- TOMBOL EDIT --}}

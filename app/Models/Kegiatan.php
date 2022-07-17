@@ -20,6 +20,14 @@ class Kegiatan extends Model
         // return $this->belongsTo(rt::class);
     }
 
+    public function rts(){
+        return $this->belongsTo(rt::class, 'id_penanggung_jawab', 'id_rt');
+    }
+
+    public function rws(){
+        return $this->belongsTo(rw::class, 'id_penanggung_jawab', 'id_rw');
+    }
+
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['search'] ?? false, function ($query, $search) {

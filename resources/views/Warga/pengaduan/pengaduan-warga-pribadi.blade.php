@@ -6,6 +6,7 @@
 
 @push('css')
 <link rel="stylesheet" type="text/css" href="{{asset('assets/css/datatables.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/custom.css') }}">
 @endpush
 
 @section('container')
@@ -89,22 +90,29 @@
                                                 <td>{{ Str::limit($dt->deskripsi_pengaduan, 100, '...') }}</td>
                                                 <td>{{ $dt->created_at->isoFormat('ddd, D MMM Y') }}</td>
                                                 <td>
-                                                    @if ($dt->status == 1)
-                                                        <span class="badge badge-success">Ditanggapi</span>
+                                                    @if ($dt->status_pengaduan == 1)
+                                                    <span class="badge badge-danger">Ditolak</span>
+                                                    @elseif($dt->status_pengaduan == 0)
+                                                    <span class="badge badge-warning">Proses</span></td>
+                                                    @elseif($dt->status_pengaduan == 2)
+                                                    <span class="badge badge-success">Sudah Ditanggapi</span></td>
+                                                    @endif
                                                 </td>
-                                            @elseif($dt->status == 0)
-                                                <span class="badge badge-warning">Proses</span></td>
-                                        @endif
-                                        <td>
+                                        <td class="aksi">
                                             <a href="" onclick="detail({{ $dt->id_pengaduan }},'{{route('warga.pengaduan.show',$dt->id_pengaduan)}}')"
                                                 class="btn btn-success btn-sm p-2" role="button" data-bs-toggle="modal"
                                                 data-original-title="test" data-bs-target="#exampleModal"><span
                                                     class="fa fa-list"></span></a>
-                                            {{-- @if ($dt->ditampilkan == '0')
-                                                <a href="{{ $dt->id_pengaduan }}" class="btn btn-danger btn-sm p-2"
-                                                    data-container="body" data-bs-toggle="tooltip" data-bs-placement="top"
-                                                    title="Edit"><span class="fa fa-trash"></span></a>
-                                            @endif --}}
+                                            @if ($dt->status_pengaduan == 0)
+                                                 <form method="POST"
+                                                    action="{{ route('warga.pengaduan.destroy', $dt->id_pengaduan) }}"
+                                                    class="d-inline">
+                                                    @csrf
+                                                    <input name="_method" type="hidden" value="DELETE">
+                                                    <button type="submit" class="btn btn-danger btn-sm sweet" data-toggle="tooltip" title='Delete'>
+                                                        <span class="fa fa-trash-o"></span></button>
+                                                </form>
+                                            @endif
                                         </td>
                                         </tr>
                                         @endforeach
@@ -236,7 +244,9 @@
                 if(data.status_pengaduan == 0){
                     status = '<span class="badge badge-warning">Proses</span>'
                 }else if(data.status_pengaduan == 1){
-                    status = '<span class="badge badge-warning">Proses</span>'
+                    status = '<span class="badge badge-danger">Ditolak</span>'
+                }else if(data.status_pengaduan == 2){
+                    status = '<span class="badge badge-success">Sudah Ditanggapi</span>'
                 }
                 status_pengaduan.innerHTML = status;
             })

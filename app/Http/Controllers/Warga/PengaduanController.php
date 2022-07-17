@@ -5,9 +5,10 @@ namespace App\Http\Controllers\Warga;
 use App\Models\Warga;
 use App\Models\pengaduan;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\KategoriPengaduan;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PengaduanController extends Controller
 {
@@ -18,10 +19,8 @@ class PengaduanController extends Controller
      */
     public function index()
     {
-        // dd(Auth::user()->load(['rt_rel'])->rt_rel->ketua_rt);
-        // dd(Auth::user()->rt_rel->ketua_rt);
-        // dd();
-        $data = pengaduan::where('id_rt', auth()->user()->rt)->get();
+        //Tampilakan Pengduan yang boleh ditampilkan baik dalam kondisi proses , ditanggapi ataupun di tolak
+        $data = pengaduan::ShowOn()->where('id_rt', auth()->user()->rt)->get();
        
         return view('warga.pengaduan.pengaduan-warga', compact('data'));
     }
@@ -48,16 +47,22 @@ class PengaduanController extends Controller
     {
         //
         $data = $request->except('_token');
-        $request->validate([
+        $data = $request->validate([
             'judul_pengaduan' => 'required|string',
             'deskripsi_pengaduan' => 'required|string',
+            'kategori_pengaduan' => 'required',
             'bukti_pengaduan' => 'image|mimes:jpeg,jpg,png'
         ]);
         $data['nik'] = auth()->user()->nik;
         $data['id_rt'] = auth()->user()->rt;
+        //untuk mengecek apakah ada inputan gambar, jika ada gambar akan disimpan
+        if ($request->file('bukti_pengaduan')) {
+            $custom_file_name = time() . '-' . $request->file('bukti_pengaduan')->getClientOriginalName();
+            $data['bukti_pengaduan'] = $request->file('bukti_pengaduan')->storeAs('gambar-pengduan-warga', $custom_file_name);
+        }
 
         pengaduan::create($data);
-        return redirect()->route('warga.pengaduan.index')->with('success', 'Data berhasil ditambahkan');
+        return redirect()->route('warga.pengaduan.pribadi')->with('success', 'Data berhasil ditambahkan');
     }
 
     /**
@@ -112,5 +117,16 @@ class PengaduanController extends Controller
     public function destroy(pengaduan $pengaduan)
     {
         //
+        try {
+            $pengaduan->delete();
+            if ($pengaduan->bukti_pengaduan) {
+                Storage::delete($pengaduan->bukti_pengaduan);
+            }
+            return redirect()->route('warga.pengaduan.pribadi')
+            ->with('success', 'Data berhasil dihapus!');
+        } catch (\Exception $e) {
+            return redirect()->route('warga.pengaduan.pribadi')
+            ->with('error', 'Gagal menghapus data!');
+        }
     }
 }

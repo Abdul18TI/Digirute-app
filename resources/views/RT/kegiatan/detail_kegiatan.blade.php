@@ -23,10 +23,10 @@
       <div class="col-sm-12">
         <div class="blog-single">
           <div class="blog-box blog-details">
-            @if($kegiatan->foto_kegiatan == 'no-image.jpg')     
+            {{-- @if($kegiatan->foto_kegiatan == 'no-image.jpg')     
             @else
             <div class="banner-wrraper"><img class="img-fluid w-100 bg-img-cover" src="{{asset('storage/'. $kegiatan->foto_kegiatan)}}" alt="blog-main" /></div>
-            @endif
+            @endif --}}
             <div class="card">
               <div class="card-body">
                 <div class="blog-details">
@@ -45,7 +45,7 @@
                     {{ $kegiatan->nama_kegiatan }}
                   </h4>
                   <div class="single-blog-content-top txt-dark">
-                    {!! $kegiatan->isi_kegiatan !!}.
+                    {!! $kegiatan->isi_kegiatan !!}
                   </div>
                   <h6>Waktu</h5>
                     <div class="single-blog-content-top txt-dark mb-2">
@@ -72,11 +72,11 @@
               </div>
               <div class="card-footer text-end">
                 {{-- TOMBOL AKTIF NON AKTIF --}}
-                <button class='btn @php echo $kegiatan->status_kegiatan == 0 ? 'btn-success' : 'btn-warning' @endphp
+                {{-- <button class='btn @php echo $kegiatan->status_kegiatan == 0 ? 'btn-success' : 'btn-warning' @endphp
                   btn-lg' id="ubah_status" data-id="{{ $kegiatan->id_kegiatan }}"
                   data-status="{{ $kegiatan->status_kegiatan == 1 ? 0:1 }}"
                   href="{{ route('rt.kegiatan.edit', $kegiatan->id_kegiatan) }}"><span class="fa fa-edit"></span>
-                  {{ $kegiatan->status_kegiatan == 0 ? 'Aktif' : 'Non-Aktif' }}</button>
+                  {{ $kegiatan->status_kegiatan == 0 ? 'Aktif' : 'Non-Aktif' }}</button> --}}
                 {{-- END TOMBOL AKTIF NON AKTIF --}}
 
                 {{-- TOMBOL EDIT --}}

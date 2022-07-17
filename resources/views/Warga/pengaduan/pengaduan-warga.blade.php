@@ -68,10 +68,12 @@
                                             <td>{{ Str::limit($dt->deskripsi_pengaduan, 100, '...') }}</td>
                                             <td>{{ $dt->created_at->isoFormat('ddd, D MMM Y') }}</td>
                                             <td>
-                                                @if ($dt->status == 1)
-                                                    <span class="badge badge-success">Ditanggapi</span>
-                                                    @elseif($dt->status == 0)
+                                                @if ($dt->status_pengaduan == 2)
+                                                    <span class="badge badge-success">Sudah Ditanggapi</span>
+                                                    @elseif($dt->status_pengaduan == 0)
                                                         <span class="badge badge-warning">Proses</span></td>
+                                                    @elseif($dt->status_pengaduan == 1)
+                                                        <span class="badge badge-danger">Ditolak</span></td>
                                                 @endif
                                             </td>
                                     <td>
@@ -119,7 +121,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="container-fluid bd-example-row">
-                        <div class="row mb-3 pb-2"
+                        <div class="row mb-3"
                             style="border-bottom: 1px solid #dee2e696;">
                             <div class="col-md-3">
                                 <p class="f-w-600" >Judul Pengaduan</p>
@@ -127,7 +129,7 @@
                             <div class="col-md-9 ml-auto">
                                 <p id="judul_pengaduan"></p></div>
                         </div>
-                        <div class="row mb-3 pb-2"
+                        <div class="row mb-3"
                             style="border-bottom: 1px solid #dee2e696;">
                             <div class="col-md-3">
                                 <p class="f-w-600">Kategori</span>
@@ -135,7 +137,7 @@
                             <div class="col-md-9 ml-auto">
                                 <p id="kategori_pengaduan"></p></div>
                         </div>
-                        <div class="row mb-3 pb-2"
+                        <div class="row mb-3"
                             style="border-bottom: 1px solid #dee2e696;">
                             <div class="col-md-3">
                                 <p class="f-w-600">Deskripsi</span>
@@ -144,17 +146,7 @@
                                 <p id="deskripsi_pengaduan"></p>
                             </div>
                         </div>
-                        <div class="row mb-3 pb-2"
-                            style="border-bottom: 1px solid #dee2e696;">
-                            <div class="col-md-3">
-                                <p class="f-w-600">Bukti</span>
-                            </div>
-                            <div class="col-md-9 ml-auto"><img
-                                    src="{{ asset('assets/images/dashboard/bg.jpg') }}">
-                            </div>
-                        </div>
-                        <div class="row mb-3 pb-2"
-                            style="border-bottom: 1px solid #dee2e696;">
+                        <div class="row mb-3" style="border-bottom: 1px solid #dee2e696;">
                             <div class="col-md-3">
                                 <p class="f-w-600">Tanggal Lapor</span>
                             </div>
@@ -162,12 +154,40 @@
                                 <p id="tanggal_pengaduan"></p>
                             </div>
                         </div>
-                        <div class="row pb-2">
+                        <div class="row mb-3" style="border-bottom: 1px solid #dee2e696;">
                             <div class="col-md-3">
                                 <p class="f-w-600">Status </span>
                             </div>
                             <div class="col-md-9 ml-auto" id="status_pengaduan"></div>
                         </div>
+                        <div class="row mb-3" style="border-bottom: 1px solid #dee2e696;">
+                            <div class="col-md-3">
+                                <p class="f-w-600">Bukti</span>
+                            </div>
+                            <div class="col-md-9 ml-auto"><a href="{{ asset('assets/images/dashboard/bg.jpg') }}">
+                                    <img class="img img-thumbnail mb-3" id="gambar_pengaduan"
+                                        src="{{ asset('assets/images/dashboard/bg.jpg') }}">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row mb-5 tanggap_rt">
+                            <div class="col-md-3">
+                                <p class="f-w-600">Tanggapan RT</span>
+                            </div>
+                            <div class="col-md-9 ml-auto">
+                                <p id="tanggapan_rt"></p>
+                            </div>
+                        </div>
+                        {{-- <div class="row ">
+                            <div class="col-md-3">
+                                <p class="f-w-600">Tanggapan RT</span>
+                                </div>
+                            <div class="col-md-9 ml-auto">
+                                <input type="hidden" name="id_validasi" value="" />
+                                <textarea class="form-control" name="tanggapan_rt" id="tanggapan_rt" cols="30" rows="10"></textarea>
+                                <button class="btn btn-primary"> Validasi</button>
+                            </div>
+                        </div> --}}
                     </div>
                 </div>
                 {{-- <div class="modal-footer">
@@ -196,18 +216,22 @@
         const deskripsi_pengaduan = document.getElementById('deskripsi_pengaduan');
         const kategori_pengaduan = document.getElementById('kategori_pengaduan');
         const tanggal_pengaduan = document.getElementById('tanggal_pengaduan');
+        const tanggapan_rt = document.getElementById('tanggapan_rt');
+         const gambar_pengaduan = document.getElementById('gambar_pengaduan');
+        
         // console.log(deskripsi_pengaduan.textContent);
         // console.log(deskripsi_pengaduan.textContent);
         fetch(url)
             .then(console.log(url))
             .then(respone =>respone.json())
             .then(data=>{
-                // judul_pengaduan.textContent ='';
-                // deskripsi_pengaduan.textContent ='';
-                // kategori_pengaduan.textContent ='';
+                console.log(data);
+                var image = "{{ asset('storage/') }}";
+                gambar_pengaduan.src = image + '/' + data.bukti_pengaduan;
                 judul_pengaduan.textContent = data.judul_pengaduan;
                 deskripsi_pengaduan.textContent = data.deskripsi_pengaduan;
-                kategori_pengaduan.textContent = data.kategori_pengaduan;
+                kategori_pengaduan.textContent = data.kategori_pengaduans.nama_kategori_pengaduan;
+                tanggapan_rt.textContent =  data.tanggapan_pengaduan != null ? data.tanggapan_pengaduan : '-';
                 //membuat tanggal indonesia
                 const event = new Date(data.created_at);
                 const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -217,7 +241,9 @@
                 if(data.status_pengaduan == 0){
                     status = '<span class="badge badge-warning">Proses</span>'
                 }else if(data.status_pengaduan == 1){
-                    status = '<span class="badge badge-warning">Proses</span>'
+                    status = '<span class="badge badge-danger">Ditolak</span>'
+                }else if(data.status_pengaduan == 2){
+                    status = '<span class="badge badge-success">Sudah Ditanggapi</span>'
                 }
                 status_pengaduan.innerHTML = status;
             })

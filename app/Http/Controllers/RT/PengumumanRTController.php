@@ -107,8 +107,7 @@ class PengumumanRTController extends Controller
     }
     public function show($id)
     {
-        $pengumuman = Pengumuman::with('Kategori_pengumuman')->find($id);
-        // dd($pengumuman);
+        $pengumuman = Pengumuman::with('Kategori_pengumumans')->find($id);
         return view('RT.Pengumuman.detail_pengumuman', [
             'pengumuman' => $pengumuman,
             'title' => 'detail-pengumuman'

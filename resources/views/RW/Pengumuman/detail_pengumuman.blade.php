@@ -53,7 +53,7 @@
                     <div class="single-blog-content-top txt-dark">
                       <p class="text-center">
                         <img class="img-fluid w-75 " src="{{ asset('storage/' . $pengumuman->foto_pengumuman) }}"
-                          alt="Foto {{$pengumuman->nama_pengumuman}} " />
+                          alt="Foto {{$pengumuman->judul_pengumuman}} " />
                       </p>
                     </div>
                     @else
