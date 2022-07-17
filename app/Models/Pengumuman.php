@@ -34,4 +34,17 @@ class Pengumuman extends Model
             });
         });
     }
+
+    public function scopePengumumanActive($query)
+    {
+        $query->where('status_pengumuman', 1);
+    }
+    public function scopeFilterByRTRW($query, $rt, $rw)
+    {
+        $query->where('status_pengumuman', 1)
+        ->where('penanggung_jawab', 'RT')
+            ->where('id_penanggung_jawab', $rt)
+            ->orWhere('penanggung_jawab', 'RW')
+            ->where('id_penanggung_jawab', $rw);
+    }
 }

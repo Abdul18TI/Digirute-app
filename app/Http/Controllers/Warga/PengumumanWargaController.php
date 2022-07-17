@@ -12,11 +12,18 @@ class PengumumanWargaController extends Controller
     {
         // dd(request('search'));
         // $pengumuman = Pengumuman::where('status_pengumuman', 1)->latest()->get();
+        $rt = auth()->user()->rt;
+        $rw = auth()->user()->rt_rel->id_rw;
         // dd($pengumuman[1]->status_pengumuman);
-
+        $pengumuman = Pengumuman::where('status_pengumuman', 1)
+            ->PengumumanActive()
+            ->FilterByRTRW($rt, $rw)
+        ->latest()
+        ->filter(request(['search', 'category']))
+        ->paginate(7)
+        ->withQueryString();
         return view('Warga.pengumuman.pengumuman_warga', [
-            'pengumuman' => Pengumuman::where('status_pengumuman', 1)->latest()->filter(request(['search', 'category']))->paginate(7)->withQueryString(),
-            "title" => "Pengumuman"
+            'pengumuman' => $pengumuman,
         ]);
     }
 

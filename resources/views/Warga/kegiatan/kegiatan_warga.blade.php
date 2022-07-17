@@ -91,7 +91,7 @@
                                         </div>
                                         <div class="col-xl-6 col-12">
                                             <div class="blog-details">
-                                                <div class="blog-date">{{ tanggal_indo($k->tgl_mulai_kegiatan) }}</div>
+                                                <div class="blog-date mt-1">{{ tanggal_indo($k->tgl_mulai_kegiatan) }}</div>
                                                 <a href="kegiatan_warga/{{ $k->id_kegiatan }}">
                                                     <h6>{{ $k->nama_kegiatan }}</h6>
                                                 </a>
