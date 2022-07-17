@@ -42,4 +42,15 @@ class Kegiatan extends Model
             });
         });
     }
+
+    public function scopeKegiatanActive($query){
+        $query->where('status_kegiatan', 1);
+    }
+    public function scopeFilterByRTRW($query, $rt, $rw){
+        $query->where('status_kegiatan', 1)
+        ->where('penanggung_jawab', 'RT')
+        ->where('id_penanggung_jawab', $rt)
+        ->orWhere('penanggung_jawab', 'RW')
+        ->where('id_penanggung_jawab', $rw);
+    }
 }
