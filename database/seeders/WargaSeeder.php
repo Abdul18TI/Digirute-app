@@ -64,6 +64,7 @@ class WargaSeeder extends Seeder
                     'rt' => '1',
                     'rw' => '1',
                     'status_warga' => '0',
+                    'jenis_warga' => '1',
                     'created_at' => NULL,
                     'updated_at' => NULL,
                     'deleted_at' => NULL
@@ -113,6 +114,7 @@ class WargaSeeder extends Seeder
                     'rt' => '1',
                     'rw' => '1',
                     'status_warga' => '0',
+                    'jenis_warga' => '1',
                     'created_at' => NULL,
                     'updated_at' => NULL,
                     'deleted_at' => NULL
@@ -162,6 +164,7 @@ class WargaSeeder extends Seeder
                     'rt' => '2',
                     'rw' => '1',
                     'status_warga' => '0',
+                    'jenis_warga' => '1',
                     'created_at' => NULL,
                     'updated_at' => NULL,
                     'deleted_at' => NULL
