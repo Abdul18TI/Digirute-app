@@ -13,8 +13,8 @@
         @slot('breadcrumb_title')
             <h3>Kegiatan</h3>
         @endslot
-        {{-- <li class="breadcrumb-item">Pengaduan</li> --}}
         <li class="breadcrumb-item active">Kegiatan</li>
+        {{-- <li class="breadcrumb-item active">Kategori_Kegiatan</li> --}}
     @endcomponent
     @if ($kegiatan->count())
         <div class="container-fluid blog-page">
@@ -24,6 +24,9 @@
                         <div class="pro-filter-sec">
                             <div class="product-search">
                                 <form action="kegiatan_warga">
+                                    @if (request('category'))
+                                        <input type="hidden" name="category" value="{{ request('category') }}">
+                                    @endif
                                     <div class="form-group m-0"><input class="form-control" type="search" name="search"
                                             placeholder="Search.." data-original-title="" title=""
                                             value="{{ request('search') }}" /><i type="submit" class="fa fa-search"></i>
@@ -49,11 +52,7 @@
                                 <p>{{ tanggal_indo($kegiatan[0]->tgl_mulai_kegiatan) }}</p>
                                 <h4>{{ $kegiatan[0]->nama_kegiatan }}</h4>
                                 <ul class="blog-social">
-                                    @if ($kegiatan[0]->penanggung_jawab == 'RT')
-                                        <li>oleh: RT {{ $kegiatan[0]->rts->no_rt }}</li>
-                                    @else
-                                        <li>oleh: RW {{ $kegiatan[0]->rws->no_rw }}</li>
-                                    @endif
+                                    <li>oleh: {{ $kegiatan[0]->penanggung_jawab }}</li>
                                     <li>Kategori: <a
                                             href="/Warga/kegiatan_warga?category={{ $kegiatan[0]->kategori_kegiatan }}">{{ $kegiatan[0]->Kategori_kegiatans->kategori_kegiatan }}</a>
                                     </li>
@@ -61,9 +60,8 @@
                                 <hr />
                                 <article class="mt-0 text-light">{!! Str::limit($kegiatan[0]->isi_kegiatan, 100) !!}</article>
                                 <div class="mt-3 pull-right">
-                                    <a href="kegiatan_warga/{{ $kegiatan[0]->id_kegiatan }}"
-                                        class="btn  btn-sm btn-secondary pull-right" type="button">Baca
-                                        Selengkapnya</a>
+                                    <a href="{{ route('warga.kegiatan_warga.show', $kegiatan[0]->id_kegiatan) }}"
+                                        class="btn btn-sm btn-secondary pull-right" type="button">Baca Selengkapnya</a>
                                 </div>
                             </div>
                         </div>
@@ -78,21 +76,24 @@
                                         <div class="col-xl-6 col-12">
                                             <div class="blog-wrraper">
                                                 @if ($k->foto_kegiatan == 'no-image.jpg')
-                                                    <a href="kegiatan_warga/{{ $k->id_kegiatan }}"><img
+                                                    <a
+                                                        href="{{ route('warga.kegiatan_warga.show', $k->id_kegiatan) }}"><img
                                                             class="img-fluid sm-100-wp p-0"
                                                             src="{{ asset('assets/images/blog/blog-2.jpg') }}"
                                                             alt="" /></a>
                                                 @else
-                                                    <a href="kegiatan_warga/{{ $k->id_kegiatan }}"><img class="p-0"
+                                                    <a
+                                                        href="{{ route('warga.kegiatan_warga.show', $k->id_kegiatan) }}"><img
+                                                            class="p-0"
                                                             src="{{ asset('storage/' . $k->foto_kegiatan) }}"
-                                                            width="316" height="225" alt="" /></a>
+                                                            width="316" height="260" alt="" /></a>
                                                 @endif
                                             </div>
                                         </div>
                                         <div class="col-xl-6 col-12">
                                             <div class="blog-details">
-                                                <div class="blog-date mt-1">{{ tanggal_indo($k->tgl_mulai_kegiatan) }}</div>
-                                                <a href="kegiatan_warga/{{ $k->id_kegiatan }}">
+                                                <div class="blog-date mt-3">{{ tanggal_indo($k->tgl_mulai_kegiatan) }}</div>
+                                                <a href="{{ route('warga.kegiatan_warga.show', $k->id_kegiatan) }}">
                                                     <h6>{{ $k->nama_kegiatan }}</h6>
                                                 </a>
                                                 <div class="blog-bottom-content">
@@ -107,12 +108,11 @@
                                                         </li>
                                                     </ul>
                                                     <hr />
-                                                    <article class="mt-0 text-dark">{!! Str::limit($k->isi_kegiatan, 100) !!}.</article>
-                                                    <div class="pull-right mt-3">
-                                                        <a href="kegiatan_warga/{{ $k->id_kegiatan }}"
-                                                            class="btn  btn-sm btn-secondary pull-right"
-                                                            type="button">Baca Selengkapnya</a>
-                                                            
+                                                    <article class="mt-0 text-dark">{!! Str::limit($k->isi_kegiatan, 100) !!}</article>
+                                                    <div class="pull-right ">
+                                                        <a href="{{ route('warga.kegiatan_warga.show', $k->id_kegiatan) }}"
+                                                            class="btn btn-sm btn-secondary pull-right my-3" type="button">Baca
+                                                            Selengkapnya</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -129,11 +129,11 @@
                             <div class="blog-box blog-grid">
                                 <div class="blog-wrraper">
                                     @if ($kk->foto_kegiatan != 'no-image.jpg')
-                                        <a href="kegiatan_warga/{{ $kk->id_kegiatan }}">
-                                            <img class="p-0" src="{{ asset('storage/' . $kk->foto_kegiatan) }}" width="421" height="263" alt="" />
-                                        </a>
+                                        <a href="{{ route('warga.kegiatan_warga.show', $kk->id_kegiatan) }}"><img
+                                                class="p-0" src="{{ asset('storage/' . $kk->foto_kegiatan) }}"
+                                                width="421" height="263" alt="" /></a>
                                     @else
-                                        <a href="kegiatan_warga/{{ $kk->id_kegiatan }}"><img
+                                        <a href="{{ route('warga.kegiatan_warga.show', $kk->id_kegiatan) }}"><img
                                                 class="img-fluid top-radius-blog"
                                                 src="{{ asset('assets/images/blog/blog-6.jpg') }}" alt="" /></a>
                                     @endif
@@ -147,15 +147,24 @@
                                                 {{ $kk->rws->no_rw }}</span></div>
                                     @endif
                                     <div class="blog-date mt-3">{{ tanggal_indo($kk->tgl_mulai_kegiatan) }}</div>
-                                    <a href="kegiatan_warga/{{ $kk->id_kegiatan }}"><h6 class="blog-bottom-details mt-2">{{ $kk->nama_kegiatan }}</h6></a>
+                                    <a href="{{ route('warga.kegiatan_warga.show', $kk->id_kegiatan) }}">
+                                        <h6 class="blog-bottom-details mt-2">{{ $kk->nama_kegiatan }}</h6>
+                                    </a>
                                     <ul class="blog-social">
-                                        <li>Kategori: <a href="/Warga/kegiatan_warga?category={{ $kk->kategori_kegiatan }}">{{ $kk->Kategori_kegiatans->kategori_kegiatan }}</a>
+                                        @if ($k->penanggung_jawab == 'RT')
+                                            <li>oleh: RT {{ $k->rts->no_rt }}</li>
+                                        @else
+                                            <li>oleh: RW {{ $k->rws->no_rw }}</li>
+                                        @endif
+                                        <li>Kategori: <a
+                                                href="/Warga/kegiatan_warga?category={{ $kk->kategori_kegiatan }}">{{ $kk->Kategori_kegiatans->kategori_kegiatan }}</a>
                                         </li>
                                     </ul>
                                     <hr />
-                                    <article class="mt-0 text-dark">{!! Str::limit($kk->isi_kegiatan, 100) !!}.</article>
-                                    <a href="kegiatan_warga/{{ $kk->id_kegiatan }}" class="btn  btn-sm {{$kk->penanggung_jawab == 'RT' ? 'btn-primary' : 'btn-secondary'}} pull-right mb-3 mt-3" type="button">
-                                        Baca Selengkapnya</a>
+                                    <article class="mt-0 text-dark">{!! Str::limit($kk->isi_kegiatan, 100) !!}</article>
+                                    <a href="{{ route('warga.kegiatan_warga.show', $kk->id_kegiatan) }}"
+                                        class="btn btn-sm {{ $kk->penanggung_jawab == 'RT' ? 'btn-primary' : 'btn-secondary' }} pull-right mb-3 mt-3"
+                                        type="button">Baca Selengkapnya</a>
                                 </div>
                             </div>
                         </div>
@@ -181,9 +190,13 @@
                     </div>
                 </div>
             </div>
-            <p>Kegiatan yang dicari tidak ada</p>
+            <p class="text-center">Kegiatan yang dicari tidak ada</p>
         </div>
     @endif
+
+    <div class="d-flex justify-content-end mb-3">
+        {{ $kegiatan->links() }}
+    </div>
 
 @endsection
 

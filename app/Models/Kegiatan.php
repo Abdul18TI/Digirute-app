@@ -20,6 +20,11 @@ class Kegiatan extends Model
         // return $this->belongsTo(rt::class);
     }
 
+    public function getPenanggungJawabAttribute($value)
+    {
+        return strtoupper($value);
+    }
+
     public function rts(){
         return $this->belongsTo(rt::class, 'id_penanggung_jawab', 'id_rt');
     }

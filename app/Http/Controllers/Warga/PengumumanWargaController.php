@@ -22,6 +22,7 @@ class PengumumanWargaController extends Controller
         ->filter(request(['search', 'category']))
         ->paginate(7)
         ->withQueryString();
+        // dd($pengumuman);
         return view('Warga.pengumuman.pengumuman_warga', [
             'pengumuman' => $pengumuman,
         ]);

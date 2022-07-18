@@ -46,6 +46,11 @@ class Pengumuman extends Model
         });
     }
 
+    public function getPenanggungJawabAttribute($value)
+    {
+        return strtoupper($value);
+    }
+
     public function scopePengumumanActive($query)
     {
         $query->where('status_pengumuman', 1);

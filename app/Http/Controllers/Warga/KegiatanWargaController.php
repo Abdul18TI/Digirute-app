@@ -12,7 +12,7 @@ class KegiatanWargaController extends Controller
     {
         $rt = auth()->user()->rt;
         $rw = auth()->user()->rt_rel->id_rw;
-        $kegiatan = Kegiatan::with(['rts','rws'])
+        $kegiatan = Kegiatan::with(['rts','rws', 'Kategori_kegiatans'])
         ->KegiatanActive()
         ->FilterByRTRW($rt,$rw)
         ->latest()
