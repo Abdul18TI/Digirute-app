@@ -17,11 +17,11 @@ class CreateSuratTable extends Migration
         Schema::create('surat', function (Blueprint $table) {
             $table->id('id_surat');
             $table->foreignId('pengaju')->nullable()->constrained('wargas', 'id_warga');
-            $table->foreignId('rt')->constrained('rts', 'id_rt');
+            $table->foreignId('rt')->nullable()->constrained('rts', 'id_rt');
             $table->foreignId('rw')->nullable()->constrained('rws', 'id_rw');
             $table->string('nomor_surat')->unique()->nullable();
             $table->string('jenis_surat');
-            $table->smallInteger('status_tandatangan')->comment('0 = RT ; 1 = RT RW; 2 = RW ?');
+            $table->smallInteger('status_tandatangan')->comment('0 = RT ; 1 = RT RW; 2 = RW;');
             $table->string('status_surat', 25)->comment('0 = Baru Diajukan ; 1 = Diterima RT; 2 = Ditolak RT; 3 = Diterima RW; 4 = Selesai ?');;
             $table->json('propertie_surat');
             $table->text('keperluan_surat')->nullable();

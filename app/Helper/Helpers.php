@@ -98,7 +98,7 @@ function getRomawi($bulan)
     }
 }
 
-function CreateNomorSurat($kodeJenisSurat)
+function CreateNomorSuratRT($kodeJenisSurat)
 {
     $no_rt = auth()->user()->no_rt;
     $no_rw = auth()->user()->rw_rel->no_rw;
@@ -107,11 +107,13 @@ function CreateNomorSurat($kodeJenisSurat)
     $tahun = now()->year;
     $surat = Surat::selectRaw('RIGHT(nomor_surat,4) as tahun ,MAX(nomor_surat) as nomor_surat')
         ->where('rt', auth()->user()->id_rt)
+        ->where('rw', auth()->user()->rw_rel->id_rw)
         ->where('nomor_surat', 'like', '%RT' . $no_rt . '%')
         ->groupBy('tahun')
         ->having('tahun', $tahun)
         ->toBase()
         ->first();
+        // dd($surat);
     // echo $surat;
     if ($surat) {
         //Jika Nomor Surat Sudah Ada

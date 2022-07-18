@@ -60,13 +60,9 @@ class SuratWargaController extends Controller
         $dataproperties['jenis_surat'] = $request->input('jenis_surat');
         $input['propertie_surat'] =  $dataproperties;
         Surat::create($input);
-        // $surat = Surat::find('5');
-        // dd($surat);
-        // foreach($surat as $s) {
-        //     echo $s->propertie_surat;
-        //     };
         return  redirect()->route('warga.surat.index')->with('success', 'Pengajuan berhasil!!!<br/>Data anda sedang diproses');
     }
+    
     public function print($id)
     {
         //Cetak surat

@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\RT;
 
-use App\Models\Surat;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Models\Warga;
-use App\Models\WargaMeninggal;
 use PDF;
 use PDO;
+use App\Models\Surat;
+use App\Models\Warga;
+use Illuminate\Http\Request;
+use App\Models\WargaMeninggal;
+use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 
 class SuratRTController extends Controller
 {
@@ -39,7 +40,9 @@ class SuratRTController extends Controller
     }
     public function approveSuratKeterangan(Surat $surat)
     {
-        $surat->update(['status_surat' => 1, 'nomor_surat' => CreateNomorSurat('SKM')]);
+        $propertie_surat = $surat->propertie_surat;
+        $propertie_surat->tanggal_approve_rt = now();
+        $surat->update(['status_surat' => 1, 'nomor_surat' => CreateNomorSuratRT('SKE'), 'propertie_surat' => $propertie_surat]);
     }
 
     public function tolakSuratKeterangan(Surat $surat)

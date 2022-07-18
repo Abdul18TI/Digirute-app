@@ -81,11 +81,11 @@
                                                 @if ($s->status_surat == 0)
                                                     <span class="badge badge-warning">Diajukan</span>
                                                 @elseif($s->status_surat == 1)
-                                                    <span class="badge badge-secondary">Tahapan RT</span>
+                                                    <span class="badge badge-secondary">Disetuji RT</span>
                                                 @elseif($s->status_surat == 2)
                                                     <span class="badge badge-danger">Ditolak</span>
                                                 @elseif($s->status_surat == 3)
-                                                    <span class="badge badge-secondary">Tahapan RW</span>
+                                                    <span class="badge badge-secondary">Disetuji RW</span>
                                                 @elseif($s->status_surat == 4)
                                                     <span class="badge badge-success">Selesai</span>
                                                 @endif
@@ -103,7 +103,13 @@
                                                                 class="fa fa-trash-o"></span></button>
                                                     </form>
                                                 @else 
-                                                   <span class="badge badge-light text-dark">Tidak Ada Aksi</span>
+                                                    @if ($s->status_tandatangan == 0 || $s->status_tandatangan == 1 && $s->nomor_surat != null)
+                                                           <a class="btn btn-success btn-sm p-2 m-1"
+                                                        href=""><span
+                                                            class="fa fa-print"></span></a>
+                                                            @else
+                                                            <span class="badge badge-light text-dark">Tidak Ada Aksi</span>
+                                                            @endif
                                                 @endif
                                             </td>
                                         </tr>
