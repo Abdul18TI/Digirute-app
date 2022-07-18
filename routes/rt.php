@@ -65,6 +65,7 @@ Route::middleware(['auth:rt', 'PreventBackHistory'])->group(function () {
     route::get('kematian/show_jenazah', [WargaMeninggalController::class, 'show_warga'])->name('kematian.show_jenazah');
     route::get('kematian/show_warga', [WargaMeninggalController::class, 'show_warga'])->name('kematian.show_pelapor');
     route::get('kematian/{kematian}/print_surat', [WargaMeninggalController::class, 'print'])->name('kematian.print_surat');
+    route::get('kematian/{kematian}/request_surat', [WargaMeninggalController::class, 'requestSurat'])->name('kematian.request_surat');
     route::resource('kematian', WargaMeninggalController::class);
     Route::prefix('pengaduan')->name('pengaduan.')->group(function () {
         Route::get('/', [PengaduanRTController::class, 'index'])->name('home');

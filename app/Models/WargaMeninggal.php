@@ -12,11 +12,15 @@ class WargaMeninggal extends Model
     protected $primaryKey = 'id';
     protected $guarded = ['id'];
     protected $dates = ['tgl_kematian', 'tgl_lahir_pelapor'];
-    protected $with = ['wargas'];
+    protected $with = ['wargas', 'surats'];
     public function wargas()
     {
         return $this->belongsTo(Warga::class, 'warga', 'id_warga')->select('nik','id_warga', 'nama_lengkap', 'jenis_kelamin', 'pekerjaan', 'agama', 'tempat_lahir', 'tgl_lahir', 'alamat','status_warga');
         // return $this->belongsTo(rt::class);
+    }
+    public function surats()
+    {
+        return $this->belongsTo(Surat::class, 'no_surat', 'id_surat')->select('id_surat', 'nomor_surat', 'status_surat');
     }
     public function rts()
     {

@@ -21,6 +21,8 @@ class Surat extends Model
     {
         return $this->belongsTo(Warga::class, 'pengaju', 'id_warga')->select('nik','no_kk','id_warga','nama_lengkap', 'jenis_kelamin', 'pekerjaan', 'agama', 'tempat_lahir', 'tgl_lahir', 'alamat');
     }
+    
+    
     // public function rts()
     // {
     //     return $this->belongsTo(rt::class, 'warga', 'id_warga');

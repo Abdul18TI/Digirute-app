@@ -38,7 +38,7 @@
           SURAT KETERANGAN MENINGGAL DUNIA
         </strong>
       </h5>
-      <h6 class="mt-3">No. ......./INT/......</h6>
+      <h6 class="mt-3">{{$kematian->surats->nomor_surat}}</h6>
     </center>
     <p>Yang bertanda tangan di bawah ini Ketua RT. {{ $kematian->rt->no_rt }} RW. {{ $kematian->rw->no_rw }},
       Kelurahanan Umban Sari, Kecamatan Rumbai, Kota Pekanbaru,

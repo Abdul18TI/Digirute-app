@@ -55,9 +55,8 @@ class SuratRTController extends Controller
         //
 
         $surat = $surat;
-        // dd($surat);
         //jika data tidak ditemukan
-        if (!$surat) {
+        if (!$surat and $surat->status_surat == 0) {
             return redirect()->route('rt.surat.index')
             ->with('error', 'Print Gagal! Data tidak temukan');
         }
