@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\KategoriKegiatan;
 
-class KegiatanSeeder extends Seeder
+class KategoriKegiatanSeeder extends Seeder
 {
     /**
      * Run the database seeds.

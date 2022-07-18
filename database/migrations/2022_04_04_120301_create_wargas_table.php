@@ -15,7 +15,7 @@ class CreateWargasTable extends Migration
     {
         Schema::create('wargas', function (Blueprint $table) {
             $table->id('id_warga'); ////
-            $table->string('nik')->unique(); ////
+            $table->string('nik'); ////
             $table->string('no_kk'); ////
             $table->string('username')->unique()->nullable();
             $table->string('password')->nullable();
@@ -38,7 +38,7 @@ class CreateWargasTable extends Migration
             $table->foreignId('pendidikan'); ////
             $table->foreignId('pekerjaan'); ////
             $table->enum('status_perkawinan', ['belum_kawin', 'kawin', 'cerai_hidup', 'cerai']); ////
-            $table->string('nomor_passport')->unique()->nullable(); ////
+            $table->string('nomor_passport')->nullable(); ////
             $table->timestamp('tgl_akhir_passport')->nullable(); ////
             $table->string('nomor_kitaskitap')->unique()->nullable(); ////
             // $table->string('status_akta_cerai')->nullable(); ////

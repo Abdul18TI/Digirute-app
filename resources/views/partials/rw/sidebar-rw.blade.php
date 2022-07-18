@@ -6,8 +6,8 @@
         @else
         <img class="img-90 rounded-circle" src="{{ asset('storage/' . auth()->user()->identitas_rw->foto_warga) }}" alt="" />
         @endif
-        <div class="badge-bottom"><span class="badge badge-primary">RT</span></div>
-        <a href="user-profile">
+        <div class="badge-bottom"><span class="badge badge-primary">RW</span></div>
+        <a href="{{ route('rw.profile.show',auth()->user()->id_rw) }}">
             {{-- <h6 class="mt-3 f-14 f-w-600">Nama lengkap</h6> --}}
             <h6 class="mt-3 f-14 f-w-600">{{ auth()->user()->identitas_rw->nama_lengkap }}</h6>
         </a>
@@ -15,14 +15,14 @@
         <p class="mb-0 font-roboto">RW {{ auth()->user()->no_rw }}</p>
     </div>
     <nav>
-        <header class="main-nav">
+        {{-- <header class="main-nav">
             <div class="sidebar-user text-center"><a class="setting-primary" href="javascript:void(0)"><i data-feather="settings"></i></a><img class="img-90 rounded-circle" src="{{ asset("assets/images/dashboard/1.png")}}" alt="">
                 <div class="badge-bottom"><span class="badge badge-primary">RW</span></div><a href="{{ route('rw.profile.show',auth()->user()->id_rw) }}">
                     <h6 class="mt-3 f-14 f-w-600">{{ auth()->user()->identitas_rw->nama_lengkap }}</h6>
             </a>
             <p class="mb-0 font-roboto">RW {{ auth()->user()->no_rw }}</p>
             </div>
-            <nav>
+            <nav> --}}
                 <div class="main-navbar">
                     <div class="left-arrow" id="left-arrow"><i data-feather="arrow-left"></i></div>
                     <div id="mainnav">

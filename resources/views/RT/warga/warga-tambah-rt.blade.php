@@ -64,7 +64,7 @@
                                     <div class="mb-3 row">
                                         <label class="col-sm-3 col-form-label">Nomor KK Kepala Keluarga <span class="text-danger">*</span></label>
                                         <div class="col-sm-9">
-                                            <input class="form-control" type="text" id="nokk_kepala_keluarga" name="nokk_kepala_keluarga" value="{{ old('nokk_kepala_keluarga') }}"placeholder="Nomor KK Kepala Keluarga">
+                                            <input class="form-control" type="number" id="nokk_kepala_keluarga" name="nokk_kepala_keluarga" value="{{ old('nokk_kepala_keluarga') }}"placeholder="Nomor KK Kepala Keluarga">
                                         </div>
                                     </div>
                                     <div class="mb-3 row">

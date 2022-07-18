@@ -1,11 +1,11 @@
-@extends('layouts.main-rw')
+@extends('layouts.main-warga')
 
 @section('container')
-@component('components.r-w.breadcrumb')
+@component('components.warga.breadcrumb')
         @slot('breadcrumb_title')
         <h3>Profile</h3>
         @endslot
-        <li class="breadcrumb-item"><a href="{{ route('rw.profile.index') }}">Profile-RW</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('warga.profilewarga.show',$warga->id_warga ) }}">Profile-Warga</a></li>
         <li class="breadcrumb-item active">Profile</li>
     @endcomponent
   <!-- Form Tambah Warga -->
@@ -21,33 +21,38 @@
               </div>
               @endif
             <div class="card">
-                <form class="form theme-form" method="post" action="/RW/profile/{{ $warga->identitas_rw->id_warga }}">
+                <form class="form theme-form" method="POST" enctype="multipart/form-data" action="{{ route('warga.profilewarga.update',$warga->id_warga)}}">
                     @csrf
+                    @method('put')
+                    <input type="hidden" name="id" id="id" value="{{ $warga->id_warga }}">
                     <div class="card-body">
                         <div class="row">
                             <div class="col">
                                 <div class="mb-3 row">
-                                    <label class="col-sm-3 col-form-label">RW</label>
-                                    <div class="col-sm-9">
-                                        <input class="form-control " type="text" id="rw" name="rw" readonly placeholder="RT" value="{{ auth()->user()->no_rw }}">
+                                    <label class="col-sm-3 col-form-label">RT/RW</label>
+                                    <div class="col-sm-5">
+                                        <input class="form-control" type="text" id="rt" name="rt" readonly placeholder="RW" value="{{ auth()->user()->rt_rel->no_rt }}">
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <input class="form-control " type="text" id="rw" name="rw" readonly placeholder="RT" value="{{ auth()->user()->rw_rel->no_rw }}">
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label class="col-sm-3 col-form-label">Nomor Kartu Keluarga (KK) <span class="text-danger">*</span></label>
                                     <div class="col-sm-9">
-                                        <input class="form-control" type="number" id="no_kk" name="no_kk" value="{{ old('no_kk',$warga->identitas_rw->no_kk) }}"placeholder="Nomor Kartu Keluarga">
+                                        <input class="form-control" type="number" id="no_kk" name="no_kk" value="{{ old('no_kk',$warga->no_kk) }}"placeholder="Nomor Kartu Keluarga">
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label class="col-sm-3 col-form-label">Nama Kepala Keluarga <span class="text-danger">*</span></label>
                                     <div class="col-sm-9">
-                                        <input class="form-control" type="text" id="nama_kepala_keluarga" name="nama_kepala_keluarga" value="{{ old('nama_kepala_keluarga',$warga->identitas_rw->nama_kepala_keluarga) }}"placeholder="Nama kepala keluarga">
+                                        <input class="form-control" type="text" id="nama_kepala_keluarga" name="nama_kepala_keluarga" value="{{ old('nama_kepala_keluarga',$warga->nama_kepala_keluarga) }}"placeholder="Nama kepala keluarga">
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label class="col-sm-3 col-form-label">Nomor KK Kepala Keluarga <span class="text-danger">*</span></label>
                                     <div class="col-sm-9">
-                                        <input class="form-control" type="text" id="nokk_kepala_keluarga" name="nokk_kepala_keluarga" value="{{ old('nokk_kepala_keluarga',$warga->identitas_rw->nokk_kepala_keluarga) }}"placeholder="Nomor KK Kepala Keluarga">
+                                        <input class="form-control" type="number" id="nokk_kepala_keluarga" name="nokk_kepala_keluarga" value="{{ old('nokk_kepala_keluarga',$warga->nokk_kepala_keluarga) }}"placeholder="Nomor KK Kepala Keluarga">
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
@@ -55,24 +60,22 @@
                                     <div class="col-sm-9">
                                         <select name='status_hubungan_dalam_keluarga' id='status_hubungan_dalam_keluarga' class='form-select'>
                                             <option value='00'>-- Pilih --</option>
-                                            <option value='1' {{ old('status_hubungan_dalam_keluarga') == '1' ? "selected" : ""}}>ISLAM</option>
-                                            <option value='2' {{ old('status_hubungan_dalam_keluarga') == '2' ? "selected" : ""}}>KRISTEN</option>
-                                            <option value='3' {{ old('status_hubungan_dalam_keluarga') == '3' ? "selected" : ""}}>HINDU</option>
-                                            <option value='4' {{ old('status_hubungan_dalam_keluarga') == '4' ? "selected" : ""}}>BUDHA</option>
-                                            <option value='5' {{ old('status_hubungan_dalam_keluarga') == '5' ? "selected" : ""}}>KATOLIK</option>
-                                            <option value='6' {{ old('status_hubungan_dalam_keluarga') == '6' ? "selected" : ""}}>KONGHUCU</option></select>
+                                            @foreach ($hubungan as $p)
+                                            <option value='{{ $p->id_status_hubungan }}' {{ old('status_hubungan_dalam_keluarga',$warga->status_hubungan_dalam_keluarga) ==  $p->id_status_hubungan ? "selected" : "" }}>{{ $p->status_hubungan }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label class="col-sm-3 col-form-label">Nomor Induk Kepenedudukan (NIK) <span class="text-danger">*</span></label>
                                     <div class="col-sm-9">
-                                        <input class="form-control " type="number" id="nik" name="nik"  value="{{ old('nik',$warga->identitas_rw->nik) }}" placeholder="Nomor Induk Kependidikan">
+                                        <input class="form-control " type="number" id="nik" name="nik"  value="{{ old('nik',$warga->nik) }}" placeholder="Nomor Induk Kependidikan">
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label class="col-sm-3 col-form-label">Alamat <span class="text-danger">*</span></label>
                                     <div class="col-sm-9">
-                                        <textarea class="form-control" id="alamat" name="alamat" rows="5" cols="5" placeholder="Alamat">{{ old('alamat',$warga->identitas_rw->alamat) }}</textarea>
+                                        <textarea class="form-control" id="alamat" name="alamat" rows="5" cols="5" placeholder="Alamat">{{ old('alamat',$warga->alamat) }}</textarea>
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
@@ -87,6 +90,7 @@
                                     </div>
                                     <div class="col-sm-4">
                                         <select class="form-select select2" id="kabupaten" name="kabupaten">
+                                            <option selected value="{{ old('kabupaten',$warga->kabupaten) }}" >{{ $warga->kabupatens->nama }}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -94,44 +98,46 @@
                                     <label class="col-sm-3 col-form-label"></label>
                                     <div class="col-sm-4">
                                         <select class="form-select select2" id="kecamatan" name="kecamatan">
+                                            <option selected value="{{ old('kecamatan',$warga->kecamatan) }}" >{{ $warga->kecamatans->nama }}</option>
                                         </select>
                                     </div>
                                     <div class="col-sm-4">
                                         <select class="form-select select2" id="kelurahan" name="kelurahan">
+                                            <option selected value="{{ old('kelurahan',$warga->kelurahan) }}" >{{ $warga->kelurahans->nama }}</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label class="col-sm-3 col-form-label">Nama Dusun</label>
                                     <div class="col-sm-9">
-                                        <input class="form-control " type="text" id="nama_dusun" name="nama_dusun" value="{{ old('nama_dusun',$warga->identitas_rw->nama_dusun) }}" placeholder="minas">
+                                        <input class="form-control " type="text" id="nama_dusun" name="nama_dusun" value="{{ old('nama_dusun',$warga->nama_dusun) }}" placeholder="minas">
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label class="col-sm-3 col-form-label">Kode Pos</label>
                                     <div class="col-sm-9">
-                                        <input class="form-control " type="number" id="kode_pos" name="kode_pos" value="{{ old('kode_pos',$warga->identitas_rw->kode_pos) }}" placeholder="0000">
+                                        <input class="form-control " type="number" id="kode_pos" name="kode_pos" value="{{ old('kode_pos',$warga->kode_pos) }}" placeholder="0000">
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label class="col-sm-3 col-form-label">Nama Lengkap <span class="text-danger">*</span></label>
                                     <div class="col-sm-9">
-                                        <input class="form-control " type="text" id="nama_lengkap" name="nama_lengkap" value="{{ old('nama_lengkap',$warga->identitas_rw->nama_lengkap) }}" placeholder="Nama Lengkap">
+                                        <input class="form-control " type="text" id="nama_lengkap" name="nama_lengkap" value="{{ old('nama_lengkap',$warga->nama_lengkap) }}" placeholder="Nama Lengkap">
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label class="col-sm-3 col-form-label">Tempat Tanggal Lahir <span class="text-danger">*</span></label>
                                     <div class="col-sm-4">
-                                        <input class="form-control " type="text" id="tempat_lahir" name="tempat_lahir"  value="{{ old('tempat_lahir',$warga->identitas_rw->tempat_lahir) }}" placeholder="Tempat Lahir">
+                                        <input class="form-control " type="text" id="tempat_lahir" name="tempat_lahir"  value="{{ old('tempat_lahir',$warga->tempat_lahir) }}" placeholder="Tempat Lahir">
                                     </div>
                                     <div class="col-sm-5">
-                                        <input class="form-control digits" name="tgl_lahir" value="{{ old('tgl_lahir',$warga->identitas_rw->tgl_lahir) }}" id="example-datetime-local-input" type="date" data-bs-original-title="" title="">
+                                        <input class="form-control digits" name="tgl_lahir" value="{{ old('tgl_lahir',$warga->tgl_lahir) }}" id="example-datetime-local-input" type="date" data-bs-original-title="" title="">
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label class="col-sm-3 col-form-label">Nomor Akta Kelahiran</label>
                                     <div class="col-sm-9">
-                                        <input class="form-control " type="number" id="akta_kelahiran" name="akta_kelahiran" value="{{ old('akta_kelahiran',$warga->identitas_rw->akta_kelahiran) }}" placeholder="">
+                                        <input class="form-control " type="number" id="akta_kelahiran" name="akta_kelahiran" value="{{ old('akta_kelahiran',$warga->akta_kelahiran) }}" placeholder="">
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
@@ -139,11 +145,11 @@
                                     <div class="col-sm-9">
                                         <div class="form-group mt-2 m-checkbox-inline mb-0 custom-radio-ml">
                                             <div class="radio radio-primary">
-                                                <input id="lk" type="radio" name="jenis_kelamin" value="1" {{ old('jenis_kelamin',$warga->identitas_rw->jenis_kelamin) == 1 ? "checked" : ""}}>
+                                                <input id="lk" type="radio" name="jenis_kelamin" value="1" {{ old('jenis_kelamin',$warga->jenis_kelamin) == 1 ? "checked" : ""}}>
                                                 <label class="mb-0" for="lk">Laki-laki</label>
                                             </div>
                                             <div class="radio radio-primary">
-                                                <input id="pr" type="radio" name="jenis_kelamin" value="2" {{ old('jenis_kelamin',$warga->identitas_rw->jenis_kelamin) == 2 ? "checked" : ""}}>
+                                                <input id="pr" type="radio" name="jenis_kelamin" value="2" {{ old('jenis_kelamin',$warga->jenis_kelamin) == 2 ? "checked" : ""}}>
                                                 <label class="mb-0" for="pr">Perempuan</label>
                                             </div>
                                         </div>
@@ -154,12 +160,12 @@
                                     <div class="col-sm-9">
                                         <select name='agama' id='agama' class='form-select'>
                                             <option value='00'>-- Pilih --</option>
-                                            <option value='1' {{ old('agama') == '1' ? "selected" : ""}}>ISLAM</option>
-                                            <option value='2' {{ old('agama') == '2' ? "selected" : ""}}>KRISTEN</option>
-                                            <option value='3' {{ old('agama') == '3' ? "selected" : ""}}>HINDU</option>
-                                            <option value='4' {{ old('agama') == '4' ? "selected" : ""}}>BUDHA</option>
-                                            <option value='5' {{ old('agama') == '5' ? "selected" : ""}}>KATOLIK</option>
-                                            <option value='6' {{ old('agama') == '6' ? "selected" : ""}}>KONGHUCU</option></select>
+                                            <option value='1' {{ old('agama',$warga->agama) == '1' ? "selected" : ""}}>ISLAM</option>
+                                            <option value='2' {{ old('agama',$warga->agama) == '2' ? "selected" : ""}}>KRISTEN</option>
+                                            <option value='3' {{ old('agama',$warga->agama) == '3' ? "selected" : ""}}>HINDU</option>
+                                            <option value='4' {{ old('agama',$warga->agama) == '4' ? "selected" : ""}}>BUDHA</option>
+                                            <option value='5' {{ old('agama',$warga->agama) == '5' ? "selected" : ""}}>KATOLIK</option>
+                                            <option value='6' {{ old('agama',$warga->agama) == '6' ? "selected" : ""}}>KONGHUCU</option></select>
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
@@ -168,7 +174,7 @@
                                         <select class='form-select' name='pekerjaan' id='pekerjaan' >
                                             <option value='00'>-- Pilih --</option>
                                             @foreach ($pekerjaan as $p)
-                                            <option value='{{ $p->id_pekerjaan }}' {{ old('pekerjaan',$warga->identitas_rw->pekerjaan) ==  $p->id_pekerjaan ? "selected" : "" }}>{{ $p->nama_pekerjaan }}</option>
+                                            <option value='{{ $p->id_pekerjaan }}' {{ old('pekerjaan',$warga->pekerjaan) ==  $p->id_pekerjaan ? "selected" : "" }}>{{ $p->nama_pekerjaan }}</option>
                                             @endforeach
                                             {{-- <option value='1' {{ old('pekerjaan') == '1' ? "selected" : ""}}>BELUM/TIDAK BEKERJA</option>
                                             <option value='3' {{ old('pekerjaan') == '3' ? "selected" : ""}}>PELAJAR/MAHASISWA</option>
@@ -187,10 +193,10 @@
                                     <div class="col-sm-9">
                                         <select name='golongan_darah' id='golongan_darah' class='form-select'  >
                                             <option value='00'>-- Pilih --</option>
-                                            <option value='1' {{ old('golongan_darah') == '1' ? "selected" : ""}}>A</option>
-                                            <option value='2' {{ old('golongan_darah') == '2' ? "selected" : ""}}>B</option>
-                                            <option value='3' {{ old('golongan_darah') == '3' ? "selected" : ""}}>AB</option>
-                                            <option value='4' {{ old('golongan_darah') == '4' ? "selected" : ""}}>O</option>
+                                            <option value='1' {{ old('golongan_darah',$warga->golongan_darah) == '1' ? "selected" : ""}}>A</option>
+                                            <option value='2' {{ old('golongan_darah',$warga->golongan_darah) == '2' ? "selected" : ""}}>B</option>
+                                            <option value='3' {{ old('golongan_darah',$warga->golongan_darah) == '3' ? "selected" : ""}}>AB</option>
+                                            <option value='4' {{ old('golongan_darah',$warga->golongan_darah) == '4' ? "selected" : ""}}>O</option>
                                         </select>                                  
                                     </div>
                                 </div>
@@ -199,10 +205,10 @@
                                     <div class="col-sm-9">
                                         <select name='status_perkawinan' id='status_perkawinan' class='form-select'  >
                                             <option value='00'>-- Pilih --</option>
-                                            <option value='1' {{ old('status_perkawinan') == '1' ? "selected" : ""}}>BELUM KAWIN</option>
-                                            <option value='2' {{ old('status_perkawinan') == '2' ? "selected" : ""}}>KAWIN</option>
-                                            <option value='3' {{ old('status_perkawinan') == '3' ? "selected" : ""}}>CERAI HIDUP</option>
-                                            <option value='4' {{ old('status_perkawinan') == '4' ? "selected" : ""}}>CERAI MATI</option>
+                                            <option value='belum_kawin' {{ old('status_perkawinan',$warga->status_perkawinan) == 'belum_kawin' ? "selected" : ""}}>BELUM KAWIN</option>
+                                            <option value='kawin' {{ old('status_perkawinan',$warga->status_perkawinan) == 'kawin' ? "selected" : ""}}>KAWIN</option>
+                                            <option value='cerai_hidup' {{ old('status_perkawinan',$warga->status_perkawinan) == 'cerai_hidup' ? "selected" : ""}}>CERAI HIDUP</option>
+                                            <option value='cerai' {{ old('status_perkawinan',$warga->status_perkawinan) == 'cerai' ? "selected" : ""}}>CERAI MATI</option>
                                         </select>                                              
                                     </div>
                                 </div>
@@ -215,31 +221,19 @@
                                 <div class="mb-3 row">
                                     <label class="col-sm-3 col-form-label">Nomor Akta Kawin</label>
                                     <div class="col-sm-9">
-                                        <input class="form-control " type="number" id="akta_kawin" name="akta_kawin" value="{{ old('akta_kawin',$warga->identitas_rw->akta_kawin) }}" placeholder="">
+                                        <input class="form-control " type="number" id="akta_kawin" name="akta_kawin" value="{{ old('akta_kawin',$warga->akta_kawin) }}" placeholder="">
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label class="col-sm-3 col-form-label">Tanggal Perceraian <span class="text-danger">*</span> </label>
                                     <div class="col-sm-9">
-                                        <input class="form-control digits" name="tgl_cerai" type="date"  value="{{ old('tgl_cerai',$warga->identitas_rw->tgl_cerai) }}">
+                                        <input class="form-control digits" name="tgl_cerai" type="date"  value="{{ old('tgl_cerai',$warga->tgl_cerai) }}">
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label class="col-sm-3 col-form-label">Nomor Akta Cerai</label>
                                     <div class="col-sm-9">
-                                        <input class="form-control " type="number" id="akta_cerai" name="akta_cerai" value="{{ old('akta_cerai',$warga->identitas_rw->akta_cerai) }}" placeholder="">
-                                    </div>
-                                </div>
-                                <div class="mb-3 row">
-                                    <label class="col-sm-3 col-form-label">Status Hubungan <span class="text-danger">*</span></label>
-                                    <div class="col-sm-9">
-                                        <select name='status_hubungan' id='status_hubungan' class='form-select'  >
-                                            <option value='00'>-- Pilih --</option>
-                                            <option value='1' {{ old('status_hubungan') == '1' ? "selected" : ""}}>BELUM KAWIN</option>
-                                            <option value='2' {{ old('status_hubungan') == '2' ? "selected" : ""}}>KAWIN</option>
-                                            <option value='3' {{ old('status_hubungan') == '3' ? "selected" : ""}}>CERAI HIDUP</option>
-                                            <option value='4' {{ old('status_hubungan') == '4' ? "selected" : ""}}>CERAI MATI</option>
-                                        </select>                                              
+                                        <input class="form-control " type="number" id="akta_cerai" name="akta_cerai" value="{{ old('akta_cerai',$warga->akta_cerai) }}" placeholder="">
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
@@ -247,59 +241,58 @@
                                     <div class="col-sm-9">
                                         <select name='pendidikan' id='pendidikan' class='form-select'  >
                                             <option value='00'>-- Pilih --</option>
-                                            <option value='1' {{ old('pendidikan') == '1' ? "selected" : ""}}>BELUM KAWIN</option>
-                                            <option value='2' {{ old('pendidikan') == '2' ? "selected" : ""}}>KAWIN</option>
-                                            <option value='3' {{ old('pendidikan') == '3' ? "selected" : ""}}>CERAI HIDUP</option>
-                                            <option value='4' {{ old('pendidikan') == '4' ? "selected" : ""}}>CERAI MATI</option>
+                                            @foreach ($pendidikan as $p)
+                                            <option value='{{ $p->id_pendidikan  }}' {{ old('pendidikan',$warga->pendidikan) ==  $p->id_pendidikan  ? "selected" : "" }}>{{ $p->nama_pendidikan }}</option>
+                                            @endforeach
                                         </select>                                              
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label class="col-sm-3 col-form-label">No. Passport</label>
                                     <div class="col-sm-9">
-                                        <input class="form-control " type="number" id="nomor_passport" name="nomor_passport" value="{{ old('nomor_passport',$warga->identitas_rw->nomor_passport)}}" placeholder="Nomor Passport">
+                                        <input class="form-control " type="number" id="nomor_passport" name="nomor_passport" value="{{ old('nomor_passport',$warga->nomor_passport)}}" placeholder="Nomor Passport">
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label class="col-sm-3 col-form-label">Tanggal Passport berakhir <span class="text-danger">*</span> </label>
                                     <div class="col-sm-9">
-                                        <input class="form-control digits" name="tgl_akhir_passport" type="date"  value="{{ old('tgl_akhir_passport',$warga->identitas_rw->tgl_akhir_passport) }}">
+                                        <input class="form-control digits" name="tgl_akhir_passport" type="date"  value="{{ old('tgl_akhir_passport',$warga->tgl_akhir_passport) }}">
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label class="col-sm-3 col-form-label">No. KTIAS/KITAP</label>
                                     <div class="col-sm-9">
-                                        <input class="form-control " type="number" id="nomor_kitaskitap" name="nomor_kitaskitap" value="{{ old('nomor_kitaskitap',$warga->identitas_rw->nomor_kitaskita)}}" placeholder="Nomor Passport">
+                                        <input class="form-control " type="number" id="nomor_kitaskitap" name="nomor_kitaskitap" value="{{ old('nomor_kitaskitap',$warga->nomor_kitaskita)}}" placeholder="Nomor Passport">
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label class="col-sm-3 col-form-label">Nik Ayah <span class="text-danger">*</span></label>
                                     <div class="col-sm-9">
-                                        <input class="form-control " type="number" id="nik_ayah" name="nik_ayah" value="{{ old('nik_ayah',$warga->identitas_rw->nik_ayah)}}" placeholder="Nik Ayah">
+                                        <input class="form-control " type="number" id="nik_ayah" name="nik_ayah" value="{{ old('nik_ayah',$warga->nik_ayah)}}" placeholder="Nik Ayah">
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label class="col-sm-3 col-form-label">Nama Ayah <span class="text-danger">*</span></label>
                                     <div class="col-sm-9">
-                                        <input class="form-control " type="text" id="nama_ayah" name="nama_ayah" value="{{ old('nama_ayah',$warga->identitas_rw->nama_ayah)}}" placeholder="Nama Ayah">
+                                        <input class="form-control " type="text" id="nama_ayah" name="nama_ayah" value="{{ old('nama_ayah',$warga->nama_ayah)}}" placeholder="Nama Ayah">
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label class="col-sm-3 col-form-label">Nik Ibu <span class="text-danger">*</span></label>
                                     <div class="col-sm-9">
-                                        <input class="form-control " type="number" id="nik_ibu" name="nik_ibu" value="{{ old('nik_ibu',$warga->identitas_rw->nik_ibu)}}" placeholder="Nik Ibu">
+                                        <input class="form-control " type="number" id="nik_ibu" name="nik_ibu" value="{{ old('nik_ibu',$warga->nik_ibu)}}" placeholder="Nik Ibu">
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label class="col-sm-3 col-form-label">Nama Ibu <span class="text-danger">*</span></label>
                                     <div class="col-sm-9">
-                                        <input class="form-control " type="text" id="nama_ibu" name="nama_ibu" value="{{ old('nama_ibu',$warga->identitas_rw->nama_ibu)}}" placeholder="Nama Ibu">
+                                        <input class="form-control " type="text" id="nama_ibu" name="nama_ibu" value="{{ old('nama_ibu',$warga->nama_ibu)}}" placeholder="Nama Ibu">
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label class="col-sm-3 col-form-label">Tanggal Terbit KK <span class="text-danger">*</span> </label>
                                     <div class="col-sm-9">
-                                        <input class="form-control digits" name="tgl_keluar_kk" type="date"  value="{{ old('tgl_keluar_kk',$warga->identitas_rw->tgl_keluar_kk) }}">
+                                        <input class="form-control digits" name="tgl_keluar_kk" type="date"  value="{{ old('tgl_keluar_kk',$warga->tgl_keluar_kk) }}">
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
@@ -312,19 +305,19 @@
                                 <div class="mb-3 row">
                                     <label class="col-sm-3 col-form-label">Penyandang Cacat</label>
                                     <div class="col-sm-9">
-                                        <input class="form-control " type="text" id="kelainan" name="kelainan" value="{{ old('kelainan',$warga->identitas_rw->kelainan) }}" placeholder="">
+                                        <input class="form-control " type="text" id="kelainan" name="kelainan" value="{{ old('kelainan',$warga->kelainan) }}" placeholder="">
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label class="col-sm-3 col-form-label">Email Warga</label>
                                     <div class="col-sm-9">
-                                        <input class="form-control " type="email" id="email_warga" name="email_warga" value="{{ old('email_warga',$warga->identitas_rw->email_warga) }}" placeholder="">
+                                        <input class="form-control " type="email" id="email_warga" name="email_warga" value="{{ old('email_warga',$warga->email_warga) }}" placeholder="">
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label class="col-sm-3 col-form-label">Nomor HP Warga</label>
                                     <div class="col-sm-9">
-                                        <input class="form-control " type="number" id="no_hp_warga" name="no_hp_warga" value="{{ old('no_hp_warga',$warga->identitas_rw->no_hp_warga) }}" placeholder="">
+                                        <input class="form-control " type="number" id="no_hp_warga" name="no_hp_warga" value="{{ old('no_hp_warga',$warga->no_hp_warga) }}" placeholder="">
                                     </div>
                                 </div>
                             </div>
@@ -364,10 +357,12 @@
 <script>
     $(document).ready(function() {
             $('#provinsi').on('change', function() {
+                var id = $('#id').val();
                var categoryID = $(this).val();
+               console.log(categoryID);
                if(categoryID) {
                    $.ajax({
-                       url: 'getKab/'+categoryID,
+                       url: "/RT/warga/"+id +'/getKab/'+categoryID,
                        type: "GET",
                        data : {"_token":"{{ csrf_token() }}"},
                        dataType: "json",

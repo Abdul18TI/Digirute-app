@@ -35,8 +35,10 @@
                   </div>
                   @endif
                 <div class="card">
-                    <form class="form theme-form" method="POST" enctype="multipart/form-data" action="{{ route('rt.warga.store')}}">
+                    <form class="form theme-form" method="POST" enctype="multipart/form-data" action="{{ route('rt.warga.update',$warga->id_warga)}}">
                         @csrf
+                        @method('put')
+                        <input type="hidden" name="id" id="id" value="{{ $warga->id_warga }}">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">
@@ -64,7 +66,7 @@
                                     <div class="mb-3 row">
                                         <label class="col-sm-3 col-form-label">Nomor KK Kepala Keluarga <span class="text-danger">*</span></label>
                                         <div class="col-sm-9">
-                                            <input class="form-control" type="text" id="nokk_kepala_keluarga" name="nokk_kepala_keluarga" value="{{ old('nokk_kepala_keluarga',$warga->nokk_kepala_keluarga) }}"placeholder="Nomor KK Kepala Keluarga">
+                                            <input class="form-control" type="number" id="nokk_kepala_keluarga" name="nokk_kepala_keluarga" value="{{ old('nokk_kepala_keluarga',$warga->nokk_kepala_keluarga) }}"placeholder="Nomor KK Kepala Keluarga">
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
@@ -94,7 +96,7 @@
                                         <label class="col-sm-3 col-form-label">Desa/Kabupaten/Provinsi <span class="text-danger">*</span></label>
                                         <div class="col-sm-5">
                                             <select class="form-select select2" id="provinsi" name="provinsi">
-                                                <option selected>Pilih Provinsi</option>
+                                                <option selected value="{{ old('provinsi',$warga->provinsi) }}" >{{ $warga->provinsis->nama }}</option>
                                                 @foreach ($provinsi as $pro)
                                                 <option value="{{ $pro->id_prov }}" >{{ $pro->nama }}</option>
                                                 @endforeach
@@ -102,6 +104,7 @@
                                         </div>
                                         <div class="col-sm-4">
                                             <select class="form-select select2" id="kabupaten" name="kabupaten">
+                                                <option selected value="{{ old('kabupaten',$warga->kabupaten) }}" >{{ $warga->kabupatens->nama }}</option>
                                             </select>
                                         </div>
                                     </div>
@@ -109,10 +112,12 @@
                                         <label class="col-sm-3 col-form-label"></label>
                                         <div class="col-sm-4">
                                             <select class="form-select select2" id="kecamatan" name="kecamatan">
+                                                <option selected value="{{ old('kecamatan',$warga->kecamatan) }}" >{{ $warga->kecamatans->nama }}</option>
                                             </select>
                                         </div>
                                         <div class="col-sm-4">
                                             <select class="form-select select2" id="kelurahan" name="kelurahan">
+                                                <option selected value="{{ old('kelurahan',$warga->kelurahan) }}" >{{ $warga->kelurahans->nama }}</option>
                                             </select>
                                         </div>
                                     </div>
@@ -367,10 +372,12 @@
 <script>
     $(document).ready(function() {
             $('#provinsi').on('change', function() {
+                var id = $('#id').val();
                var categoryID = $(this).val();
+               console.log(categoryID);
                if(categoryID) {
                    $.ajax({
-                       url: 'getKab/'+categoryID,
+                       url: "/RT/warga/"+id +'/getKab/'+categoryID,
                        type: "GET",
                        data : {"_token":"{{ csrf_token() }}"},
                        dataType: "json",

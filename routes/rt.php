@@ -38,6 +38,10 @@ Route::middleware(['auth:rt', 'PreventBackHistory'])->group(function () {
         $kab = App\Models\Kabupaten::where('id_prov', $id)->get();
         return response()->json($kab);
     });
+    Route::get('/warga/{idw}/getKab/{id}', function ($idw, $id) {
+        $kab = App\Models\Kabupaten::where('id_prov', $id)->get();
+        return response()->json($kab);
+    });
     Route::get('/warga/getKec/{id}', function ($id) {
         $kec = App\Models\Kecamatan::where('id_kab', $id)->get();
         return response()->json($kec);
@@ -75,12 +79,12 @@ Route::middleware(['auth:rt', 'PreventBackHistory'])->group(function () {
         Route::put('/surat_keterangan/{surat}/proses', [SuratRTController::class, 'prosesSurat'])->name('terima.surat_keterangan');
         Route::put('/surat_keterangan/{surat}/tolak', [SuratRTController::class, 'tolakSuratKeterangan'])->name('tolak.surat_keterangan');
         Route::get('/surat_keterangan/{surat}/print_surat', [SuratRTController::class, 'printSuratKeterangan'])->name('print.surat_keterangan');
-      
+
         Route::get('/detail/{id}', [SuratRTController::class, 'show'])->name('show');
         Route::post('/surat_keterangan/store', [SuratRTController::class, 'surat_keterangan_store'])->name('store.surat_keterangan');
         route::get('/show_pengaju', [SuratRTController::class, 'show_pengaju'])->name('show_pengaju');
         // Route::get('/show/{pengaduan}', [PengaduanRTController::class, 'show'])->name('show');
-        
+
     });
     Route::post('logout', [LoginRTController::class, 'logout'])->name('logout');
 });

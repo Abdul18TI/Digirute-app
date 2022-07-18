@@ -4,9 +4,14 @@ namespace App\Http\Controllers\Warga;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\rw;
-use App\Models\Warga;
 use App\Models\Pekerjaan;
+use App\Models\Pendidikan;
+use App\Models\Kabupaten;
+use App\Models\Kecamatan;
+use App\Models\Kelurahan;
+use App\Models\Provinsi;
+use App\Models\Status_hubungan;
+use App\Models\Warga;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
 
@@ -15,40 +20,50 @@ class ProfileWargaController extends Controller
 
     public function show($id)
     {
-        $rw = rw::with('identitas_rw')->where('id_rw', $id)->first();
+        $warga = Warga::where('id_warga', $id)->first();
         // dd($rw);
-        $keluarga = Warga::where('no_kk', $rw->identitas_rw->no_kk)->whereNotIn('nik', [$rw->identitas_rw->nik])->get();
+        $keluarga = Warga::where('no_kk', $warga->no_kk)->whereNotIn('nik', [$warga->nik])->get();
 
-        return view('RW.ProfileRW.profile-rw-tes', [
-            'rw' => $rw,
+        return view('Warga.Profile.profile-warga-tes', [
+            'warga' => $warga,
             'keluarga' => $keluarga,
-            "title" => "profile-rw"
+            "title" => "profile-warga"
         ]);
     }
 
-    public function edit($rws)
+    public function edit(Warga $profilewarga)
     {
         $data = Pekerjaan::all();
-        $profile = rw::with('identitas_rw')->where('id_rw', $rws)->first();
+        $hubungan = Status_hubungan::all();
+        $pendidikan = Pendidikan::all();
+        $datakab = Kabupaten::all();
+        $datakec = Kecamatan::all();
+        $datakel = Kelurahan::all();
+        $datapro = Provinsi::all();
         // dd($profile);
         // $rw = rw::with('identitas_rw')->where('id_rw', $id)->get();
         // $datadiri = Warga::where('id_warga', $rw->identitas_rw->id_warga)->firtst();
-        return view('RW.profileRW.edit_profile', [
-            'warga' => $profile,
+        return view('Warga.Profile.edit_profile_warga', [
+            'warga' => $profilewarga,
             'pekerjaan' => $data,
-            // 'kategori_pengumuman' => Warga::all(),
-            'title' => 'edit-pengumuman'
+            'hubungan' => $hubungan,
+            'pendidikan' => $pendidikan,
+            'kabupaten' => $datakab,
+            'kecamatan' => $datakec,
+            'kelurahan' => $datakel,
+            'provinsi' => $datapro,
+            'title' => 'edit-profile'
         ]);
     }
 
-    public function update(Request $request, Warga $warga)
+    public function update(Request $request, Warga $profilewarga)
     {
         // dd($request->id);
         if ($request->username) {
             $validatedData = $request->validate([
                 'username' => 'required|unique:rws,username'
             ]);
-            rw::where('id_rw', $request->id)
+            Warga::where('id_rw', $request->id)
                 ->update($validatedData);
             return redirect()->route('rw.profile.index')->with('success', 'Username berhasil diubah!');
         }
@@ -58,7 +73,7 @@ class ProfileWargaController extends Controller
                 'password' => 'required'
             ]);
             $validatedData['password'] = Hash::make($request->password);
-            rw::where('id_rw', $request->id)
+            Warga::where('id_rw', $request->id)
                 ->update($validatedData);
             return redirect()->route('rw.profile.index')->with('success', 'Password berhasil diubah!');
         }
@@ -88,7 +103,6 @@ class ProfileWargaController extends Controller
             'golongan_darah' => 'required',
             'pendidikan' => 'required',
             'pekerjaan' => 'required',
-            'status_hubungan' => 'required', //
             'status_perkawinan' => 'required', //
             'tgl_perkawinan' => 'nullable|date', //
             'akta_kawin' => 'nullable|numeric', //
@@ -116,7 +130,7 @@ class ProfileWargaController extends Controller
             $validatedData['foto_warga'] = $request->file('foto_warga')->store('foto-warga');
         }
 
-        warga::where('id_warga', $warga->id_warga)
+        warga::where('id_warga', $profilewarga->id_warga)
             ->update($validatedData);
         return redirect()->route('rw.profile.index')->with('success', 'Data berhasil diubah!');
     }

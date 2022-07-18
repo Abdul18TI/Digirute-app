@@ -75,7 +75,6 @@
                   <tr>
                     <th>No</th>
                     <th>Nama</th>
-                    <th>No KK</th>
                     <th>NIK</th>
                     <th>Alamat</th>
                     <th>No HP</th>
@@ -87,11 +86,10 @@
                     <tr>
                       <td>{{ $loop->iteration }}</td>
                       <td>{{ $dw->nama_lengkap }}</td>
-                      <td>{{ $dw->no_kk }}</td>
                       <td>{{ $dw->nik }}</td>
                       <td>{{ $dw->alamat }}</td>
                       <td>{{ $dw->no_hp_warga }}</td>
-                      <td>
+                      <td class="aksi">
                         <a class="btn btn-info btn-sm p-2"
                           href="{{ route('rt.warga.show',$dw->id_warga) }}"><span class="fa fa-eye"></span></a>
                         <a class="btn btn-secondary btn-sm p-2"

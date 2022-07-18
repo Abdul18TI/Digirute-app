@@ -167,7 +167,11 @@
 	                                    <div class="card-body social-list filter-cards-view">
                                             @foreach ($keluarga as $k)
 	                                        <div class="media">
+	                                            @if($k->foto_warga == 'no-image.png')
 	                                            <img class="img-50 img-fluid m-r-20 rounded-circle" alt="" src="{{asset('assets/images/user/2.png')}}" />
+                                                @else
+                                                <img class="img-50 img-fluid m-r-20 rounded-circle" alt="" src="{{ asset('storage/' . $k->foto_warga) }}" />
+                                                @endif
 	                                            <div class="media-body"><span class="d-block">{{ $k->nama_lengkap }}</span><a>{{ $k->status_hubungan_dalam_keluarga }}</a></div>
 	                                        </div>
                                             @endforeach

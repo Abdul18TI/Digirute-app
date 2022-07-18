@@ -13,6 +13,7 @@ use App\Models\Provinsi;
 use App\Models\Status_hubungan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class WargaController extends Controller
@@ -108,19 +109,21 @@ class WargaController extends Controller
             'rw' => 'required|nullable'
         ]);
 
+        $validatedData['username'] =  $request->file('nik');
+        $validatedData['password'] =  Hash::make(12345678);
+
         if ($request->file('foto_warga')) {
             $validatedData['foto_warga'] = $request->file('foto_warga')->store('foto-warga');
         }
         // dd($validatedData);
-        Warga::create($validatedData);
-        // try {
-
-        //     return redirect()->route('rt.warga.index')
-        //         ->with('success', 'Data berhasil ditambah!');
-        // } catch (\Exception $e) {
-        //     return redirect()->route('rt.warga.index')
-        //         ->with('error', 'Gagal menambahkan data!');
-        // }
+        try {
+            Warga::create($validatedData);
+            return redirect()->route('rt.warga.index')
+                ->with('success', 'Data berhasil ditambah!');
+        } catch (\Exception $e) {
+            return redirect()->route('rt.warga.index')
+                ->with('error', 'Gagal menambahkan data!');
+        }
 
         // return Warga::create($validatedData);
     }
