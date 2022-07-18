@@ -283,7 +283,7 @@
                              <div class="col-sm-6 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label">Email</label>
-                                    <input class="form-control" type="text" disabled value="{{ $warga->email }}" />
+                                    <input class="form-control" type="text" disabled value="{{ $warga->email_warga }}" />
                                 </div>
                             </div>
                             <div class="col-sm-6 col-md-6">

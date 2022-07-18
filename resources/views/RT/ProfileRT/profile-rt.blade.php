@@ -172,7 +172,7 @@
                                                 @else
                                                 <img class="img-50 img-fluid m-r-20 rounded-circle" alt="" src="{{ asset('storage/' . $k->foto_warga) }}" />
                                                 @endif
-	                                            <div class="media-body"><span class="d-block">{{ $k->nama_lengkap }}</span><a>{{ $k->status_hubungan_dalam_keluarga }}</a></div>
+	                                            <div class="media-body"><span class="d-block">{{ $k->nama_lengkap }}</span><a>{{ $k->hubungans->status_hubungan }}</a></div>
 	                                        </div>
                                             @endforeach
 	                                    </div>

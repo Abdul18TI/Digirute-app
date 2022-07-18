@@ -331,6 +331,21 @@
                                             <input class="form-control " type="number" id="no_hp_warga" name="no_hp_warga" value="{{ old('no_hp_warga') }}" placeholder="">
                                         </div>
                                     </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-3 col-form-label">Jenis Warga <span class="text-danger">*</span></label>
+                                        <div class="col-sm-9">
+                                            <div class="form-group mt-2 m-checkbox-inline mb-0 custom-radio-ml">
+                                                <div class="radio radio-primary">
+                                                    <input id="1w" type="radio" name="jenis_warga" value="1" {{ old('jenis_warga') == 1 ? "checked" : ""}}>
+                                                    <label class="mb-0" for="1w">Tetap</label>
+                                                </div>
+                                                <div class="radio radio-primary">
+                                                    <input id="2w" type="radio" name="jenis_warga" value="0" {{ old('jenis_warga') == 0 ? "checked" : ""}}>
+                                                    <label class="mb-0" for="2w">Tidak tetap</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

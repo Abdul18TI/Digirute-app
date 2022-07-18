@@ -105,6 +105,7 @@ class WargaController extends Controller
             'foto_warga' => 'image|file|max:4095', //
             'email_warga' => 'required',
             'no_hp_warga' => 'required',
+            'jenis_warga' => 'required',
             'rt' => 'required|nullable',
             'rw' => 'required|nullable'
         ]);
@@ -196,6 +197,7 @@ class WargaController extends Controller
             'kelainan' => 'nullable', //
             'email_warga' => 'required',
             'no_hp_warga' => 'required',
+            'jenis_warga' => 'required',
             'rt' => 'required|nullable',
             'rw' => 'required|nullable'
         ]);
@@ -214,7 +216,7 @@ class WargaController extends Controller
     {
         //
         $warga = Warga::with(['identitas_rws', 'rt_rel', 'pekerjaan', 'agamas', 'pendidikans', 'golongan_darahs'])->where('id_warga', $id)->first();
-        // dd($warga->pendidikans->nama_pendidikan);
+        // dd($warga->email_warga);
 
         return view('RT.Warga.detail_warga', [
             'warga' => $warga,

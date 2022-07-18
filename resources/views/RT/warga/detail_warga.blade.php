@@ -186,7 +186,7 @@
                             <div class="col-sm-6 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label">Tanggal akhir passport</label>
-                                    <input class="form-control" type="text" disabled value="{{ $warga->tgl_akhir_passport }}" />
+                                    <input class="form-control" type="text" disabled value="{{ tanggal_indo($warga->tgl_akhir_passport) }}" />
                                 </div>
                             </div>
                             <div class="col-sm-6 col-md-6">
@@ -225,13 +225,13 @@
                             <div class="col-sm-6 col-md-4">
                                 <div class="mb-3">
                                     <label class="form-label">Tanggal keluar KK</label>
-                                    <input class="form-control" type="text" disabled value="{{ $warga->tgl_keluar_kk }}" />
+                                    <input class="form-control" type="text" disabled value="{{ tanggal_indo($warga->tgl_keluar_kk) }}" />
                                 </div>
                             </div>
                             <div class="col-sm-6 col-md-4">
                                 <div class="mb-3">
                                     <label class="form-label">Tanggal perkawinan</label>
-                                    <input class="form-control" type="text" disabled value="{{ $warga->tgl_perkawinan }}" />
+                                    <input class="form-control" type="text" disabled value="{{ tanggal_indo($warga->tgl_perkawinan) }}" />
                                 </div>
                             </div>
                             <div class="col-sm-6 col-md-4">
@@ -251,7 +251,7 @@
                             <div class="col-sm-6 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label">Tanggal cerai</label>
-                                    <input class="form-control" type="text" disabled value="{{ $warga->tgl_cerai }}" />
+                                    <input class="form-control" type="text" disabled value="{{ tanggal_indo($warga->tgl_cerai) }}" />
                                 </div>
                             </div>
                             @else
@@ -266,7 +266,7 @@
                             <div class="col-sm-6 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label">Tanggal kelahiran</label>
-                                    <input class="form-control" type="text" disabled value="{{ $warga->tgl_kelahiran }}" />
+                                    <input class="form-control" type="text" disabled value="{{ tanggal_indo($warga->tgl_lahir) }}" />
                                 </div>
                             </div>
                             {{-- Line --}}
@@ -283,7 +283,7 @@
                              <div class="col-sm-6 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label">Email</label>
-                                    <input class="form-control" type="text" disabled value="{{ $warga->email }}" />
+                                    <input class="form-control" type="text" disabled value="{{ $warga->email_warga }}" />
                                 </div>
                             </div>
                             <div class="col-sm-6 col-md-6">
