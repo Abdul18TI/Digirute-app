@@ -60,7 +60,8 @@
                                             <h6>Lampiran</h5>
                                                 <div class="single-blog-content-top txt-dark">
                                                     <p class="text-center">
-                                                        <img class="img-fluid w-75 "
+                                                        
+                                                        <img class="img-thumbnail w-50"
                                                             src="{{ asset('storage/' . $kegiatan->foto_kegiatan) }}"
                                                             alt="Foto {{ $kegiatan->nama_kegiatan }} " />
                                                     </p>

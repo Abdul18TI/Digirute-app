@@ -18,7 +18,7 @@ class KegiatanSeeder extends Seeder
         Kegiatan::create([
             'id_kegiatan' => NULL,
             'nama_kegiatan' => 'Kegiatan galang dana untuk Masjid Baitul Muqtamar',
-            'kategori_kegiatan' => '6',
+            'kategori_kegiatan' => '1',
             'id_penanggung_jawab' => '1',
             'penanggung_jawab' => 'RW',
             'isi_kegiatan' => '
@@ -63,7 +63,7 @@ class KegiatanSeeder extends Seeder
         Kegiatan::create([
             'id_kegiatan' => NULL,
             'nama_kegiatan' => 'Galang dana untuk membantu Sdri. Iis Setia',
-            'kategori_kegiatan' => '6',
+            'kategori_kegiatan' => '2',
             'id_penanggung_jawab' => '1',
             'penanggung_jawab' => 'RW',
             'isi_kegiatan' => '
@@ -89,7 +89,7 @@ class KegiatanSeeder extends Seeder
             
             ',
             'foto_kegiatan' => 'gambar-kegiatan/JXR3UD2gjg3QaVHM1HTEiEJKn7k4ZpSPiJCzMCnM.jpg',
-            'status_kegiatan' => '1',
+            'status_kegiatan' => '3',
             'tgl_mulai_kegiatan' => '2022-07-28 08:45:00',
             'tgl_selesai_kegiatan' => '2022-07-28 08:45:00',
             'created_at' => '2022-07-17 01:46:17',
@@ -128,7 +128,7 @@ class KegiatanSeeder extends Seeder
             'nama_kegiatan' => 'Kegiatan Pemeriksaan Kesehatan Gratis',
             'kategori_kegiatan' => '5',
             'id_penanggung_jawab' => '1',
-            'penanggung_jawab' => 'RW',
+            'penanggung_jawab' => 'RT',
             'isi_kegiatan' => '
              Assallamu\'alaikum Wr. Wb.
             Puji syukur kehadirat Allah SWT yang mana telah melimpahkan nikmat kesehatan sehingga kita semua masih bisa melakukan aktivitas sehari-hari dengan lancar, dan semoga apa yang kita lakukan selalu dalam lindungan Allah SWT Amin... 
@@ -145,7 +145,7 @@ class KegiatanSeeder extends Seeder
             
              Wassallamu\'alaikum Wr. Wb. ',
             'foto_kegiatan' => 'gambar-kegiatan/wZRl4WEiezpQVt0XCCdEpkTGylaqw4EXc5ZQognr.jpg',
-            'status_kegiatan' => '1',
+            'status_kegiatan' => '2',
             'tgl_mulai_kegiatan' => '2022-07-30 08:53:00',
             'tgl_selesai_kegiatan' => '2022-08-06 08:53:00',
             'created_at' => '2022-07-17 01:54:27',
@@ -156,9 +156,9 @@ class KegiatanSeeder extends Seeder
         Kegiatan::create([
             'id_kegiatan' => NULL,
             'nama_kegiatan' => '17 Agustus RW 01',
-            'kategori_kegiatan' => '6',
+            'kategori_kegiatan' => '5',
             'id_penanggung_jawab' => '1',
-            'penanggung_jawab' => 'RW',
+            'penanggung_jawab' => 'RT',
             'isi_kegiatan' => '
              Assallamu\'alaikum Wr. Wb.
             Puji syukur kehadirat Allah SWT yang mana telah melimpahkan nikmat kesehatan sehingga kita semua masih bisa melakukan aktivitas sehari-hari dengan lancar, dan semoga apa yang kita lakukan selalu dalam lindungan Allah SWT Amin... 
