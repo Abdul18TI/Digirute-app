@@ -1,11 +1,11 @@
-@extends('layouts.main-rw')
+@extends('layouts.main-rt')
 
 @section('container')
-@component('components.r-w.breadcrumb')
+@component('components.r-t.breadcrumb')
         @slot('breadcrumb_title')
         <h3>Profile</h3>
         @endslot
-        <li class="breadcrumb-item"><a href="{{ route('rw.profile.show',$rw->id_rw) }}">Profile-RW</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('rt.profileRT.show',$rt->id_rt) }}">Profile-RW</a></li>
         <li class="breadcrumb-item active">Profile</li>
     @endcomponent
   <!-- Form Tambah Warga -->
@@ -20,8 +20,8 @@
                 <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
               </div>
               @endif
-              <div class="card">
-                <form class="form theme-form" method="post" action="{{ route('rw.profile.update',$warga->id_warga) }}">
+            <div class="card">
+                <form class="form theme-form" method="post" action="{{ route('rt.profileRT.update',$warga->id_warga) }}">
                     @csrf
                     @method('put')
                     <div class="card-body">
@@ -29,8 +29,11 @@
                             <div class="col">
                                 <div class="mb-3 row">
                                     <label class="col-sm-3 col-form-label">RT/RW</label>
-                                    <div class="col-sm-9">
-                                        <input class="form-control" type="text" id="rw" name="rw" readonly placeholder="RW" value="{{ auth()->user()->no_rw }}">
+                                    <div class="col-sm-5">
+                                        <input class="form-control" type="text" id="rw" name="rw" readonly placeholder="RW" value="{{ auth()->user()->rw_rel->no_rw }}">
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <input class="form-control " type="text" id="rt" name="rt" readonly placeholder="RT" value="{{ auth()->user()->no_rt}}">
                                     </div>
                                 </div>
                                 <div class="mb-3 row">

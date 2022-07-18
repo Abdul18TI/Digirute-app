@@ -31,13 +31,13 @@
 								@else
 								<div class="avatar"><img class="img-fluid" alt="" src="{{ asset('storage/' . $rw->identitas_rw->foto_warga) }}" /></div>
 								@endif
-	                            <a class="icon-wrapper" href="{{route('rw.profile.edit',$rw->identitas_rw->id_warga)}}"><i class="icofont icofont-pencil-alt-5"></i></a>
+	                            <a class="icon-wrapper" href="{{route('rw.profile.edit',$rw->id_rw)}}"><i class="icofont icofont-pencil-alt-5"></i></a>
 	                        </div>
 	                        <div class="user-designation">
 	                            <div class="title">
 	                                <a target="_blank" href="">
 	                                    <h4>{{ $rw->identitas_rw->nama_lengkap }}</h4>
-	                                    <h6>RW 0{{ $rw->no_rw }}</h6>
+	                                    <h6>RW {{ $rw->no_rw }}</h6>
 	                                </a>
 	                            </div>
 	                        </div>
@@ -172,7 +172,7 @@
                                                 @else
                                                 <img class="img-50 img-fluid m-r-20 rounded-circle" alt="" src="{{ asset('storage/' . $k->foto_warga) }}" />
                                                 @endif
-	                                            <div class="media-body"><span class="d-block">{{ $k->nama_lengkap }}</span><a>{{ $k->status_hubungan_dalam_keluarga }}</a></div>
+	                                            <div class="media-body"><span class="d-block">{{ $k->nama_lengkap }}</span><a>{{ $k->hubungans->status_hubungan }}</a></div>
 	                                        </div>
                                             @endforeach
 	                                    </div>

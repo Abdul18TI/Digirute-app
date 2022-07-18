@@ -22,7 +22,8 @@ class ProfileWargaController extends Controller
     {
         $warga = Warga::where('id_warga', $id)->first();
         // dd($rw);
-        $keluarga = Warga::where('no_kk', $warga->no_kk)->whereNotIn('nik', [$warga->nik])->get();
+        $keluarga = Warga::with('hubungans')->where('no_kk', $warga->no_kk)->whereNotIn('nik', [$warga->nik])->get();
+        // dd($keluarga);
 
         return view('Warga.Profile.profile-warga-tes', [
             'warga' => $warga,
@@ -41,7 +42,7 @@ class ProfileWargaController extends Controller
         $datakel = Kelurahan::all();
         $datapro = Provinsi::all();
         // dd($profile);
-        // $rw = rw::with('identitas_rw')->where('id_rw', $id)->get();
+        // $rw = rw::with('identitas_rw')->where('id_warga', $id)->get();
         // $datadiri = Warga::where('id_warga', $rw->identitas_rw->id_warga)->firtst();
         return view('Warga.Profile.edit_profile_warga', [
             'warga' => $profilewarga,
@@ -63,9 +64,9 @@ class ProfileWargaController extends Controller
             $validatedData = $request->validate([
                 'username' => 'required|unique:rws,username'
             ]);
-            Warga::where('id_rw', $request->id)
+            Warga::where('id_warga', $request->id)
                 ->update($validatedData);
-            return redirect()->route('rw.profile.index')->with('success', 'Username berhasil diubah!');
+            return redirect()->route('warga.profilewarga.show', $profilewarga->id_warga)->with('success', 'Username berhasil diubah!');
         }
 
         if ($request->password) {
@@ -73,9 +74,9 @@ class ProfileWargaController extends Controller
                 'password' => 'required'
             ]);
             $validatedData['password'] = Hash::make($request->password);
-            Warga::where('id_rw', $request->id)
+            Warga::where('id_warga', $request->id)
                 ->update($validatedData);
-            return redirect()->route('rw.profile.index')->with('success', 'Password berhasil diubah!');
+            return redirect()->route('warga.profilewarga.show', $profilewarga->id_warga)->with('success', 'Password berhasil diubah!');
         }
 
         $validatedData = $request->except(['_token', '_method']);
@@ -132,6 +133,6 @@ class ProfileWargaController extends Controller
 
         warga::where('id_warga', $profilewarga->id_warga)
             ->update($validatedData);
-        return redirect()->route('rw.profile.index')->with('success', 'Data berhasil diubah!');
+        return redirect()->route('warga.profilewarga.show', $profilewarga->id_warga)->with('success', 'Data berhasil diubah!');
     }
 }

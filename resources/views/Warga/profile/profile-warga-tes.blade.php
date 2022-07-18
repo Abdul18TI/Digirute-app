@@ -103,10 +103,10 @@
 	                                </div>
 	                                <div class="collapse" id="collapseicon3" aria-labelledby="collapseicon3" data-parent="#accordion">       
 										<div class="col-xl-12">
-											<form class="card" method="post" action="/RW/profile/{{ $warga->id_rw }}">
+											<form class="card" method="post" action="{{ route('warga.profilewarga.update',$warga->id_warga) }}">
 												@method('PUT')  
                         						@csrf
-												<input type="hidden" name="id" value="{{ $warga->id_rw }}">
+												<input type="hidden" name="id" value="{{ $warga->id_warga }}">
 													<div class="card-body">
 														<div class="row">
 															<div class="col-md-12">
@@ -129,10 +129,10 @@
 	                                </div>
 	                                <div class="collapse" id="collapseicon4" aria-labelledby="collapseicon4" data-parent="#accordion">
 	                                    <div class="col-xl-12">
-											<form class="card" method="post" action="/RW/profile/{{ $warga->id_rw }}">
+											<form class="card" method="post" action="/Warga/profilewarga/{{ $warga->id_rw }}">
 												@method('PUT')  
                         						@csrf
-												<input type="hidden" name="id" value="{{ $warga->id_rw }}">
+												<input type="hidden" name="id" value="{{ $warga->id_warga }}">
 													<div class="card-body">
 														<div class="row">
 															<div class="col-md-12">
@@ -172,7 +172,7 @@
                                                 @else
                                                 <img class="img-50 img-fluid m-r-20 rounded-circle" alt="" src="{{ asset('storage/' . $k->foto_warga) }}" />
                                                 @endif
-	                                            <div class="media-body"><span class="d-block">{{ $k->nama_lengkap }}</span><a>{{ $k->status_hubungan_dalam_keluarga }}</a></div>
+	                                            <div class="media-body"><span class="d-block">{{ $k->nama_lengkap }}</span><a>{{ $k->hubungans->status_hubungan }}</a></div>
 	                                        </div>
                                             @endforeach
 	                                    </div>

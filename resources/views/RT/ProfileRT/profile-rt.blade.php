@@ -31,13 +31,13 @@
 								@else
 								<div class="avatar"><img class="img-fluid" alt="" src="{{ asset('storage/' . $rt->identitas_rt->foto_warga) }}" /></div>
 								@endif
-	                            <a class="icon-wrapper" href="{{route('rt.profileRT.edit',$rt->identitas_rt->id_warga)}}"><i class="icofont icofont-pencil-alt-5"></i></a>
+	                            <a class="icon-wrapper" href="{{route('rt.profileRT.edit',$rt->id_rt)}}"><i class="icofont icofont-pencil-alt-5"></i></a>
 	                        </div>
 	                        <div class="user-designation">
 	                            <div class="title">
 	                                <a target="_blank" href="">
 	                                    <h4>{{ $rt->identitas_rt->nama_lengkap }}</h4>
-	                                    <h6>RT 0{{ $rt->no_rt }}</h6>
+	                                    <h6>RT {{ $rt->no_rt }}</h6>
 	                                </a>
 	                            </div>
 	                        </div>
@@ -103,7 +103,7 @@
 	                                </div>
 	                                <div class="collapse" id="collapseicon3" aria-labelledby="collapseicon3" data-parent="#accordion">       
 										<div class="col-xl-12">
-											<form class="card" method="post" action="/RT/profile/{{ $rt->id_rt }}">
+											<form class="card" method="post" action="/RT/profileRT/{{ $rt->id_rt }}">
 												@method('PUT')  
                         						@csrf
 												<input type="hidden" name="id" value="{{ $rt->id_rt }}">
@@ -129,7 +129,7 @@
 	                                </div>
 	                                <div class="collapse" id="collapseicon4" aria-labelledby="collapseicon4" data-parent="#accordion">
 	                                    <div class="col-xl-12">
-											<form class="card" method="post" action="/RT/profile/{{ $rt->id_rt }}">
+											<form class="card" method="post" action="/RT/profileRT/{{ $rt->id_rt }}">
 												@method('PUT')  
                         						@csrf
 												<input type="hidden" name="id" value="{{ $rt->id_rt }}">

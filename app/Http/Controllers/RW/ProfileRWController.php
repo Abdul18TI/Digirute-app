@@ -7,33 +7,35 @@ use App\Http\Controllers\Controller;
 use App\Models\rw;
 use App\Models\Warga;
 use App\Models\Pekerjaan;
+use App\Models\Pendidikan;
 use App\Models\Kabupaten;
 use App\Models\Kecamatan;
 use App\Models\Kelurahan;
 use App\Models\Provinsi;
+use App\Models\Status_hubungan;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
 
 class ProfileRWController extends Controller
 {
-    public function index()
-    {
-        $rw = rw::with('identitas_rw')->first();
+    // public function index()
+    // {
+    //     $rw = rw::with('identitas_rw')->first();
 
-        $keluarga = Warga::where('no_kk', $rw->identitas_rw->no_kk)->whereNotIn('nik', [$rw->identitas_rw->nik])->get();
-        // dd($rw);
+    //     $keluarga = Warga::where('no_kk', $rw->identitas_rw->no_kk)->whereNotIn('nik', [$rw->identitas_rw->nik])->get();
+    //     // dd($rw);
 
-        return view('RW.ProfileRW.profile-rw-tes', [
-            'rw' => $rw,
-            'keluarga' => $keluarga,
-            "title" => "profile-rw"
-        ]);
-    }
+    //     return view('RW.ProfileRW.profile-rw-tes', [
+    //         'rw' => $rw,
+    //         'keluarga' => $keluarga,
+    //         "title" => "profile-rw"
+    //     ]);
+    // }
 
     public function show($id)
     {
         $rw = rw::with('identitas_rw')->where('id_rw', $id)->first();
-        // dd($rw);
+        // dd($r\w->id_rw);
         $keluarga = Warga::where('no_kk', $rw->identitas_rw->no_kk)->whereNotIn('nik', [$rw->identitas_rw->nik])->get();
 
         return view('RW.ProfileRW.profile-rw-tes', [
@@ -43,26 +45,32 @@ class ProfileRWController extends Controller
         ]);
     }
 
-    public function edit($rws)
+    public function edit(rw $profile)
     {
         $data = Pekerjaan::all();
+        $hubungan = Status_hubungan::all();
+        $pendidikan = Pendidikan::all();
         $datakab = Kabupaten::all();
         $datakec = Kecamatan::all();
         $datakel = Kelurahan::all();
         $datapro = Provinsi::all();
-        $profile = rw::with('identitas_rw')->where('id_rw', $rws)->first();
+        // dd($profileRT);
+        // $rt = rt::with('identitas_rt')->where('id_rt', $profileRT->id_warga)->get();
+        $rw = Warga::where('id_warga', $profile->id_warga)->first();
         // dd($profile);
         // $rw = rw::with('identitas_rw')->where('id_rw', $id)->get();
         // $datadiri = Warga::where('id_warga', $rw->identitas_rw->id_warga)->firtst();
         return view('RW.profileRW.edit_profile', [
-            'warga' => $profile,
+            'rw' => $profile,
+            'warga' => $rw,
             'pekerjaan' => $data,
+            'hubungan' => $hubungan,
+            'pendidikan' => $pendidikan,
             'kabupaten' => $datakab,
             'kecamatan' => $datakec,
             'kelurahan' => $datakel,
             'provinsi' => $datapro,
-            // 'kategori_pengumuman' => Warga::all(),
-            'title' => 'edit-pengumuman'
+            'title' => 'edit-profile'
         ]);
     }
 
@@ -75,7 +83,7 @@ class ProfileRWController extends Controller
             ]);
             rw::where('id_rw', $request->id)
                 ->update($validatedData);
-            return redirect()->route('rw.profile.index')->with('success', 'Username berhasil diubah!');
+            return redirect()->route('rw.profile.show', $request->id)->with('success', 'Username berhasil diubah!');
         }
 
         if ($request->password) {
@@ -85,7 +93,7 @@ class ProfileRWController extends Controller
             $validatedData['password'] = Hash::make($request->password);
             rw::where('id_rw', $request->id)
                 ->update($validatedData);
-            return redirect()->route('rw.profile.index')->with('success', 'Password berhasil diubah!');
+            return redirect()->route('rw.profile.show', $request->id)->with('success', 'Password berhasil diubah!');
         }
 
         $validatedData = $request->except(['_token', '_method']);
@@ -113,7 +121,6 @@ class ProfileRWController extends Controller
             'golongan_darah' => 'required',
             'pendidikan' => 'required',
             'pekerjaan' => 'required',
-            'status_hubungan' => 'required', //
             'status_perkawinan' => 'required', //
             'tgl_perkawinan' => 'nullable|date', //
             'akta_kawin' => 'nullable|numeric', //
@@ -130,7 +137,6 @@ class ProfileRWController extends Controller
             'kelainan' => 'nullable', //
             'email_warga' => 'required',
             'no_hp_warga' => 'required',
-            'rt' => 'required|nullable',
             'rw' => 'required|nullable'
         ]);
 
@@ -143,6 +149,6 @@ class ProfileRWController extends Controller
 
         warga::where('id_warga', $warga->id_warga)
             ->update($validatedData);
-        return redirect()->route('rw.profile.index')->with('success', 'Data berhasil diubah!');
+        return redirect()->route('rw.profile.show', $request->id)->with('success', 'Data berhasil diubah!');
     }
 }
