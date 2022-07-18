@@ -19,7 +19,7 @@ class Surat extends Model
     protected $with = ['wargas'];
     public function wargas()
     {
-        return $this->belongsTo(Warga::class, 'pengaju', 'id_warga')->select('nik','no_kk','id_warga','nama_lengkap', 'jenis_kelamin', 'pekerjaan', 'agama', 'tempat_lahir', 'tgl_lahir', 'alamat','tempat_lahir');
+        return $this->belongsTo(Warga::class, 'pengaju', 'id_warga')->select('nik','no_kk','id_warga','nama_lengkap', 'jenis_kelamin', 'pekerjaan', 'agama', 'tempat_lahir', 'tgl_lahir', 'alamat');
     }
     // public function rts()
     // {

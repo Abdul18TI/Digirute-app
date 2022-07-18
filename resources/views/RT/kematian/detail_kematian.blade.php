@@ -103,7 +103,7 @@
                       id="agama"
                       name="agama"
                       placeholder="Agama"
-                      value="{{ $kematian->wargas->agama }}"
+                      value="{{ $kematian->wargas->agamas->agama }}"
                       disabled>
                   </div>
                 </div>
@@ -248,7 +248,23 @@
                       id="nama_pelapor"
                       name="nama_pelapor"
                       placeholder="Pelapor"
-                      value="{{ $kematian->nama_pelapor }}"
+                      value="{{ ucwords($kematian->nama_pelapor) }}"
+                      disabled>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="mb-3">
+                    <label class="form-label"
+                      for="hubungan_jenazah">Hubungan Pelapor Terhadap Jenazah</label>
+                    <input class="form-control"
+                      name="hubungan_jenazah"
+                      type="text"
+                      id="hubungan_jenazah"
+                      name="hubungan_jenazah"
+                      placeholder="Pelapor"
+                      value="{{ ucwords($kematian->hubungan_jenazah) }}"
                       disabled>
                   </div>
                 </div>
@@ -258,13 +274,13 @@
                   <div class="mb-3">
                     <label class="form-label"
                       for="tempat_lahir_pelapor">Tempat Tanggal Lahir</label>
-                    <input class="form-control 
+                    <input class="form-control" 
                       name="tempat_lahir_pelapor"
                       type="text"
                       id="tempat_lahir_pelapor"
                       name="tempat_lahir_pelapor"
                       placeholder="Tanggal Lahir"
-                      value="{{ $kematian->tempat_lahir_pelapor }}"
+                      value="{{ ucwords($kematian->tempat_lahir_pelapor) }}"
                       disabled>
                   </div>
                 </div>

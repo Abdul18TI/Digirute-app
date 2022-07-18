@@ -70,7 +70,7 @@ class WargaMeninggalController extends Controller
             'nik.exists'    => 'NIK tidak terdaftar',
             'warga.unique'    => 'Data ini sudah terdata meninggal dunia',
         ]);
-        $dataentry = $request->only('warga', 'sebab_kematian', 'tempat_kematian', 'tgl_kematian', 'nik_pelapor', 'nama_pelapor', 'tempat_lahir_pelapor', 'tgl_lahir_pelapor');
+        $dataentry = $request->only('warga', 'sebab_kematian', 'tempat_kematian', 'tgl_kematian', 'nik_pelapor', 'hubungan_jenazah', 'nama_pelapor', 'tempat_lahir_pelapor', 'tgl_lahir_pelapor');
         $dataWargaSame = Warga::find($request->warga);
         if (is_null($dataWargaSame)) {
             return redirect()->route('rt.kematian.tambah')

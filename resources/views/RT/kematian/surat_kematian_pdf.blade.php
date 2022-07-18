@@ -69,7 +69,7 @@
       <tr>
         <td class="judul">Agama</td>
         <td class="titik">:</td>
-        <td>{{ strtoupper($kematian->wargas->agama) }}</td>
+        <td>{{ strtoupper($kematian->wargas->agamas->agama) }}</td>
       </tr>
       <tr>
         <td class="judul">Pekerjaan</td>
@@ -113,6 +113,11 @@
         <td class="judul">Nama</td>
         <td class="titik">:</td>
         <td>{{ strtoupper($kematian->nama_pelapor) }}</td>
+      </tr>
+      <tr>
+        <td class="judul">Status Hubungan Terhadap Jenazah</td>
+        <td class="titik">:</td>
+        <td>{{ strtoupper($kematian->hubungan_jenazah) }}</td>
       </tr>
       <tr>
         <td class="judul">Tempat Tanggal Lahir</td>

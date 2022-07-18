@@ -16,7 +16,6 @@ class PengumumanRTController extends Controller
 
         return view('RT.Pengumuman.tabel_pengumuman', [
             'pengumuman' => $pengumuman,
-            "title" => "tabel-pengumuman"
         ]);
     }
 
@@ -25,7 +24,6 @@ class PengumumanRTController extends Controller
         $kategori_pengumuman = KategoriPengumuman::all();
         return view('RT.Pengumuman.tambah_pengumuman', [
             'kategori_pengumuman' => $kategori_pengumuman,
-            'title' => 'tambah-pengumuman'
         ]);
     }
 
@@ -63,7 +61,6 @@ class PengumumanRTController extends Controller
         return view('RT.Pengumuman.edit_pengumuman', [
             'pengumuman' => $pengumuman,
             'kategori_pengumuman' => KategoriPengumuman::all(),
-            'title' => 'edit-pengumuman'
         ]);
     }
 
@@ -108,7 +105,6 @@ class PengumumanRTController extends Controller
         $pengumuman = Pengumuman::with('Kategori_pengumumans')->find($id);
         return view('RT.Pengumuman.detail_pengumuman', [
             'pengumuman' => $pengumuman,
-            'title' => 'detail-pengumuman'
         ]);
     }
 

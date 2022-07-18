@@ -194,20 +194,7 @@
                                     $test =$surat->propertie_surat->jenis_surat;
                                 @endphp
                                 <div class="row justify-content-center">
-                                    {{-- <li><i class="fa fa-caret-right txt-secondary m-r-10"></i>{!! setJenisSuratKeterangan($jenis_surat) !!}</li> --}}
-                                    {{-- @endforeach --}}
-                                    {{--                                 
-                                        {{dd($surat->propertie_surat->jenis_surat[0])}}
-                                        {{dd(setJenisSuratKeterangan($surat->propertie_surat->jenis_surat[0]))}} --}}
-                                       {{-- @php
-                                           dd($surat->propertie_surat->jenis_surat);
-                                       @endphp --}}
                                         @foreach (setJenisSuratKeterangan() as $key => $value)
-                                        {{-- @foreach ($surat->propertie_surat)
-                                        @endforeach --}}
-                                       {{-- @foreach ($surat->propertie_surat->jenis_surat as $tes)
-                                        @php var_dump($tes) @endphp
-                                    @endforeach --}}
                                    @php
                                        $check = $key == in_array($key,$test) ? 'checked' : '';
                                    @endphp  
