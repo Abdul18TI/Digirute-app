@@ -6,6 +6,8 @@ use App\Models\Surat;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Warga;
+use App\Models\WargaMeninggal;
+use PDF;
 use PDO;
 
 class SuratRTController extends Controller
@@ -34,11 +36,10 @@ class SuratRTController extends Controller
             $this->tolakSuratKeterangan($surat);
             return redirect()->route('rt.surat.index')->with('success', 'Surat ditolak!');
         }
-        // $this->approveSuratKeterangan($surat);
     }
     public function approveSuratKeterangan(Surat $surat)
     {
-        $surat->update(['status_surat' => 1, 'nomor_surat' => $this->CreateNomorSurat()]);
+        $surat->update(['status_surat' => 1, 'nomor_surat' => CreateNomorSurat('SKM')]);
     }
 
     public function tolakSuratKeterangan(Surat $surat)
@@ -46,30 +47,40 @@ class SuratRTController extends Controller
         $surat->update(['status_surat' => 2]);
     }
 
-    function CreateNomorSurat()
+    public function printSuratKeterangan(Surat $surat)
     {
-        $no_rt = auth()->user()->no_rt;
-        $no_rw = auth()->user()->rw_rel->no_rw;
-        $jenis_surat = 'SKM';
-        $tanggal_romawi = getRomawi(now()->month);
-        $tahun = now()->year;
-        $surat = Surat::selectRaw('RIGHT(nomor_surat,4) as tahun ,MAX(nomor_surat) as nomor_surat')
-            ->where('rt', auth()->user()->id_rt)
-            ->where('nomor_surat', 'like', '%RT' . $no_rt . '%')
-            ->groupBy('tahun')
-            ->having('tahun', $tahun)
-            ->toBase()
-            ->first();
-        // echo $surat;
-        if ($surat) {
-            //Jika Nomor Surat Sudah Ada
-            $nomorUrut = explode("/", $surat->nomor_surat)[0];
-            $nomorSurat = '';
-            $nomorSurat = sprintf("%03s", ++$nomorUrut) . "/RT${no_rt}/RW${no_rw}/${jenis_surat}/${tanggal_romawi}/${tahun}";;
-        } else {
-            //Jika Nomor Surat Belum Ada
-            $nomorSurat = "001/RT${no_rt}/RW${no_rw}/${jenis_surat}/${tanggal_romawi}/${tahun}";
+        //
+
+        $surat = $surat;
+        // dd($surat);
+        //jika data tidak ditemukan
+        if (!$surat) {
+            return redirect()->route('rt.surat.index')
+            ->with('error', 'Print Gagal! Data tidak temukan');
         }
-        return $nomorSurat;
+
+        // $data = $dataKematian->get();
+        $surat['rt'] = auth()->user();
+        $surat['rw'] = auth()->user()->rw_rel;
+        // dd($surat);
+        // dd($dataKematian['rt']);
+        //    return view('rt.surat.surat_keterangan_pdf', ['surat' => $surat]);
+        $pdf = PDF::loadview('rt.surat.surat_keterangan_pdf', ['surat' => $surat]);
+        return $pdf->stream();
+        // $dataKematian = WargaMeninggal::find('1');
+
+        // //jika data tidak ditemukan
+        // if (!$dataKematian) {
+        //     return redirect()->route('rt.kematian.index')
+        //     ->with('error', 'Print Gagal! Data tidak temukan');
+        // }
+
+        // // $data = $dataKematian->get();
+        // $dataKematian['rt'] = auth()->user();
+        // $dataKematian['rw'] = auth()->user()->rw_rel;
+        // // dd($dataKematian['rt']);
+        // //    return view('rt.kematian.surat_kematian_pdf', ['kematian' => $dataKematian]);
+        // $pdf = PDF::loadview('rt.kematian.surat_kematian_pdf', ['kematian' => $dataKematian]);
+        // return $pdf->stream();
     }
 }

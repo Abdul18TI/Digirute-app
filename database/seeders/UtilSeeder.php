@@ -17,9 +17,6 @@ class UtilSeeder extends Seeder
         DB::table('jenis_iuran')->insert([
             'nama_jenis_iuran' => 'Kebersihan'
         ]);
-        DB::table('kategori_kegiatan')->insert([
-            'kategori_kegiatan' => 'Urgent'
-        ]);
         DB::table('kategori_pengumuman')->insert([
             'nama_kategori_pengumuman' => 'Umum'
         ]);

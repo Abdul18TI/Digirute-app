@@ -16,6 +16,8 @@ class CreatePengumumanTable extends Migration
         Schema::create('pengumuman', function (Blueprint $table) {
             $table->id('id_pengumuman');
             $table->foreignId('kategori_pengumuman');
+            $table->foreignId('id_penanggung_jawab');
+            $table->string('penanggung_jawab');
             $table->string('judul_pengumuman');
             $table->text('isi_pengumuman');
             $table->string('foto_pengumuman')->nullable();

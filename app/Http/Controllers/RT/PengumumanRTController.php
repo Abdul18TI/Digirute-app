@@ -16,7 +16,6 @@ class PengumumanRTController extends Controller
 
         return view('RT.Pengumuman.tabel_pengumuman', [
             'pengumuman' => $pengumuman,
-            "title" => "tabel-pengumuman"
         ]);
     }
 
@@ -25,7 +24,6 @@ class PengumumanRTController extends Controller
         $kategori_pengumuman = KategoriPengumuman::all();
         return view('RT.Pengumuman.tambah_pengumuman', [
             'kategori_pengumuman' => $kategori_pengumuman,
-            'title' => 'tambah-pengumuman'
         ]);
     }
 
@@ -43,11 +41,13 @@ class PengumumanRTController extends Controller
             $validatedData['foto_pengumuman'] = $request->file('foto_pengumuman')->store('gambar-pengumuman');
         }
 
-        $validatedData['status_pengumuman'] = 1;
+        $validatedData['status_pengumuman'] =1;
+        $validatedData['penanggung_jawab'] = 'RT';
+        $validatedData['id_penanggung_jawab'] = auth()->id();
 
+        // dd();
         try {
             Pengumuman::create($validatedData);
-
             return redirect()->route('rt.pengumuman.index')
                 ->with('success', 'Data berhasil ditambah!');
         } catch (\Exception $e) {
@@ -61,7 +61,6 @@ class PengumumanRTController extends Controller
         return view('RT.Pengumuman.edit_pengumuman', [
             'pengumuman' => $pengumuman,
             'kategori_pengumuman' => KategoriPengumuman::all(),
-            'title' => 'edit-pengumuman'
         ]);
     }
 
@@ -74,6 +73,8 @@ class PengumumanRTController extends Controller
             'foto_pengumuman' => 'image|file|max:4095',
             'tgl_terbit' => 'required'
         ]);
+        $validatedData['penanggung_jawab'] = 'RT';
+        $validatedData['id_penanggung_jawab'] = auth()->id();
 
         if ($request->file('foto_pengumuman')) {
             Storage::delete($request->oldImage);
@@ -87,12 +88,6 @@ class PengumumanRTController extends Controller
 
     public function destroy(Pengumuman $pengumuman)
     {
-        // $pengumuman->delete();
-        // if ($pengumuman->foto_pengumuman) {
-        //     Storage::delete($pengumuman->foto_pengumuman);
-        // }
-        // return redirect()->route('rw.pengumuman.index');
-
         try {
             $pengumuman->delete();
             if ($pengumuman->foto_pengumuman) {
@@ -110,7 +105,6 @@ class PengumumanRTController extends Controller
         $pengumuman = Pengumuman::with('Kategori_pengumumans')->find($id);
         return view('RT.Pengumuman.detail_pengumuman', [
             'pengumuman' => $pengumuman,
-            'title' => 'detail-pengumuman'
         ]);
     }
 

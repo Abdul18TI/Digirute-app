@@ -62,7 +62,7 @@
                                 <article class="mt-0 text-light">{!! Str::limit($kegiatan[0]->isi_kegiatan, 100) !!}</article>
                                 <div class="mt-3 pull-right">
                                     <a href="kegiatan_warga/{{ $kegiatan[0]->id_kegiatan }}"
-                                        class="btn btn-square btn-sm btn-secondary pull-right" type="button">Baca
+                                        class="btn  btn-sm btn-secondary pull-right" type="button">Baca
                                         Selengkapnya</a>
                                 </div>
                             </div>
@@ -91,7 +91,7 @@
                                         </div>
                                         <div class="col-xl-6 col-12">
                                             <div class="blog-details">
-                                                <div class="blog-date">{{ tanggal_indo($k->tgl_mulai_kegiatan) }}</div>
+                                                <div class="blog-date mt-1">{{ tanggal_indo($k->tgl_mulai_kegiatan) }}</div>
                                                 <a href="kegiatan_warga/{{ $k->id_kegiatan }}">
                                                     <h6>{{ $k->nama_kegiatan }}</h6>
                                                 </a>
@@ -108,10 +108,11 @@
                                                     </ul>
                                                     <hr />
                                                     <article class="mt-0 text-dark">{!! Str::limit($k->isi_kegiatan, 100) !!}.</article>
-                                                    <div class="pull-right  my-3">
+                                                    <div class="pull-right mt-3">
                                                         <a href="kegiatan_warga/{{ $k->id_kegiatan }}"
-                                                            class="btn btn-square btn-sm btn-secondary pull-right"
+                                                            class="btn  btn-sm btn-secondary pull-right"
                                                             type="button">Baca Selengkapnya</a>
+                                                            
                                                     </div>
                                                 </div>
                                             </div>
@@ -128,9 +129,9 @@
                             <div class="blog-box blog-grid">
                                 <div class="blog-wrraper">
                                     @if ($kk->foto_kegiatan != 'no-image.jpg')
-                                        <a href="kegiatan_warga/{{ $kk->id_kegiatan }}"><img class="p-0"
-                                                src="{{ asset('storage/' . $kk->foto_kegiatan) }}" width="421"
-                                                height="263" alt="" /></a>
+                                        <a href="kegiatan_warga/{{ $kk->id_kegiatan }}">
+                                            <img class="p-0" src="{{ asset('storage/' . $kk->foto_kegiatan) }}" width="421" height="263" alt="" />
+                                        </a>
                                     @else
                                         <a href="kegiatan_warga/{{ $kk->id_kegiatan }}"><img
                                                 class="img-fluid top-radius-blog"
@@ -153,7 +154,7 @@
                                     </ul>
                                     <hr />
                                     <article class="mt-0 text-dark">{!! Str::limit($kk->isi_kegiatan, 100) !!}.</article>
-                                    <a href="kegiatan_warga/{{ $kk->id_kegiatan }}" class="btn btn-square btn-sm {{$kk->penanggung_jawab == 'RT' ? 'btn-primary' : 'btn-secondary'}} }} pull-right mb-3 mt-3" type="button">
+                                    <a href="kegiatan_warga/{{ $kk->id_kegiatan }}" class="btn  btn-sm {{$kk->penanggung_jawab == 'RT' ? 'btn-primary' : 'btn-secondary'}} pull-right mb-3 mt-3" type="button">
                                         Baca Selengkapnya</a>
                                 </div>
                             </div>

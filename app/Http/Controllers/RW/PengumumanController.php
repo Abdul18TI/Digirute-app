@@ -44,6 +44,9 @@ class PengumumanController extends Controller
         }
 
         $validatedData['status_pengumuman'] = 1;
+        $validatedData['status_kegiatan'] = 1;
+        $validatedData['penanggung_jawab'] = 'RW';
+        $validatedData['id_penanggung_jawab'] = auth()->id();
 
         try {
             Pengumuman::create($validatedData);
@@ -74,6 +77,9 @@ class PengumumanController extends Controller
             'foto_pengumuman' => 'image|file|max:4095',
             'tgl_terbit' => 'required'
         ]);
+        $validatedData['status_kegiatan'] = 1;
+        $validatedData['penanggung_jawab'] = 'RW';
+        $validatedData['id_penanggung_jawab'] = auth()->id();
 
         if ($request->file('foto_pengumuman')) {
             Storage::delete($request->oldImage);

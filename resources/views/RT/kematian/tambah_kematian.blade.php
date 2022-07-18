@@ -325,6 +325,24 @@
                 </div>
               </div>
               <div class="row">
+                <div class="col">
+                  <div class="mb-3">
+                    <label class="form-label"
+                      for="hubungan_jenazah">Hubungan Pelapor Terhadap Jenazah</label>
+                    <input class="form-control @error('hubungan_jenazah') is-invalid @enderror"
+                      name="hubungan_jenazah"
+                      type="text"
+                      id="hubungan_jenazah"
+                      name="hubungan_jenazah"
+                      placeholder="Status Hubungan Dengan Jenazah Cth: Ibu, Ayah, Paman, dll"
+                      value="{{ old('hubungan_jenazah') }}">
+                    @error('hubungan_jenazah')
+                      <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                  </div>
+                </div>
+              </div>
+              <div class="row">
                 <div class="col-4">
                   <div class="mb-3">
                     <label class="form-label"

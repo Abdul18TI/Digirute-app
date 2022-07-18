@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             DaerahSeeder::class,
             GolonganDarahSeeder::class,
             UtilSeeder::class,
+            KategoriKegiatanSeeder::class,
             KegiatanSeeder::class,
             AgamaSeeder::class,
             WargaSeeder::class,

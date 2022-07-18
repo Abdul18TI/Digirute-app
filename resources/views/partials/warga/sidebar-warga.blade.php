@@ -73,6 +73,10 @@
                         <a class="nav-link menu-title  link-nav {{ prefixActive('warga.fasilitaswarga.*') }}"
                           href="{{ route('warga.fasilitaswarga.index') }}"><i data-feather="map"></i><span>Fasilitas</span></a>
                     </li>
+                    <li>
+                        <a class="nav-link menu-title  link-nav {{ prefixActive('warga.persyaratan') }}"
+                          href="{{ route('warga.persyaratan') }}"><i data-feather="file-text"></i><span>Persyaratan Administratif</span></a>
+                    </li>
                 </ul>
             </div>
             <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>

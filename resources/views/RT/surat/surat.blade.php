@@ -66,11 +66,15 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $s->nomor_surat ?? 'Nomor Surat Belum Terbit' }}</td>
                                             <td>{{ $s->jenis_surat }}</td>
-                                            <td><ul>
-                                                @foreach ($s->propertie_surat->jenis_surat as $jenis_surat)
-                                                <li><i class="fa fa-caret-right txt-secondary m-r-10"></i>{!! setJenisSuratKeterangan($jenis_surat) !!}</li>
-                                                @endforeach
-                                            </ul> </td>
+                                            <td>
+                                                <ul>
+                                                    @foreach ($s->propertie_surat->jenis_surat as $jenis_surat)
+                                                        <li><i
+                                                                class="fa fa-caret-right txt-secondary m-r-10"></i>{!! setJenisSuratKeterangan($jenis_surat) !!}
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
+                                            </td>
                                             <td>{{ tanggal_indo($s->created_at) }}</td>
                                             {{-- <td>{{ $s->propertie_surat->jenis_surat }}</td> --}}
                                             <td>
@@ -87,9 +91,14 @@
                                                 @endif
                                             </td>
                                             <td class="aksi">
-                                                 <a class="btn btn-success btn-sm p-2"
+                                                <a class="btn btn-success btn-sm p-2 m-1"
                                                     href="{{ route('rt.surat.detail.surat_keterangan', $s->id_surat) }}"><span
                                                         class="fa fa-list"></span></a>
+                                                {{-- @if ($s->status_surat == 4) --}}
+                                                    <a class="btn btn-success btn-sm p-2 m-1"
+                                                        href="{{ route('rt.surat.print.surat_keterangan', $s->id_surat) }}"><span
+                                                            class="fa fa-print"></span></a>
+                                                {{-- @endif --}}
                                             </td>
                                         </tr>
                                     @endforeach

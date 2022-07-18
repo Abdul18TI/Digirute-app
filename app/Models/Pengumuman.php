@@ -20,6 +20,17 @@ class Pengumuman extends Model
         // return $this->belongsTo(rt::class);
     }
 
+    public function rts()
+    {
+        return $this->belongsTo(rt::class, 'id_penanggung_jawab', 'id_rt');
+    }
+
+    public function rws()
+    {
+        return $this->belongsTo(rw::class, 'id_penanggung_jawab', 'id_rw');
+    }
+
+
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['search'] ?? false, function ($query, $search) {
@@ -33,5 +44,18 @@ class Pengumuman extends Model
                 $query->where('kategori_pengumuman', $category);
             });
         });
+    }
+
+    public function scopePengumumanActive($query)
+    {
+        $query->where('status_pengumuman', 1);
+    }
+    public function scopeFilterByRTRW($query, $rt, $rw)
+    {
+        $query->where('status_pengumuman', 1)
+        ->where('penanggung_jawab', 'RT')
+            ->where('id_penanggung_jawab', $rt)
+            ->orWhere('penanggung_jawab', 'RW')
+            ->where('id_penanggung_jawab', $rw);
     }
 }
