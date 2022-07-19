@@ -76,14 +76,15 @@ class WargaMeninggalController extends Controller
         if (is_null($dataWargaSame)) {
             return redirect()->route('rt.kematian.tambah')
                 ->with('error', 'Data ini tidak termasuk warga anda!');
-            }
-            try {
-                
-                //Memasukan data inputan kedalam tabel kematian pada database
-                $insertData = Kematian::create($dataentry);
+        }
+        try {
+
+            //Memasukan data inputan kedalam tabel kematian pada database
+            $insertData = Kematian::create($dataentry);
+           $this->store_surat($request, $insertData->id);
             //mengembalikan ke halaman rt.kematian.index
             if ($insertData) {
-                $dataWargaSame->update(['status_warga' =>1]);
+                $dataWargaSame->update(['status_warga' => 1]);
                 return redirect()->route('rt.kematian.index')
                     ->with('success', 'Data berhasil ditambah!');
             }
@@ -96,7 +97,8 @@ class WargaMeninggalController extends Controller
         }
     }
 
-    public function store_surat($request){
+    public function store_surat($request, $id_meniggal)
+    {
         // $validatedData = $request->validate([
         //     'jenis_surat' => 'required',
         //     'nik' => 'required|exists:wargas,nik',
@@ -109,7 +111,9 @@ class WargaMeninggalController extends Controller
         $input['rw'] = auth()->user()->id_rw;
         $input['status_tandatangan'] = '1';
         $input['status_surat'] = '0';
+        $dataproperties['id_meniggal'] = $id_meniggal;
         $input['jenis_surat'] = 'Surat Keterangan Kematian';
+        $input['propertie_surat'] = $dataproperties;
         // dd($input);
         // $dataproperties['jenis_surat'] = $request->input('jenis_surat');
         // $input['propertie_surat'] =  $dataproperties;
@@ -166,7 +170,7 @@ class WargaMeninggalController extends Controller
     public function destroy(Kematian $kematian)
     {
         //
-    
+
         // $kematian->wargas->status_warga = 0;
         // $kematian->save();
         // $dataWargaSame->update(['status_warga' => 1]);
@@ -174,7 +178,7 @@ class WargaMeninggalController extends Controller
         try {
             $warga = Warga::find($kematian->warga);
             $warga->status_warga = 0;
-            $warga->save();           
+            $warga->save();
             $kematian->delete();
             return redirect()->route('rt.kematian.index')
                 ->with('success', 'data berhasil dihapus!');
@@ -208,7 +212,7 @@ class WargaMeninggalController extends Controller
         //jika data tidak ditemukan
         if (!$dataKematian) {
             return redirect()->route('rt.kematian.index')
-            ->with('error', 'Print Gagal! Data tidak temukan');
+                ->with('error', 'Print Gagal! Data tidak temukan');
         }
 
         // // $data = $dataKematian->get();
@@ -228,12 +232,12 @@ class WargaMeninggalController extends Controller
         $input['status_surat'] = '4';
         $input['nomor_surat'] = CreateNomorSuratRT('SKM');
         $input['jenis_surat'] = 'Surat Keterangan Kematian';
-$surat = Surat::create($input);
-$dataKematian->no_surat = $surat->id_surat;
-$dataKematian->cetak_surat = '1';
-$dataKematian->save();
+        $surat = Surat::create($input);
+        $dataKematian->no_surat = $surat->id_surat;
+        $dataKematian->cetak_surat = '1';
+        $dataKematian->save();
         return redirect()->route('rt.kematian.index')
-        ->with('success', 'Pengajuan surat berhasil!');
+            ->with('success', 'Pengajuan surat berhasil!');
         // dd($dataKematian['rt']);
         //    return view('rt.kematian.surat_kematian_pdf', ['kematian' => $dataKematian]);
         // $pdf = PDF::loadview('rt.kematian.surat_kematian_pdf', ['kematian' => $dataKematian]);
@@ -251,12 +255,12 @@ $dataKematian->save();
             return redirect()->route('rt.kematian.index')
                 ->with('error', 'Print Gagal! Data tidak temukan');
         }
- 
+
         // $data = $dataKematian->get();
         $dataKematian['rt'] = auth()->user();
         $dataKematian['rw'] = auth()->user()->rw_rel;
         // dd($dataKematian['rt']);
-    //    return view('rt.kematian.surat_kematian_pdf', ['kematian' => $dataKematian]);
+        //    return view('rt.kematian.surat_kematian_pdf', ['kematian' => $dataKematian]);
         $pdf = PDF::loadview('rt.kematian.surat_kematian_pdf', ['kematian' => $dataKematian]);
         return $pdf->stream();
     }

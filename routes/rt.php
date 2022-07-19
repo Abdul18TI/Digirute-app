@@ -76,6 +76,7 @@ Route::middleware(['auth:rt', 'PreventBackHistory'])->group(function () {
     });
     Route::prefix('surat')->name('surat.')->group(function () {
         Route::get('/', [SuratRTController::class, 'index'])->name('index');
+        Route::get('/nomorsurat', [SuratRTController::class, 'nomorsurat'])->name('nomorsurat');
         Route::get('/surat_keterangan', [SuratRTController::class, 'surat_keterangan'])->name('form.surat_keterangan');
         Route::get('/surat_keterangan/{surat}', [SuratRTController::class, 'detailSuratKeterangan'])->name('detail.surat_keterangan');
         Route::put('/surat_keterangan/{surat}/proses', [SuratRTController::class, 'prosesSurat'])->name('terima.surat_keterangan');

@@ -18,6 +18,22 @@ class SuratRTController extends Controller
         ]);
     }
 
+    public function nomorsurat()
+    {
+        // return CreateNomorSuratRW('SKE');
+        $surat = Surat::with('wargas')->where('rt', auth()->user()->id_rt)
+            ->where('nomor_surat', '!=', null)
+            // ->where('status_tandatangan', 1)
+            ->whereIn('status_tandatangan', [0,1])
+            ->orderBy('nomor_surat', 'asc')
+            ->get();
+        // dd($surat);
+        // return $surat;
+        return view('rt.surat.nomor_surat', [
+            'surat' => $surat,
+        ]);
+    }
+
     public function detailSuratKeterangan(Surat $surat)
     {
         $surat = $surat;

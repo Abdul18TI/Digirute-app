@@ -1,16 +1,15 @@
 <header class="main-nav">
     <div class="sidebar-user text-center">
         <a class="setting-primary" href="javascript:void(0)"><i data-feather="settings"></i></a><img
-        @if(auth()->user()->identitas_rt->foto_warga == 'no-image.png')
-        <img class="img-90 rounded-circle" src="{{ asset('assets/images/dashboard/1.png') }}" alt="" />
+            @if (auth()->user()->identitas_rt->foto_warga == 'no-image.png') <img class="img-90 rounded-circle" src="{{ asset('assets/images/dashboard/1.png') }}" alt="" />
         @else
-        <img class="img-90 rounded-circle" src="{{ asset('storage/' . auth()->user()->identitas_rt->foto_warga) }}" alt="" />
-        @endif
-        <div class="badge-bottom"><span class="badge badge-primary">RT</span></div>
-        <a href="{{ route('rt.profileRT.show', auth()->user()->id_rt) }}">
-            <h6 class="mt-3 f-14 f-w-600">{{ auth()->user()->identitas_rt->nama_lengkap }}</h6>
-        </a>
-        <p class="mb-0 font-roboto">RT {{ auth()->user()->no_rt }} RW {{ auth()->user()->rw_rel->no_rw }}</p>
+        <img class="img-90 rounded-circle" src="{{ asset('storage/' . auth()->user()->identitas_rt->foto_warga) }}" alt="" /> @endif
+            <div class="badge-bottom"><span class="badge badge-primary">RT</span>
+    </div>
+    <a href="{{ route('rt.profileRT.show', auth()->user()->id_rt) }}">
+        <h6 class="mt-3 f-14 f-w-600">{{ auth()->user()->identitas_rt->nama_lengkap }}</h6>
+    </a>
+    <p class="mb-0 font-roboto">RT {{ auth()->user()->no_rt }} RW {{ auth()->user()->rw_rel->no_rw }}</p>
     </div>
     <nav>
         <div class="main-navbar">
@@ -54,6 +53,8 @@
                         <ul class="nav-submenu menu-content" style="display:{{ prefixBlock('rt.surat.*') }};">
                             <li><a href="{{ route('rt.surat.index') }}"
                                     class="{{ prefixActive('rt.surat.index') }}">Daftar Pengajuan Surat</a></li>
+                            <li><a href="{{ route('rt.surat.nomorsurat') }}"
+                                    class="{{ prefixActive('rw.surat.nomorsurat') }}">Nomor Surat</a></li>
                         </ul>
                     </li>
                     <li>
@@ -80,7 +81,8 @@
                             href="{{ route('rt.fasilitas.index') }}"><i
                                 data-feather="map"></i><span>Fasilitas</span></a>
                     </li>
-                    <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="airplay"></i><span>Utilitas form</span></a>
+                    <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i
+                                data-feather="airplay"></i><span>Utilitas form</span></a>
                         <ul class="nav-submenu menu-content">
                             <li><a href="{{ route('rt.kategori_pengumuman.index') }}">Kategori Pengumuman</a></li>
                             <li><a href="{{ route('rt.jenis_iuran.index') }}">Jenis Iuran</a></li>
