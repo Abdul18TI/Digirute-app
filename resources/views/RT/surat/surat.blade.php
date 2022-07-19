@@ -65,16 +65,28 @@
                                     @foreach ($surat as $s)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $s->wargas->nama_lengkap }}<p class="text-muted">({{ $s->wargas->nik }})</p></td>
+                                            <td>{{ $s->wargas->nama_lengkap }}<p class="text-muted">
+                                                    ({{ $s->wargas->nik }})
+                                                </p>
+                                            </td>
                                             <td>{{ $s->nomor_surat ?? 'Nomor Surat Belum Terbit' }}</td>
                                             <td>{{ $s->jenis_surat }}</td>
                                             <td>
+                                                @php
+                                                    $surat = $s->propertie_surat;
+                                                @endphp
                                                 <ul>
-                                                    @foreach ($s->propertie_surat->jenis_surat as $jenis_surat)
-                                                        <li><i
-                                                                class="fa fa-caret-right txt-secondary m-r-10"></i>{!! setJenisSuratKeterangan($jenis_surat) !!}
-                                                        </li>
-                                                    @endforeach
+                                                    @if ($surat == null)
+                                                        <p class="text-center">-</p>
+                                                    @else
+                                                        @if (isset($surat->jenis_surat))
+                                                            @foreach ($surat->jenis_surat as $jenis_surat)
+                                                                <li><i
+                                                                        class="fa fa-caret-right txt-secondary m-r-10"></i>{!! setJenisSuratKeterangan($jenis_surat) !!}
+                                                                </li>
+                                                            @endforeach
+                                                        @endif
+                                                    @endif
                                                 </ul>
                                             </td>
                                             <td>{{ tanggal_indo($s->created_at) }}</td>

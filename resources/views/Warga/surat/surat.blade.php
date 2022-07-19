@@ -68,20 +68,21 @@
                                             <td class="text-center">{!! $s->nomor_surat ?? ' <span class="badge badge-dark ">Nomor Surat Belum Terbit</span>' !!}</td>
                                             <td>{{ $s->jenis_surat }}</td>
                                             <td>
+                                                @php
+                                                    $surat = $s->propertie_surat;
+                                                @endphp
                                                 <ul>
-                                                    @if ($s->propertie_surat == null)
-                                                    <p class="text-center">-</p>
+                                                    @if ($surat == null)
+                                                        <p class="text-center">-</p>
                                                     @else
-                                                        @if (isset($s->propertie_surat->jenis_surat))
-                                                            @foreach ($s->propertie_surat->jenis_surat as $jenis_surat)
-                                                                <li>
-                                                                    <i
+                                                        @if (isset($surat->jenis_surat))
+                                                            @foreach ($surat->jenis_surat as $jenis_surat)
+                                                                <li><i
                                                                         class="fa fa-caret-right txt-secondary m-r-10"></i>{!! setJenisSuratKeterangan($jenis_surat) !!}
                                                                 </li>
                                                             @endforeach
                                                         @endif
                                                     @endif
-
                                                 </ul>
                                             </td>
                                             <td>{{ tanggal_indo($s->created_at) }}</td>

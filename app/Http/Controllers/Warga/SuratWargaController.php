@@ -17,7 +17,9 @@ class SuratWargaController extends Controller
     public function index()
     {
         $kematian = Kematian::orderBy('tgl_kematian', 'desc')->get();
-        $surat = Surat::where('pengaju', auth()->user()->id_warga)->get();
+        $surat = Surat::where('pengaju', auth()->user()->id_warga)
+            ->where('jenis_surat', '!=', 'Surat Keterangan Kematian')
+            ->get();
         return view('warga.surat.surat', [
             'surat' => $surat,
         ]);
@@ -62,7 +64,7 @@ class SuratWargaController extends Controller
         Surat::create($input);
         return  redirect()->route('warga.surat.index')->with('success', 'Pengajuan berhasil!!!<br/>Data anda sedang diproses');
     }
-    
+
     public function print($id)
     {
         //Cetak surat

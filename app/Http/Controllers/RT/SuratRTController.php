@@ -17,6 +17,13 @@ class SuratRTController extends Controller
     public function index()
     {
         $surat = Surat::where('rt', auth()->user()->id_rt)->latest()->get();
+        // if($surat->propertie_surat == null){
+        //     echo '-';
+        // }else{
+        //     $surat->propertie_surat. '-';
+            
+        // }
+        // dd($surat->propertie_surat);
         return view('RT.surat.surat', [
             'surat' => $surat,
         ]);
