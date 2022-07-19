@@ -71,25 +71,7 @@ class SuratRTController extends Controller
         // $data = $dataKematian->get();
         $surat['rt'] = auth()->user();
         $surat['rw'] = auth()->user()->rw_rel;
-        // dd($surat);
-        // dd($dataKematian['rt']);
-        //    return view('rt.surat.surat_keterangan_pdf', ['surat' => $surat]);
         $pdf = PDF::loadview('rt.surat.surat_keterangan_pdf', ['surat' => $surat]);
         return $pdf->stream();
-        // $dataKematian = WargaMeninggal::find('1');
-
-        // //jika data tidak ditemukan
-        // if (!$dataKematian) {
-        //     return redirect()->route('rt.kematian.index')
-        //     ->with('error', 'Print Gagal! Data tidak temukan');
-        // }
-
-        // // $data = $dataKematian->get();
-        // $dataKematian['rt'] = auth()->user();
-        // $dataKematian['rw'] = auth()->user()->rw_rel;
-        // // dd($dataKematian['rt']);
-        // //    return view('rt.kematian.surat_kematian_pdf', ['kematian' => $dataKematian]);
-        // $pdf = PDF::loadview('rt.kematian.surat_kematian_pdf', ['kematian' => $dataKematian]);
-        // return $pdf->stream();
     }
 }
