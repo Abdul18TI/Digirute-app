@@ -288,11 +288,6 @@
                                                         value="s_sudahnikah">
                                                     <label for="s_sudahnikah">Surat Keterangan Sudah Menikah</label>
                                                 </div>
-                                                <div class="checkbox checkbox-solid-success">
-                                                    <input id="s_kosong" type="checkbox" name="jenis_surat[]"
-                                                        value="s_kosong">
-                                                    <label for="s_kosong">Kosong</label>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
