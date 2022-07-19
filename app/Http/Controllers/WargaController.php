@@ -31,6 +31,19 @@ class WargaController extends Controller
         );
     }
 
+    public function wargatetap()
+    {
+        $warga = Warga::where('jenis_warga', 1)->get();
+        // $warga = Warga::find(1);
+        // dd($warga);
+        return view(
+            'RT.warga.warga-rt-tetap',
+            [
+                'warga' => $warga,
+            ]
+        );
+    }
+
     // function menampilkan halaman tambah warga 
     public function create()
     {

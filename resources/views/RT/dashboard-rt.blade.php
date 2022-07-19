@@ -19,11 +19,28 @@
         <div class="row">
             <div class="col-sm-6 col-xl-3 col-lg-6">
                 <div class="card o-hidden border-0">
-                    <div class="bg-primary b-r-4 card-body">
+                  
+                    <div class="bg-primary b-r-4 card-body" onclick="test()">
+                        <div class="media static-top-widget">
+                          
+                            <div class="align-self-center text-center"><i data-feather="user-plus"></i></div>
+                            <div class="media-body"><span class="m-0">Jumlah warga</span>
+                              
+                              <h4 class="mb-0 counter">{{ count($warga)}}</h4><i class="icon-bg" data-feather="user-plus"></i></a>
+                              
+                            </div>
+                          
+                        </div>
+                    </div>
+                </div>  
+            </div>
+            <div class="col-sm-6 col-xl-3 col-lg-6">
+                <div class="card o-hidden border-0">
+                    <div class="bg-danger b-r-4 card-body" onclick="test1()">
                         <div class="media static-top-widget">
                             <div class="align-self-center text-center"><i data-feather="user"></i></div>
-                            <div class="media-body"><span class="m-0">Jumlah warga</span>
-                                <h4 class="mb-0 counter">659</h4><i class="icon-bg" data-feather="user"></i>
+                            <div class="media-body"><span class="m-0">Warga tetap</span>
+                                <h4 class="mb-0 counter">{{ count($wargatetap)}}</h4><i class="icon-bg" data-feather="user"></i>
                             </div>
                         </div>
                     </div>
@@ -31,23 +48,11 @@
             </div>
             <div class="col-sm-6 col-xl-3 col-lg-6">
                 <div class="card o-hidden border-0">
-                    <div class="bg-danger b-r-4 card-body">
-                        <div class="media static-top-widget">
-                            <div class="align-self-center text-center"><i data-feather="sun"></i></div>
-                            <div class="media-body"><span class="m-0">Covid-19</span>
-                                <h4 class="mb-0 counter">56</h4><i class="icon-bg" data-feather="sun"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-xl-3 col-lg-6">
-                <div class="card o-hidden border-0">
-                    <div class="bg-secondary b-r-4 card-body">
+                    <div class="bg-secondary b-r-4 card-body" onclick="test2()">
                         <div class="media static-top-widget">
                             <div class="align-self-center text-center"><i data-feather="calendar"></i></div>
-                            <div class="media-body"><span class="m-0">Agenda</span>
-                                <h4 class="mb-0 counter">93</h4><i class="icon-bg" data-feather="calendar"></i>
+                            <div class="media-body"><span class="m-0">Warga pendatang</span>
+                                <h4 class="mb-0 counter">{{ count($wargadatang)}}</h4><i class="icon-bg" data-feather="calendar"></i>
                             </div>
                         </div>
                     </div>
@@ -55,11 +60,11 @@
             </div>
             <div class="col-sm-6 col-xl-3 col-lg-6">
                 <div class="card o-hidden border-0">
-                    <div class="bg-warning b-r-4 card-body">
+                    <div class="bg-warning b-r-4 card-body" onclick="test3()">
                         <div class="media static-top-widget">
-                            <div class="align-self-center text-center"><i data-feather="user-plus"></i></div>
+                            <div class="align-self-center text-center"><i data-feather="users"></i></div>
                             <div class="media-body"><span class="m-0">K. Keluarga</span>
-                                <h4 class="mb-0 counter">531</h4><i class="icon-bg" data-feather="user-plus"></i>
+                                <h4 class="mb-0 counter">{{ $no_kk }}</h4><i class="icon-bg" data-feather="users"></i>
                             </div>
                         </div>
                     </div>
@@ -142,7 +147,7 @@
         <div class="col-xl-6 xl-100 box-col-12">
             <div class="card">
                 <div class="card-header pb-0 d-flex justify-content-between align-items-center">
-                    <h5>Agenda</h5>
+                    <h5>Kegiatan yang akan datang</h5>
                     <div class="setting-list">
                         <ul class="list-unstyled setting-option">
                             <li>
@@ -161,21 +166,30 @@
                         <table class="table table-bordernone">
                             <thead>
                                 <tr>
-                                    <th scope="col">No</th>
-                                    <th scope="col">Nama agenda</th>
-                                    <th scope="col">Tanggal</th>
-                                    <th scope="col">Status</th>
+                                    <th>No</th>
+                                    <th>Nama kegiatan</th>
+                                    <th>Tanggal</th>
+                                    <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody>
+                              @foreach ($kegiatan as $p)
                                 <tr>
-                                    <td class="f-w-600">1</td>
-                                    <td class="f-w-600">Simply dummy text of the printing</td>
-                                    <td>1</td>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $p->nama_kegiatan }}</td>
+                                    <td>{{ tanggal_indo($p->tgl_mulai_kegiatan) }}</td>
                                     <td>
-                                        <div class="span badge rounded-pill pill-badge-secondary">6523</div>
-                                    </td>
+                                      <div class="media-body text-center icon-state">
+                                          <label class="switch">
+                                              <input type="checkbox"
+                                                  {{ $p->status_kegiatan == 1 ? 'checked' : '' }}
+                                                  data-id="{{ $p->id_kegiatan }}" class="toggle-class"><span
+                                                  class="switch-state"></span>
+                                          </label>
+                                      </div>
+                                  </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -278,7 +292,7 @@
         <div class="col-xl-6 xl-100 box-col-12">
             <div class="card employee-status">
                 <div class="card-header pb-0 d-flex justify-content-between align-items-center">
-                    <h5>Warga RW 04</h5>
+                    <h5>Warga RT {{ auth()->user()->no_rt}} RW {{ auth()->user()->rw_rel->no_rw }}</h5>
                     <div class="setting-list">
                         <ul class="list-unstyled setting-option">
                             <li>
@@ -303,108 +317,23 @@
                                 </tr>
                             </thead>
                             <tbody>
+                              @foreach ($wargaw as $dw)
                                 <tr>
                                     <td class="bd-t-none u-s-tb">
                                         <div class="align-middle image-sm-size"><img
                                                 class="img-radius align-top m-r-15 rounded-circle"
-                                                src="../assets/images/user/4.jpg" alt="">
+                                                src="{{ asset('storage/' . $dw->foto_warga) }}" alt="">
                                             <div class="d-inline-block">
-                                                <h6>John Deo <span class="text-muted">(14+ Online)</span></h6>
+                                                <h6>{{ $dw->nama_lengkap }}</h6>
                                             </div>
                                         </div>
                                     </td>
-                                    <td>Designer</td>
+                                    <td>{{ $dw->alamat }}</td>
                                     <td>
-                                        <div class="progress-showcase">
-                                            <div class="progress" style="height: 8px;">
-                                                <div class="progress-bar bg-primary" role="progressbar" style="width: 30%"
-                                                    aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </div>
+                                      {{ $dw->no_hp_warga }}
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td class="bd-t-none u-s-tb">
-                                        <div class="align-middle image-sm-size d-flex align-items-center"><img
-                                                class="img-radius align-top m-r-15 rounded-circle"
-                                                src="../assets/images/user/1.jpg" alt="">
-                                            <div class="d-inline-block">
-                                                <h6>Holio Mako <span class="text-muted">(250+ Online)</span></h6>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>Developer</td>
-                                    <td>
-                                        <div class="progress-showcase">
-                                            <div class="progress" style="height: 8px;">
-                                                <div class="progress-bar bg-secondary" role="progressbar"
-                                                    style="width: 70%" aria-valuenow="50" aria-valuemin="0"
-                                                    aria-valuemax="100"></div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="bd-t-none u-s-tb">
-                                        <div class="align-middle image-sm-size"><img
-                                                class="img-radius align-top m-r-15 rounded-circle"
-                                                src="../assets/images/user/5.jpg" alt="">
-                                            <div class="d-inline-block">
-                                                <h6>Mohsib lara<span class="text-muted">(99+ Online)</span></h6>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>Tester</td>
-                                    <td>
-                                        <div class="progress-showcase">
-                                            <div class="progress" style="height: 8px;">
-                                                <div class="progress-bar bg-primary" role="progressbar" style="width: 60%"
-                                                    aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="bd-t-none u-s-tb">
-                                        <div class="align-middle image-sm-size"><img
-                                                class="img-radius align-top m-r-15 rounded-circle"
-                                                src="../assets/images/user/6.jpg" alt="">
-                                            <div class="d-inline-block">
-                                                <h6>Hileri Soli <span class="text-muted">(150+ Online)</span></h6>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>Designer</td>
-                                    <td>
-                                        <div class="progress-showcase">
-                                            <div class="progress" style="height: 8px;">
-                                                <div class="progress-bar bg-secondary" role="progressbar"
-                                                    style="width: 30%" aria-valuenow="50" aria-valuemin="0"
-                                                    aria-valuemax="100"></div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="bd-t-none u-s-tb">
-                                        <div class="align-middle image-sm-size"><img
-                                                class="img-radius align-top m-r-15 rounded-circle"
-                                                src="../assets/images/user/7.jpg" alt="">
-                                            <div class="d-inline-block">
-                                                <h6>Pusiz bia <span class="text-muted">(14+ Online)</span></h6>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>Designer</td>
-                                    <td>
-                                        <div class="progress-showcase">
-                                            <div class="progress" style="height: 8px;">
-                                                <div class="progress-bar bg-primary" role="progressbar" style="width: 90%"
-                                                    aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -540,6 +469,26 @@
         </div>
     </div>
     </div>
+    <script>
+      function test() {
+        window.location = '/RT/warga';
+      }
+    </script>
+    <script>
+      function test1() {
+        window.location = '/RT/wargat/tetap';
+      }
+    </script>
+    <script>
+      function test2() {
+        window.location = '/RT/warga';
+      }
+    </script>
+    <script>
+      function test3() {
+        window.location = '/RT/warga';
+      }
+    </script>
     <!-- Container-fluid Ends-->
     @push('scripts')
         <script src="{{ asset('assets/js/prism/prism.min.js') }}"></script>

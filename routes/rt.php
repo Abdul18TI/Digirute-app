@@ -33,6 +33,7 @@ Route::middleware(['auth:rt', 'PreventBackHistory'])->group(function () {
     // Route::get('/edit/{warga}', [WargaController::class, 'edit_warga_rt'])->name('warga.edit');
     // Route::put('/update/{id}', [WargaController::class, 'update'])->name('warga.update');
     route::resource('warga', WargaController::class);
+    Route::get('/wargat/tetap', [WargaController::class, 'wargatetap'])->name('wargat.tetap');
     // });
     Route::get('/warga/getKab/{id}', function ($id) {
         $kab = App\Models\Kabupaten::where('id_prov', $id)->get();

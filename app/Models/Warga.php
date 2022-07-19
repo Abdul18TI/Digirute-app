@@ -16,7 +16,7 @@ class Warga extends Authenticatable
     protected $table = 'wargas';
     protected $primaryKey = 'id_warga';
     protected $guarded = ['id_warga'];
-    protected $with = ['pekerjaan', 'pekerjaans', 'agamas','rt_rel','rw_rel'];
+    protected $with = ['pekerjaan', 'pekerjaans', 'agamas', 'rt_rel', 'rw_rel'];
     protected $dates = ['tgl_lahir', 'tgl_akhir_passport', 'tgl_keluar_kk', 'tgl_perkawinan', 'tgl_cerai'];
 
 
@@ -118,7 +118,8 @@ class Warga extends Authenticatable
         // return $this->belongsTo(rt::class);
     }
 
-    public function surats(){
-        return $this->hasMany(Surat::class, 'pengaju','id_warga');
+    public function surats()
+    {
+        return $this->hasMany(Surat::class, 'pengaju', 'id_warga');
     }
 }
