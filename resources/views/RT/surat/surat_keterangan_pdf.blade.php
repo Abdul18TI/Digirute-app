@@ -100,11 +100,13 @@
         @php
             $genap = '';
             $ganjil = '';
-            $test = $surat->propertie_surat->jenis_surat;
+            $test = $surat->propertie_surat;
+            $tanggal =  \Carbon\Carbon::parse($test->tanggal_approve_rt);
+            // dd($test->tanggal_approve_rt);
         @endphp
         @foreach (setJenisSuratKeterangan() as $key => $value)
             @php
-                $check = $key == in_array($key, $test) ? 'checked' : '';
+                $check = $key == in_array($key, $test->jenis_surat) ? 'checked' : '';
             @endphp
             @if ($loop->iteration <= round(count(setJenisSuratKeterangan()) / 2))
                 @php
@@ -142,7 +144,7 @@
             <p>{{ $surat->rw->identitas_rw->nama_lengkap }}</p>
         </div>
         <div style="width:50%; text-align: center; float: right;">
-            <p class="m-0">Pekanbaru, {{ $surat->created_at->isoFormat('D MMMM Y') }}</p>
+            <p class="m-0">Pekanbaru, {{ $tanggal->isoFormat('D MMMM Y') }}</p>
             <p class="mb-5 pb-5">Ketua RT. {{ $surat->rt->no_rt }} RW. {{ $surat->rw->no_rw }}</p>
             <p>{{ $surat->rt->identitas_rt->nama_lengkap }}</p>
         </div>

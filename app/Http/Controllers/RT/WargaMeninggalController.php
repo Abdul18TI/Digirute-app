@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\RT;
 
+use PDF;
+use App\Models\Surat;
+// use Barryvdh\DomPDF\PDF;
 use App\Models\Warga;
 use App\Models\Kegiatan;
-// use Barryvdh\DomPDF\PDF;
-use PDF;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\WargaMeninggal as Kematian;
@@ -75,11 +76,11 @@ class WargaMeninggalController extends Controller
         if (is_null($dataWargaSame)) {
             return redirect()->route('rt.kematian.tambah')
                 ->with('error', 'Data ini tidak termasuk warga anda!');
-        }
-        try {
-            //Memasukan data inputan kedalam tabel kematian pada database
-            $insertData = Kematian::create($dataentry);
-            
+            }
+            try {
+                
+                //Memasukan data inputan kedalam tabel kematian pada database
+                $insertData = Kematian::create($dataentry);
             //mengembalikan ke halaman rt.kematian.index
             if ($insertData) {
                 $dataWargaSame->update(['status_warga' =>1]);
@@ -93,6 +94,26 @@ class WargaMeninggalController extends Controller
             return redirect()->route('rt.kematian.index')
                 ->with('error', 'Gagal menambahkan data!' . $e);
         }
+    }
+
+    public function store_surat($request){
+        // $validatedData = $request->validate([
+        //     'jenis_surat' => 'required',
+        //     'nik' => 'required|exists:wargas,nik',
+        //     'pengaju' => 'required|exists:wargas,id_warga',
+        // ]);
+        // // $input = $request->only('jenis_surat');
+        // // dd(auth()->user());
+        $input['pengaju'] = $request->warga;
+        $input['rt'] = auth()->user()->id_rt;
+        $input['rw'] = auth()->user()->id_rw;
+        $input['status_tandatangan'] = '1';
+        $input['status_surat'] = '0';
+        $input['jenis_surat'] = 'Surat Keterangan Kematian';
+        // dd($input);
+        // $dataproperties['jenis_surat'] = $request->input('jenis_surat');
+        // $input['propertie_surat'] =  $dataproperties;
+        return Surat::create($input);
     }
 
     /**
@@ -179,9 +200,50 @@ class WargaMeninggalController extends Controller
         // dd($jenazah);
     }
 
+    public function requestSurat($kematian)
+    {
+        //
+
+        $dataKematian = Kematian::find($kematian);
+        //jika data tidak ditemukan
+        if (!$dataKematian) {
+            return redirect()->route('rt.kematian.index')
+            ->with('error', 'Print Gagal! Data tidak temukan');
+        }
+
+        // // $data = $dataKematian->get();
+        // $dataKematian['rt'] = auth()->user();
+        // $dataKematian['rw'] = auth()->user()->rw_rel;
+        // $validatedData = $request->validate([
+        //         'jenis_surat' => 'required',
+        //         'nik' => 'required|exists:wargas,nik',
+        //         'pengaju' => 'required|exists:wargas,id_warga',
+        //     ]);
+        // $input = $request->only('jenis_surat');
+        // dd(auth()->user());
+        $input['pengaju'] = $dataKematian->warga;
+        $input['rt'] = auth()->user()->id_rt;
+        $input['rw'] = auth()->user()->rw_rel->id_rw;
+        $input['status_tandatangan'] = '0';
+        $input['status_surat'] = '4';
+        $input['nomor_surat'] = CreateNomorSuratRT('SKM');
+        $input['jenis_surat'] = 'Surat Keterangan Kematian';
+$surat = Surat::create($input);
+$dataKematian->no_surat = $surat->id_surat;
+$dataKematian->cetak_surat = '1';
+$dataKematian->save();
+        return redirect()->route('rt.kematian.index')
+        ->with('success', 'Pengajuan surat berhasil!');
+        // dd($dataKematian['rt']);
+        //    return view('rt.kematian.surat_kematian_pdf', ['kematian' => $dataKematian]);
+        // $pdf = PDF::loadview('rt.kematian.surat_kematian_pdf', ['kematian' => $dataKematian]);
+        // return $pdf->stream();
+    }
+
     public function print($kematian)
     {
         //
+
         $dataKematian = Kematian::find($kematian);
 
         //jika data tidak ditemukan
@@ -189,7 +251,7 @@ class WargaMeninggalController extends Controller
             return redirect()->route('rt.kematian.index')
                 ->with('error', 'Print Gagal! Data tidak temukan');
         }
-
+ 
         // $data = $dataKematian->get();
         $dataKematian['rt'] = auth()->user();
         $dataKematian['rw'] = auth()->user()->rw_rel;

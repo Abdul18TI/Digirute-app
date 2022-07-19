@@ -20,7 +20,9 @@
   @endcomponent
   <!-- Form Tambah Warga -->
   <div class="container-fluid">
+    
     <div class="row">
+      <div class="col-sm-12">
       @if ($errors->any())
         <div class="alert alert-danger">
           <ul>
@@ -31,7 +33,6 @@
         </div>
       @endif
     </div>
-    <div class="row">
       <div class="col-sm-12">
         <div class="card">
           @if (session()->has('success'))
@@ -72,7 +73,7 @@
                       autofocus>
                     {{-- <div class="text-danger mr-3">Data warga tidak ditemukan</div> --}}
                     <input name="warga"
-                      type="text"
+                      type="hidden"
                       value="{{ old('warga') }}"
                       id="warga">
                     @error('warga')

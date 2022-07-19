@@ -114,7 +114,6 @@
                   <tr>
                     <th>No</th>
                     <th>Nama</th>
-                    <th>No KK</th>
                     <th>NIK</th>
                     <th>Alamat</th>
                     <th>No HP</th>

@@ -52,6 +52,7 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
+                                        <th>Nama Pengaju Surat</th>
                                         <th>Nomor Surat</th>
                                         <th>Jenis Surat</th>
                                         <th>Sub Jenis Surat</th>
@@ -64,15 +65,28 @@
                                     @foreach ($surat as $s)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $s->wargas->nama_lengkap }}<p class="text-muted">
+                                                    ({{ $s->wargas->nik }})
+                                                </p>
+                                            </td>
                                             <td>{{ $s->nomor_surat ?? 'Nomor Surat Belum Terbit' }}</td>
                                             <td>{{ $s->jenis_surat }}</td>
                                             <td>
+                                                @php
+                                                    $surat = $s->propertie_surat;
+                                                @endphp
                                                 <ul>
-                                                    @foreach ($s->propertie_surat->jenis_surat as $jenis_surat)
-                                                        <li><i
-                                                                class="fa fa-caret-right txt-secondary m-r-10"></i>{!! setJenisSuratKeterangan($jenis_surat) !!}
-                                                        </li>
-                                                    @endforeach
+                                                    @if ($surat == null)
+                                                        <p class="text-center">-</p>
+                                                    @else
+                                                        @if (isset($surat->jenis_surat))
+                                                            @foreach ($surat->jenis_surat as $jenis_surat)
+                                                                <li><i
+                                                                        class="fa fa-caret-right txt-secondary m-r-10"></i>{!! setJenisSuratKeterangan($jenis_surat) !!}
+                                                                </li>
+                                                            @endforeach
+                                                        @endif
+                                                    @endif
                                                 </ul>
                                             </td>
                                             <td>{{ tanggal_indo($s->created_at) }}</td>
@@ -81,11 +95,11 @@
                                                 @if ($s->status_surat == 0)
                                                     <span class="badge badge-warning">Diajukan</span>
                                                 @elseif($s->status_surat == 1)
-                                                    <span class="badge badge-secondary">Tahapan RT</span>
+                                                    <span class="badge badge-secondary">Disetuji RT</span>
                                                 @elseif($s->status_surat == 2)
                                                     <span class="badge badge-danger">Ditolak</span>
                                                 @elseif($s->status_surat == 3)
-                                                    <span class="badge badge-secondary">Tahapan RW</span>
+                                                    <span class="badge badge-secondary">Disetuji RW</span>
                                                 @elseif($s->status_surat == 4)
                                                     <span class="badge badge-success">Selesai</span>
                                                 @endif
@@ -94,11 +108,11 @@
                                                 <a class="btn btn-success btn-sm p-2 m-1"
                                                     href="{{ route('rt.surat.detail.surat_keterangan', $s->id_surat) }}"><span
                                                         class="fa fa-list"></span></a>
-                                                {{-- @if ($s->status_surat == 4) --}}
-                                                    <a class="btn btn-success btn-sm p-2 m-1"
+                                                @if ($s->status_surat != 0 && $s->nomor_surat != null)
+                                                    <a class="btn btn-secondary btn-sm p-2 m-1"
                                                         href="{{ route('rt.surat.print.surat_keterangan', $s->id_surat) }}"><span
                                                             class="fa fa-print"></span></a>
-                                                {{-- @endif --}}
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach
@@ -108,6 +122,7 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Nomor Surat</th>
+                                        <th>Nama Pengaju Surat</th>
                                         <th>Jenis Surat</th>
                                         <th>Sub Jenis Surat</th>
                                         <th>Tanggal Pengajuan</th>

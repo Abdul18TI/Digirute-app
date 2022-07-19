@@ -1,7 +1,8 @@
 @extends('layouts.main-warga')
 
-@section('title')Persyaratan Administratif
- {{ $title }}
+@section('title')
+    Persyaratan Administratif
+    {{ $title }}
 @endsection
 
 @push('css')
@@ -10,7 +11,7 @@
 @section('container')
     @component('components.warga.breadcrumb')
         @slot('breadcrumb_title')
-        <h3>Persyaratan Administratif</h3>
+            <h3>Persyaratan Administratif</h3>
         @endslot
         {{-- <li class="breadcrumb-item">Pengaduan</li> --}}
         <li class="breadcrumb-item active">Persyaratan Administratif</li>
@@ -21,140 +22,206 @@
                 <h5>Persyaratan Administratif</h5>
             </div> --}}
             <div class="card-body row pricing-content pricing-col">
-                <div class="col-md-3">
-                    <div class="pricing-block card text-center">
-                        <div class="pricing-header">
-                            <h2>Surat Pengantar</h2>
-                            {{-- <div class="price-box">
-                                <div>
-                                    <h3></h3>
-                                    <p></p>
-                                </div>
-                            </div> --}}
-                        </div>
-                        <div class="pricing-list">
-                            <ul class="pricing-inner">
-                                <li>
-                                    <h6>50GB<span> Disk Space</span></h6>
-                                </li>
-                                <li>
-                                    <h6>50<span> Email Accounts</span></h6>
-                                </li>
-                                <li>
-                                    <h6>50GB<span> Bandwidth</span></h6>
-                                </li>
-                                <li>
-                                    <h6>10<span> Subdomains</span></h6>
-                                </li>
-                                <li>
-                                    <h6>15<span> Domains</span></h6>
-                                </li>
-                            </ul>
-                            <button class="btn btn-primary btn-lg" type="button" data-original-title="btn btn-primary btn-lg" title="">Download Form</button>
+                <div class="row mb-5">
+                    {{-- Membuat KTP Perdana --}}
+                    <div class="col-md-3">
+                        <div class="pricing-block card text-center">
+                            <div class="pricing-header">
+                                <h2>Membuat KTP Perdana</h2>
+
+                            </div>
+                            <div class="pricing-list ">
+                                <ul class="pricing-inner">
+                                    <li>
+                                        <h6><span> Fotokopi</span> Kartu Keluarga</h6>
+                                    </li>
+                                    <li>
+                                        <h6><span> Fotokopi</span> Akta Lahir</h6>
+                                    </li>
+                                    <li>
+                                        <h6><span> Fotokopi</span> Ijazah Terakhir</h6>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="pricing-block card text-center">
-                        <div class="pricing-header">
-                            <h2>Surat Kematian</h2>
-                            {{-- <div class="price-box">
-                                <div>
-                                    <h3>$20</h3>
-                                    <p>/ month</p>
-                                </div>
-                            </div> --}}
-                        </div>
-                        <div class="pricing-list">
-                            <ul class="pricing-inner">
-                                <li>
-                                    <h6>60GB<span> Disk Space</span></h6>
-                                </li>
-                                <li>
-                                    <h6>60<span> Email Accounts</span></h6>
-                                </li>
-                                <li>
-                                    <h6>60GB<span> Bandwidth</span></h6>
-                                </li>
-                                <li>
-                                    <h6>15<span> Subdomains</span></h6>
-                                </li>
-                                <li>
-                                    <h6>20<span> Domains</span></h6>
-                                </li>
-                            </ul>
-                            <button class="btn btn-primary btn-lg" type="button" data-original-title="btn btn-primary btn-lg" title="">Download Form</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="pricing-block card text-center">
-                        <div class="pricing-header">
-                            <h2>Surat Keterangan</h2>
-                            {{-- <div class="price-box">
+                    {{-- END Membuat KTP Perdana --}}
+
+                    {{-- Membuta KTP Baru Karena Rusak --}}
+                    <div class="col-md-3">
+                        <div class="pricing-block card text-center">
+                            <div class="pricing-header">
+                                <h2>Membuta KTP Baru Karena Rusak</h2>
+                                {{-- <div class="price-box">
                                 <div>
                                     <h3>$30</h3>
                                     <p>/ month</p>
                                 </div>
                             </div> --}}
-                        </div>
-                        <div class="pricing-list">
-                            <ul class="pricing-inner">
-                                <li>
-                                    <h6>70GB<span> Disk Space</span></h6>
-                                </li>
-                                <li>
-                                    <h6>70<span> Email Accounts</span></h6>
-                                </li>
-                                <li>
-                                    <h6>70GB<span> Bandwidth</span></h6>
-                                </li>
-                                <li>
-                                    <h6>25<span> Subdomains</span></h6>
-                                </li>
-                                <li>
-                                    <h6>30<span> Domains</span></h6>
-                                </li>
-                            </ul>
-                            <button class="btn btn-primary btn-lg" type="button" data-original-title="btn btn-primary btn-lg" title="">Download Form</button>
+                            </div>
+                            <div class="pricing-list ">
+                                <ul class="pricing-inner">
+                                    <li>
+                                        <h6><span> Fotokopi</span> Kartu Keluarga</h6>
+                                    </li>
+                                    <li>
+                                        <h6><span> Fotokopi</span> KTP</h6>
+                                    </li>
+                                </ul>
+                                {{-- <button class="btn btn-primary btn-lg" type="button" data-original-title="btn btn-primary btn-lg" title="">Download Form</button> --}}
+                            </div>
                         </div>
                     </div>
+                    {{-- END Membuta KTP Baru Karena Rusak --}}
+
+                    {{-- Membuat / Mengganti KK Baru --}}
+                    <div class="col-md-3">
+                        <div class="pricing-block card text-center">
+                            <div class="pricing-header">
+                                <h2>Membuat KK Baru</h2>
+                                <span class="text-muted">Menambah Anggota Keluarga</span>
+                            </div>
+                            <div class="pricing-list ">
+                                <ul class="pricing-inner">
+                                    <li>
+                                        <h6><span> Fotokopi</span> Kartu Keluarga</h6>
+                                    </li>
+                                    <li>
+                                        <h6><span> Fotokopi</span> KTP</h6>
+                                    </li>
+                                </ul>
+                                {{-- <button class="btn btn-primary btn-lg" type="button" data-original-title="btn btn-primary btn-lg" title="">Download Form</button> --}}
+                            </div>
+                        </div>
+                    </div>
+                    {{-- END Membuat / Mengganti KK Baru --}}
+
+                    {{-- Membuat / Mengganti KK Baru --}}
+                    <div class="col-md-3">
+                        <div class="pricing-block card text-center">
+                            <div class="pricing-header">
+                                <h2>Membuat KK Baru</h2>
+                                <span class="text-muted">Pisah KK <p>(Karena Ikut Suami/Istri)</p></span>
+                            </div>
+                            <div class="pricing-list ">
+                                <ul class="pricing-inner">
+                                    <li>
+                                        <h6><span> Fotokopi</span> Kartu Keluarga</h6>
+                                    </li>
+                                    <li>
+                                        <h6><span> Fotokopi</span> KTP</h6>
+                                    </li>
+                                </ul>
+                                {{-- <button class="btn btn-primary btn-lg" type="button" data-original-title="btn btn-primary btn-lg" title="">Download Form</button> --}}
+                            </div>
+                        </div>
+                    </div>
+                    {{-- END Membuat / Mengganti KK Baru --}}
                 </div>
-                <div class="col-md-3">
-                    <div class="pricing-block card text-center">
-                        <div class="pricing-header">
-                            <h2>Surat nikah</h2>
-                            {{-- <div class="price-box">
+                <div class="row mb-5 justify-content-center">
+                    {{-- END Mengurus Nikah --}}
+                    <div class="col-md-3">
+                        <div class="pricing-block card text-center">
+                            <div class="pricing-header">
+                                <h2>Mengurus Nikah</h2>
+                                {{-- <div class="price-box">
                                 <div>
-                                    <h3>$40</h3>
+                                    <h3>$30</h3>
                                     <p>/ month</p>
                                 </div>
                             </div> --}}
-                        </div>
-                        <div class="pricing-list">
-                            <ul class="pricing-inner">
-                                <li>
-                                    <h6>80GB<span> Disk Space</span></h6>
-                                </li>
-                                <li>
-                                    <h6>80<span> Email Accounts</span></h6>
-                                </li>
-                                <li>
-                                    <h6>80GB<span> Bandwidth</span></h6>
-                                </li>
-                                <li>
-                                    <h6>25<span> Subdomains</span></h6>
-                                </li>
-                                <li>
-                                    <h6>30<span> Domains</span></h6>
-                                </li>
-                            </ul>
-                            <button class="btn btn-primary btn-lg" type="button" data-original-title="btn btn-primary btn-lg" title="">Download Form</button>
+                            </div>
+                            <div class="pricing-list ">
+                                <ul class="pricing-inner">
+                                    <li>
+                                        <h6><span> Fotokopi</span> Kartu Keluarga</h6>
+                                    </li>
+                                    <li>
+                                        <h6><span> Fotokopi</span> KTP Pribadi</h6>
+                                    </li>
+                                    <li>
+                                        <h6><span> Fotokopi</span> KTP Ibu dan Ayah atau Wali</h6>
+                                    </li>
+                                    <li>
+                                        <h6><span> Fotokopi</span> Surat Nikah</h6>
+                                    </li>
+                                    <li>
+                                        <h6><span>Surat</span> Pernyataan Status Perkawinan</h6>
+                                    </li>
+                                </ul>
+                                {{-- <button class="btn btn-primary btn-lg" type="button" data-original-title="btn btn-primary btn-lg" title="">Download Form</button> --}}
+                            </div>
                         </div>
                     </div>
+                    {{-- END Mengurus Nikah --}}
+
+                    {{-- Mengurus Akta Lahir Anak --}}
+                    <div class="col-md-3">
+                        <div class="pricing-block card text-center">
+                            <div class="pricing-header">
+                                <h2>Mengurus Akta Lahir Anak</h2>
+                                <span class="text-muted">(Baru Lahir)</span>
+
+                            </div>
+                            <div class="pricing-list ">
+                                <ul class="pricing-inner">
+                                    <li>
+                                        <h6><span> Fotokopi</span> Kartu Keluarga</h6>
+                                    </li>
+                                    <li>
+                                        <h6><span> Fotokopi</span> KTP Ibu</h6>
+                                    </li>
+                                    <li>
+                                        <h6><span> Fotokopi</span> KTP Ayah</h6>
+                                    </li>
+                                    <li>
+                                        <h6><span> Fotokopi</span> Surat Nikah</h6>
+                                    </li>
+                                    <li>
+                                        <h6><span> Fotokopi</span> 2 Orang Saksi</h6>
+                                    </li>
+                                </ul>
+                                {{-- <button class="btn btn-primary btn-lg" type="button" data-original-title="btn btn-primary btn-lg" title="">Download Form</button> --}}
+                            </div>
+                        </div>
+                    </div>
+                    {{-- END Mengurus Akta Lahir Anak --}}
+
+                    {{-- <h2>Mengurus Kehilangan Dokumen</h2> --}}
+                    <div class="col-md-3">
+                        <div class="pricing-block card text-center">
+                            <div class="pricing-header">
+                                <h2>Mengurus Kehilangan Dokumen</h2>
+                                {{-- <div class="price-box">
+                                <div>
+                                    <h3>$30</h3>
+                                    <p>/ month</p>
+                                </div>
+                            </div> --}}
+                            </div>
+                            <div class="pricing-list ">
+                                <ul class="pricing-inner">
+                                    <li>
+                                        <h6><span> Fotokopi</span> Kartu Keluarga</h6>
+                                    </li>
+                                    <li>
+                                        <h6><span> Fotokopi</span> KTP</h6>
+                                    </li>
+                                    <li>
+                                        <h6><span> Fotokopi</span> Dokumen Yang Hilang (Jika Tersedia)</h6>
+                                    </li>
+                                    <li>
+                                        <h6><span>Surat</span> Keterangan Kepolisian</h6>
+                                    </li>
+                                </ul>
+                                {{-- <button class="btn btn-primary btn-lg" type="button" data-original-title="btn btn-primary btn-lg" title="">Download Form</button> --}}
+                            </div>
+                        </div>
+                    </div>
+                    {{-- END Mengurus Kehilangan Dokumen --}}
                 </div>
             </div>
         </div>
     </div>
-<!-- Zero Configuration  Ends-->
+    <!-- Zero Configuration  Ends-->
 @endsection
