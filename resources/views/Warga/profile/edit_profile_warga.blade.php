@@ -1,5 +1,8 @@
 @extends('layouts.main-warga')
-
+@section('title')
+    Edit Profile
+    {{ $title }}
+@endsection
 @section('container')
 @component('components.warga.breadcrumb')
         @slot('breadcrumb_title')
@@ -131,7 +134,8 @@
                                         <input class="form-control " type="text" id="tempat_lahir" name="tempat_lahir"  value="{{ old('tempat_lahir',$warga->tempat_lahir) }}" placeholder="Tempat Lahir">
                                     </div>
                                     <div class="col-sm-5">
-                                        <input class="form-control digits" name="tgl_lahir" value="{{ old('tgl_lahir',$warga->tgl_lahir) }}" id="example-datetime-local-input" type="date" data-bs-original-title="" title="">
+                                        {{-- <input class="form-control digits" name="tgl_lahir" value="{{ old('tgl_lahir', $warga->tgl_lahir) }}" id="example-datetime-local-input" type="date" data-bs-original-title="" title=""> --}}
+                                        <input class="form-control digits" name="tgl_lahir" value="" id="example-datetime-local-input" type="date" data-bs-original-title="" title="">
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
