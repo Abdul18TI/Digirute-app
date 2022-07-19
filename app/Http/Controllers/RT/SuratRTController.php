@@ -3,13 +3,9 @@
 namespace App\Http\Controllers\RT;
 
 use PDF;
-use PDO;
 use App\Models\Surat;
-use App\Models\Warga;
 use Illuminate\Http\Request;
-use App\Models\WargaMeninggal;
 use App\Http\Controllers\Controller;
-use Carbon\Carbon;
 
 class SuratRTController extends Controller
 {
