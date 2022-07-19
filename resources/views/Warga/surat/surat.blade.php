@@ -50,7 +50,7 @@
                     <div class="card-body">
                         <div class="table-responsive overflow-hidden">
                             <table class="display" id="tabelpengaduan-warga">
-                                <thead class="text-center" >
+                                <thead class="text-center">
                                     <tr>
                                         <th>No</th>
                                         <th>Nomor Surat</th>
@@ -69,11 +69,19 @@
                                             <td>{{ $s->jenis_surat }}</td>
                                             <td>
                                                 <ul>
-                                                    @foreach ($s->propertie_surat->jenis_surat as $jenis_surat)
-                                                        <li><i
-                                                                class="fa fa-caret-right txt-secondary m-r-10"></i>{!!setJenisSuratKeterangan($jenis_surat) !!}
-                                                        </li>
-                                                    @endforeach
+                                                    @if ($s->propertie_surat == null)
+                                                    <p class="text-center">-</p>
+                                                    @else
+                                                        @if (isset($s->propertie_surat->jenis_surat))
+                                                            @foreach ($s->propertie_surat->jenis_surat as $jenis_surat)
+                                                                <li>
+                                                                    <i
+                                                                        class="fa fa-caret-right txt-secondary m-r-10"></i>{!! setJenisSuratKeterangan($jenis_surat) !!}
+                                                                </li>
+                                                            @endforeach
+                                                        @endif
+                                                    @endif
+
                                                 </ul>
                                             </td>
                                             <td>{{ tanggal_indo($s->created_at) }}</td>
@@ -95,21 +103,20 @@
                                                     <form method="POST"
                                                         action="{{ route('warga.surat.destroy', $s->id_surat) }}"
                                                         class="d-inline">
-                                                          @method('delete')
+                                                        @method('delete')
                                                         @csrf
                                                         <input name="_method" type="hidden" value="DELETE">
                                                         <button type="submit" class="btn btn-danger btn-sm sweet"
                                                             data-toggle="tooltip" title='Delete'><span
                                                                 class="fa fa-trash-o"></span></button>
                                                     </form>
-                                                @else 
-                                                    @if ($s->status_tandatangan == 0 || $s->status_tandatangan == 1 && $s->nomor_surat != null)
-                                                           <a class="btn btn-success btn-sm p-2 m-1"
-                                                        href=""><span
-                                                            class="fa fa-print"></span></a>
-                                                            @else
-                                                            <span class="badge badge-light text-dark">Tidak Ada Aksi</span>
-                                                            @endif
+                                                @else
+                                                    @if ($s->status_tandatangan == 0 || ($s->status_tandatangan == 1 && $s->nomor_surat != null))
+                                                        <a class="btn btn-success btn-sm p-2 m-1" href=""><span
+                                                                class="fa fa-print"></span></a>
+                                                    @else
+                                                        <span class="badge badge-light text-dark">Tidak Ada Aksi</span>
+                                                    @endif
                                                 @endif
                                             </td>
                                         </tr>
