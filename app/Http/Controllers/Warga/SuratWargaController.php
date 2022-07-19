@@ -19,6 +19,7 @@ class SuratWargaController extends Controller
         $kematian = Kematian::orderBy('tgl_kematian', 'desc')->get();
         $surat = Surat::where('pengaju', auth()->user()->id_warga)
             ->where('jenis_surat', '!=', 'Surat Keterangan Kematian')
+            ->latest()
             ->get();
         return view('warga.surat.surat', [
             'surat' => $surat,

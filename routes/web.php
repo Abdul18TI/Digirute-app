@@ -5,15 +5,16 @@ use App\Http\Controllers\RW\RwController;
 use App\Http\Controllers\RW\IuranController;
 use App\Http\Controllers\RW\LoginRWController;
 use App\Http\Controllers\RW\WargaRWController;
-use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\RW\KegiatanController;
 use App\Http\Controllers\RW\ProfileRWController;
 use App\Http\Controllers\RW\PengumumanController;
+use App\Http\Controllers\RW\PengaduanRWController;
+use App\Http\Controllers\RW\PembayaranRWController;
+use App\Http\Controllers\RW\SuratRWController;
 use App\Http\Controllers\RW\FasilitasUmumRWController;
 use App\Http\Controllers\Admin\KelolaRTController;
 use App\Http\Controllers\Admin\KelolaRWController;
-use App\Http\Controllers\RW\PengaduanRWController;
-use App\Http\Controllers\RW\PembayaranRWController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\KelolaRTRWController;
 
 
@@ -80,17 +81,6 @@ Route::get('/', function () {
 })->name('warga.login')->middleware(['guest:web', 'PreventBackHistory']);
 
 
-// Route::domain('RT.' . env('APP_URL'))->group(function () {
-// Route::get('post/{id}', function ($username, $id) {
-//     return 'User ' . $username . ' is trying to read post ' . $id;
-// });
-// });
-
-
-// });
-//    Route::prefix('RT')
-//    ->middleware('web')
-
 //RW
 Route::prefix('RW')->name('rw.')->group(function () {
     Route::middleware(['guest:rw', 'PreventBackHistory'])->group(function () {
@@ -107,6 +97,18 @@ Route::prefix('RW')->name('rw.')->group(function () {
         route::resource('warga', WargaRWController::class);
         route::resource('pengaduan', PengaduanRWController::class);
         route::resource('profile', ProfileRWController::class);
+        Route::prefix('surat')->name('surat.')->group(function () {
+            Route::get('/', [SuratRWController::class, 'index'])->name('index');
+            Route::get('/nomorsurat', [SuratRWController::class, 'nomorsurat'])->name('nomorsurat');
+            Route::get('/surat_keterangan', [SuratRWController::class, 'surat_keterangan'])->name('form.surat_keterangan');
+            Route::get('/surat_keterangan/{surat}', [SuratRWController::class, 'detailSuratKeterangan'])->name('detail.surat_keterangan');
+            Route::put('/surat_keterangan/{surat}/proses', [SuratRWController::class, 'prosesSurat'])->name('terima.surat_keterangan');
+            // Route::put('/surat_keterangan/{surat}/tolak', [SuratRWController::class, 'tolakSuratKeterangan'])->name('tolak.surat_keterangan');
+            // Route::get('/surat_keterangan/{surat}/print_surat', [SuratRWController::class, 'printSuratKeterangan'])->name('print.surat_keterangan');
+            Route::get('/detail/{id}', [SuratRWController::class, 'show'])->name('show');
+            route::get('/show_pengaju', [SuratRWController::class, 'show_pengaju'])->name('show_pengaju');
+            // Route::get('/show/{pengaduan}', [PengaduanRTController::class, 'show'])->name('show');
+        });
         route::post('pembayaran/store', [PembayaranRWController::class, 'store'])->name("pembayaran.store");
         Route::post('logout', [LoginRWController::class, 'logout'])->name('logout');
         Route::get('/pengumuman/status/update', [PengumumanController::class, 'updateStatus'])->name('pengumuman.update.status');

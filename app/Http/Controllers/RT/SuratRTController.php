@@ -12,14 +12,7 @@ class SuratRTController extends Controller
     // untuk menampilkan data pengjuan sesuai dengan rt
     public function index()
     {
-        $surat = Surat::where('rt', auth()->user()->id_rt)->latest()->get();
-        // if($surat->propertie_surat == null){
-        //     echo '-';
-        // }else{
-        //     $surat->propertie_surat. '-';
-            
-        // }
-        // dd($surat->propertie_surat);
+        $surat = Surat::where('rt', auth()->user()->id_rt)->where('status_tandatangan', '!=', 2)->latest()->get();
         return view('RT.surat.surat', [
             'surat' => $surat,
         ]);
