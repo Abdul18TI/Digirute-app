@@ -24,6 +24,45 @@ class WargaRWController extends Controller
         ]);
     }
 
+    public function wargatetaprw()
+    {
+        $warga = Warga::where('jenis_warga', 1)->get();
+        // $warga = Warga::find(1);
+        // dd($warga);
+        return view(
+            'RW.warga.warga-rw-tetap',
+            [
+                'warga' => $warga,
+            ]
+        );
+    }
+
+    public function wargapendatangrw()
+    {
+        $warga = Warga::where('jenis_warga', 0)->get();
+        // $warga = Warga::find(1);
+        // dd($warga);
+        return view(
+            'RW.warga.warga-rw-pendatang',
+            [
+                'warga' => $warga,
+            ]
+        );
+    }
+
+    public function wargakkrw()
+    {
+        $warga = Warga::where('status_hubungan_dalam_keluarga', 1)->get();
+        // $warga = Warga::find(1);
+        // dd($warga);
+        return view(
+            'RW.warga.warga-rw-kepala',
+            [
+                'warga' => $warga,
+            ]
+        );
+    }
+
     /**
      * Show the form for creating a new resource.
      *

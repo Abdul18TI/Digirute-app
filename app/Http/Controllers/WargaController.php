@@ -44,6 +44,32 @@ class WargaController extends Controller
         );
     }
 
+    public function wargapendatang()
+    {
+        $warga = Warga::where('jenis_warga', 0)->get();
+        // $warga = Warga::find(1);
+        // dd($warga);
+        return view(
+            'RT.warga.warga-rt-pendatang',
+            [
+                'warga' => $warga,
+            ]
+        );
+    }
+
+    public function wargak()
+    {
+        $warga = Warga::where('status_hubungan_dalam_keluarga', 1)->get();
+        // $warga = Warga::find(1);
+        // dd($warga);
+        return view(
+            'RT.warga.warga-rt-kepala',
+            [
+                'warga' => $warga,
+            ]
+        );
+    }
+
     // function menampilkan halaman tambah warga 
     public function create()
     {

@@ -105,6 +105,9 @@ Route::prefix('RW')->name('rw.')->group(function () {
         Route::get('/kegiatan/status/update', [KegiatanController::class, 'updateStatus'])->name('kegiatan.update.status');
         route::resource('kegiatan', KegiatanController::class);
         route::resource('warga', WargaRWController::class);
+        Route::get('/wargarw/tetaprw', [WargaRWController::class, 'wargatetaprw'])->name('wargaw.tetapw');
+        Route::get('/wargarw/pendatangrw', [WargaRWController::class, 'wargapendatangrw'])->name('wargatw.pendatanw');
+        Route::get('/wargarw/wargakk', [WargaRWController::class, 'wargakkrw'])->name('wargaww.wargaww');
         route::resource('pengaduan', PengaduanRWController::class);
         route::resource('profile', ProfileRWController::class);
         route::post('pembayaran/store', [PembayaranRWController::class, 'store'])->name("pembayaran.store");
