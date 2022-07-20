@@ -1,22 +1,23 @@
 @extends('layouts.main-rt')
 
 @section('title')
-    Pengjuan Surat
+    Nomor Surat
     {{ $title }}
 @endsection
 
 @push('css')
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/datatables.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/custom.css') }}">
 @endpush
 
 @section('container')
     @component('components.warga.breadcrumb')
         @slot('breadcrumb_title')
-            <h3>Pengajuan Surat</h3>
+            <h3>Nomor Surat</h3>
         @endslot
         {{-- <li class="breadcrumb-item">Pengaduan</li> --}}
         <li class="breadcrumb-item">Surat</li>
-        <li class="breadcrumb-item active">Pengjuan Surat</li>
+        <li class="breadcrumb-item active">Nomor Surat</li>
     @endcomponent
 
     <!-- Form Tambah Warga -->
@@ -34,7 +35,7 @@
                     <div class="card-header pb-0">
                         <div class="row">
                             <div class="col-9">
-                                <h5>Pengajuan Surat</h5>
+                                <h5>Nomor Surat</h5>
                             </div>
                             {{-- <div class="col-3">
                                 <div class="bookmark">
@@ -48,47 +49,40 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive overflow-hidden">
-                            <table class="display" id="tabelpengaduan-warga">
+                            <table class="display text-center" id="tabelpengaduan-warga">
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Nama Pengaju Surat</th>
                                         <th>Nomor Surat</th>
+                                        <th>Nama Pengaju Surat</th>
                                         <th>Jenis Surat</th>
-                                        <th>Sub Jenis Surat</th>
                                         <th>Tanggal Pengajuan</th>
-                                        <th>Status</th>
-                                        <th>Aksi</th>
+                                        <th>Status Surat</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($surat as $s)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $s->wargas->nama_lengkap }}<p class="text-muted">
+                                            <td class="text-center">
+                                                @php
+                                                    $url = null;
+                                                    if ($s->jenis_surat == 'Surat Keterangan') {
+                                                        $url = route('rt.surat.detail.surat_keterangan', $s->id_surat);
+                                                    }else if($s->jenis_surat == 'Surat Keterangan Kematian'){
+                                                        $url = route('rt.kematian.show', $s->propertie_surat->id_meninggal);
+                                                    }
+                                                @endphp
+                                                <a href="{{ is_null($url) ? 'javascript:void(0)' :$url}}">
+                                                    {{ $s->nomor_surat }}
+                                                </a>
+                                            </td>
+                                            <td>
+                                                {{ $s->wargas->nama_lengkap }}<p class="text-muted">
                                                     ({{ $s->wargas->nik }})
                                                 </p>
                                             </td>
-                                            <td class="text-center">{!! $s->nomor_surat ?? ' <span class="badge badge-dark ">Nomor Surat Belum Terbit</span>' !!}</td>
                                             <td>{{ $s->jenis_surat }}</td>
-                                            <td>
-                                                @php
-                                                    $surat = $s->propertie_surat;
-                                                @endphp
-                                                <ul>
-                                                    @if ($surat == null)
-                                                        <p class="text-center">-</p>
-                                                    @else
-                                                        @if (isset($surat->jenis_surat))
-                                                            @foreach ($surat->jenis_surat as $jenis_surat)
-                                                                <li><i
-                                                                        class="fa fa-caret-right txt-secondary m-r-10"></i>{!! setJenisSuratKeterangan($jenis_surat) !!}
-                                                                </li>
-                                                            @endforeach
-                                                        @endif
-                                                    @endif
-                                                </ul>
-                                            </td>
                                             <td>{{ tanggal_indo($s->created_at) }}</td>
                                             {{-- <td>{{ $s->propertie_surat->jenis_surat }}</td> --}}
                                             <td>
@@ -104,16 +98,6 @@
                                                     <span class="badge badge-success">Selesai</span>
                                                 @endif
                                             </td>
-                                            <td class="aksi">
-                                                <a class="btn btn-success btn-sm p-2 m-1"
-                                                    href="{{ route('rt.surat.detail.surat_keterangan', $s->id_surat) }}"><span
-                                                        class="fa fa-list"></span></a>
-                                                @if ($s->status_surat != 0 && $s->nomor_surat != null)
-                                                    <a class="btn btn-secondary btn-sm p-2 m-1"
-                                                        href="{{ route('rt.surat.print.surat_keterangan', $s->id_surat) }}"><span
-                                                            class="fa fa-print"></span></a>
-                                                @endif
-                                            </td>
                                         </tr>
                                     @endforeach
                                     {{-- <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-original-title="test" data-bs-target="#exampleModal">Simple</button> --}}
@@ -124,10 +108,8 @@
                                         <th>Nomor Surat</th>
                                         <th>Nama Pengaju Surat</th>
                                         <th>Jenis Surat</th>
-                                        <th>Sub Jenis Surat</th>
                                         <th>Tanggal Pengajuan</th>
-                                        <th>Status</th>
-                                        <th>Aksi</th>
+                                        <th>Status Surat</th>
                                     </tr>
                                 </tfooter>
                             </table>

@@ -41,7 +41,7 @@ class ProfileWargaController extends Controller
         $datakec = Kecamatan::all();
         $datakel = Kelurahan::all();
         $datapro = Provinsi::all();
-        // dd($profile);
+        // dd($profilewarga->kecamatans);
         // $rw = rw::with('identitas_rw')->where('id_warga', $id)->get();
         // $datadiri = Warga::where('id_warga', $rw->identitas_rw->id_warga)->firtst();
         return view('Warga.Profile.edit_profile_warga', [
@@ -53,7 +53,6 @@ class ProfileWargaController extends Controller
             'kecamatan' => $datakec,
             'kelurahan' => $datakel,
             'provinsi' => $datapro,
-            'title' => 'edit-profile'
         ]);
     }
 

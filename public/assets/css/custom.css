@@ -1,12 +1,18 @@
 .aksi .fa-trash-o {
     width: 12.5px;
-  }
-.aksi .btn-danger.btn-sm.btn-danger.sweet{
-  padding: 5px 8px;
-  }
-.aksi{
-  text-align: center !important;
 }
+
+.aksi .btn-danger.btn-sm.btn-danger.sweet {
+    padding: 5px 8px;
+}
+.aksi .btn-warning.btn-sm.btn-warning {
+    padding: 5px 8px;
+}
+
+.aksi {
+    text-align: center !important;
+}
+
 /* style="
  padding-left: 8px;
 padding-right: 8px;

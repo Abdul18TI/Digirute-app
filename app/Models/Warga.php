@@ -90,25 +90,25 @@ class Warga extends Authenticatable
 
     public function kabupatens()
     {
-        return $this->belongsTo(Kabupaten::class, 'kabupaten', 'id_kab')->select(['id_kab', 'nama']);;
+        return $this->belongsTo(Kabupaten::class, 'kabupaten', 'id_kab')->select(['id_kab', 'nama']);
         // return $this->belongsTo(rt::class);
     }
 
     public function kecamatans()
     {
-        return $this->belongsTo(Kecamatan::class, 'kecamatan', 'id_kec')->select(['id_kec', 'nama']);;
+        return $this->belongsTo(Kecamatan::class, 'kecamatan', 'id_kec')->select(['id_kec', 'nama']);
         // return $this->belongsTo(rt::class);
     }
 
     public function kelurahans()
     {
-        return $this->belongsTo(Kelurahan::class, 'kelurahan', 'id_kel')->select(['id_kel', 'nama']);;
+        return $this->belongsTo(Kelurahan::class, 'kelurahan', 'id_kel')->select(['id_kel', 'nama']);
         // return $this->belongsTo(rt::class);
     }
 
     public function provinsis()
     {
-        return $this->belongsTo(Provinsi::class, 'provinsi', 'id_prov')->select(['id_prov', 'nama']);;
+        return $this->belongsTo(Provinsi::class, 'provinsi', 'id_prov')->select(['id_prov', 'nama']);
         // return $this->belongsTo(rt::class);
     }
 

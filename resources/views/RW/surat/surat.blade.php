@@ -1,12 +1,13 @@
-@extends('layouts.main-rt')
+@extends('layouts.main-rw')
 
-@section('title')
-    Pengjuan Surat
+{{-- @section('title')
+    Pengajuan Surat
     {{ $title }}
-@endsection
+@endsection --}}
 
 @push('css')
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/datatables.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/custom.css') }}">
 @endpush
 
 @section('container')
@@ -16,7 +17,7 @@
         @endslot
         {{-- <li class="breadcrumb-item">Pengaduan</li> --}}
         <li class="breadcrumb-item">Surat</li>
-        <li class="breadcrumb-item active">Pengjuan Surat</li>
+        <li class="breadcrumb-item active">Pengajuan Surat</li>
     @endcomponent
 
     <!-- Form Tambah Warga -->
@@ -69,7 +70,7 @@
                                                     ({{ $s->wargas->nik }})
                                                 </p>
                                             </td>
-                                            <td class="text-center">{!! $s->nomor_surat ?? ' <span class="badge badge-dark ">Nomor Surat Belum Terbit</span>' !!}</td>
+                                             <td class="text-center">{!! $s->nomor_surat ?? ' <span class="badge badge-dark ">Nomor Surat Belum Terbit</span>' !!}</td>
                                             <td>{{ $s->jenis_surat }}</td>
                                             <td>
                                                 @php
@@ -106,12 +107,20 @@
                                             </td>
                                             <td class="aksi">
                                                 <a class="btn btn-success btn-sm p-2 m-1"
-                                                    href="{{ route('rt.surat.detail.surat_keterangan', $s->id_surat) }}"><span
+                                                    href="{{ route('rw.surat.detail.surat_keterangan', $s->id_surat) }}"><span
                                                         class="fa fa-list"></span></a>
                                                 @if ($s->status_surat != 0 && $s->nomor_surat != null)
-                                                    <a class="btn btn-secondary btn-sm p-2 m-1"
-                                                        href="{{ route('rt.surat.print.surat_keterangan', $s->id_surat) }}"><span
-                                                            class="fa fa-print"></span></a>
+                                                    @if (!$s->status_surat == 4)
+                                                        <form method="POST"
+                                                            action="{{ route('rw.surat.terima.surat_keterangan', $s->id_surat) }}"
+                                                            class="d-inline">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <button type="submit" class="btn btn-warning btn-sm"
+                                                                name="proses" value="terima">
+                                                                <span class="fa fa-check-square-o"></span></button>
+                                                        </form>
+                                                    @endif
                                                 @endif
                                             </td>
                                         </tr>

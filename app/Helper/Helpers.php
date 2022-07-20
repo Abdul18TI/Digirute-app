@@ -98,6 +98,37 @@ function getRomawi($bulan)
     }
 }
 
+function CreateNomorSuratRW($kodeJenisSurat)
+{
+    $no_rt = auth()->user()->no_rt;
+    $no_rw = auth()->user()->no_rw;
+    $jenis_surat = $kodeJenisSurat;
+    $tanggal_romawi = getRomawi(now()->month);
+    $tahun = now()->year;
+    $surat = Surat::selectRaw('RIGHT(nomor_surat,4) as tahun ,MAX(nomor_surat) as nomor_surat')
+        // ->where('rt', auth()->user()->id_rt)
+        ->where('rt', null)
+        ->where('rw', auth()->user()->id_rw)
+        ->where('status_tandatangan', 2)
+        ->where('nomor_surat', 'like', '%RW' . $no_rw . '%')
+        ->groupBy('tahun')
+        ->having('tahun', $tahun)
+        // ->dd();
+        ->toBase()
+        ->first();
+        // dd($surat);
+    // echo $surat;
+    if ($surat) {
+        //Jika Nomor Surat Sudah Ada
+        $nomorUrut = explode("/", $surat->nomor_surat)[0];
+        $nomorSurat = '';
+        $nomorSurat = sprintf("%03s", ++$nomorUrut) . "/RW${no_rw}/${jenis_surat}/${tanggal_romawi}/${tahun}";;
+    } else {
+        //Jika Nomor Surat Belum Ada
+        $nomorSurat = "001/RW${no_rw}/${jenis_surat}/${tanggal_romawi}/${tahun}";
+    }
+    return $nomorSurat;
+}
 function CreateNomorSuratRT($kodeJenisSurat)
 {
     $no_rt = auth()->user()->no_rt;

@@ -2,21 +2,22 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WargaController;
+use App\Http\Controllers\KirimEmailController;
 use App\Http\Controllers\RT\LoginRTController;
-use App\Http\Controllers\RT\KegiatanRTController;
-use App\Http\Controllers\RT\PengumumanRTController;
-use App\Http\Controllers\RT\FasilitasUmumRTController;
+use App\Http\Controllers\RT\SuratRTController;
+use App\Http\Controllers\Admin\AgamaController;
 use App\Http\Controllers\RT\ProfileRTController;
+use App\Http\Controllers\RT\KegiatanRTController;
 use App\Http\Controllers\RT\DashboardRTController;
 use App\Http\Controllers\RT\PengaduanRTController;
-use App\Http\Controllers\RT\WargaMeninggalController;
-use App\Http\Controllers\Admin\KategoriKegiatanController;
-use App\Http\Controllers\Admin\KategoriFasilitasUmumController;
-use App\Http\Controllers\Admin\KategoriPengaduanController;
-use App\Http\Controllers\Admin\AgamaController;
-use App\Http\Controllers\Admin\KategoriPengumumanController;
+use App\Http\Controllers\RT\PengumumanRTController;
 use App\Http\Controllers\Admin\JenisIuranController;
-use App\Http\Controllers\RT\SuratRTController;
+use App\Http\Controllers\RT\WargaMeninggalController;
+use App\Http\Controllers\RT\FasilitasUmumRTController;
+use App\Http\Controllers\Admin\KategoriKegiatanController;
+use App\Http\Controllers\Admin\KategoriPengaduanController;
+use App\Http\Controllers\Admin\KategoriPengumumanController;
+use App\Http\Controllers\Admin\KategoriFasilitasUmumController;
 
 //  Route::prefix('RT')->name('rt.')->group(function () { 
 Route::middleware(['guest:rt', 'PreventBackHistory'])->group(function () {
@@ -26,6 +27,7 @@ Route::middleware(['guest:rt', 'PreventBackHistory'])->group(function () {
 
 Route::middleware(['auth:rt', 'PreventBackHistory'])->group(function () {
     Route::get('/dashboard', [DashboardRTController::class, 'index'])->name('home');
+    Route::get('/kirim_email', [KirimEmailController::class, 'kirim']);
     // Route::group(['prefix' => 'warga'], function () {
     // Route::get('/', [WargaController::class, 'home_rt'])->name('warga.home');
     // Route::get('/tambah', [WargaController::class, 'tambah_warga_rt'])->name('warga.tambah');
@@ -78,6 +80,7 @@ Route::middleware(['auth:rt', 'PreventBackHistory'])->group(function () {
     });
     Route::prefix('surat')->name('surat.')->group(function () {
         Route::get('/', [SuratRTController::class, 'index'])->name('index');
+        Route::get('/nomorsurat', [SuratRTController::class, 'nomorsurat'])->name('nomorsurat');
         Route::get('/surat_keterangan', [SuratRTController::class, 'surat_keterangan'])->name('form.surat_keterangan');
         Route::get('/surat_keterangan/{surat}', [SuratRTController::class, 'detailSuratKeterangan'])->name('detail.surat_keterangan');
         Route::put('/surat_keterangan/{surat}/proses', [SuratRTController::class, 'prosesSurat'])->name('terima.surat_keterangan');
