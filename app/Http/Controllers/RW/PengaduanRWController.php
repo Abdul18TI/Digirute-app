@@ -30,6 +30,6 @@ class PengaduanRWController extends Controller
     public function show(pengaduan $pengaduan)
     {
         //
-        return pengaduan::find($pengaduan);
+        return $pengaduan;
     }
 }
