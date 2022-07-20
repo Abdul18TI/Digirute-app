@@ -50,6 +50,7 @@ Route::middleware(['auth', 'PreventBackHistory'])->group(function () {
         Route::get('/detail/{id}', [SuratWargaController::class, 'show'])->name('show');
         Route::post('/surat_keterangan/store', [SuratWargaController::class, 'surat_keterangan_store'])->name('store.surat_keterangan');
         route::get('/show_pengaju', [SuratWargaController::class, 'show_pengaju'])->name('show_pengaju');
+        Route::post('validasi/qrcode', [SuratWargaController::class, 'validasiCode'])->name('validasi_qrcode');
         // Route::get('/show/{pengaduan}', [PengaduanRTController::class, 'show'])->name('show');
     });
 });

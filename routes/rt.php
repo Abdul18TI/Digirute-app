@@ -90,9 +90,13 @@ Route::middleware(['auth:rt', 'PreventBackHistory'])->group(function () {
         Route::get('/detail/{id}', [SuratRTController::class, 'show'])->name('show');
         Route::post('/surat_keterangan/store', [SuratRTController::class, 'surat_keterangan_store'])->name('store.surat_keterangan');
         route::get('/show_pengaju', [SuratRTController::class, 'show_pengaju'])->name('show_pengaju');
+        Route::get('cek_surat', [SuratRTController::class, 'cekSurat'])->name('cekSurat');
+        Route::post('validasi/qrcode', [SuratRTController::class, 'validasiCode'])->name('validasi_qrcode');
         // Route::get('/show/{pengaduan}', [PengaduanRTController::class, 'show'])->name('show');
+        
 
     });
+
     Route::post('logout', [LoginRTController::class, 'logout'])->name('logout');
 });
 

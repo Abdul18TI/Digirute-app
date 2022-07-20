@@ -131,6 +131,7 @@ function CreateNomorSuratRW($kodeJenisSurat)
 }
 function CreateNomorSuratRT($kodeJenisSurat)
 {
+
     $no_rt = auth()->user()->no_rt;
     $no_rw = auth()->user()->rw_rel->no_rw;
     $jenis_surat = $kodeJenisSurat;
