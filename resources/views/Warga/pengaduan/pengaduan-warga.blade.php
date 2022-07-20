@@ -164,7 +164,8 @@
                             <div class="col-md-3">
                                 <p class="f-w-600">Bukti</span>
                             </div>
-                            <div class="col-md-9 ml-auto"><a href="{{ asset('assets/images/dashboard/bg.jpg') }}">
+                            <div class="col-md-9 ml-auto">
+                                <a id="gambar_link" href="">
                                     <img class="img img-thumbnail mb-3" id="gambar_pengaduan"
                                         src="{{ asset('assets/images/dashboard/bg.jpg') }}">
                                 </a>
@@ -218,6 +219,7 @@
         const tanggal_pengaduan = document.getElementById('tanggal_pengaduan');
         const tanggapan_rt = document.getElementById('tanggapan_rt');
          const gambar_pengaduan = document.getElementById('gambar_pengaduan');
+         const gambar_link = document.getElementById('gambar_link');
         
         // console.log(deskripsi_pengaduan.textContent);
         // console.log(deskripsi_pengaduan.textContent);
@@ -228,6 +230,7 @@
                 console.log(data);
                 var image = "{{ asset('storage/') }}";
                 gambar_pengaduan.src = image + '/' + data.bukti_pengaduan;
+                gambar_link.href = image + '/' + data.bukti_pengaduan;
                 judul_pengaduan.textContent = data.judul_pengaduan;
                 deskripsi_pengaduan.textContent = data.deskripsi_pengaduan;
                 kategori_pengaduan.textContent = data.kategori_pengaduans.nama_kategori_pengaduan;
