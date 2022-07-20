@@ -65,12 +65,18 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td class="text-center">
+                                                {{-- {{dd($s)}} --}}
                                                 @php
                                                     $url = null;
+                                                    $propertie_surat = $s->propertie_surat;
                                                     if ($s->jenis_surat == 'Surat Keterangan') {
                                                         $url = route('rt.surat.detail.surat_keterangan', $s->id_surat);
                                                     }else if($s->jenis_surat == 'Surat Keterangan Kematian'){
-                                                        $url = route('rt.kematian.show', $s->propertie_surat->id_meninggal);
+                                                        if (property_exists($propertie_surat,'id_surat_meninggal')){
+                                                            $url = route('rt.kematian.show',  $propertie_surat->id_surat_meninggal);
+                                                        }else{
+                                                              $url = null;
+                                                        }
                                                     }
                                                 @endphp
                                                 <a href="{{ is_null($url) ? 'javascript:void(0)' :$url}}">

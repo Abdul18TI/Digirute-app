@@ -81,7 +81,6 @@ class WargaMeninggalController extends Controller
 
             //Memasukan data inputan kedalam tabel kematian pada database
             $insertData = Kematian::create($dataentry);
-            $this->store_surat($request, $insertData->id);
             //mengembalikan ke halaman rt.kematian.index
             if ($insertData) {
                 $dataWargaSame->update(['status_warga' => 1]);
@@ -179,6 +178,11 @@ class WargaMeninggalController extends Controller
             $warga = Warga::find($kematian->warga);
             $warga->status_warga = 0;
             $warga->save();
+            // dd($kematian->no_surat);
+            if($kematian->no_surat != null){
+                $surat = Surat::where('id_surat', $kematian->no_surat)->first();
+                $surat->delete();
+            }
             $kematian->delete();
             return redirect()->route('rt.kematian.index')
                 ->with('success', 'data berhasil dihapus!');
@@ -209,22 +213,13 @@ class WargaMeninggalController extends Controller
         //
 
         $dataKematian = Kematian::find($kematian);
+        // dd($dataKematian);
         //jika data tidak ditemukan
         if (!$dataKematian) {
             return redirect()->route('rt.kematian.index')
                 ->with('error', 'Print Gagal! Data tidak temukan');
         }
 
-        // // $data = $dataKematian->get();
-        // $dataKematian['rt'] = auth()->user();
-        // $dataKematian['rw'] = auth()->user()->rw_rel;
-        // $validatedData = $request->validate([
-        //         'jenis_surat' => 'required',
-        //         'nik' => 'required|exists:wargas,nik',
-        //         'pengaju' => 'required|exists:wargas,id_warga',
-        //     ]);
-        // $input = $request->only('jenis_surat');
-        // dd(auth()->user());
         $input['pengaju'] = $dataKematian->warga;
         $input['rt'] = auth()->user()->id_rt;
         $input['rw'] = auth()->user()->rw_rel->id_rw;
@@ -232,10 +227,14 @@ class WargaMeninggalController extends Controller
         $input['status_surat'] = '4';
         $input['nomor_surat'] = CreateNomorSuratRT('SKM');
         $input['jenis_surat'] = 'Surat Keterangan Kematian';
+        $dataproperties['id_surat_meninggal'] = $dataKematian->id;
+        $input['propertie_surat'] = $dataproperties;
         $surat = Surat::create($input);
+        
         $dataKematian->no_surat = $surat->id_surat;
         $dataKematian->cetak_surat = '1';
         $dataKematian->save();
+
         return redirect()->route('rt.kematian.index')
             ->with('success', 'Pengajuan surat berhasil!');
         // dd($dataKematian['rt']);
