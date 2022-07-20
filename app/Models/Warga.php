@@ -16,7 +16,7 @@ class Warga extends Authenticatable
     protected $table = 'wargas';
     protected $primaryKey = 'id_warga';
     protected $guarded = ['id_warga'];
-    protected $with = ['pekerjaan', 'pekerjaans', 'agamas', 'rt_rel', 'rw_rel'];
+    protected $with = ['pekerjaans', 'agamas', 'rt_rel', 'rw_rel'];
     protected $dates = ['tgl_lahir', 'tgl_akhir_passport', 'tgl_keluar_kk', 'tgl_perkawinan', 'tgl_cerai'];
 
 
@@ -27,10 +27,11 @@ class Warga extends Authenticatable
 
     public function pekerjaans()
     {
-        return $this->belongsTo(Pekerjaan::class, 'pekerjaan', 'id_pekerjaan')->select(['id_pekerjaan', 'nama_pekerjaan']);;
+        return $this->belongsTo(Pekerjaan::class, 'pekerjaan', 'id_pekerjaan')->select(['id_pekerjaan', 'nama_pekerjaan']);
         // return $this->belongsTo(Pekerjaan::class, 'pekerjaan', 'id_pekerjaan')->select(['id_pekerjaan','nama_pekerjaan']);
         // return $this->belongsTo(rt::class);
     }
+
     public function pekerjaan()
     {
         return $this->belongsTo(Pekerjaan::class, 'pekerjaan', 'id_pekerjaan')->select(['id_pekerjaan', 'nama_pekerjaan']);

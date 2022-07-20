@@ -18,7 +18,7 @@
                             <div class="col-9">
                                 @foreach($identitas_rw as $kr)
                                 @if($kr->no_rw < 10)
-                                <h5>RW 0{{ $kr->no_rw }}</h5>
+                                <h5>RW {{ $kr->no_rw }}</h5>
                                 @else
                                 <h5>RW {{ $kr->no_rw }}</h5>
                                 @endif
@@ -39,7 +39,7 @@
                                                 <h4>{{ $ir->identitas_rw->nama_lengkap }}</h4>
                                             </a>
                                             @if($ir->no_rw < 10)
-                                            <h6>RW 0{{ $ir->no_rw }}</h6>
+                                            <h6>RW {{ $ir->no_rw }}</h6>
                                             @else
                                             <h6>RW {{ $ir->no_rw }}</h6>
                                             @endif
@@ -78,7 +78,7 @@
                                                 <h4>{{ $it->identitas_rt->nama_lengkap }}</h4>
                                             </a>
                                             @if($it->no_rt < 10)
-                                            <h6>RT 0{{ $it->no_rt }}</h6>
+                                            <h6>RT {{ $it->no_rt }}</h6>
                                             @else
                                             <h6>RT {{ $it->no_rt }}</h6>
                                             @endif

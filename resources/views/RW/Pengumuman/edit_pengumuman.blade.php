@@ -91,7 +91,7 @@
                                 <label class="form-label">Waktu terbit</label>
                                 <div class="col-sm-9">
                                     <input class="form-control digits" id="example-datetime-local-input"
-                                        type="datetime-local" name="tgl_terbit" value="{{ $pengumuman->tgl_terbit }}" />
+                                        type="datetime-local" name="tgl_terbit" value="{{ old('tgl_terbit',ConvertTanggal($pengumuman->tgl_terbit)) }}" />
                                 </div>
                             </div>
                         </div>

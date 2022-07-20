@@ -16,7 +16,7 @@ class WargaRWController extends Controller
      */
     public function index()
     {
-        $warga = Warga::all();
+        $warga = Warga::where('status_warga', 0)->get();
 
         return view('RW.Warga.tabel_warga', [
             'warga' => $warga,
@@ -26,7 +26,7 @@ class WargaRWController extends Controller
 
     public function wargatetaprw()
     {
-        $warga = Warga::where('jenis_warga', 1)->get();
+        $warga = Warga::where('status_warga', 0)->where('jenis_warga', 1)->get();
         // $warga = Warga::find(1);
         // dd($warga);
         return view(
@@ -39,7 +39,7 @@ class WargaRWController extends Controller
 
     public function wargapendatangrw()
     {
-        $warga = Warga::where('jenis_warga', 0)->get();
+        $warga = Warga::where('status_warga', 0)->where('jenis_warga', 0)->get();
         // $warga = Warga::find(1);
         // dd($warga);
         return view(
@@ -52,7 +52,7 @@ class WargaRWController extends Controller
 
     public function wargakkrw()
     {
-        $warga = Warga::where('status_hubungan_dalam_keluarga', 1)->get();
+        $warga = Warga::where('status_warga', 0)->where('status_hubungan_dalam_keluarga', 1)->get();
         // $warga = Warga::find(1);
         // dd($warga);
         return view(

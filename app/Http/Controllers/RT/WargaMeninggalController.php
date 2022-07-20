@@ -81,7 +81,7 @@ class WargaMeninggalController extends Controller
 
             //Memasukan data inputan kedalam tabel kematian pada database
             $insertData = Kematian::create($dataentry);
-           $this->store_surat($request, $insertData->id);
+            $this->store_surat($request, $insertData->id);
             //mengembalikan ke halaman rt.kematian.index
             if ($insertData) {
                 $dataWargaSame->update(['status_warga' => 1]);

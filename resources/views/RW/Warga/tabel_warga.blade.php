@@ -43,7 +43,7 @@
                                 <tbody>
                                     @foreach ($warga as $dw)
                                         <tr>
-                                            <td>{{ "1" }}</td>
+                                            <td>{{ $loop->iteration }}</td>
                                             <td>{{ $dw->nama_lengkap }}</td>
                                             <td>{{ $dw->no_kk }}</td>
                                             <td>{{ $dw->nik }}</td>

@@ -13,7 +13,7 @@
 @section('container')
     @component('components.r-t.breadcrumb')
         @slot('breadcrumb_title')
-            <h3>Kegiatan</h3>
+            <h3>Pengaduan</h3>
         @endslot
         {{-- <li class="breadcrumb-item">Pengaduan</li> --}}
         <li class="breadcrumb-item active">Pengaduan</li>

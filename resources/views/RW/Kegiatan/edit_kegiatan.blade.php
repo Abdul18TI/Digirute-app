@@ -103,7 +103,7 @@
                                 <label class="form-label">Tanggal mulai kegiatan</label>
                                 <div class="col-sm-9">
                                     <input class="form-control digits" id="example-datetime-local-input"
-                                        type="datetime-local" name="tgl_mulai_kegiatan" value="{{ old('tgl_mulai_kegiatan',$kegiatan->tgl_mulai_kegiatan) }}" />
+                                        type="datetime-local" name="tgl_mulai_kegiatan" value="{{ old('tgl_mulai_kegiatan',ConvertTanggal($kegiatan->tgl_mulai_kegiatan)) }}" />
                                 </div>
                                 @error('tgl_mulai_kegiatan')
                                     <a class="text-danger">
@@ -115,7 +115,7 @@
                                 <label class="form-label">Tanggal selesai kegiatan</label>
                                 <div class="col-sm-9">
                                     <input class="form-control digits" id="example-datetime-local-input"
-                                        type="datetime-local" name="tgl_selesai_kegiatan" value="{{ old('tgl_selesai_kegiatan',$kegiatan->tgl_selesai) }}" />
+                                        type="datetime-local" name="tgl_selesai_kegiatan" value="{{ old('tgl_selesai_kegiatan',ConvertTanggal($kegiatan->tgl_selesai_kegiatan)) }}" />
                                 </div>
                                 @error('tgl_selesai_kegiatan')
                                     <a class="text-danger">

@@ -56,7 +56,7 @@
                                         <label class="form-label" for="validationCustom02">Pilih RT</label>
                                         <select class="form-select" name="id_warga" id="validationDefault04" required>
                                             @foreach ($kelola_rt as $w)
-                                                @if(old('id_warga',$w->id_warga) == $w->id_warga)
+                                                @if(old('id_warga',$w->id_warga) == $rt->id_warga)
                                                     <option value="{{ $w->id_warga }}" selected>{{ $w->nama_lengkap }}</option>
                                                 @else
                                                     <option value="{{ $w->id_warga }}">{{ $w->nama_lengkap }}</option>
@@ -85,7 +85,7 @@
                                         <label class="form-label" for="validationCustom02">No RW</label>
                                         <select class="form-select" name="id_rw" id="validationDefault04" required>
                                             @foreach ($rw as $ww)
-                                                @if(old('id_rw',$ww->id_rw) == $ww->id_rw)
+                                                @if(old('id_rw',$ww->id_rw) == $rt->id_rw)
                                                     <option value="{{ $ww->id_rw }}" selected>{{ $ww->no_rw }}</option>
                                                 @else
                                                     <option value="{{ $ww->id_rw }}">{{ $ww->no_rw }}</option>
@@ -100,7 +100,7 @@
                                     <div class="mb-3">
                                 <label class="form-label">Tanggal Awal Jabatan</label>
                                     <input class="form-control digits" id="example-datetime-local-input"
-                                        type="datetime-local" name="tgl_awal_jabatan_rt" value="{{ old('tgl_awal_jabatan_rt') }}" />
+                                        type="datetime-local" name="tgl_awal_jabatan_rt" value="{{ old('tgl_awal_jabatan_rt',ConvertTanggal($rt->tgl_awal_jabatan_rt)) }}" />
                                 </div>
                                 @error('tgl_awal_jabatan_rt')
                                     <a class="text-danger">
@@ -114,7 +114,7 @@
                                     <div class="mb-3">
                                     <label class="form-label">Tanggal Akhir Jabatan</label>
                                     <input class="form-control digits" id="example-datetime-local-input"
-                                        type="datetime-local" name="tgl_akhir_jabatan_rt" value="{{ old('tgl_akhir_jabatan_rt') }}" />
+                                        type="datetime-local" name="tgl_akhir_jabatan_rt" value="{{ old('tgl_akhir_jabatan_rt',ConvertTanggal($rt->tgl_akhir_jabatan_rt)) }}" />
                                 </div>
                                 @error('tgl_akhir_jabatan_rt')
                                     <a class="text-danger">
