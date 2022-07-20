@@ -20,7 +20,7 @@ class PengaduanController extends Controller
     public function index()
     {
         //Tampilakan Pengduan yang boleh ditampilkan baik dalam kondisi proses , ditanggapi ataupun di tolak
-        $data = pengaduan::ShowOn()->where('id_rt', auth()->user()->rt)->get();
+        $data = pengaduan::ShowOn()->where('id_rt', auth()->user()->rt)->latest()->get();
        
         return view('warga.pengaduan.pengaduan-warga', compact('data'));
     }
@@ -81,6 +81,7 @@ class PengaduanController extends Controller
     {
         $data = pengaduan::where('id_rt', auth()->user()->rt)
             ->where('nik', auth()->user()->nik)
+            ->latest()
             ->get();
         return view('warga.pengaduan.pengaduan-warga-pribadi', compact('data'));
     }

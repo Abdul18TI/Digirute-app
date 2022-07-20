@@ -13,7 +13,7 @@ class PengaduanRTController extends Controller
 
     public function index()
     {
-        $data = Pengaduan::where('id_rt', auth()->guard('rt')->user()->id_rt)->get();
+        $data = Pengaduan::where('id_rt', auth()->guard('rt')->user()->id_rt)->latest()->get();
         // dd($data);
         return view('RT.pengaduan.pengaduan-rt', compact('data'));
     }
