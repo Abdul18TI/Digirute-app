@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWargaMeniggalTable extends Migration
+class CreateMeninggalTable extends Migration
 {
     /**
      * Run the migrations.
@@ -16,7 +16,7 @@ class CreateWargaMeniggalTable extends Migration
         Schema::create('warga_meninggal', function (Blueprint $table) {
             $table->id();
             $table->foreignId('warga')->unique()->constrained('wargas', 'id_warga')->onUpdate('cascade')
-            ->onDelete('cascade');;
+            ->onDelete('cascade');
             $table->string('sebab_kematian');
             $table->string('tempat_kematian');
             $table->date('tgl_kematian');
@@ -39,6 +39,6 @@ class CreateWargaMeniggalTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('warga_meniggal');
+        Schema::dropIfExists('meninggal');
     }
 }

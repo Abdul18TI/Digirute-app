@@ -1,7 +1,7 @@
 @extends('layouts.main-rt')
 
 @section('title')
-    Pengjuan Surat
+    Pengajuan Surat
     {{ $title }}
 @endsection
 
