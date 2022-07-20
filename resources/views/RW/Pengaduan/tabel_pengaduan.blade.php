@@ -197,7 +197,6 @@
             // console.log(deskripsi_pengaduan.textContent);
             // console.log(deskripsi_pengaduan.textContent);
             fetch(url)
-            .then(alert(url))
                 .then(respone =>respone.json())
                 .then(data=>{
                     console.log(data);
