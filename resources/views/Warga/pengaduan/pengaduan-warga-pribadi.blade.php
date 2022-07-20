@@ -180,8 +180,11 @@
                             <div class="col-md-3">
                                 <p class="f-w-600">Bukti</span>
                             </div>
-                            <div class="col-md-9 ml-auto"><img
-                                    src="{{ asset('assets/images/dashboard/bg.jpg') }}">
+                            <div class="col-md-9 ml-auto">
+                                <a id="gambar_link" href="">
+                                <img class="img img-thumbnail mb-3" id="gambar_pengaduan"
+                                        src="{{ asset('assets/images/dashboard/bg.jpg') }}">
+                                        </a>
                             </div>
                         </div>
                         <div class="row mb-3 pb-2"
@@ -193,11 +196,19 @@
                                 <p id="tanggal_pengaduan"></p>
                             </div>
                         </div>
-                        <div class="row pb-2">
+                        <div class="row mb-3 pb-2 " style="border-bottom: 1px solid #dee2e696;">
                             <div class="col-md-3">
                                 <p class="f-w-600">Status </span>
                             </div>
                             <div class="col-md-9 ml-auto" id="status_pengaduan"></div>
+                        </div>
+                         <div class="row pb-2 mb-5 tanggap_rt">
+                            <div class="col-md-3">
+                                <p class="f-w-600">Tanggapan RT</span>
+                            </div>
+                            <div class="col-md-9 ml-auto">
+                                <p id="tanggapan_rt"></p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -226,15 +237,21 @@
         const deskripsi_pengaduan = document.getElementById('deskripsi_pengaduan');
         const kategori_pengaduan = document.getElementById('kategori_pengaduan');
         const tanggal_pengaduan = document.getElementById('tanggal_pengaduan');
+        const gambar_pengaduan = document.getElementById('gambar_pengaduan');
+        const gambar_link = document.getElementById('gambar_link');
         // console.log(deskripsi_pengaduan.textContent);
         // console.log(deskripsi_pengaduan.textContent);
         fetch(url)
             .then(console.log(url))
             .then(respone =>respone.json())
             .then(data=>{
+                var image = "{{ asset('storage/') }}";
+                gambar_pengaduan.src = image + '/' + data.bukti_pengaduan;
+                gambar_link.href = image + '/' + data.bukti_pengaduan;
                 judul_pengaduan.textContent = data.judul_pengaduan;
                 deskripsi_pengaduan.textContent = data.deskripsi_pengaduan;
-                kategori_pengaduan.textContent = data.kategori_pengaduan;
+                kategori_pengaduan.textContent = data.kategori_pengaduans.nama_kategori_pengaduan;
+                tanggapan_rt.textContent =  data.tanggapan_pengaduan != null ? data.tanggapan_pengaduan : '-';
                 //membuat tanggal indonesia
                 const event = new Date(data.created_at);
                 const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
