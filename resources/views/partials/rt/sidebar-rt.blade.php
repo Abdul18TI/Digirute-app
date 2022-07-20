@@ -44,6 +44,10 @@
                                 <a href="{{ route('rt.kematian.index') }}"
                                     class="{{ prefixActive('rt.kematian.*') }}">Daftar Warga Meninggal</a>
                             </li>
+                            <li>
+                                <a href="{{ route('rt.kemiskinan.index') }}"
+                                    class="{{ prefixActive('rt.kemiskinan.*') }}">Daftar Warga Miskin</a>
+                            </li>
                         </ul>
                     </li>
                     <li class="dropdown">

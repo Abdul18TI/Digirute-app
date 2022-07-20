@@ -41,9 +41,16 @@
                         <a class="nav-link menu-title link-nav" href="{{ route('rw.dashboard.home') }}"><i
                                 data-feather="home"></i><span>Dashboard</span></a>
                     </li>
-                    <li>
-                        <a class="nav-link menu-title link-nav" href="{{ route('rw.warga.index') }}"><i
+                    <li class="dropdown">
+                        <a class="nav-link menu-title {{ prefixActive('rw.warga.*') }}"><i
                                 data-feather="users"></i><span>Warga</span></a>
+                        <ul class="nav-submenu menu-content" style="display:{{ prefixBlock('rw.surat.*') }};">
+                            <li><a href="{{ route('rw.warga.index') }}" class="{{ prefixActive('rw.warga.index') }}">Daftar Warga</a></li>
+                            <li><a href="{{ route('rw.wargaw.tetapw') }}" class="{{ prefixActive('rw.wargaw.tetapw') }}">Daftar Warga Tetap</a></li>
+                            <li><a href="{{ route('rw.warga.index') }}" class="{{ prefixActive('rw.wargatw.pendatanw') }}">Daftar Warga Tidak Tetap</a></li>
+                            <li><a href="{{ route('rw.warga.index') }}" class="{{ prefixActive('rw.wargaww.wargaww') }}">Daftar Kepala Keluarga</a></li>
+                            <li><a href="{{ route('rw.warga.index') }}" class="{{ prefixActive('rw.warga.index') }}">Daftar Warga Miskin</a></li>
+                        </ul>
                     </li>
                     <li class="dropdown">
                         <a class="nav-link menu-title  {{ prefixActive('rw.surat.*') }}"><i
