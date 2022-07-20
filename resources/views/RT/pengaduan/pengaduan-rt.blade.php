@@ -202,7 +202,8 @@
                             <div class="col-md-3">
                                 <p class="f-w-600">Bukti</span>
                             </div>
-                            <div class="col-md-9 ml-auto"><a href="{{ asset('assets/images/dashboard/bg.jpg') }}">
+                            <div class="col-md-9 ml-auto">
+                                <a id="gambar_link" href="">
                                     <img class="img img-thumbnail mb-3" id="gambar_pengaduan"
                                         src="{{ asset('assets/images/dashboard/bg.jpg') }}">
                                 </a>
@@ -252,6 +253,7 @@
             const tanggal_pengaduan = document.getElementById('tanggal_pengaduan');
             const gambar_pengaduan = document.getElementById('gambar_pengaduan');
             const teks = $("input[name=id_validasi]");
+            const gambar_link = document.getElementById('gambar_link');
             fetch(url)
                 // .then(alert(url))
                 .then(respone => respone.json())
@@ -277,6 +279,7 @@
                     tanggal_pengaduan.textContent = event.toLocaleDateString('id-ID', options);
                     //end membuat tanggal indonesia
                     var image = "{{ asset('storage/') }}";
+                      gambar_link.href = image + '/' + data.bukti_pengaduan;
                     gambar_pengaduan.src = image + '/' + data.bukti_pengaduan
                     let status = '';
                     if (data.status_pengaduan == 0) {
