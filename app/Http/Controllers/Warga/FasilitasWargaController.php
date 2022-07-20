@@ -22,10 +22,10 @@ class FasilitasWargaController extends Controller
 
     public function show($id)
     {
-        $fasilitas = Fasilitas_umum::where('id_fasilitas', $id)->first();
+        $fasilitas = Fasilitas_umum::where('id_fasilitas_umum', $id)->first();
         // dd($rw);
 
-        return view('Warga.fasilitas.detail_fasilitas_warga', [
+        return view('Warga.fasilitas.detail_fasilitas', [
             'fasilitas' => $fasilitas,
             "title" => "fasilitas-warga"
         ]);
