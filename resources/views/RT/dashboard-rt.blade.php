@@ -12,7 +12,6 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/prism.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/whether-icon.css') }}">
 @endpush
-
 @section('container')
     <!-- Container-fluid starts-->
     <div class="container-fluid general-widget">
@@ -64,26 +63,103 @@
                         <div class="media static-top-widget">
                             <div class="align-self-center text-center"><i data-feather="users"></i></div>
                             <div class="media-body"><span class="m-0">K. Keluarga</span>
-                                <h4 class="mb-0 counter">{{ $no_kk }}</h4><i class="icon-bg" data-feather="users"></i>
+                                <h4 class="mb-0 counter">{{ $no_kk }}</h4>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-xl-6 col-md-3 col-sm-6 box-col-3 des-xl-25 rate-sec">
-            <div class="card income-card card-primary">
-              <div class="card-body text-center">
-                <div class="round-box">
-                    <img class="img-radius align-top m-r-15 rounded-circle" src="{{ asset('assets/images/avtar/2.png') }}" alt="">
+        <div class="row">
+        <div class="col-xl-4 col-25 box-col-4 des-xl-25">
+            <div class="card latest-update-sec">
+              <div class="card-header">
+                <div class="header-top d-sm-flex align-items-center">
+                  <h5>Jumlah warga </h5><p class="text-muted">(Gender)</p>
                 </div>
-                <h5>8,50,49</h5>
-                <p>Our Annual Income</p><a class="btn-arrow arrow-primary" href="javascript:void(0)"><i class="toprightarrow-primary fa fa-arrow-up me-2"></i>95.54% </a>
-                <div class="parrten">
+              </div>
+              <div class="card-body">
+                <div class="table-responsive o-hidden">
+                  <table class="table table-bordernone">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <div class="media">
+                            {{-- <div class="media-body"><span class="m-0">RT {{ $gt->rt_rel->no_rt }}</span>
+                            </div> --}}
+                            <div class="media-body"><span class="m-0">Laki-Laki</span>
+                                <h4 class="mb-0 counter">{{ $lk}}</h4>
+                            </div>
+                            <div class="media-body"><span class="m-0">Perempuan</span>
+                                <h4 class="mb-0 counter">{{ $pr }}</h4>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>
-          </div>
+        </div>
+        <div class="col-xl-4 col-25 box-col-4 des-xl-25">
+            <div class="card latest-update-sec">
+              <div class="card-header">
+                <div class="header-top d-sm-flex align-items-center">
+                  <h5>Jumlah Warga</h5><p class="text-muted">(Meninggal)</p>
+                  <div class="center-content">
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive o-hidden">
+                  <table class="table table-bordernone">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <div class="media">
+                            <div class="media-body"><span class="m-0">Warga meninggal</span>
+                                <h4 class="mb-0 counter">{{ $meninggal}}</h4>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-25 box-col-4 des-xl-25">
+            <div class="card latest-update-sec">
+              <div class="card-header">
+                <div class="header-top d-sm-flex align-items-center">
+                  <h5>Jumlah Warga</h5><p class="text-muted">(Miskin)</p>
+                  <div class="center-content">
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive o-hidden">
+                  <table class="table table-bordernone">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <div class="media">
+                            <div class="media-body"><span class="m-0">Warga miskin</span>
+                                <h4 class="mb-0 counter">{{ $miskin}}</h4>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+        </div>
+        </div>
+        </div>
         {{-- <div class="row">
         <div class="col-xl-6 xl-50 box-col-6">
           <div class="card">
@@ -142,7 +218,8 @@
                   <h5>Kegiatan yang akan datang</h5>
               </div>
               <div class="card-body">
-                  <div class="user-status table-responsive">
+                @if ($kegiatan->count())
+                  <div class="user-status table-responsive mb-3">
                       <table class="table table-bordernone">
                           <thead>
                               <tr>
@@ -170,16 +247,22 @@
                           </tbody>
                       </table>
                   </div>
+                  <div class="card-footer pb-1 text-end">
+                    <a href="{{ route('rw.kegiatan.index') }}">Lihat Selengkapnya...</a>
+                  </div>
+                  @else
+                  Tidak ada kegiatan yang akan datang
+                  @endif
               </div>
           </div>
       </div>
       <div class="col-xl-6 xl-100 box-col-12">
             <div class="card employee-status">
                 <div class="card-header pb-0 d-flex justify-content-between align-items-center">
-                    <h5>Warga RT {{ auth()->user()->no_rt}} RW {{ auth()->user()->rw_rel->no_rw }}</h5>
+                    <h5>Warga RW {{ auth()->user()->no_rw }}</h5>
                 </div>
                 <div class="card-body">
-                    <div class="user-status table-responsive">
+                    <div class="user-status table-responsive mb-3">
                         <table class="table table-bordernone">
                             <thead>
                                 <tr>
@@ -210,6 +293,9 @@
                         </table>
                     </div>
                 </div>
+                <div class="card-footer pb-4 text-end">
+                    <a href="{{ route('rw.warga.index') }}">Lihat Selengkapnya...</a>
+                  </div>
             </div>
         </div>
         <div class="col-xl-6 xl-100 box-col-12">
@@ -218,7 +304,8 @@
                   <h5>Pengajuan Surat</h5>
               </div>
               <div class="card-body">
-                  <div class="user-status table-responsive">
+                @if ($surat->count())
+                  <div class="user-status table-responsive mb-3">
                       <table class="table table-bordernone">
                           <thead>
                               <tr>
@@ -269,6 +356,12 @@
                           </tbody>
                       </table>
                   </div>
+                  <div class="card-footer pb-1 text-end">
+                    <a href="{{ route('rw.surat.index') }}">Lihat Selengkapnya...</a>
+                  </div>
+                  @else
+                  Saat ini tidak ada pengajuan surat
+                  @endif
               </div>
           </div>
       </div>
@@ -276,22 +369,22 @@
     </div>
     <script>
       function test() {
-        window.location = '/RT/warga';
+        window.location = '/RW/warga';
       }
     </script>
     <script>
       function test1() {
-        window.location = '/RT/wargat/tetap';
+        window.location = '/RW/wargarw/tetaprw';
       }
     </script>
     <script>
       function test2() {
-        window.location = '/RT/wargatt/pendatang';
+        window.location = '/RW/wargarw/pendatangrw';
       }
     </script>
     <script>
       function test3() {
-        window.location = '/RT/wargak/wargak';
+        window.location = '/RW/wargarw/wargakk';
       }
     </script>
     <!-- Container-fluid Ends-->

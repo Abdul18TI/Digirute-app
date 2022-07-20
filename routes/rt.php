@@ -13,6 +13,7 @@ use App\Http\Controllers\RT\PengaduanRTController;
 use App\Http\Controllers\RT\PengumumanRTController;
 use App\Http\Controllers\Admin\JenisIuranController;
 use App\Http\Controllers\RT\WargaMeninggalController;
+use App\Http\Controllers\RT\WargaMiskinController;
 use App\Http\Controllers\RT\FasilitasUmumRTController;
 use App\Http\Controllers\Admin\KategoriKegiatanController;
 use App\Http\Controllers\Admin\KategoriPengaduanController;
@@ -72,6 +73,7 @@ Route::middleware(['auth:rt', 'PreventBackHistory'])->group(function () {
     route::get('kematian/{kematian}/print_surat', [WargaMeninggalController::class, 'print'])->name('kematian.print_surat');
     route::get('kematian/{kematian}/request_surat', [WargaMeninggalController::class, 'requestSurat'])->name('kematian.request_surat');
     route::resource('kematian', WargaMeninggalController::class);
+    route::resource('kemiskinan', WargaMiskinController::class);
     Route::prefix('pengaduan')->name('pengaduan.')->group(function () {
         Route::get('/', [PengaduanRTController::class, 'index'])->name('home');
         Route::get('/show/{pengaduan}', [PengaduanRTController::class, 'show'])->name('show');

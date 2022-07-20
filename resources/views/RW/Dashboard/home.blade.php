@@ -1,7 +1,7 @@
 @extends('layouts.main-rw')
 
 @section('title')
-    Dashboard - RT
+    Dashboard - RW
     {{ $title }}
 @endsection
 
@@ -38,7 +38,7 @@
                     <div class="bg-info b-r-4 card-body" onclick="test1()">
                         <div class="media static-top-widget">
                             <div class="align-self-center text-center"><i data-feather="user"></i></div>
-                            <div class="media-body"><span class="m-0">Warga tetap</span>
+                            <div class="media-body"><span class="m-0">Warga Tetap</span>
                                 <h4 class="mb-0 counter">{{ count($wargatetap)}}</h4><i class="icon-bg" data-feather="user"></i>
                             </div>
                         </div>
@@ -50,8 +50,8 @@
                     <div class="bg-success b-r-4 card-body" onclick="test2()">
                         <div class="media static-top-widget">
                             <div class="align-self-center text-center"><i data-feather="calendar"></i></div>
-                            <div class="media-body"><span class="m-0">Warga pendatang</span>
-                                <h4 class="mb-0 counter">{{ count($wargadatang)}}</h4><i class="icon-bg" data-feather="calendar"></i>
+                            <div class="media-body"><span class="m-0">Warga Pendatang</span>
+                                <h4 class="mb-0 counter">{{count($wargadatang)}}</h4><i class="icon-bg" data-feather="calendar"></i>
                             </div>
                         </div>
                     </div>
@@ -63,7 +63,45 @@
                         <div class="media static-top-widget">
                             <div class="align-self-center text-center"><i data-feather="users"></i></div>
                             <div class="media-body"><span class="m-0">K. Keluarga</span>
-                                <h4 class="mb-0 counter">{{ $no_kk }}</h4>
+                                <h4 class="mb-0 counter">{{ $no_kk }}</h4><i class="icon-bg" data-feather="users"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-xl-4 col-lg-6">
+                <div class="card o-hidden border-0">
+                    <div class="bg-warning b-r-4 card-body" onclick="test1()">
+                        <div class="media static-top-widget">
+                            <div class="align-self-center text-center"><i data-feather="user"></i></div>
+                            <div class="media-body"><span class="m-0">Warga Miskin</span>
+                                <h4 class="mb-0 counter">{{ $miskin}}</h4><i class="icon-bg" data-feather="user"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xl-4 col-lg-6">
+                <div class="card o-hidden border-0">
+                    <div class="bg-primary b-r-4 card-body" onclick="test2()">
+                        <div class="media static-top-widget">
+                            <div class="align-self-center text-center"><i data-feather="mail"></i></div>
+                            <div class="media-body"><span class="m-0">Surat</span>
+                                <h4 class="mb-0 counter">{{$miskin}}</h4><i class="icon-bg" data-feather="mail"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xl-4 col-lg-6">
+                <div class="card o-hidden border-0">
+                    <div class="bg-secondary b-r-4 card-body" onclick="test3()">
+                        <div class="media static-top-widget">
+                            <div class="align-self-center text-center"><i data-feather="message-square"></i></div>
+                            <div class="media-body"><span class="m-0">Pengaduan</span>
+                                <h4 class="mb-0 counter">{{ $no_kk }}</h4><i class="icon-bg" data-feather="message-square"></i>
                             </div>
                         </div>
                     </div>
@@ -81,7 +119,7 @@
                 </div>
               </div>
               <div class="card-body">
-                <div class="table-responsive o-hidden">
+                <div class="table-responsive o-hidden" style="overflow-y: scroll; max-height:75px">
                   <table class="table table-bordernone">
                     <tbody>
                         @foreach ($gruprt as $gr)
@@ -220,6 +258,7 @@
                   <h5>Kegiatan yang akan datang</h5>
               </div>
               <div class="card-body">
+                @if ($kegiatan->count())
                   <div class="user-status table-responsive mb-3">
                       <table class="table table-bordernone">
                           <thead>
@@ -251,6 +290,9 @@
                   <div class="card-footer pb-1 text-end">
                     <a href="{{ route('rw.kegiatan.index') }}">Lihat Selengkapnya...</a>
                   </div>
+                  @else
+                  Tidak ada kegiatan yang akan datang
+                  @endif
               </div>
           </div>
       </div>
@@ -302,6 +344,7 @@
                   <h5>Pengajuan Surat</h5>
               </div>
               <div class="card-body">
+                @if ($surat->count())
                   <div class="user-status table-responsive mb-3">
                       <table class="table table-bordernone">
                           <thead>
@@ -356,6 +399,9 @@
                   <div class="card-footer pb-1 text-end">
                     <a href="{{ route('rw.surat.index') }}">Lihat Selengkapnya...</a>
                   </div>
+                  @else
+                  Saat ini tidak ada pengajuan surat
+                  @endif
               </div>
           </div>
       </div>

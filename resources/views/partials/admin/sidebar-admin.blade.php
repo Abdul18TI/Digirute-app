@@ -31,9 +31,6 @@
                                     <h6>RW Umban Sari</h6>
                                 </div>
                             </li>
-                            <li>
-                                <a class="nav-link menu-title link-nav" href="{{ route('admin.dashboard.home') }}"><i data-feather="home"></i><span>Dashboard</span></a>
-                            </li>
                             <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="users"></i><span>Kelola RTRW</span></a>
                                 <ul class="nav-submenu menu-content">
                                     <li><a href="{{ route('rt.index') }}">Daftar RT</a></li>

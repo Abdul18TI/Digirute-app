@@ -8,6 +8,7 @@ use App\Models\Warga;
 use App\Models\Kegiatan;
 use App\Models\Surat;
 use App\Models\WargaMeninggal;
+use App\Models\WargaMiskin;
 use Carbon\Carbon;
 
 class RwController extends Controller
@@ -25,6 +26,7 @@ class RwController extends Controller
         $surat = Surat::with('wargas')->take(5)->where('status_surat', 0)->latest()->get();
         $gruprt = Warga::withonly('rt_rel')->selectRaw('count(id_warga) as jumlah_warga, rt')->where('status_warga', 0)->groupBy('rt')->get();
         $meninggal = WargaMeninggal::count('id');
+        $miskin = WargaMiskin::count('id');
         // $gender = Warga::withonly('rt_rel')->selectRaw('count(jenis_kelamin) as jenis_kelamin2,rt')->where('jenis_kelamin', 1)->groupBy('rt')->get();
         // $gender2 = Warga::withonly('rt_rel')->selectRaw('count(jenis_kelamin) as jenis_kelamin3,rt')->where('jenis_kelamin', 0)->groupBy('rt')->get();
         // dd($meninggal);
@@ -41,6 +43,7 @@ class RwController extends Controller
             'kegiatan' => $kegiatan,
             'gruprt' => $gruprt,
             'meninggal' => $meninggal,
+            'miskin' => $miskin,
             // 'gender' => $gender,
             // 'gender2' => $gender2,
         ]);
