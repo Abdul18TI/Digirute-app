@@ -84,7 +84,7 @@
                                     <div class="mb-3">
                                 <label class="form-label">Tanggal Awal Jabatan</label>
                                     <input class="form-control digits" id="example-datetime-local-input"
-                                        type="datetime-local" name="tgl_awal_jabatan_rw" value="{{ old('tgl_awal_jabatan_rw') }}" />
+                                        type="datetime-local" name="tgl_awal_jabatan_rw" value="{{ old('tgl_awal_jabatan_rw',ConvertTanggal($rw->tgl_awal_jabatan_rw)) }}" />
                                 </div>
                                 @error('tgl_awal_jabatan_rw')
                                     <a class="text-danger">
@@ -98,7 +98,7 @@
                                     <div class="mb-3">
                                     <label class="form-label">Tanggal Akhir Jabatan</label>
                                     <input class="form-control digits" id="example-datetime-local-input"
-                                        type="datetime-local" name="tgl_akhir_jabatan_rw" value="{{ old('tgl_akhir_jabatan_rw') }}" />
+                                        type="datetime-local" name="tgl_akhir_jabatan_rw" value="{{ old('tgl_akhir_jabatan_rw',ConvertTanggal($rw->tgl_akhir_jabatan_rw)) }}" />
                                 </div>
                                 @error('tgl_akhir_jabatan_rw')
                                     <a class="text-danger">

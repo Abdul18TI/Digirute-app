@@ -442,7 +442,7 @@
             $('#nama_lengkap').val(databaru.nama_lengkap.toUpperCase());
             $('#jenis_kelamin').val((databaru.jenis_kelamin == 1) ? "Laki-laki" : "Perempuan");
             $('#agama').val(agama[0].nama.toUpperCase());
-            $('#pekerjaan').val(databaru.pekerjaan.nama_pekerjaan.toUpperCase());
+            $('#pekerjaan').val(databaru.pekerjaans.nama_pekerjaan.toUpperCase());
             $('#tempat_lahir').val(databaru.tempat_lahir.toUpperCase());
             const event = new Date(databaru.tgl_lahir);
             const options = {

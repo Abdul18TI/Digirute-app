@@ -63,12 +63,104 @@
                         <div class="media static-top-widget">
                             <div class="align-self-center text-center"><i data-feather="users"></i></div>
                             <div class="media-body"><span class="m-0">K. Keluarga</span>
-                                <h4 class="mb-0 counter">{{ $no_kk }}</h4><i class="icon-bg" data-feather="users"></i>
+                                <h4 class="mb-0 counter">{{ $no_kk }}</h4>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="row">
+        <div class="col-xl-4 col-25 box-col-4 des-xl-25">
+            <div class="card latest-update-sec">
+              <div class="card-header">
+                <div class="header-top d-sm-flex align-items-center">
+                  <h5>Jumlah warga </h5><p class="text-muted">(RT)</p>
+                  <div class="center-content">
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive o-hidden">
+                  <table class="table table-bordernone">
+                    <tbody>
+                        @foreach ($gruprt as $gr)
+                      <tr>
+                        <td>
+                          <div class="media">
+                            <div class="media-body"><span class="m-0">RT {{ $gr->rt_rel->no_rt }}</span>
+                                <h4 class="mb-0 counter">{{ $gr->jumlah_warga}}</h4>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      @endforeach
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-25 box-col-4 des-xl-25">
+            <div class="card latest-update-sec">
+              <div class="card-header">
+                <div class="header-top d-sm-flex align-items-center">
+                  <h5>Jumlah warga </h5><p class="text-muted">(Gender)</p>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive o-hidden">
+                  <table class="table table-bordernone">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <div class="media">
+                            {{-- <div class="media-body"><span class="m-0">RT {{ $gt->rt_rel->no_rt }}</span>
+                            </div> --}}
+                            <div class="media-body"><span class="m-0">Laki-Laki</span>
+                                <h4 class="mb-0 counter">{{ $lk}}</h4>
+                            </div>
+                            <div class="media-body"><span class="m-0">Perempuan</span>
+                                <h4 class="mb-0 counter">{{ $pr }}</h4>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-25 box-col-4 des-xl-25">
+            <div class="card latest-update-sec">
+              <div class="card-header">
+                <div class="header-top d-sm-flex align-items-center">
+                  <h5>Jumlah Warga</h5><p class="text-muted">(Meninggal)</p>
+                  <div class="center-content">
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive o-hidden">
+                  <table class="table table-bordernone">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <div class="media">
+                            <div class="media-body"><span class="m-0">Warga meninggal</span>
+                                <h4 class="mb-0 counter">{{ $meninggal}}</h4>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+        </div>
+        </div>
         </div>
         {{-- <div class="row">
         <div class="col-xl-6 xl-50 box-col-6">
@@ -128,7 +220,7 @@
                   <h5>Kegiatan yang akan datang</h5>
               </div>
               <div class="card-body">
-                  <div class="user-status table-responsive">
+                  <div class="user-status table-responsive mb-3">
                       <table class="table table-bordernone">
                           <thead>
                               <tr>
@@ -156,6 +248,9 @@
                           </tbody>
                       </table>
                   </div>
+                  <div class="card-footer pb-1 text-end">
+                    <a href="{{ route('rw.kegiatan.index') }}">Lihat Selengkapnya...</a>
+                  </div>
               </div>
           </div>
       </div>
@@ -165,7 +260,7 @@
                     <h5>Warga RW {{ auth()->user()->no_rw }}</h5>
                 </div>
                 <div class="card-body">
-                    <div class="user-status table-responsive">
+                    <div class="user-status table-responsive mb-3">
                         <table class="table table-bordernone">
                             <thead>
                                 <tr>
@@ -196,6 +291,9 @@
                         </table>
                     </div>
                 </div>
+                <div class="card-footer pb-4 text-end">
+                    <a href="{{ route('rw.warga.index') }}">Lihat Selengkapnya...</a>
+                  </div>
             </div>
         </div>
         <div class="col-xl-6 xl-100 box-col-12">
@@ -204,7 +302,7 @@
                   <h5>Pengajuan Surat</h5>
               </div>
               <div class="card-body">
-                  <div class="user-status table-responsive">
+                  <div class="user-status table-responsive mb-3">
                       <table class="table table-bordernone">
                           <thead>
                               <tr>
@@ -254,6 +352,9 @@
                               @endforeach
                           </tbody>
                       </table>
+                  </div>
+                  <div class="card-footer pb-1 text-end">
+                    <a href="{{ route('rw.surat.index') }}">Lihat Selengkapnya...</a>
                   </div>
               </div>
           </div>
