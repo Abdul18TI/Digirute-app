@@ -83,7 +83,7 @@ class PengumumanRTController extends Controller
 
         Pengumuman::where('id_pengumuman', $pengumuman->id_pengumuman)
             ->update($validatedData);
-        return redirect()->route('rw.pengumuman.index')->with('success', 'Data berhasil diubah!');
+        return redirect()->route('rt.pengumuman.index')->with('success', 'Data berhasil diubah!');
     }
 
     public function destroy(Pengumuman $pengumuman)

@@ -26,7 +26,7 @@
                     <div class="card-header pb-0">
                         <h5>Form edit pengumuman</h5>
                     </div>
-                    <form class="form theme-form" method="POST" enctype="multipart/form-data" action="/RW/pengumuman/{{ $pengumuman->id_pengumuman }}">
+                    <form class="form theme-form" method="POST" enctype="multipart/form-data" action="/RT/pengumuman/{{ $pengumuman->id_pengumuman }}">
                         @method('put')
                         @csrf
                         <input type="hidden" name="id" value="{{ $pengumuman->id_pengumuman }}">
