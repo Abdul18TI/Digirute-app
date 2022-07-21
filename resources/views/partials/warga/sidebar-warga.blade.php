@@ -61,7 +61,6 @@
                             <li><a  href="{{ route('warga.iuran.home') }}" class="{{  prefixActive('warga.iuran.home') }}">Iuran Warga</a></li>
                         </ul>
                     </li>
-                  
                     <li class="dropdown">
                         <a class="nav-link menu-title link-nav {{routeActive('warga.kegiatan')}}" href="{{ route('warga.kegiatan_warga.index') }}"><i data-feather="calendar"></i><span>Kegiatan</span></a>
                         <a class="nav-link menu-title link-nav {{routeActive('warga.pengumuman')}}" href="{{ route('warga.pengumuman_warga.index') }}"><i data-feather="airplay"></i><span>Pengumuman</span></a>
