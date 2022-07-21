@@ -22,4 +22,13 @@ class Pembayaran extends Model
     {
         return $this->belongsTo(Iuran::class);
     }
+
+    public function scopeWarga($query, $id_warga)
+    {
+        $query->where('id_warga', 1);
+    }
+    public function scopeIuran($query, $id_iuran)
+    {
+        $query->where('id_iuran', 1);
+    }
 }

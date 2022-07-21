@@ -12,14 +12,16 @@ class iuran extends Model
     protected $guarded = ['id_iuran'];
     protected $table = "iurans";
     protected $primaryKey = 'id_iuran';
+    protected $with = ['pembayarans'];
 
-    public function pembayaran()
+    public function pembayarans()
     {
-        return $this->hasMany(Pembayaran::class);
+        return $this->hasMany(Pembayaran::class, 'id_iuran','id_iuran');
     }
 
     public function jenis_iurans()
     {
         return $this->belongsTo(JenisIuran::class, 'jenis_iuran', 'id_jenis_iuran');
     }
+
 }

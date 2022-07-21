@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Warga;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\iuran;
 use App\Models\Warga;
-
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use App\Models\Pembayaran;
 
 class IuranWargaController extends Controller
 {
@@ -20,7 +21,7 @@ class IuranWargaController extends Controller
 
     public function show($id)
     {
-        $iuran = Iuran::fInd($id);
+        $iuran = Iuran::find($id);
         $warga = Warga::all();
         return view('Warga.iuran.detail_iuran', compact('iuran', 'warga'));
         // return view('RW.Iuran.detail_iuran', [
@@ -28,5 +29,10 @@ class IuranWargaController extends Controller
         //     'warga' => $warga,
         //     'title' => 'detail-iuran'
         // ]);
+    }
+
+    public function checkData($id_iuran, $id_warga){
+        $pembayaran = Pembayaran::Iuran($id_iuran)->Warga($id_warga)->dd();
+        return $pembayaran;
     }
 }

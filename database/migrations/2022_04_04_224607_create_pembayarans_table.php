@@ -15,8 +15,8 @@ class CreatePembayaransTable extends Migration
     {
         Schema::create('pembayaran', function (Blueprint $table) {
             $table->id('id_pembayaran');
-            $table->foreignId('id_warga');
-            $table->foreignId('id_iuran');
+            $table->foreignId('id_warga')->constrained('wargas', 'id_warga')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('id_iuran')->constrained('iurans', 'id_iuran')->onUpdate('cascade')->onDelete('cascade');
             $table->integer('jumlah_bayar');
             $table->timestamps();
             $table->softDeletes();

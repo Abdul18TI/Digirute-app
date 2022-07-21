@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\KategoriKegiatanController;
 use App\Http\Controllers\Admin\KategoriPengaduanController;
 use App\Http\Controllers\Admin\KategoriPengumumanController;
 use App\Http\Controllers\Admin\KategoriFasilitasUmumController;
+use App\Http\Controllers\RT\IuranRTController;
 
 //  Route::prefix('RT')->name('rt.')->group(function () { 
 Route::middleware(['guest:rt', 'PreventBackHistory'])->group(function () {
@@ -80,6 +81,10 @@ Route::middleware(['auth:rt', 'PreventBackHistory'])->group(function () {
         Route::post('/tanggapin', [PengaduanRTController::class, 'tanggapin'])->name('tanggapin');
         Route::get('/ditampilkan', [PengaduanRTController::class, 'updateStatus'])->name('ditampilkan');
     });
+
+    route::resource('iuran', IuranRTController::class);
+
+
     Route::prefix('surat')->name('surat.')->group(function () {
         Route::get('/', [SuratRTController::class, 'index'])->name('index');
         Route::get('/nomorsurat', [SuratRTController::class, 'nomorsurat'])->name('nomorsurat');
