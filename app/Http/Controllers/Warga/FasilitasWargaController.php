@@ -10,9 +10,6 @@ class FasilitasWargaController extends Controller
 {
     public function index()
     {
-        // dd(request('search'));
-        // $fasilitas = Fasilitas_umum::where('status_fasilitas', 1)->latest()->get();
-        // dd($fasilitas[1]->status_fasilitas);
         $fasilitas = Fasilitas_umum::where('status_fasilitas', 1)->latest()->filter(request(['search', 'category']))->paginate(7)->withQueryString();
         return view('Warga.fasilitas.fasilitas_warga', [
             'fasilitas' => $fasilitas,
