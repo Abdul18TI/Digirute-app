@@ -23,7 +23,7 @@
 				<div class="col-md-12">
 					<div class="pro-filter-sec">
 						<div class="product-search">
-							<form action="fasilitasrt">
+							<form action="fasilitaswarga">
 								<div class="form-group m-0"><input class="form-control" type="search" name="search" placeholder="Search.." data-original-title="" title="" value="{{ request('search') }}" /><i type="submit" class="fa fa-search"></i></div>
 							</form>
 						</div>
