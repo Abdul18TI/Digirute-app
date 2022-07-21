@@ -38,7 +38,7 @@
                             <div class="row mb-2">
                                 <div class="profile-title">
                                     <div class="media">
-                                        <img class="img-70 rounded-circle" alt="" src="{{asset('assets/images/user/7.jpg')}}" />
+                                        <img class="img-70 rounded-circle" alt="" src="{{ asset('storage/' . $warga->foto_warga) }}" />
                                         <div class="media-body">
                                             <h3 class="mb-1 f-20 txt-primary">{{ $warga->nama_lengkap }}</h3>
                                             <p class="f-12">RW {{ $warga->rw }} | RT {{ $warga->rt }}</p>

@@ -21,7 +21,7 @@ class Fasilitas_umum extends Model
     }
     public function rts()
     {
-        return $this->belongsTo(rt::class, 'rt', 'id_rt')->select('id_rt','no_rt','id_rw');
+        return $this->belongsTo(rt::class, 'rt', 'id_rt')->select('id_rt', 'no_rt', 'id_rw');
     }
 
     public function scopeFilter($query, array $filters)

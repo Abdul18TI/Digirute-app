@@ -20,7 +20,9 @@ class WargaController extends Controller
 {
     public function index()
     {
-        $warga = Warga::all();
+        $id_rt = auth()->user()->id_rt;
+        $id_rw = auth()->user()->rw_rel->id_rw;
+        $warga = Warga::where('rt', $id_rt)->where('rw', $id_rw)->get();
         // $warga = Warga::find(1);
         // dd($warga);
         return view(
@@ -33,7 +35,9 @@ class WargaController extends Controller
 
     public function wargatetap()
     {
-        $warga = Warga::where('jenis_warga', 1)->get();
+        $id_rt = auth()->user()->id_rt;
+        $id_rw = auth()->user()->rw_rel->id_rw;
+        $warga = Warga::where('jenis_warga', 1)->where('rt', $id_rt)->where('rw', $id_rw)->get();
         // $warga = Warga::find(1);
         // dd($warga);
         return view(
@@ -46,7 +50,9 @@ class WargaController extends Controller
 
     public function wargapendatang()
     {
-        $warga = Warga::where('jenis_warga', 0)->get();
+        $id_rt = auth()->user()->id_rt;
+        $id_rw = auth()->user()->rw_rel->id_rw;
+        $warga = Warga::where('jenis_warga', 0)->where('rt', $id_rt)->where('rw', $id_rw)->get();
         // $warga = Warga::find(1);
         // dd($warga);
         return view(
@@ -59,7 +65,9 @@ class WargaController extends Controller
 
     public function wargak()
     {
-        $warga = Warga::where('status_hubungan_dalam_keluarga', 1)->get();
+        $id_rt = auth()->user()->id_rt;
+        $id_rw = auth()->user()->rw_rel->id_rw;
+        $warga = Warga::where('status_hubungan_dalam_keluarga', 1)->where('rt', $id_rt)->where('rw', $id_rw)->get();
         // $warga = Warga::find(1);
         // dd($warga);
         return view(
