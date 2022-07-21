@@ -55,8 +55,6 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $i->judul_iuran }}</td>
-                                            
-                                           
                                             <td>
                                                 @if ($i->jumlah_iuran === null)
                                                     Iuran Sukarela
@@ -66,10 +64,13 @@
                                             </td>
                                              <td>Rp. {{ number_format($i->pembayarans->sum('jumlah_bayar'), 0, '.', '.') }}</td>
                                             <td class="aksi">
-                                                <a class="btn btn-info btn-sm p-2"
+                                                <a class="btn btn-success btn-sm p-2"
+                                                    href="{{ route('rt.iuran.show', $i->id_iuran) }}"><span
+                                                        class="fa fa-money"></span></a>
+                                                <a class="btn btn-secondary btn-sm p-2"
                                                     href="{{ route('rt.iuran.show', $i->id_iuran) }}"><span
                                                         class="fa fa-eye"></span></a>
-                                                <a class="btn btn-secondary btn-sm p-2"
+                                                <a class="btn btn-warning btn-sm p-2"
                                                     href="{{ route('rt.iuran.edit', $i->id_iuran) }}"><span
                                                         class="fa fa-edit"></span></a>
                                                 <form method="POST" action="{{ route('rt.iuran.destroy', $i->id_iuran) }}"
