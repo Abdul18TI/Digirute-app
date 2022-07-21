@@ -1,4 +1,8 @@
-@extends('layouts.main-rw')
+@extends('layouts.main-rt')
+@section('title')
+    Tambah Iuran
+    {{ $title }}
+@endsection
 
 @push('css')
 <link rel="stylesheet" type="text/css" href={{ asset("assets/css/trix.css")}}>
@@ -16,42 +20,52 @@
         @slot('breadcrumb_title')
         <h3>Iuran</h3>
         @endslot
-        <li class="breadcrumb-item"><a href="{{ route('rw.iuran.index') }}">Iuran</a></li>
-        <li class="breadcrumb-item active">Edit iuran</li>
+        <li class="breadcrumb-item"><a href="{{ route('rt.iuran.index') }}">Iuran</a></li>
+        <li class="breadcrumb-item active">Tambah Iuran</li>
     @endcomponent
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
+                @if ($errors->any())
+                <div class="alert alert-danger dark alert-dismissible fade show" role="alert"><strong>Terjadi kesalahan</strong>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                    <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                @endif
                 <div class="card">
                     <div class="card-header pb-0">
-                        <h5>Form edit iuran</h5>
+                        <h5>Form tambah iuran</h5>
                     </div>
-                    <form class="form theme-form" name="f1" method="POST" action="/RW/iuran/{{ $iuran->id_iuran }}">
-                        @method('put')
+                    <form class="form theme-form" name="f1" method="POST" action="{{ route('rt.iuran.store') }}">
                         @csrf
-                        <input type="hidden" name="id" value="{{ $iuran->id_iuran }}">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">
                                     <div class="mb-3">
-                                        <label class="form-label" for="exampleFormControlInput1">Judul iuran</label>
-                                        <input class="form-control" name="judul_iuran" value="{{ old('judul_iuran',$iuran->judul_iuran) }}" id="exampleFormControlInput1" type="text"
-                                            placeholder="Iuran tong sampah" />
+                                        <label class="form-label" for="exampleFormControlInput1">Judul Iuran</label>
+                                        <input class="form-control" value="{{ old('judul_iuran') }}" name="judul_iuran" id="exampleFormControlInput1" type="text"/>
+                                        @error('judul_iuran')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col">
                                     <div class="mb-3">
-                                        <label class="form-label" for="exampleFormControlSelect7">Jenis iuran</label>
-                                        <select class="form-select btn-pill digits" name="jenis_iuran" id="exampleFormControlSelect7">
+                                        <label class="form-label" for="exampleFormControlSelect7">Jenis Iuran</label>
+                                        <select class="form-control" name="jenis_iuran" id="exampleFormControlSelect7">
                                             @foreach ($jenis_iuran as $j)
-                                            @if(old('jenis_iuran', $j->id_jenis_iuran) == $j->id_jenis_iuran)
-                                                <option value="{{ $j->id_jenis_iuran }}" selected>{{ $j->nama_jenis_iuran }}</option>
-                                            @else
-                                                <option value="{{ $j->id_jenis_iuran }}">{{ $j->nama_jenis_iuran }}</option>
-                                            @endif
-                                        @endforeach
+                                                @if(old('jenis_iuran') == $j->id_jenis_iuran)
+                                                    <option value="{{ $j->id_jenis_iuran }}" selected>{{ $j->nama_jenis_iuran }}</option>
+                                                @else
+                                                    <option value="{{ $j->id_jenis_iuran }}">{{ $j->nama_jenis_iuran }}</option>
+                                                @endif
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -70,9 +84,14 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="mb-3">
-                                        <label class="form-label" for="exampleFormControlInput1">Jumlah Target Iuran</label>
-                                        <input class="form-control" disabled="false" value="{{ old('jumlah_iuran',$iuran->jumlah_iuran) }}" name="jumlah_iuran" id="exampleFormControlInput1" type="number" />
+                                        <label class="form-label" for="exampleFormControlInput1">Target Jumlah Iuran</label>
+                                        <input class="form-control" disabled="false" value="{{ old('target_iuran') }}" name="target_iuran" id="exampleFormControlInput1" type="number" />
                                     </div>
+                                    @error('target_iuran')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
                                 </div>
                             </div>
                             <div class="row">
@@ -80,8 +99,8 @@
                                     <div class="mb-3">
                                         <div class="checkbox checkbox-success">
                                             <input id="checkbox-primary" type="checkbox"
-                                                onclick="enable_text(this.checked)">
-                                            <label for="checkbox-primary">Ada Target Iuran Perorang ?</label>
+                                                onclick="enable_text(this.checked)" value="">
+                                            <label for="checkbox-primary">Ada Target Iuran Peroarang ?</label>
                                         </div>
                                     </div>
                                 </div>
@@ -90,30 +109,38 @@
                                 <div class="col">
                                     <div class="mb-3">
                                         <label class="form-label" for="exampleInputPassword22">Target Iuran Peroarang</label>
-                                        <input class="form-control" id="exampleInputPassword22" name="target_iuran"
-                                            type="number" value="{{ old('target_iuran',$iuran->target_iuran) }}" disabled="" />
+                                        <input class="form-control" id="exampleInputPassword22" name="jumlah_iuran"
+                                            type="number" disabled="false" value=""/>
                                     </div>
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label class="form-label">Tanggal mulai iuran</label>
-                                <div class="col-sm-9">
+                                <div class="col-sm-6">
+                                    <label class="form-label">Tanggal mulai iuran</label>
                                     <input class="form-control digits" id="example-datetime-local-input"
-                                        type="datetime-local" name="tgl_mulai_iuran" value="{{ $iuran->tgl_mulai_iuran }}" />
+                                        type="datetime-local" name="tgl_mulai_iuran" value="" />
+                                        @error('tgl_mulai_iuran')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
                                 </div>
-                            </div>
-                            <div class="mb-3 row">
-                                <label class="form-label">Tanggal selesai iuran</label>
-                                <div class="col-sm-9">
+                                <div class="col-sm-6">
+                                    <label class="form-label">Tanggal selesai iuran</label>
                                     <input class="form-control digits" id="example-datetime-local-input"
-                                        type="datetime-local" name="tgl_akhir_iuran" value="{{ $iuran->tgl_akhir_iuran }}" />
+                                        type="datetime-local" name="tgl_akhir_iuran" value="" />
+                                        @error('tgl_akhir_iuran')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col">
                                     <div class="mb-3">
-                                        <label class="form-label" for="deskripsi_iuran">deskripsi iuran</label>
-                                        <input id="deskripsi_iuran" type="hidden" name="deskripsi_iuran" value="{{ old('deskripsi_iuran',$iuran->deskripsi_iuran) }}">
+                                        <label class="form-label" for="deskripsi_iuran">Deskripsi iuran</label>
+                                        <input id="deskripsi_iuran" type="hidden" value="{{ old('deskripsi_iuran') }}" name="deskripsi_iuran">
                                         <trix-editor input="deskripsi_iuran"></trix-editor>
                                     </div>
                                     @error('deskripsi_iuran')
@@ -123,11 +150,10 @@
                                     @enderror
                                 </div>
                             </div>
-                        </div>
+                            </div>
                         <div class="card-footer text-end">
-                            <button class="btn btn-primary" type="submit">Edit</button>
-                            <button class="btn btn-secondary" type="reset">Reset</button>
-                            <a class="btn btn-light" href="{{ url()->previous() }}">Batal</a>
+                            <button class="btn btn-primary" type="submit">Tambah</button>
+                            <input class="btn btn-light" type="reset" value="Batal" />
                         </div>
                     </form>
                 </div>
@@ -160,22 +186,21 @@
     
         function enable_text(status) {
             if(status){
-                document.f1.target_iuran.disabled = false;
-            }else{
-                document.f1.target_iuran.disabled = true;
-                document.f1.target_iuran.value = "";
-            }
-        }
-        function enable_text2(status) {
-            if(status){
                 document.f1.jumlah_iuran.disabled = false;
             }else{
                 document.f1.jumlah_iuran.disabled = true;
                 document.f1.jumlah_iuran.value = "";
+            }
+        }
+        function enable_text2(status) {
+            if(status){
+                document.f1.target_iuran.disabled = false;
+            }else{
+                document.f1.target_iuran.disabled = true;
+                document.f1.target_iuran.value = "";
               }
         }
     </script>
     @endsection
     
     <script type="text/javascript" src={{ asset("assets/js/trix.js")}}></script>
-

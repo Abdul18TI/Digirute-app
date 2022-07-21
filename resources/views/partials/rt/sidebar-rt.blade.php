@@ -50,7 +50,6 @@
                             </li>
                         </ul>
                     </li>
-
                     <li class="dropdown">
                         <a class="nav-link menu-title  {{ prefixActive('rt.surat.*') }}"><i
                                 data-feather="inbox"></i><span>Surat</span></a>
@@ -59,7 +58,13 @@
                                     class="{{ prefixActive('rt.surat.index') }}">Daftar Pengajuan Surat</a></li>
                             <li><a href="{{ route('rt.surat.nomorsurat') }}"
                                     class="{{ prefixActive('rw.surat.nomorsurat') }}">Nomor Surat</a></li>
+                            <li><a href="{{ route('rt.surat.cekSurat') }}"
+                                    class="{{ prefixActive('rw.surat.cekSurat') }}">Cek Surat</a></li>
                         </ul>
+                    </li>
+                       <li>
+                        <a class="nav-link menu-title link-nav" href="{{ route('rt.iuran.index') }}"><i
+                                data-feather="dollar-sign"></i><span>Iuran</span></a>
                     </li>
                     <li>
                         <a class="nav-link menu-title link-nav" href="{{ route('rt.pengaduan.home') }}"><i

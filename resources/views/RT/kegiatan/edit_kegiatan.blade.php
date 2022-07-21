@@ -197,7 +197,8 @@
             <div class="card-footer text-end">
               
               <button class="btn btn-primary" type="submit">Edit</button>
-              <button class="btn btn-light" type="reset" value="Batal" >Batal</button>
+                            <button class="btn btn-secondary" type="reset">Reset</button>
+                            <a class="btn btn-light" href="{{ url()->previous() }}">Batal</a>
             </div>
           </form>
         </div>

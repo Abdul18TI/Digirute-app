@@ -85,7 +85,10 @@
                                                     @endif
                                                 </ul>
                                             </td>
-                                            <td>{{ tanggal_indo($s->created_at) }}</td>
+                                            <td>
+                                                {{-- {!! QrCode::size(150)->generate($s->id_surat); !!} --}}
+
+                                                {{ tanggal_indo($s->created_at) }}</td>
                                             <td>
                                                 @if ($s->status_surat == 0)
                                                     <span class="badge badge-warning">Diajukan</span>
@@ -112,8 +115,13 @@
                                                                 class="fa fa-trash-o"></span></button>
                                                     </form>
                                                 @else
-                                                    @if ($s->status_tandatangan == 0 || ($s->status_tandatangan == 1 && $s->nomor_surat != null))
-                                                        <a class="btn btn-success btn-sm p-2 m-1" href=""><span
+                                                    {{-- @if ($s->status_tandatangan == 1 || ($s->status_tandatangan == 1 && $s->nomor_surat != null))
+                                                        <a class="btn btn-secondary btn-sm p-2 m-1"
+                                                        href="{{ route('warga.surat.print.surat_keterangan', $s->id_surat) }}"><span
+                                                            class="fa fa-print"></span></a> --}}
+                                                    @if ($s->status_tandatangan == 1 and $s->status_surat == 4 and $s->nomor_surat != null)
+                                                        <a class="btn btn-secondary btn-sm p-2 m-1"
+                                                            href="{{ route('warga.surat.print.surat_keterangan', $s->id_surat) }}"><span
                                                                 class="fa fa-print"></span></a>
                                                     @else
                                                         <span class="badge badge-light text-dark">Tidak Ada Aksi</span>
@@ -144,6 +152,7 @@
 @endsection
 
 @push('scripts')
+    {{-- <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script> --}}
     <script src="{{ asset('assets/js/datatable/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/js/datatable/datatables/datatable.custom.js') }}"></script>
     <script src="{{ asset('assets/js/tooltip-init.js') }}"></script>

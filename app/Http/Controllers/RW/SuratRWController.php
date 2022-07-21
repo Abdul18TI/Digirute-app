@@ -62,6 +62,7 @@ class SuratRWController extends Controller
         $propertie_surat = $surat->propertie_surat;
         $propertie_surat->tanggal_approve_rw = now();
         // dd($propertie_surat);
+        
         $surat->update(['status_surat' => 4, 'propertie_surat' => $propertie_surat]);
     }
 

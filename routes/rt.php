@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\KategoriKegiatanController;
 use App\Http\Controllers\Admin\KategoriPengaduanController;
 use App\Http\Controllers\Admin\KategoriPengumumanController;
 use App\Http\Controllers\Admin\KategoriFasilitasUmumController;
+use App\Http\Controllers\RT\IuranRTController;
 
 //  Route::prefix('RT')->name('rt.')->group(function () { 
 Route::middleware(['guest:rt', 'PreventBackHistory'])->group(function () {
@@ -80,6 +81,10 @@ Route::middleware(['auth:rt', 'PreventBackHistory'])->group(function () {
         Route::post('/tanggapin', [PengaduanRTController::class, 'tanggapin'])->name('tanggapin');
         Route::get('/ditampilkan', [PengaduanRTController::class, 'updateStatus'])->name('ditampilkan');
     });
+
+    route::resource('iuran', IuranRTController::class);
+
+
     Route::prefix('surat')->name('surat.')->group(function () {
         Route::get('/', [SuratRTController::class, 'index'])->name('index');
         Route::get('/nomorsurat', [SuratRTController::class, 'nomorsurat'])->name('nomorsurat');
@@ -92,9 +97,13 @@ Route::middleware(['auth:rt', 'PreventBackHistory'])->group(function () {
         Route::get('/detail/{id}', [SuratRTController::class, 'show'])->name('show');
         Route::post('/surat_keterangan/store', [SuratRTController::class, 'surat_keterangan_store'])->name('store.surat_keterangan');
         route::get('/show_pengaju', [SuratRTController::class, 'show_pengaju'])->name('show_pengaju');
+        Route::get('cek_surat', [SuratRTController::class, 'cekSurat'])->name('cekSurat');
+        Route::post('validasi/qrcode', [SuratRTController::class, 'validasiCode'])->name('validasi_qrcode');
         // Route::get('/show/{pengaduan}', [PengaduanRTController::class, 'show'])->name('show');
+        
 
     });
+
     Route::post('logout', [LoginRTController::class, 'logout'])->name('logout');
 });
 

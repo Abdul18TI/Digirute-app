@@ -10,12 +10,14 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\WargaMeninggal as Kematian;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class SuratWargaController extends Controller
 {
     //
     public function index()
     {
+        
         $kematian = Kematian::orderBy('tgl_kematian', 'desc')->get();
         $surat = Surat::where('pengaju', auth()->user()->id_warga)
             ->where('jenis_surat', '!=', 'Surat Keterangan Kematian')
@@ -56,7 +58,6 @@ class SuratWargaController extends Controller
         $input['pengaju'] = $request->pengaju;
         $input['rt'] = auth()->user()->rt;
         $input['rw'] = auth()->user()->rw;
-        $input['pengaju'] = $request->pengaju;
         $input['status_tandatangan'] = '1';
         $input['status_surat'] = '0';
         $input['jenis_surat'] = 'Surat Keterangan';
@@ -68,19 +69,35 @@ class SuratWargaController extends Controller
 
     public function print($id)
     {
-        //Cetak surat
-        $data = Surat::find($id);
-        if (!$data) {
-            return redirect()->route('warga.surat.form.surat_keterangan')
-                ->with('error', 'Data tidak temukan');
+
+        $surat = Surat::find($id);
+        //jika data tidak ditemukan
+        if (!$surat and $surat->status_surat == 0) {
+            return redirect()->route('rt.surat.index')
+            ->with('error', 'Print Gagal! Data tidak temukan');
         }
 
-        $warga = $data->wargas;
-        $warga['rt'] = auth()->user()->rt_rel;
-        $warga['rw'] = auth()->user()->rw_rel;
-        dd($warga);
-        $pdf = PDF::loadview('warga.surat.surat_keterangan_pdf', compact('data', 'warga'));
+        // $data = $dataKematian->get();
+        $surat['rt'] = auth()->user()->rt_rel;
+        $surat['rw'] = auth()->user()->rw_rel;
+        $pdf = PDF::loadview('warga.surat.surat_keterangan_pdf', ['surat' => $surat]);
         return $pdf->stream();
+
+
+        //Cetak surat
+        // $data = Surat::find($id);
+        // if (!$data) {
+        //     return redirect()->route('warga.surat.form.surat_keterangan')
+        //         ->with('error', 'Data tidak temukan');
+        // }
+
+        // $warga = $data->wargas;
+        // $warga['rt'] = auth()->user()->rt_rel;
+        // $warga['rw'] = auth()->user()->rw_rel;
+
+        // dd($warga);
+        // $pdf = PDF::loadview('warga.surat.surat_keterangan_pdf', compact('data', 'warga'));
+        // return $pdf->stream();
     }
     public function show_pengaju(Request $request)
     {
@@ -93,5 +110,14 @@ class SuratWargaController extends Controller
             return response()->json(['success' => 'Data ditemukan.', 'data' => $jenazah]);
         }
         return response()->json(['success' => 'Data tidak ditemukan.', 'data' => $jenazah]);
+    }
+
+    public function validasiCode(Request $request)
+    {
+    //    return $request;
+
+    $surat = Surat::where('nomor_surat', $request->qr_code )->first();
+        return $surat;
+        // return response()->json(['success' => 'Data tidak ditemukan.', 'data' => $request->id]);0
     }
 }

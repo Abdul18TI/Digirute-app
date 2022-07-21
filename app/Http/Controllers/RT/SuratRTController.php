@@ -24,7 +24,7 @@ class SuratRTController extends Controller
         $surat = Surat::with('wargas')->where('rt', auth()->user()->id_rt)
             ->where('nomor_surat', '!=', null)
             // ->where('status_tandatangan', 1)
-            ->whereIn('status_tandatangan', [0,1])
+            ->whereIn('status_tandatangan', [0, 1])
             ->orderBy('nomor_surat', 'asc')
             ->get();
         // dd($surat);
@@ -54,7 +54,12 @@ class SuratRTController extends Controller
     {
         $propertie_surat = $surat->propertie_surat;
         $propertie_surat->tanggal_approve_rt = now();
-        $surat->update(['status_surat' => 1, 'nomor_surat' => CreateNomorSuratRT('SKE'), 'propertie_surat' => $propertie_surat]);
+        // dd($propertie_surat);
+        if ($surat->status_tandatangan == 2 and $surat->status_surat == 3) {
+            $surat->update(['status_surat' => 4, 'nomor_surat' => CreateNomorSuratRT('SKE')]);
+        } else if ($surat->status_tandatangan == 1 and $surat->status_surat == 0) {
+            $surat->update(['status_surat' => 1, 'propertie_surat' => $propertie_surat, 'nomor_surat' => CreateNomorSuratRT('SKE')]);
+        }
     }
 
     public function tolakSuratKeterangan(Surat $surat)
@@ -70,7 +75,7 @@ class SuratRTController extends Controller
         //jika data tidak ditemukan
         if (!$surat and $surat->status_surat == 0) {
             return redirect()->route('rt.surat.index')
-            ->with('error', 'Print Gagal! Data tidak temukan');
+                ->with('error', 'Print Gagal! Data tidak temukan');
         }
 
         // $data = $dataKematian->get();
@@ -79,4 +84,21 @@ class SuratRTController extends Controller
         $pdf = PDF::loadview('rt.surat.surat_keterangan_pdf', ['surat' => $surat]);
         return $pdf->stream();
     }
+
+    public function cekSurat()
+    {
+        // $surat = Surat::where('nomor_surat', $request->qr_code)->first();
+        return view('rt.surat.cek_surat');
+        // return response()->json(['success' => 'Data tidak ditemukan.', 'data' => $request->id]);0
+    }
+    public function validasiCode(Request $request)
+    {
+        $surat = Surat::where('nomor_surat', $request->qr_code)->first();
+        if($surat == null){
+            return response()->json(['error' => 'Data tidak ditemukan.', ]);
+        }
+        return $surat;
+    }
+
+  
 }
