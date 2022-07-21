@@ -76,7 +76,7 @@ class IuranRTController extends Controller
      */
     public function show(Iuran $iuran)
     {
-        return view('rt.iuran.edit_iuran', [
+        return view('rt.iuran.detail_iuran', [
             'iuran' => $iuran,
             'jenis_iuran' => JenisIuran::all(),
         ]);
