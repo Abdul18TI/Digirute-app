@@ -151,10 +151,11 @@
                                         <h6 class="blog-bottom-details mt-2">{{ $kk->judul_pengumuman }}</h6>
                                     </a>
                                     <ul class="blog-social">
-                                        @if ($k->penanggung_jawab == 'RT')
+                                        @if ($kk->penanggung_jawab == 'RT')
                                             <li>oleh: RT {{ $k->rts->no_rt }}</li>
                                         @else
                                             <li>oleh: RW {{ $k->rws->no_rw }}</li>
+                                            
                                         @endif
                                         <li>Kategori: <a
                                                 href="/Warga/pengumuman_warga?category={{ $kk->kategori_pengumuman }}">{{ $kk->Kategori_pengumumans->nama_kategori_pengumuman }}</a>

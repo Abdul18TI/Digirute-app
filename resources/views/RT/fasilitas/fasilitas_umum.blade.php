@@ -16,6 +16,12 @@
         <li class="breadcrumb-item active">Fasilitas umum</li>
         {{-- <li class="breadcrumb-item active">Kategori_Fasilitas umum</li> --}}
     @endcomponent
+	 {{-- <div class="visible-print text-center">
+    {!! QrCode::format('png')->size(100)->generate(Request::url()); !!}
+    <p>Scan me to return to the original page.</p>
+</div> --}}
+
+{{-- <img src="data:image/png;base64,{!! QrCode::format('png')->size(100)->generate(Request::url()); !!}"> --}}
     @if($fasilitas->count())
 	<div class="container-fluid blog-page">
 		<div class="feature-products">

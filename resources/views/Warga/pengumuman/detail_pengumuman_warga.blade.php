@@ -25,7 +25,7 @@
           <div class="blog-box blog-details">
             @if($pengumuman->foto_pengumuman == null)     
             @else
-            <div class="banner-wrraper"><img class="img-fluid w-100 bg-img-cover" src="{{asset('storage/'. $pengumuman->foto_pengumuman)}}" alt="blog-main" /></div>
+            {{-- <div class ="banner-wrraper"><img class="img-fluid w-100 bg-img-cover" src="{{asset('storage/'. $pengumuman->foto_pengumuman)}}" alt="blog-main" /></div> --}}
             @endif
             <div class="card">
               <div class="card-body">

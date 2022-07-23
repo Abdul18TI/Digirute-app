@@ -10,6 +10,7 @@ use App\Models\Kegiatan;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\WargaMeninggal as Kematian;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class WargaMeninggalController extends Controller
 {
@@ -247,9 +248,9 @@ class WargaMeninggalController extends Controller
     public function print($kematian)
     {
         //
-
+        $qrcode = base64_encode(QrCode::format('svg')->size(100)->errorCorrection('H')->generate('001/RT01/RW01/SKM/VII/2022'));
         $dataKematian = Kematian::find($kematian);
-
+// dd($qrcode);
         //jika data tidak ditemukan
         if (!$dataKematian) {
             return redirect()->route('rt.kematian.index')
@@ -259,6 +260,7 @@ class WargaMeninggalController extends Controller
         // $data = $dataKematian->get();
         $dataKematian['rt'] = auth()->user();
         $dataKematian['rw'] = auth()->user()->rw_rel;
+        $dataKematian['qrcode'] = $qrcode;
         // dd($dataKematian['rt']);
         //    return view('rt.kematian.surat_kematian_pdf', ['kematian' => $dataKematian]);
         $pdf = PDF::loadview('rt.kematian.surat_kematian_pdf', ['kematian' => $dataKematian]);

@@ -126,10 +126,12 @@
           {{ strtoupper(tanggal_indo($kematian->tgl_lahir_pelapor)) }}</td>
       </tr>
     </table>
+   
     <p>Demikian surat keterangan kematian ini kami buat untuk dapat dipergunakan sebagaimana mestinya.</p>
 <div style="width:50%; text-align: center; float: right;">
         <p class="m-0">Pekanbaru, {{ $kematian->created_at->isoFormat('D MMMM Y') }}</p>
-        <p class="mb-5 pb-5">Ketua RT. {{ $kematian->rt->no_rt }} RW. {{ $kematian->rw->no_rw }}</p>
+        <p class="mb-1 pb-1">Ketua RT. {{ $kematian->rt->no_rt }} RW. {{ $kematian->rw->no_rw }}</p>
+        <p><img class="mt-0" src="data:image/png;base64, {!! $kematian->qrcode !!}"></p>
         <p >{{ $kematian->rt->identitas_rt->nama_lengkap }}</p>
 </div>
   </div>

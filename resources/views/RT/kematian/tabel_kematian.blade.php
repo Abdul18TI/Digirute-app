@@ -66,13 +66,14 @@
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
+                                {{-- {!! QrCode::format('svg')->size(200)->errorCorrection('H')->generate('string') !!} --}}
                                 <tbody>
                                     @foreach ($kematian as $p)
                                         <tr>
                                             <td class="text-center">{{ $loop->iteration }}</td>
                                             <td>{{ $p->wargas->nama_lengkap }}<p class="text-muted">({{ $p->wargas->nik }})</p></td>
-                                            <td><p class><span class="f-w-600">Sebab : </span>{{tanggal_indo($p->tgl_kematian) }}</p>
-                                            <p class><span class="f-w-600">Lokasi : </span>{{tanggal_indo($p->tgl_kematian) }}</p></td>
+                                            <td><p class><span class="f-w-600">Sebab : </span>{{$p->sebab_kematian}}</p>
+                                            <p class><span class="f-w-600">Lokasi : </span>{{ $p->tempat_kematian}}</p></td>
                                             <td>{{ tanggal_indo($p->tgl_kematian) }}</td>
                                             <td class="aksi">
 
