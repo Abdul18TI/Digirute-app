@@ -383,11 +383,11 @@
                                   </td>
                                   <td class="aksi">
                                     <a class="btn btn-success btn-sm p-2 m-1"
-                                        href="{{ route('rt.surat.detail.surat_keterangan', $dw->id_surat) }}"><span
+                                        href="{{ route('rw.surat.detail.surat_keterangan', $dw->id_surat) }}"><span
                                             class="fa fa-list"></span></a>
                                     @if ($dw->status_surat != 0 && $dw->nomor_surat != null)
                                         <a class="btn btn-secondary btn-sm p-2 m-1"
-                                            href="{{ route('rt.surat.print.surat_keterangan', $dw->id_surat) }}"><span
+                                            href="{{ route('rw.surat.print.surat_keterangan', $dw->id_surat) }}"><span
                                                 class="fa fa-print"></span></a>
                                     @endif
                                 </td>

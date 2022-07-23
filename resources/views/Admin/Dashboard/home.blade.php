@@ -19,7 +19,7 @@
             <div class="col-sm-6 col-xl-3 col-lg-6">
                 <div class="card o-hidden border-0">
                   
-                    <div class="bg-secondary b-r-4 card-body" onclick="test()">
+                    <div class="bg-secondary b-r-4 card-body">
                         <div class="media static-top-widget">
                           
                             <div class="align-self-center text-center"><i data-feather="user-plus"></i></div>
@@ -35,7 +35,7 @@
             </div>
             <div class="col-sm-6 col-xl-3 col-lg-6">
                 <div class="card o-hidden border-0">
-                    <div class="bg-info b-r-4 card-body" onclick="test1()">
+                    <div class="bg-info b-r-4 card-body">
                         <div class="media static-top-widget">
                             <div class="align-self-center text-center"><i data-feather="user"></i></div>
                             <div class="media-body"><span class="m-0">Warga tetap</span>
@@ -47,7 +47,7 @@
             </div>
             <div class="col-sm-6 col-xl-3 col-lg-6">
                 <div class="card o-hidden border-0">
-                    <div class="bg-success b-r-4 card-body" onclick="test2()">
+                    <div class="bg-success b-r-4 card-body">
                         <div class="media static-top-widget">
                             <div class="align-self-center text-center"><i data-feather="calendar"></i></div>
                             <div class="media-body"><span class="m-0">Warga pendatang</span>
@@ -59,11 +59,11 @@
             </div>
             <div class="col-sm-6 col-xl-3 col-lg-6">
                 <div class="card o-hidden border-0">
-                    <div class="bg-danger b-r-4 card-body" onclick="test3()">
+                    <div class="bg-danger b-r-4 card-body">
                         <div class="media static-top-widget">
                             <div class="align-self-center text-center"><i data-feather="users"></i></div>
                             <div class="media-body"><span class="m-0">K. Keluarga</span>
-                                <h4 class="mb-0 counter">{{ $no_kk }}</h4>
+                                <h4 class="mb-0 counter">{{ $no_kk }}</h4><i class="icon-bg" data-feather="users"></i>
                             </div>
                         </div>
                     </div>
@@ -248,9 +248,6 @@
                           </tbody>
                       </table>
                   </div>
-                  <div class="card-footer pb-1 text-end">
-                    <a href="{{ route('rw.kegiatan.index') }}">Lihat Selengkapnya...</a>
-                  </div>
               </div>
           </div>
       </div>
@@ -291,9 +288,6 @@
                         </table>
                     </div>
                 </div>
-                <div class="card-footer pb-4 text-end">
-                    <a href="{{ route('rw.warga.index') }}">Lihat Selengkapnya...</a>
-                  </div>
             </div>
         </div>
         <div class="col-xl-6 xl-100 box-col-12">
@@ -309,7 +303,6 @@
                                   <th scope="col">Nama pengaju</th>
                                   <th scope="col">Tanggal pengaju</th>
                                   <th scope="col">Status Pengajuan</th>
-                                  <th scope="col">Aksi</th>
                               </tr>
                           </thead>
                           <tbody>
@@ -338,49 +331,16 @@
                                                     <span class="badge badge-success">Selesai</span>
                                                 @endif
                                   </td>
-                                  <td class="aksi">
-                                    <a class="btn btn-success btn-sm p-2 m-1"
-                                        href="{{ route('rt.surat.detail.surat_keterangan', $dw->id_surat) }}"><span
-                                            class="fa fa-list"></span></a>
-                                    @if ($dw->status_surat != 0 && $dw->nomor_surat != null)
-                                        <a class="btn btn-secondary btn-sm p-2 m-1"
-                                            href="{{ route('rt.surat.print.surat_keterangan', $dw->id_surat) }}"><span
-                                                class="fa fa-print"></span></a>
-                                    @endif
-                                </td>
                               </tr>
                               @endforeach
                           </tbody>
                       </table>
-                  </div>
-                  <div class="card-footer pb-1 text-end">
-                    <a href="{{ route('rw.surat.index') }}">Lihat Selengkapnya...</a>
                   </div>
               </div>
           </div>
       </div>
     </div>
     </div>
-    <script>
-      function test() {
-        window.location = '/RW/warga';
-      }
-    </script>
-    <script>
-      function test1() {
-        window.location = '/RW/wargarw/tetaprw';
-      }
-    </script>
-    <script>
-      function test2() {
-        window.location = '/RW/wargarw/pendatangrw';
-      }
-    </script>
-    <script>
-      function test3() {
-        window.location = '/RW/wargarw/wargakk';
-      }
-    </script>
     <!-- Container-fluid Ends-->
     @push('scripts')
         <script src="{{ asset('assets/js/prism/prism.min.js') }}"></script>

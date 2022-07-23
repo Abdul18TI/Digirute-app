@@ -50,7 +50,6 @@
                                             width="421" height="263" alt="" /></a>
                                 </div>
                                 <div class="blog-details-second">
-									 <div class="blog-post-date"><span class="blg-month">apr</span><span class="blg-date">10</span></div>
                                     <a href="{{ route('rw.fasilitasrw.show', $kk->id_fasilitas_umum) }}">
                                         <h6 class="blog-bottom-details">{{ Str::limit($kk->fasilitas_umum, 20) }}</h6>
                                     </a>
