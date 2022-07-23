@@ -123,4 +123,13 @@ class Warga extends Authenticatable
     {
         return $this->hasMany(Surat::class, 'pengaju', 'id_warga');
     }
+
+    public function scopeSetNonActive($query)
+    {
+        return $query->update(['active' => 0]);
+    }
+    public function scopeSetActive($query)
+    {
+        return $query->update(['active' => 1]);
+    }
 }
