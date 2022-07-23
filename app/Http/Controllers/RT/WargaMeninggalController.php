@@ -84,6 +84,7 @@ class WargaMeninggalController extends Controller
             //mengembalikan ke halaman rt.kematian.index
             if ($insertData) {
                 $dataWargaSame->update(['status_warga' => 1]);
+                $dataWargaSame->update(['active' => 0]);
                 return redirect()->route('rt.kematian.index')
                     ->with('success', 'Data berhasil ditambah!');
             }
