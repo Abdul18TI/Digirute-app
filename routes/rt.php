@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\KategoriPengaduanController;
 use App\Http\Controllers\Admin\KategoriPengumumanController;
 use App\Http\Controllers\Admin\KategoriFasilitasUmumController;
 use App\Http\Controllers\RT\IuranRTController;
+use App\Http\Controllers\RT\WargaPindahController;
 
 //  Route::prefix('RT')->name('rt.')->group(function () { 
 Route::middleware(['guest:rt', 'PreventBackHistory'])->group(function () {
@@ -40,7 +41,7 @@ Route::middleware(['auth:rt', 'PreventBackHistory'])->group(function () {
     Route::get('/wargat/tetap', [WargaController::class, 'wargatetap'])->name('wargat.tetap');
     Route::get('/wargatt/pendatang', [WargaController::class, 'wargapendatang'])->name('wargatt.pendatang');
     Route::get('/wargak/wargak', [WargaController::class, 'wargak'])->name('wargak.wargak');
-    // });
+    
     Route::get('/warga/getKab/{id}', function ($id) {
         $kab = App\Models\Kabupaten::where('id_prov', $id)->get();
         return response()->json($kab);
@@ -57,24 +58,46 @@ Route::middleware(['auth:rt', 'PreventBackHistory'])->group(function () {
         $kel = App\Models\Kelurahan::where('id_kec', $id)->get();
         return response()->json($kel);
     });
+
     route::resource('kategori_pengumuman', KategoriPengumumanController::class);
     route::resource('jenis_iuran', JenisIuranController::class);
     route::resource('kategori_kegiatan', KategoriKegiatanController::class);
     route::resource('kategori_pengaduan', KategoriPengaduanController::class);
     route::resource('kategori_fasilitas', KategoriFasilitasUmumController::class);
     route::resource('agama', AgamaController::class);
+
+    route::resource('wargapindah', WargaPindahController::class)->only([
+        'index', 'create', 'store', 'destroy'
+    ]);
+  
+    // KEGIATAN
     Route::get('/status/update', [KegiatanRTController::class, 'updateStatus'])->name('kegiatan.update.status');
     route::resource('kegiatan', KegiatanRTController::class);
+    // END KEGIATAN
+
+    // PENGUMUMAN
     Route::get('/pengumuman/status2/update', [PengumumanRTController::class, 'updateStatus'])->name('pengumumanrt.update.status');
     route::resource('pengumuman', PengumumanRTController::class);
+    // END PENGUMUMAN
+
     route::resource('fasilitas', FasilitasUmumRTController::class);
+  
     route::resource('profileRT', ProfileRTController::class);
+   
+    // KEMATIAN
     route::get('kematian/show_jenazah', [WargaMeninggalController::class, 'show_warga'])->name('kematian.show_jenazah');
     route::get('kematian/show_warga', [WargaMeninggalController::class, 'show_warga'])->name('kematian.show_pelapor');
     route::get('kematian/{kematian}/print_surat', [WargaMeninggalController::class, 'print'])->name('kematian.print_surat');
     route::get('kematian/{kematian}/request_surat', [WargaMeninggalController::class, 'requestSurat'])->name('kematian.request_surat');
-    route::resource('kematian', WargaMeninggalController::class);
-    route::resource('kemiskinan', WargaMiskinController::class);
+    route::resource('kematian', WargaMeninggalController::class)->only([
+        'index', 'create', 'store', 'destroy', 'show', 'show_warga', 'requestSurat', 'print'
+    ]);
+    // END KEMATIAN
+
+    route::resource('kemiskinan', WargaMiskinController::class)->only([
+        'index', 'create', 'store', 'destroy', 'show','show_warga', 'requestSurat', 'print'
+    ]);
+
     Route::prefix('pengaduan')->name('pengaduan.')->group(function () {
         Route::get('/', [PengaduanRTController::class, 'index'])->name('home');
         Route::get('/show/{pengaduan}', [PengaduanRTController::class, 'show'])->name('show');

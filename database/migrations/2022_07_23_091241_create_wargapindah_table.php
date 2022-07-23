@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWargaMiskinTable extends Migration
+class CreateWargapindahTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateWargaMiskinTable extends Migration
      */
     public function up()
     {
-        Schema::create('warga_miskin', function (Blueprint $table) {
+        Schema::create('warga_pindah', function (Blueprint $table) {
             $table->id();
             $table->foreignId('warga')->constrained('wargas', 'id_warga')->onUpdate('cascade')
             ->onDelete('cascade');
-            $table->String('bukti');
-            $table->text('deskripsi');
+            $table->String('dokumen_pindah');
+            $table->date('tanggal_pindah');
+            $table->text('alamat_pindah');
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ class CreateWargaMiskinTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('warga_miskin');
+        Schema::dropIfExists('wargapindah');
     }
 }

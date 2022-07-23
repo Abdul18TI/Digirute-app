@@ -48,6 +48,10 @@
                                 <a href="{{ route('rt.kemiskinan.index') }}"
                                     class="{{ prefixActive('rt.kemiskinan.*') }}">Daftar Warga Miskin</a>
                             </li>
+                            <li>
+                                <a href="{{ route('rt.wargapindah.index') }}"
+                                    class="{{ prefixActive('rt.wargapindah.*') }}">Daftar Warga Pindah</a>
+                            </li>
                         </ul>
                     </li>
                     <li class="dropdown">
