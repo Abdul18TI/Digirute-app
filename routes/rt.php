@@ -89,10 +89,14 @@ Route::middleware(['auth:rt', 'PreventBackHistory'])->group(function () {
     route::get('kematian/show_warga', [WargaMeninggalController::class, 'show_warga'])->name('kematian.show_pelapor');
     route::get('kematian/{kematian}/print_surat', [WargaMeninggalController::class, 'print'])->name('kematian.print_surat');
     route::get('kematian/{kematian}/request_surat', [WargaMeninggalController::class, 'requestSurat'])->name('kematian.request_surat');
-    route::resource('kematian', WargaMeninggalController::class);
+    route::resource('kematian', WargaMeninggalController::class)->only([
+        'index', 'create', 'store', 'destroy', 'show', 'show_warga', 'requestSurat', 'print'
+    ]);
     // END KEMATIAN
 
-    route::resource('kemiskinan', WargaMiskinController::class);
+    route::resource('kemiskinan', WargaMiskinController::class)->only([
+        'index', 'create', 'store', 'destroy', 'show','show_warga', 'requestSurat', 'print'
+    ]);
 
     Route::prefix('pengaduan')->name('pengaduan.')->group(function () {
         Route::get('/', [PengaduanRTController::class, 'index'])->name('home');
