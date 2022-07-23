@@ -63,6 +63,7 @@ class CreateWargasTable extends Migration
             $table->foreignId('rt')->nullable(); //
             $table->foreignId('rw')->nullable(); //
             $table->integer('status_warga')->default(0)->comment('0=>Hidup; 1=>Mati; 3=>Pindah'); //
+            $table->integer('active')->default(1)->comment('1=>Aktif; 0=>Non Aktif'); //
             $table->timestamps();
             $table->softDeletes();
         });

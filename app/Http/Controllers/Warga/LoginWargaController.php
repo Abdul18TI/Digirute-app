@@ -16,19 +16,23 @@ class LoginWargaController extends Controller
             'username' => ['required'],
             'password' => ['required'],
         ]);
-
+        $credentials['active'] = 1;
         // dd(Hash::make('asdasd'));
         // dd('berhasil login');
 
         if (Auth::guard('web')->attempt($credentials)) {
             $request->session()->regenerate();
-
             return redirect()->route('warga.home');
+        } else {
+            if ($credentials['active'] == 1) {
+                return back()->with([
+                    'gagal' => 'Terjadi kesalahan pada login, akun anda sudah di non aktifkan',
+                ]);
+            }
+            return back()->with([
+                'gagal' => 'Terjadi kesalahan pada login, email atau password salah',
+            ]);
         }
-
-        return back()->with([
-            'gagal' => 'Terjadi kesalahan pada login, email atau password salah',
-        ]);
     }
     public function logout(Request $request)
     {
