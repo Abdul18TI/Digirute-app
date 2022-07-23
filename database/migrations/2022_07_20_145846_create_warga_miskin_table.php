@@ -15,7 +15,8 @@ class CreateWargaMiskinTable extends Migration
     {
         Schema::create('warga_miskin', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('warga');
+            $table->foreignId('warga')->constrained('wargas', 'id_warga')->onUpdate('cascade')
+            ->onDelete('cascade');
             $table->String('bukti');
             $table->text('deskripsi');
             $table->timestamps();
