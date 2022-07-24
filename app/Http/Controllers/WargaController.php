@@ -157,7 +157,7 @@ class WargaController extends Controller
             'rw' => 'required|nullable'
         ]);
 
-        $validatedData['username'] =  $request->file('nik');
+        $validatedData['username'] =  $request->nik;
         $validatedData['password'] =  Hash::make(12345678);
 
         if ($request->file('foto_warga')) {

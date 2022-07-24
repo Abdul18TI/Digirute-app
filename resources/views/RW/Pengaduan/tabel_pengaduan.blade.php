@@ -58,11 +58,11 @@
                                                 <td>{{ Str::limit($dt->deskripsi_pengaduan, 100, '...') }}</td>
                                                 <td>{{ $dt->created_at->isoFormat('ddd, D MMM Y') }}</td>
                                                 <td>
-                                                    @if ($dt->status_pengaduan == 1)
+                                                    @if ($dt->status_pengaduan == 2)
                                                         <span class="badge badge-success">Sudah Ditanggapi</span>
                                                     @elseif($dt->status_pengaduan == 0)
                                                             <span class="badge badge-warning">Proses</span></td>
-                                                    @elseif($dt->status_pengaduan == 3)
+                                                    @elseif($dt->status_pengaduan == 1)
                                                             <span class="badge badge-warning">Ditolak</span></td>
                                                     @endif
                                                 </td>

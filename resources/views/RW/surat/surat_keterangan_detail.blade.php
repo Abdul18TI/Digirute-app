@@ -48,11 +48,11 @@
                         <strong>Surat Telah Di Tolak !</strong>
                     </div>
                 @endif
-                @if ($surat->status_surat == 1)
+                {{-- @if ($surat->status_surat == 1)
                     <div class="alert alert-primary dark alert-dismissible fade show" role="alert">
                         <strong>Surat Telah Di Setujui !</strong>
                     </div>
-                @endif
+                @endif --}}
                 <div class="card">
                     <div class="card-header pb-0">
                         <h5>Form Surat Keterangan</h5>
