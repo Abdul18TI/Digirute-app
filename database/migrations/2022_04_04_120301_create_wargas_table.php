@@ -31,7 +31,7 @@ class CreateWargasTable extends Migration
             $table->string('kode_pos'); ////
             $table->string('nama_lengkap'); ////
             $table->string('tempat_lahir'); ////
-            $table->timestamp('tgl_lahir')->nullable(); ////
+            $table->date('tgl_lahir')->nullable(); ////
             $table->integer('jenis_kelamin')->comment('1 => Laki-laki 2 => Perempuan'); ////
             $table->foreignId('agama'); ////
             $table->foreignId('golongan_darah'); ////
@@ -40,7 +40,7 @@ class CreateWargasTable extends Migration
             $table->enum('status_perkawinan', ['belum_kawin', 'kawin', 'cerai_hidup', 'cerai']); ////
             $table->integer('jenis_warga')->comment('1 => Tetap 0 => Tidak tetap');; ////
             $table->string('nomor_passport')->nullable(); ////
-            $table->timestamp('tgl_akhir_passport')->nullable(); ////
+            $table->date('tgl_akhir_passport')->nullable(); ////
             $table->string('nomor_kitaskitap')->unique()->nullable(); ////
             // $table->string('status_akta_cerai')->nullable(); ////
             // $table->string('status_akta_kawin')->nullable(); ////
@@ -49,12 +49,12 @@ class CreateWargasTable extends Migration
             $table->string('nama_ayah'); ////
             $table->string('nik_ibu'); ////
             $table->string('nama_ibu'); ////
-            $table->timestamp('tgl_keluar_kk')->nullable(); ////
+            $table->date('tgl_keluar_kk')->nullable(); ////
             $table->string('foto_warga')->default('no-image.png'); ////
-            $table->timestamp('tgl_perkawinan')->nullable(); ////
+            $table->date('tgl_perkawinan')->nullable(); ////
             $table->string('akta_kawin')->nullable(); ////
             $table->string('akta_cerai')->nullable(); ////
-            $table->timestamp('tgl_cerai')->nullable(); ////
+            $table->date('tgl_cerai')->nullable(); ////
             $table->string('akta_kelahiran')->nullable(); ////
             $table->string('kelainan')->nullable(); ////
             // $table->string('status_kelainan')->default('0'); ////

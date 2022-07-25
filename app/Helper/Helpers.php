@@ -204,3 +204,8 @@ function ConvertTanggal($tanggal)
 {
     return is_null($tanggal) ? '-' : date('Y-m-d\TH:i', strtotime($tanggal));
 }
+
+function convertToInput($tanggal){
+
+    return  is_null($tanggal) ? '0000-00-00' : $tanggal->format('Y-m-d');
+}

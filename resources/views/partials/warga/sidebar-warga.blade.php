@@ -1,7 +1,7 @@
 
 <header class="main-nav">
     <div class="sidebar-user text-center">
-        <a class="setting-primary" href="javascript:void(0)"><i data-feather="settings"></i></a>
+        <a class="setting-primary" href="{{ route('warga.profilewarga.show',auth()->user()->id_warga) }}"><i data-feather="settings"></i></a>
         @if(auth()->user()->foto_warga == 'no-image.png')
         <img class="img-90 rounded-circle" src="{{ asset('assets/images/dashboard/1.png') }}" alt="" />
         @else
