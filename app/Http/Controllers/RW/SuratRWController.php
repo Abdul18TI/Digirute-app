@@ -72,21 +72,18 @@ class SuratRWController extends Controller
         $surat->update(['status_surat' => 2]);
     }
 
-    // public function printSuratKeterangan(Surat $surat)
-    // {
-    //     //
-
-    //     $surat = $surat;
-    //     //jika data tidak ditemukan
-    //     if (!$surat and $surat->status_surat == 0) {
-    //         return redirect()->route('rw.surat.index')
-    //             ->with('error', 'Print Gagal! Data tidak temukan');
-    //     }
-
-    //     // $data = $dataKematian->get();
-    //     $surat['rt'] = auth()->user();
-    //     $surat['rw'] = auth()->user()->rw_rel;
-    //     $pdf = PDF::loadview('RW.surat.surat_keterangan_pdf', ['surat' => $surat]);
-    //     return $pdf->stream();
-    // }
+    public function cekSurat()
+    {
+        // $surat = Surat::where('nomor_surat', $request->qr_code)->first();
+        return view('rw.surat.cek_surat');
+        // return response()->json(['success' => 'Data tidak ditemukan.', 'data' => $request->id]);0
+    }
+    public function validasiCode(Request $request)
+    {
+        $surat = Surat::where('nomor_surat', $request->qr_code)->first();
+        if ($surat == null) {
+            return response()->json(['error' => 'Data tidak ditemukan.',]);
+        }
+        return $surat;
+    }
 }

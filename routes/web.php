@@ -110,7 +110,8 @@ Route::prefix('RW')->name('rw.')->group(function () {
             // Route::get('/surat_keterangan/{surat}/print_surat', [SuratRWController::class, 'printSuratKeterangan'])->name('print.surat_keterangan');
             Route::get('/detail/{id}', [SuratRWController::class, 'show'])->name('show');
             route::get('/show_pengaju', [SuratRWController::class, 'show_pengaju'])->name('show_pengaju');
-            // Route::get('/show/{pengaduan}', [PengaduanRTController::class, 'show'])->name('show');
+            Route::get('cek_surat', [SuratRWController::class, 'cekSurat'])->name('cekSurat');
+            Route::post('validasi/qrcode', [SuratRWController::class, 'validasiCode'])->name('validasi_qrcode');
         });
         route::post('pembayaran/store', [PembayaranRWController::class, 'store'])->name("pembayaran.store");
         Route::post('logout', [LoginRWController::class, 'logout'])->name('logout');

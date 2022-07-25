@@ -63,7 +63,7 @@
                             <li><a href="{{ route('rt.surat.nomorsurat') }}"
                                     class="{{ prefixActive('rw.surat.nomorsurat') }}">Nomor Surat</a></li>
                             <li><a href="{{ route('rt.surat.cekSurat') }}"
-                                    class="{{ prefixActive('rw.surat.cekSurat') }}">Cek Surat</a></li>
+                                    class="{{ prefixActive('rt.surat.cekSurat') }}">Cek Surat</a></li>
                         </ul>
                     </li>
                        <li>
