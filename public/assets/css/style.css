@@ -10256,12 +10256,13 @@ strong {
   .user-profile .profile-header .profile-img-wrrap {
     display: none; }
   .user-profile .profile-header .userpro-box {
-    background-color: #fff;
+    background-color: #ffffffbf;
+    border-radius: 80px;
     padding: 30px;
-    max-width: 380px;
+    max-width: 350px;
     margin-top: auto;
     margin-bottom: auto;
-    text-align: center; }
+    text-align: center;}
     .user-profile .profile-header .userpro-box .img-wrraper {
       position: relative;
       width: -webkit-fit-content;

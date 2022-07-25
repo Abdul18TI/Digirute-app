@@ -60,6 +60,8 @@
                                     class="{{ prefixActive('rw.surat.index') }}">Daftar Pengajuan Surat</a></li>
                             <li><a href="{{ route('rw.surat.nomorsurat') }}"
                                     class="{{ prefixActive('rw.surat.nomorsurat') }}">Nomor Surat</a></li>
+                             <li><a href="{{ route('rw.surat.cekSurat') }}"
+                                    class="{{ prefixActive('rw.surat.cekSurat') }}">Cek Surat</a></li>
                         </ul>
                     </li>
                     <li>

@@ -70,10 +70,10 @@
                                                     $url = null;
                                                     $propertie_surat = $s->propertie_surat;
                                                     if ($s->jenis_surat == 'Surat Keterangan') {
-                                                        $url = route('rt.surat.detail.surat_keterangan', $s->id_surat);
+                                                        $url = route('rt.surat.print.surat_keterangan', $s->id_surat);
                                                     }else if($s->jenis_surat == 'Surat Keterangan Kematian'){
                                                         if (property_exists($propertie_surat,'id_surat_meninggal')){
-                                                            $url = route('rt.kematian.show',  $propertie_surat->id_surat_meninggal);
+                                                            $url = route('rt.kematian.print_surat',  $propertie_surat->id_surat_meninggal);
                                                         }else{
                                                               $url = null;
                                                         }

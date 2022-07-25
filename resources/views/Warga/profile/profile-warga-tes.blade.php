@@ -1,12 +1,15 @@
 @extends('layouts.main-warga')
-
+@section('title')
+    Profile Saya
+    {{ $title }}
+@endsection
 @section('container')
     @component('components.warga.breadcrumb')
         @slot('breadcrumb_title')
-            <h3>Profile Warga</h3>
+            <h3>Profile Saya</h3>
         @endslot
         {{-- <li class="breadcrumb-item">Pengaduan</li> --}}
-        <li class="breadcrumb-item active">Profile Warga</li>
+        <li class="breadcrumb-item active">Profile Saya</li>
     @endcomponent
     <div class="container-fluid">
         <div class="user-profile">

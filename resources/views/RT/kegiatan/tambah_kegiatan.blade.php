@@ -1,7 +1,7 @@
 @extends('layouts.main-rt')
 
 @section('title')
-    Tambah kegiatan
+    Tambah Kegiatan
     {{ $title }}
 @endsection
 
