@@ -109,6 +109,11 @@
                                                 <a class="btn btn-success btn-sm p-2 m-1"
                                                     href="{{ route('rw.surat.detail.surat_keterangan', $s->id_surat) }}"><span
                                                         class="fa fa-list"></span></a>
+                                                @if ($s->status_tandatangan == 1 && $s->status_surat == 4 && $s->nomor_surat != null)
+                                                    <a class="btn btn-secondary btn-sm p-2 m-1"
+                                                        href="{{ route('rw.surat.print.surat_keterangan', $s->id_surat) }}"><span
+                                                            class="fa fa-print"></span></a>
+                                                @endif
                                                 @if ($s->status_surat != 0 && $s->nomor_surat != null)
                                                     @if (!$s->status_surat == 4)
                                                         <form method="POST"

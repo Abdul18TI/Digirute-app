@@ -141,13 +141,25 @@
         <div style="width:50%; text-align: center; float: left;">
             <p class="m-0">&nbsp;</p>
             <p class="mb-1">Ketua RW. {{ $surat->rw->no_rw }}</p>
-              <p><img class="mt-0" src="data:image/png;base64, {!! $surat->ttdrw  !!}"></p>
+            <p>
+                @if ($surat->ttdrw != null)
+                    <img class="mt-0" src="data:image/png;base64, {!! $surat->ttdrw  !!}">
+                @else
+                    <div class="mt-5 p-4"></div>
+                @endif
+            </p>
             <p>{{ $surat->rw->identitas_rw->nama_lengkap }}</p>
         </div>
         <div style="width:50%; text-align: center; float: right;">
             <p class="m-0">Pekanbaru, {{ $tanggal->isoFormat('D MMMM Y') }}</p>
             <p class="mb-1">Ketua RT. {{ $surat->rt->no_rt }} RW. {{ $surat->rw->no_rw }}</p>
-            <p><img class="mt-0" src="data:image/png;base64, {!! $surat->ttdrt  !!}"></p>
+            <p>
+                @if ($surat->ttdrt != null)
+                    <img class="mt-0" src="data:image/png;base64, {!! $surat->ttdrt  !!}">
+                @else
+                    <div class="mt-5 p-3"></div>
+                @endif
+            </p>
             <p>{{ $surat->rt->identitas_rt->nama_lengkap }}</p>
         </div>
     </div>

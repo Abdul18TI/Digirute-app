@@ -106,6 +106,7 @@ Route::prefix('RW')->name('rw.')->group(function () {
             Route::get('/surat_keterangan', [SuratRWController::class, 'surat_keterangan'])->name('form.surat_keterangan');
             Route::get('/surat_keterangan/{surat}', [SuratRWController::class, 'detailSuratKeterangan'])->name('detail.surat_keterangan');
             Route::put('/surat_keterangan/{surat}/proses', [SuratRWController::class, 'prosesSurat'])->name('terima.surat_keterangan');
+            Route::get('/surat_keterangan/{surat}/print_surat', [SuratRWController::class, 'printSuratKeterangan'])->name('print.surat_keterangan');
             // Route::put('/surat_keterangan/{surat}/tolak', [SuratRWController::class, 'tolakSuratKeterangan'])->name('tolak.surat_keterangan');
             // Route::get('/surat_keterangan/{surat}/print_surat', [SuratRWController::class, 'printSuratKeterangan'])->name('print.surat_keterangan');
             Route::get('/detail/{id}', [SuratRWController::class, 'show'])->name('show');

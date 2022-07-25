@@ -140,12 +140,14 @@
         <p>Demikian surat keterangan surat ini kami buat untuk dapat dipergunakan sebagaimana mestinya.</p>
         <div style="width:50%; text-align: center; float: left;">
             <p class="m-0">&nbsp;</p>
-            <p class="mb-5 pb-5">Ketua RW. {{ $surat->rw->no_rw }}</p>
+            <p class="mb-1">Ketua RW. {{ $surat->rw->no_rw }}</p>
+              <p><img class="mt-0" src="data:image/png;base64, {!! $surat->ttdrw  !!}"></p>
             <p>{{ $surat->rw->identitas_rw->nama_lengkap }}</p>
         </div>
         <div style="width:50%; text-align: center; float: right;">
             <p class="m-0">Pekanbaru, {{ $tanggal->isoFormat('D MMMM Y') }}</p>
-            <p class="mb-5 pb-5">Ketua RT. {{ $surat->rt->no_rt }} RW. {{ $surat->rw->no_rw }}</p>
+            <p class="mb-1">Ketua RT. {{ $surat->rt->no_rt }} RW. {{ $surat->rw->no_rw }}</p>
+            <p><img class="mt-0" src="data:image/png;base64, {!! $surat->ttdrt  !!}"></p>
             <p>{{ $surat->rt->identitas_rt->nama_lengkap }}</p>
         </div>
     </div>

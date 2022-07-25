@@ -22,6 +22,8 @@ class CreateSuratTable extends Migration
             $table->string('nomor_surat')->unique()->nullable();
             $table->string('jenis_surat');
             $table->smallInteger('status_tandatangan')->comment('0 = RT ; 1 = RT RW; 2 = RW;');
+            $table->string('tanda_tangan_rt')->nullable();
+            $table->string('tanda_tangan_rw')->nullable();
             $table->string('status_surat', 25)->comment('0 = Baru Diajukan ; 1 = Diterima RT; 2 = Ditolak RT; 3 = Diterima RW; 4 = Selesai ?');;
             $table->json('propertie_surat')->nullable();
             $table->text('keperluan_surat')->nullable();
