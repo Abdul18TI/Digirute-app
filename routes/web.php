@@ -98,6 +98,8 @@ Route::prefix('RW')->name('rw.')->group(function () {
         Route::get('/wargarw/tetaprw', [WargaRWController::class, 'wargatetaprw'])->name('wargaw.tetapw');
         Route::get('/wargarw/pendatangrw', [WargaRWController::class, 'wargapendatangrw'])->name('wargatw.pendatanw');
         Route::get('/wargarw/wargakk', [WargaRWController::class, 'wargakkrw'])->name('wargaww.wargaww');
+        Route::get('/wargarw/wargam', [WargaRWController::class, 'wargamrw'])->name('wargamrw.wargamrw');
+        Route::get('/wargarw/wargamd/{id}', [WargaRWController::class, 'wargamrwd'])->name('wargamrwd.wargamrwd');
         route::resource('pengaduan', PengaduanRWController::class);
         route::resource('profile', ProfileRWController::class);
         Route::prefix('surat')->name('surat.')->group(function () {

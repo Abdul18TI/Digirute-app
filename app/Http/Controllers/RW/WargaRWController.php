@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Warga;
 use App\Models\Pekerjaan;
+use App\Models\WargaMiskin as Kemiskinan;
 
 class WargaRWController extends Controller
 {
@@ -59,6 +60,31 @@ class WargaRWController extends Controller
             'RW.warga.warga-rw-kepala',
             [
                 'warga' => $warga,
+            ]
+        );
+    }
+
+    public function wargamrw()
+    {
+        $kemiskinan = Kemiskinan::all();
+        // $warga = Warga::find(1);
+        // dd($warga);
+        return view(
+            'RW.warga.tabel_kemiskinan_rw',
+            [
+                'kemiskinan' => $kemiskinan,
+            ]
+        );
+    }
+
+    public function wargamrwd($id)
+    {
+        $kemiskinan = Kemiskinan::where('id', $id)->first();
+        // dd($kemiskinan);
+        return view(
+            'RW.warga.detail_kemiskinan_rw',
+            [
+                'kemiskinan' => $kemiskinan,
             ]
         );
     }

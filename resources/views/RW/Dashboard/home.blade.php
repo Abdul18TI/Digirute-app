@@ -73,7 +73,7 @@
         <div class="row">
             <div class="col-sm-6 col-xl-4 col-lg-6">
                 <div class="card o-hidden border-0">
-                    <div class="bg-warning b-r-4 card-body" onclick="test1()">
+                    <div class="bg-warning b-r-4 card-body" onclick="test4()">
                         <div class="media static-top-widget">
                             <div class="align-self-center text-center"><i data-feather="user"></i></div>
                             <div class="media-body"><span class="m-0">Warga Miskin</span>
@@ -85,7 +85,7 @@
             </div>
             <div class="col-sm-6 col-xl-4 col-lg-6">
                 <div class="card o-hidden border-0">
-                    <div class="bg-primary b-r-4 card-body" onclick="test2()">
+                    <div class="bg-primary b-r-4 card-body" onclick="test5()">
                         <div class="media static-top-widget">
                             <div class="align-self-center text-center"><i data-feather="mail"></i></div>
                             <div class="media-body"><span class="m-0">Surat</span>
@@ -97,7 +97,7 @@
             </div>
             <div class="col-sm-6 col-xl-4 col-lg-6">
                 <div class="card o-hidden border-0">
-                    <div class="bg-secondary b-r-4 card-body" onclick="test3()">
+                    <div class="bg-secondary b-r-4 card-body" onclick="test6()">
                         <div class="media static-top-widget">
                             <div class="align-self-center text-center"><i data-feather="message-square"></i></div>
                             <div class="media-body"><span class="m-0">Pengaduan</span>
@@ -425,6 +425,21 @@
     <script>
       function test3() {
         window.location = '/RW/wargarw/wargakk';
+      }
+    </script>
+    <script>
+      function test4() {
+        window.location = '/RW/wargarw/wargam';
+      }
+    </script>
+    <script>
+      function test5() {
+        window.location = '/RW/surat';
+      }
+    </script>
+    <script>
+      function test6() {
+        window.location = '/RW/pengaduan';
       }
     </script>
     <!-- Container-fluid Ends-->
