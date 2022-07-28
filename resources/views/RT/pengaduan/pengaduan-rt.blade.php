@@ -121,19 +121,6 @@
                                     @endforeach
                                     {{-- <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-original-title="test" data-bs-target="#exampleModal">Simple</button> --}}
                                 </tbody>
-                                <tfooter>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Pelapor</th>
-                                        <th>Judul</th>
-                                        <th>Kategori</th>
-                                        <th>Deskripsi</th>
-                                        <th>Tanggal Pengaduan</th>
-                                        <th>Ditampilkan</th>
-                                        <th>Status</th>
-                                        <th>Aksi</th>
-                                    </tr>
-                                </tfooter>
                             </table>
                         </div>
                     </div>

@@ -131,17 +131,6 @@
                                         </tr>
                                     @endforeach
                                 </tbody>
-                                <tfooter>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Nomor Surat</th>
-                                        <th>Jenis Surat</th>
-                                        <th>Sub Jenis Surat</th>
-                                        <th>Tanggal Pengajuan</th>
-                                        <th>Status</th>
-                                        <th>Aksi</th>
-                                    </tr>
-                                </tfooter>
                             </table>
                         </div>
                     </div>

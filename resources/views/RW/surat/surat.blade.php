@@ -132,18 +132,6 @@
                                     @endforeach
                                     {{-- <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-original-title="test" data-bs-target="#exampleModal">Simple</button> --}}
                                 </tbody>
-                                <tfooter>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Nomor Surat</th>
-                                        <th>Nama Pengaju Surat</th>
-                                        <th>Jenis Surat</th>
-                                        <th>Sub Jenis Surat</th>
-                                        <th>Tanggal Pengajuan</th>
-                                        <th>Status</th>
-                                        <th>Aksi</th>
-                                    </tr>
-                                </tfooter>
                             </table>
                         </div>
                     </div>

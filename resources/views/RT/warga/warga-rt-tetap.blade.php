@@ -110,17 +110,6 @@
                     </tr>
                   @endforeach
                 </tbody>
-                <tfooter>
-                  <tr>
-                    <th>No</th>
-                    <th>Nama</th>
-                    <th>No KK</th>
-                    <th>NIK</th>
-                    <th>Alamat</th>
-                    <th>No HP</th>
-                    <th>Aksi</th>
-                  </tr>
-                </tfooter>
               </table>
             </div>
           </div>
