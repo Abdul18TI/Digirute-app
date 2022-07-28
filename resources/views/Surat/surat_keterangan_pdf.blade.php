@@ -51,7 +51,7 @@
             </h5>
             <h6 class="mt-3">No. {{ $surat->nomor_surat }}</h6>
         </center>
-        <p>Kami Ketua RT. {{ $surat->rt->no_rt }} RW. {{ $surat->rw->no_rw }},
+        <p>Saya Ketua RT. {{ $surat->rt->no_rt }} RW. {{ $surat->rw->no_rw }},
             Kelurahanan Umban Sari, Kecamatan Rumbai, Kota Pekanbaru,
             Menerangkan bahwa : </p>
         <table class='table table-borderless ml-3'>
