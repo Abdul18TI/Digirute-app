@@ -43,10 +43,12 @@
                                     <div class="mb-3 row">
                                         <label class="col-sm-3 col-form-label">RT/RW</label>
                                         <div class="col-sm-5">
-                                            <input class="form-control" type="text" id="rt" name="rt" readonly placeholder="RW" value="{{ auth()->user()->no_rt }}">
+                                            <input class="form-control" type="text" id="rt1" name="rt1" readonly placeholder="RW" value="{{ auth()->user()->no_rt }}">
+                                            <input class="form-control" type="hidden" id="rt" name="rt" readonly placeholder="RW" value="{{ auth()->user()->id_rt }}">
                                         </div>
                                         <div class="col-sm-4">
-                                            <input class="form-control " type="text" id="rw" name="rw" readonly placeholder="RT" value="{{ auth()->user()->rw_rel->no_rw }}">
+                                            <input class="form-control " type="text" id="rw1" name="rw1" readonly placeholder="RT" value="{{ auth()->user()->rw_rel->no_rw }}">
+                                            <input class="form-control " type="hidden" id="rw" name="rw" readonly placeholder="RT" value="{{ auth()->user()->rw_rel->id_rw }}">
                                         </div>
                                     </div>
                                     <div class="mb-3 row">

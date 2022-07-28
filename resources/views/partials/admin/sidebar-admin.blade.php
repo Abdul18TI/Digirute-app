@@ -1,6 +1,6 @@
 <header class="main-nav">
     <div class="sidebar-user text-center">
-        <a class="setting-primary" href="javascript:void(0)"><i data-feather="settings"></i></a><img
+        <img
             class="img-90 rounded-circle" src="{{ asset('assets/images/dashboard/1.png') }}" alt="" />
         <div class="badge-bottom"><span class="badge badge-primary">RT</span></div>
         <a href="user-profile">
@@ -12,9 +12,9 @@
     </div>
     <nav>
         <header class="main-nav">
-            <div class="sidebar-user text-center"><a class="setting-primary" href="javascript:void(0)"><i data-feather="settings"></i></a><img class="img-90 rounded-circle" src="{{ asset("assets/images/dashboard/1.png")}}" alt="">
+            <div class="sidebar-user text-center"><img class="img-90 rounded-circle" src="{{ asset("assets/images/dashboard/1.png")}}" alt="">
                 <div class="badge-bottom"><span class="badge badge-primary">RW</span></div><a href="user-profile.html">
-                    <h6 class="mt-3 f-14 f-w-600">Nama Lengkap</h6>
+                    <h6 class="mt-3 f-14 f-w-600">Admin</h6>
             </a>
             <p class="mb-0 font-roboto">Admin</p>
             </div>

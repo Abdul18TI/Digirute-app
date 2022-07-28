@@ -35,7 +35,7 @@
             </div>
             <div class="col-sm-6 col-xl-3 col-lg-6">
                 <div class="card o-hidden border-0">
-                    <div class="bg-info b-r-4 card-body" onclick="test1()">
+                    <div class="bg-info b-r-4 card-body" onclick="test2()">
                         <div class="media static-top-widget">
                             <div class="align-self-center text-center"><i data-feather="user"></i></div>
                             <div class="media-body"><span class="m-0">Warga tetap</span>
@@ -47,7 +47,7 @@
             </div>
             <div class="col-sm-6 col-xl-3 col-lg-6">
                 <div class="card o-hidden border-0">
-                    <div class="bg-success b-r-4 card-body" onclick="test2()">
+                    <div class="bg-success b-r-4 card-body" onclick="test3()">
                         <div class="media static-top-widget">
                             <div class="align-self-center text-center"><i data-feather="calendar"></i></div>
                             <div class="media-body"><span class="m-0">Warga pendatang</span>
@@ -59,11 +59,11 @@
             </div>
             <div class="col-sm-6 col-xl-3 col-lg-6">
                 <div class="card o-hidden border-0">
-                    <div class="bg-danger b-r-4 card-body" onclick="test3()">
+                    <div class="bg-danger b-r-4 card-body" onclick="test4()">
                         <div class="media static-top-widget">
                             <div class="align-self-center text-center"><i data-feather="users"></i></div>
                             <div class="media-body"><span class="m-0">K. Keluarga</span>
-                                <h4 class="mb-0 counter">{{ $no_kk }}</h4>
+                                <h4 class="mb-0 counter">{{ $no_kk }}</h4><i class="icon-bg" data-feather="users"></i>
                             </div>
                         </div>
                     </div>
@@ -248,7 +248,7 @@
                       </table>
                   </div>
                   <div class="card-footer pb-1 text-end">
-                    <a href="{{ route('rw.kegiatan.index') }}">Lihat Selengkapnya...</a>
+                    <a href="{{ route('rt.kegiatan.index') }}">Lihat Selengkapnya...</a>
                   </div>
                   @else
                   Tidak ada kegiatan yang akan datang
@@ -294,7 +294,7 @@
                     </div>
                 </div>
                 <div class="card-footer pb-4 text-end">
-                    <a href="{{ route('rw.warga.index') }}">Lihat Selengkapnya...</a>
+                    <a href="{{ route('rt.warga.index') }}">Lihat Selengkapnya...</a>
                   </div>
             </div>
         </div>
@@ -357,7 +357,7 @@
                       </table>
                   </div>
                   <div class="card-footer pb-1 text-end">
-                    <a href="{{ route('rw.surat.index') }}">Lihat Selengkapnya...</a>
+                    <a href="{{ route('rt.surat.index') }}">Lihat Selengkapnya...</a>
                   </div>
                   @else
                   Saat ini tidak ada pengajuan surat
@@ -369,22 +369,22 @@
     </div>
     <script>
       function test() {
-        window.location = '/RW/warga';
-      }
-    </script>
-    <script>
-      function test1() {
-        window.location = '/RW/wargarw/tetaprw';
+        window.location = '/RT/warga';
       }
     </script>
     <script>
       function test2() {
-        window.location = '/RW/wargarw/pendatangrw';
+        window.location = '/RT/wargat/tetap';
       }
     </script>
     <script>
       function test3() {
-        window.location = '/RW/wargarw/wargakk';
+        window.location = '/RT/wargatt/pendatang';
+      }
+    </script>
+    <script>
+      function test4() {
+        window.location = '/RT/wargak/wargak';
       }
     </script>
     <!-- Container-fluid Ends-->

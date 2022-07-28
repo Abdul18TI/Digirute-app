@@ -1,6 +1,6 @@
 <header class="main-nav">
     <div class="sidebar-user text-center">
-        <a class="setting-primary" href="javascript:void(0)"><i data-feather="settings"></i></a>
+        <a class="setting-primary" href="{{ route('rw.profile.show', auth()->user()->id_rw) }}"><i data-feather="settings"></i></a>
         @if (auth()->user()->identitas_rw->foto_warga == 'no-image.png')
             <img class="img-90 rounded-circle" src="{{ asset('assets/images/dashboard/1.png') }}" alt="" />
         @else
@@ -8,7 +8,7 @@
                 alt="" />
         @endif
         <div class="badge-bottom"><span class="badge badge-primary">RW</span></div>
-        <a href="{{ route('rw.profile.show', auth()->user()->id_rw) }}">
+        <a href="">
             {{-- <h6 class="mt-3 f-14 f-w-600">Nama lengkap</h6> --}}
             <h6 class="mt-3 f-14 f-w-600">{{ auth()->user()->identitas_rw->nama_lengkap }}</h6>
         </a>
