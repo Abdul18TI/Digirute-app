@@ -2,8 +2,6 @@
 
 @push('css')
 <link rel="stylesheet" type="text/css" href={{ asset("assets/css/trix.css")}}>
-<link rel="stylesheet" type="text/css" href={{ asset("assets/css/trix.css")}}>
-    <script type="text/javascript" src={{ asset("assets/js/trix.js")}}></script>
     <style>
         trix-toolbar [data-trix-button-group="file-tools"] {
             display: none;

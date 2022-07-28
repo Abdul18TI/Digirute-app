@@ -30,8 +30,11 @@
                                 alt="" />
                         @else
                             <img class="rounded-circle"
-                                src="{{ asset('assets/images/avtar/' . $rt->identitas_rt->foto_warga) }}"
+                                 src="{{ asset('storage/' . $rt->identitas_rt->foto_warga) }}"
                                 alt="" />
+                            {{-- <img class="rounded-circle"
+                                src="{{ asset('assets/images/avtar/' . $rt->identitas_rt->foto_warga) }}"
+                                alt="" /> --}}
                         @endif
                     </div>
                     <ul class="card-social">
@@ -74,8 +77,11 @@
                                 alt="" />
                         @else
                             <img class="rounded-circle"
-                                src="{{ asset('assets/images/avtar/' . $rw->identitas_rw->foto_warga) }}"
+                                src="{{ asset('storage/' . $rw->identitas_rw->foto_warga) }}"
                                 alt="" />
+                            {{-- <img class="rounded-circle"
+                                src="{{ asset('assets/images/avtar/' . $rw->identitas_rw->foto_warga) }}"
+                                alt="" /> --}}
                         @endif
                     </div>
                     <ul class="card-social">

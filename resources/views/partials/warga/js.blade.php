@@ -17,7 +17,7 @@
 <!--SweetAlert Ends-->
 <!-- Theme js-->
 <script src="{{asset('assets/js/script.js')}}"></script>
-<script src="{{asset('assets/js/theme-customizer/customizer.js')}}"></script>
+{{-- <script src="{{asset('assets/js/theme-customizer/customizer.js')}}"></script> --}}
 <!-- Custom JS start-->
 @stack('scripts-custom')
 <!-- Custom JS Ends-->

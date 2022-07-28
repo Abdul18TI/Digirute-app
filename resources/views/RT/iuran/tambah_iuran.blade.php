@@ -118,7 +118,7 @@
                                 <div class="col-sm-6">
                                     <label class="form-label">Tanggal mulai iuran</label>
                                     <input class="form-control digits" id="example-datetime-local-input"
-                                        type="datetime-local" name="tgl_mulai_iuran" value="" />
+                                        type="datetime-local" name="tgl_mulai_iuran" value="{{ old('tgl_mulai_iuran') }}" />
                                         @error('tgl_mulai_iuran')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -128,7 +128,7 @@
                                 <div class="col-sm-6">
                                     <label class="form-label">Tanggal selesai iuran</label>
                                     <input class="form-control digits" id="example-datetime-local-input"
-                                        type="datetime-local" name="tgl_akhir_iuran" value="" />
+                                        type="datetime-local" name="tgl_akhir_iuran" value="{{ old('tgl_akhir_iuran') }}" />
                                         @error('tgl_akhir_iuran')
                                         <div class="invalid-feedback">
                                             {{ $message }}

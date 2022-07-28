@@ -61,7 +61,8 @@
                                 <article class="mt-0 text-light">{!! Str::limit($pengumuman[0]->isi_pengumuman, 100) !!}</article>
                                 <div class="mt-3 pull-right">
                                     <a href="{{ route('warga.pengumuman_warga.show', $pengumuman[0]->id_pengumuman) }}"
-                                        class="btn btn-sm btn-secondary pull-right" type="button">Baca Selengkapnya</a>
+                                        class="btn btn-sm btn-secondary pull-right mt-5" type="button">Baca
+                                        Selengkapnya</a>
                                 </div>
                             </div>
                         </div>
@@ -92,7 +93,7 @@
                                         </div>
                                         <div class="col-xl-6 col-12">
                                             <div class="blog-details">
-                                                <div class="blog-date">{{ tanggal_indo($k->tgl_terbit) }}</div>
+                                                <div class="blog-date mt-3">{{ tanggal_indo($k->tgl_terbit) }}</div>
                                                 <a href="{{ route('warga.pengumuman_warga.show', $k->id_pengumuman) }}">
                                                     <h6>{{ $k->judul_pengumuman }}</h6>
                                                 </a>
@@ -111,7 +112,8 @@
                                                     <article class="mt-0 text-dark">{!! Str::limit($k->isi_pengumuman, 100) !!}</article>
                                                     <div class="pull-right  mt-3">
                                                         <a href="{{ route('warga.pengumuman_warga.show', $k->id_pengumuman) }}"
-                                                            class="btn btn-sm btn-secondary pull-right" type="button">Baca
+                                                            class="btn btn-sm btn-secondary pull-right my-3"
+                                                            type="button">Baca
                                                             Selengkapnya</a>
                                                     </div>
                                                 </div>
@@ -123,6 +125,8 @@
                         @endforeach
                     </div>
                 </div>
+            </div>
+            <div class="row">
                 @foreach ($pengumuman->skip(3) as $kk)
                     <div class="col-sm-6 col-xl-3 box-col-6 des-xl-50">
                         <div class="card">
@@ -155,14 +159,15 @@
                                             <li>oleh: RT {{ $k->rts->no_rt }}</li>
                                         @else
                                             <li>oleh: RW {{ $k->rws->no_rw }}</li>
-                                            
                                         @endif
                                         <li>Kategori: <a
                                                 href="/Warga/pengumuman_warga?category={{ $kk->kategori_pengumuman }}">{{ $kk->Kategori_pengumumans->nama_kategori_pengumuman }}</a>
                                         </li>
                                     </ul>
                                     <hr />
-                                    <article class="mt-0 text-dark">{!! Str::limit($kk->isi_pengumuman, 100) !!}</article>
+                                    <article class="mt-0 text-dark">
+                                        <p>{!! Str::limit($kk->isi_pengumuman, 50) !!}</p>
+                                    </article>
                                     <a href="{{ route('warga.pengumuman_warga.show', $kk->id_pengumuman) }}"
                                         class="btn btn-sm {{ $kk->penanggung_jawab == 'RT' ? 'btn-primary' : 'btn-secondary' }} pull-right mb-3 mt-3"
                                         type="button">Baca Selengkapnya</a>
@@ -184,7 +189,8 @@
                                     <div class="form-group m-0"><input class="form-control" type="search"
                                             name="search" placeholder="Search.." data-original-title="" title=""
                                             value="{{ request('search') }}" /><i type="submit"
-                                            class="fa fa-search"></i></div>
+                                            class="fa fa-search"></i>
+                                    </div>
                                 </form>
                             </div>
                         </div>

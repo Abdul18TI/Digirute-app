@@ -21,7 +21,7 @@ class iuran extends Model
 
     public function jenis_iurans()
     {
-        return $this->belongsTo(JenisIuran::class, 'jenis_iuran', 'id_jenis_iuran');
+        return $this->belongsTo(JenisIuran::class, 'jenis_iuran', 'id_jenis_iuran')->select('id_jenis_iuran','nama_jenis_iuran');
     }
 
 }

@@ -80,7 +80,7 @@ class SuratWargaController extends Controller
         // $data = $dataKematian->get();
         $surat['rt'] = auth()->user()->rt_rel;
         $surat['rw'] = auth()->user()->rw_rel;
-        // die();
+        // die()
         $surat['ttdrt'] = null;
         if ($surat->tanda_tangan_rt != null) {
             $ttdrt = base64_encode(QrCode::format('svg')->size(100)->errorCorrection('H')->generate($surat->tanda_tangan_rt));
@@ -92,7 +92,7 @@ class SuratWargaController extends Controller
             $ttdrw = base64_encode(QrCode::format('svg')->size(100)->errorCorrection('H')->generate($surat->tanda_tangan_rw));
             $surat['ttdrw'] = $ttdrw;
         }
-   dd($surat);
+//    dd($surat);
         $pdf = PDF::loadview('surat.surat_keterangan_pdf', ['surat' => $surat]);
         return $pdf->stream();
 

@@ -21,7 +21,8 @@ class IuranWargaController extends Controller
 
     public function show($id)
     {
-        $iuran = Iuran::find($id);
+        $iuran = Iuran::with('jenis_iurans')->find($id);
+        // dd($iuran);
         $warga = Warga::all();
         return view('Warga.iuran.detail_iuran', compact('iuran', 'warga'));
         // return view('RW.Iuran.detail_iuran', [

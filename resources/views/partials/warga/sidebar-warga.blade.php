@@ -55,11 +55,12 @@
                             <li><a href="{{ route('warga.pengaduan.pribadi') }}" class="{{routeActive('warga.pengaduan.pribadi')}}">Pengaduan Pribadi</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown">
-                        <a class="nav-link menu-title  {{  prefixActive('warga.iuran.*') }}" ><i data-feather="dollar-sign"></i><span>Iuran</span></a>                  
-                        <ul class="nav-submenu menu-content" style="display:{{  prefixBlock('warga.iuran.*') }};">
+                    <li>
+                    {{-- <li class="dropdown"> --}}
+                        <a class="nav-link menu-title link-nav {{  prefixActive('warga.iuran.*') }}" ><i data-feather="dollar-sign"></i><span>Iuran</span></a>                  
+                        {{-- <ul class="nav-submenu menu-content" style="display:{{  prefixBlock('warga.iuran.*') }};">
                             <li><a  href="{{ route('warga.iuran.home') }}" class="{{  prefixActive('warga.iuran.home') }}">Iuran Warga</a></li>
-                        </ul>
+                        </ul> --}}
                     </li>
                     <li class="dropdown">
                         <a class="nav-link menu-title link-nav {{routeActive('warga.kegiatan')}}" href="{{ route('warga.kegiatan_warga.index') }}"><i data-feather="calendar"></i><span>Kegiatan</span></a>

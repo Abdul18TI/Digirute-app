@@ -24,13 +24,15 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="text-center">{{ $iuran->judul_iuran }}</h5>
-                        <h6 class="text-center">Iuran {{ $iuran->jenis_iuran }}</h6>
-                        <h6 class="text-center mb-3">0/Rp.{{ $iuran->jumlah_iuran }}</h6>
+                        <h2 class="text-center">{{ $iuran->judul_iuran }}</h2>
+                        <h6 class="text-center">Iuran {{ $iuran->jenis_iurans->nama_jenis_iuran }}</h6>
+                        @if ($iuran->target_iuran !== null)
+                            <h6 class="text-center mb-3">0/Rp.{{ $iuran->jumlah_iuran }}</h6>
+                        @endif
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <input type="text" class="form-control" id="id_iuran" value="{{ $iuran->id_iuran }}" />
+                            <input type="hidden" class="form-control" id="id_iuran" value="{{ $iuran->id_iuran }}" />
                             <table class="display" id="tabel-iuran-detail-warga">
                                 <thead>
                                     <tr>

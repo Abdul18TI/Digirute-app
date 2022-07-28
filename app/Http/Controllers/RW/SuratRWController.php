@@ -89,12 +89,12 @@ class SuratRWController extends Controller
             ->with('error', 'Print Gagal! Data tidak temukan');
         }
 
-        echo $surat->id_rt;
+        // echo $surat->id_rt;
         // $data = $dataKematian->get();
         $surat['rt'] = rt::where('id_rt', $surat->id_rt)->get();
         $surat['rw'] = auth()->user();
-        var_dump($surat);
-        die();
+        // var_dump($surat);
+        // die();
         $surat['ttdrt'] = null;
         if ($surat->tanda_tangan_rt != null) {
             $ttdrt = base64_encode(QrCode::format('svg')->size(100)->errorCorrection('H')->generate($surat->tanda_tangan_rt));

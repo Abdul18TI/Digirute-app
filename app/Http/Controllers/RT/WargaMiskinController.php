@@ -57,7 +57,6 @@ class WargaMiskinController extends Controller
             'nik' => 'required|exists:wargas,nik',
             'bukti' => 'required|mimes:pdf,jpeg,png,jpg',
             'nama_warga' => 'required',
-            'deskripsi' => 'required',
         ], [
             'nik.exists'    => 'NIK tidak terdaftar',
             'warga.unique'    => 'Data ini sudah terdata warga miskin',

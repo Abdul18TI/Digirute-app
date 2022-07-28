@@ -26,9 +26,8 @@ class DashboardWargaController extends Controller
         $lk = Warga::where('rt', $id_rt)->where('rw', $id_rw)->where('jenis_kelamin', 1)->count('jenis_kelamin');
         $pr = Warga::where('rt', $id_rt)->where('rw', $id_rw)->where('jenis_kelamin', 2)->count('jenis_kelamin');
         $kk = Warga::distinct()->where('rt', $id_rt)->where('rw', $id_rw)->count('no_kk');
-        $kegiatan = Kegiatan::with('Kategori_kegiatans')->take(5)->where('tgl_mulai_kegiatan', '>=', Carbon::now())->where('penanggung_jawab', 'RT')->where('id_penanggung_jawab', auth()->user()->id_rt)->get();
-        $pengumuman = Pengumuman::with('Kategori_pengumumans')->take(5)->where('tgl_terbit', '<=', Carbon::now())->get();
-        // dd($pengumuman);
+        $kegiatan = Kegiatan::with('Kategori_kegiatans')->take(5)->where('tgl_mulai_kegiatan', '>=', Carbon::now())->where('penanggung_jawab', 'RT')->where('id_penanggung_jawab', $id_rt)->get();
+        $pengumuman = Pengumuman::with('Kategori_pengumumans')->take(5)->where('tgl_terbit', '<=', Carbon::now())->where('penanggung_jawab', 'RT')->where('id_penanggung_jawab', $id_rt)->get();
         $surat = Surat::with('wargas')->take(5)->where('status_surat', 0)->whereHas('wargas', function ($q) {
             $q->where('id_warga', auth()->user()->id_warga);
         })->latest()->get();

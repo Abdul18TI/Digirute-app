@@ -18,20 +18,21 @@
         <div class="row">
             <div class="col-sm-6 col-xl-3 col-lg-6">
                 <div class="card o-hidden border-0">
-                  
+
                     <div class="bg-secondary b-r-4 card-body">
                         <div class="media static-top-widget">
-                          
+
                             <div class="align-self-center text-center"><i data-feather="user-plus"></i></div>
                             <div class="media-body"><span class="m-0">Jumlah warga</span>
-                              
-                              <h4 class="mb-0 counter">{{ count($warga)}}</h4><i class="icon-bg" data-feather="user-plus"></i></a>
-                              
+
+                                <h4 class="mb-0 counter">{{ count($warga) }}</h4><i class="icon-bg"
+                                    data-feather="user-plus"></i></a>
+
                             </div>
-                          
+
                         </div>
                     </div>
-                </div>  
+                </div>
             </div>
             <div class="col-sm-6 col-xl-3 col-lg-6">
                 <div class="card o-hidden border-0">
@@ -39,7 +40,8 @@
                         <div class="media static-top-widget">
                             <div class="align-self-center text-center"><i data-feather="user"></i></div>
                             <div class="media-body"><span class="m-0">Warga tetap</span>
-                                <h4 class="mb-0 counter">{{ count($wargatetap)}}</h4><i class="icon-bg" data-feather="user"></i>
+                                <h4 class="mb-0 counter">{{ count($wargatetap) }}</h4><i class="icon-bg"
+                                    data-feather="user"></i>
                             </div>
                         </div>
                     </div>
@@ -51,7 +53,8 @@
                         <div class="media static-top-widget">
                             <div class="align-self-center text-center"><i data-feather="calendar"></i></div>
                             <div class="media-body"><span class="m-0">Warga pendatang</span>
-                                <h4 class="mb-0 counter">{{ count($wargadatang)}}</h4><i class="icon-bg" data-feather="calendar"></i>
+                                <h4 class="mb-0 counter">{{ count($wargadatang) }}</h4><i class="icon-bg"
+                                    data-feather="calendar"></i>
                             </div>
                         </div>
                     </div>
@@ -71,96 +74,99 @@
             </div>
         </div>
         <div class="row">
-        <div class="col-xl-4 col-25 box-col-4 des-xl-25">
-            <div class="card latest-update-sec">
-              <div class="card-header">
-                <div class="header-top d-sm-flex align-items-center">
-                  <h5>Jumlah warga </h5><p class="text-muted">(Gender)</p>
-                </div>
-              </div>
-              <div class="card-body">
-                <div class="table-responsive o-hidden">
-                  <table class="table table-bordernone">
-                    <tbody>
-                      <tr>
-                        <td>
-                          <div class="media">
-                            {{-- <div class="media-body"><span class="m-0">RT {{ $gt->rt_rel->no_rt }}</span>
+            <div class="col-xl-4 col-25 box-col-4 des-xl-25">
+                <div class="card latest-update-sec">
+                    <div class="card-header">
+                        <div class="header-top d-sm-flex align-items-center">
+                            <h5>Jumlah warga </h5>
+                            <p class="text-muted">(Gender)</p>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive o-hidden">
+                            <table class="table table-bordernone">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="media">
+                                                {{-- <div class="media-body"><span class="m-0">RT {{ $gt->rt_rel->no_rt }}</span>
                             </div> --}}
-                            <div class="media-body"><span class="m-0">Laki-Laki</span>
-                                <h4 class="mb-0 counter">{{ $lk}}</h4>
-                            </div>
-                            <div class="media-body"><span class="m-0">Perempuan</span>
-                                <h4 class="mb-0 counter">{{ $pr }}</h4>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+                                                <div class="media-body"><span class="m-0">Laki-Laki</span>
+                                                    <h4 class="mb-0 counter">{{ $lk }}</h4>
+                                                </div>
+                                                <div class="media-body"><span class="m-0">Perempuan</span>
+                                                    <h4 class="mb-0 counter">{{ $pr }}</h4>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-              </div>
+            </div>
+            <div class="col-xl-4 col-25 box-col-4 des-xl-25">
+                <div class="card latest-update-sec">
+                    <div class="card-header">
+                        <div class="header-top d-sm-flex align-items-center">
+                            <h5>Jumlah Warga</h5>
+                            <p class="text-muted">(Meninggal)</p>
+                            <div class="center-content">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive o-hidden">
+                            <table class="table table-bordernone">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="media">
+                                                <div class="media-body"><span class="m-0">Warga meninggal</span>
+                                                    <h4 class="mb-0 counter">{{ $meninggal }}</h4>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-25 box-col-4 des-xl-25">
+                <div class="card latest-update-sec">
+                    <div class="card-header">
+                        <div class="header-top d-sm-flex align-items-center">
+                            <h5>Jumlah Warga</h5>
+                            <p class="text-muted">(Miskin)</p>
+                            <div class="center-content">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive o-hidden">
+                            <table class="table table-bordernone">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="media">
+                                                <div class="media-body"><span class="m-0">Warga miskin</span>
+                                                    <h4 class="mb-0 counter">{{ $miskin }}</h4>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-xl-4 col-25 box-col-4 des-xl-25">
-            <div class="card latest-update-sec">
-              <div class="card-header">
-                <div class="header-top d-sm-flex align-items-center">
-                  <h5>Jumlah Warga</h5><p class="text-muted">(Meninggal)</p>
-                  <div class="center-content">
-                  </div>
-                </div>
-              </div>
-              <div class="card-body">
-                <div class="table-responsive o-hidden">
-                  <table class="table table-bordernone">
-                    <tbody>
-                      <tr>
-                        <td>
-                          <div class="media">
-                            <div class="media-body"><span class="m-0">Warga meninggal</span>
-                                <h4 class="mb-0 counter">{{ $meninggal}}</h4>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-        </div>
-        <div class="col-xl-4 col-25 box-col-4 des-xl-25">
-            <div class="card latest-update-sec">
-              <div class="card-header">
-                <div class="header-top d-sm-flex align-items-center">
-                  <h5>Jumlah Warga</h5><p class="text-muted">(Miskin)</p>
-                  <div class="center-content">
-                  </div>
-                </div>
-              </div>
-              <div class="card-body">
-                <div class="table-responsive o-hidden">
-                  <table class="table table-bordernone">
-                    <tbody>
-                      <tr>
-                        <td>
-                          <div class="media">
-                            <div class="media-body"><span class="m-0">Warga miskin</span>
-                                <h4 class="mb-0 counter">{{ $miskin}}</h4>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-        </div>
-        </div>
-        </div>
-        {{-- <div class="row">
+    </div>
+    {{-- <div class="row">
         <div class="col-xl-6 xl-50 box-col-6">
           <div class="card">
               <div class="card-header pb-0 d-flex justify-content-between align-items-center">
@@ -212,132 +218,137 @@
         </div>
     </div>
         </div> --}}
+    <div class="row">
         <div class="col-xl-6 xl-100 box-col-12">
-          <div class="card">
-              <div class="card-header pb-0 d-flex justify-content-between align-items-center">
-                  <h5>Kegiatan yang akan datang</h5>
-              </div>
-              <div class="card-body">
-                @if ($kegiatan->count())
-                  <div class="user-status table-responsive mb-3">
-                      <table class="table table-bordernone">
-                          <thead>
-                              <tr>
-                                  <th>Nama kegiatan</th>
-                                  <th>Kategori kegiatan</th>
-                                  <th>Tanggal</th>
-                              </tr>
-                          </thead>
-                          <tbody>
-                            @foreach ($kegiatan as $p)
-                              <tr>
-                                  <td>{{ $p->nama_kegiatan }}</td>
-                                  <td>{{ $p->Kategori_kegiatans->kategori_kegiatan }}</td>
-                                  <td>{{ tanggal_indo($p->tgl_mulai_kegiatan) }}</td>
-                              </tr>
-                              @endforeach
-                          </tbody>
-                      </table>
-                  </div>
-                  <div class="card-footer pb-1 text-end">
-                    <a href="{{ route('warga.kegiatan_warga.index') }}">Lihat Selengkapnya...</a>
-                  </div>
-                  @else
-                  Tidak ada kegiatan yang akan datang
-                  @endif
-              </div>
-          </div>
-      </div>
+            <div class="card">
+                <div class="card-header pb-0 d-flex justify-content-between align-items-center">
+                    <h5>Kegiatan yang akan datang</h5>
+                </div>
+                <div class="card-body">
+                    @if ($kegiatan->count())
+                        <div class="user-status table-responsive mb-3">
+                            <table class="table table-bordernone">
+                                <thead>
+                                    <tr>
+                                        <th>Nama kegiatan</th>
+                                        <th>Kategori kegiatan</th>
+                                        <th>Tanggal</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($kegiatan as $p)
+                                        <tr>
+                                            <td>{{ $p->nama_kegiatan }}</td>
+                                            <td>{{ $p->Kategori_kegiatans->kategori_kegiatan }}</td>
+                                            <td>{{ tanggal_indo($p->tgl_mulai_kegiatan) }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="card-footer pb-1 text-end">
+                            <a href="{{ route('warga.kegiatan_warga.index') }}">Lihat Selengkapnya...</a>
+                        </div>
+                    @else
+                        Tidak ada kegiatan yang akan datang
+                    @endif
+                </div>
+            </div>
+        </div>
         <div class="col-xl-6 xl-100 box-col-12">
-          <div class="card">
-              <div class="card-header pb-0 d-flex justify-content-between align-items-center">
-                  <h5>Surat Keterangan</h5>
-              </div>
-              <div class="card-body">
-                @if ($surat->count())
-                  <div class="user-status table-responsive mb-3">
-                      <table class="table table-bordernone">
-                          <thead>
-                              <tr>
-                                  <th>Nomor Surat</th>
-                                  <th>Jenis Surat</th>
-                                  <th>Status Surat</th>
-                              </tr>
-                          </thead>
-                          <tbody>
-                            @foreach ($surat as $p)
-                              <tr>
-                                  <td>@if($p->nomor_surat == null)
-                                    <span class="badge badge-dark">Nomor Belum Terbit</span>
-                                    @else
-                                    {{ $p->nomor_surat }}
-                                    @endif
-                                  </td>
-                                  <td>{{ $p->jenis_surat }}</td>
-                                  <td>@if ($p->status_surat == 1)
-                                    <span class="badge badge-warning">Diterimma RT</span>
-                                @elseif($p->status_surat == 0)
-                                    <span class="badge badge-secondary">Diajukan</span>
-                                @elseif($p->status_surat == 2)
-                                    <span class="badge badge-danger">Ditolak RT</span>
-                                @elseif($p->status_surat == 3)
-                                    <span class="badge badge-warning">Diterima RW</span>
-                                @elseif($p->status_surat == 4)
-                                    <span class="badge badge-success">Selesai</span>
-                                @elseif($p->status_surat == 4)
-                                    <span class="badge badge-danger">Ditolak RW</span>
-                                    @endif</td>
-                              </tr>
-                              @endforeach
-                          </tbody>
-                      </table>
-                  </div>
-                  <div class="card-footer pb-1 text-end">
-                    <a href="{{ route('warga.surat.index') }}">Lihat Selengkapnya...</a>
-                  </div>
-                  @else
-                  Tidak ada kegiatan yang akan datang
-                  @endif
-              </div>
-          </div>
-      </div>
-        <div class="col-xl-6 xl-100 box-col-12">
-          <div class="card">
-              <div class="card-header pb-0 d-flex justify-content-between align-items-center">
-                  <h5>Pengumuman Terbaru</h5>
-              </div>
-              <div class="card-body">
-                @if ($pengumuman->count())
-                  <div class="user-status table-responsive mb-3">
-                      <table class="table table-bordernone">
-                          <thead>
-                              <tr>
-                                  <th>Judul Pengumuman</th>
-                                  <th>Kategori Pengumuman</th>
-                                  <th>Tanggal</th>
-                              </tr>
-                          </thead>
-                          <tbody>
-                            @foreach ($pengumuman as $p)
-                              <tr>
-                                  <td>{{ $p->judul_pengumuman }}</td>
-                                  <td>{{ $p->Kategori_pengumumans->nama_kategori_pengumuman }}</td>
-                                  <td>{{ tanggal_indo($p->tgl_terbit) }}</td>
-                              </tr>
-                              @endforeach
-                          </tbody>
-                      </table>
-                  </div>
-                  <div class="card-footer pb-1 text-end">
-                    <a href="{{ route('warga.pengumuman_warga.index') }}">Lihat Selengkapnya...</a>
-                  </div>
-                  @else
-                  Tidak ada pengumuman yang akan datang
-                  @endif
-              </div>
-          </div>
-      </div>
+            <div class="card">
+                <div class="card-header pb-0 d-flex justify-content-between align-items-center">
+                    <h5>Surat Keterangan</h5>
+                </div>
+                <div class="card-body">
+                    @if ($surat->count())
+                        <div class="user-status table-responsive mb-3">
+                            <table class="table table-bordernone">
+                                <thead>
+                                    <tr>
+                                        <th>Nomor Surat</th>
+                                        <th>Jenis Surat</th>
+                                        <th>Status Surat</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($surat as $p)
+                                        <tr>
+                                            <td>
+                                                @if ($p->nomor_surat == null)
+                                                    <span class="badge badge-dark">Nomor Belum Terbit</span>
+                                                @else
+                                                    {{ $p->nomor_surat }}
+                                                @endif
+                                            </td>
+                                            <td>{{ $p->jenis_surat }}</td>
+                                            <td>
+                                                @if ($p->status_surat == 1)
+                                                    <span class="badge badge-warning">Diterimma RT</span>
+                                                @elseif($p->status_surat == 0)
+                                                    <span class="badge badge-secondary">Diajukan</span>
+                                                @elseif($p->status_surat == 2)
+                                                    <span class="badge badge-danger">Ditolak RT</span>
+                                                @elseif($p->status_surat == 3)
+                                                    <span class="badge badge-warning">Diterima RW</span>
+                                                @elseif($p->status_surat == 4)
+                                                    <span class="badge badge-success">Selesai</span>
+                                                @elseif($p->status_surat == 4)
+                                                    <span class="badge badge-danger">Ditolak RW</span>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="card-footer pb-1 text-end">
+                            <a href="{{ route('warga.surat.index') }}">Lihat Selengkapnya...</a>
+                        </div>
+                    @else
+                        Tidak ada kegiatan yang akan datang
+                    @endif
+                </div>
+            </div>
+        </div>
     </div>
+    <div class="row">
+        <div class="col-xl-12 xl-100 box-col-12">
+            <div class="card">
+                <div class="card-header pb-0 d-flex justify-content-between align-items-center">
+                    <h5>Pengumuman Terbaru</h5>
+                </div>
+                <div class="card-body">
+                    @if ($pengumuman->count())
+                        <div class="user-status table-responsive mb-3">
+                            <table class="table table-bordernone">
+                                <thead>
+                                    <tr>
+                                        <th>Judul Pengumuman</th>
+                                        <th>Kategori Pengumuman</th>
+                                        <th>Tanggal</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($pengumuman as $p)
+                                        <tr>
+                                            <td>{{ $p->judul_pengumuman }}</td>
+                                            <td>{{ $p->Kategori_pengumumans->nama_kategori_pengumuman }}</td>
+                                            <td>{{ tanggal_indo($p->tgl_terbit) }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="card-footer pb-1 text-end">
+                            <a href="{{ route('warga.pengumuman_warga.index') }}">Lihat Selengkapnya...</a>
+                        </div>
+                    @else
+                        Tidak ada pengumuman yang akan datang
+                    @endif
+                </div>
+            </div>
+        </div>
     </div>
     <!-- Container-fluid Ends-->
     @push('scripts')

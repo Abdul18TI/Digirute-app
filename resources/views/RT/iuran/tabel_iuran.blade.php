@@ -59,10 +59,11 @@
                                                 @if ($i->jumlah_iuran === null)
                                                     Iuran Sukarela
                                                 @else
-                                                    Rp. {{ number_format("$i->target_iuran", 0, '.', '.') }}
+                                                    Rp. {{ number_format($i->target_iuran, 0, '.', '.') }}
                                                 @endif
                                             </td>
-                                             <td>Rp. {{ number_format($i->pembayarans->sum('jumlah_bayar'), 0, '.', '.') }}</td>
+                                            <td>Rp. {{ number_format($i->pembayarans->sum('jumlah_bayar'), 0, '.', '.') }}
+                                            </td>
                                             <td class="aksi">
                                                 <a class="btn btn-success btn-sm p-2"
                                                     href="{{ route('rt.iuran.show', $i->id_iuran) }}"><span

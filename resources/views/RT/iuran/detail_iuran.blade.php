@@ -6,12 +6,15 @@
 
 @push('css')
 <link rel="stylesheet" type="text/css" href={{ asset("assets/css/trix.css")}}>
-<link rel="stylesheet" type="text/css" href={{ asset("assets/css/trix.css")}}>
-    <script type="text/javascript" src={{ asset("assets/js/trix.js")}}></script>
+    {{-- <script type="text/javascript" src={{ asset("assets/js/trix.js")}}></script> --}}
     <style>
         trix-toolbar [data-trix-button-group="file-tools"] {
             display: none;
         }
+        trix-toolbar {
+  pointer-events: none;
+}
+        
     </style>
 @endpush
 
@@ -64,7 +67,7 @@
                                 <div class="col">
                                     <div class="mb-3">
                                         <div class="checkbox">
-                                            <input id="checkbox-primary2" type="checkbox" disabled {{ $iuran->jumlah_iuran != null ? 'checked':''}}  >
+                                            <input id="checkbox-primary2" type="checkbox" disabled {{ $iuran->target_iuran != null ? 'checked':''}}  >
                                             <label for="checkbox-primary2">Ada Target Jumlah Iuran ? </label>
                                         </div>
                                     </div>
@@ -73,8 +76,9 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="mb-3">
-                                        <label class="form-label" for="exampleFormControlInput1">Jumlah Target Iuran</label>
-                                        <input class="form-control" disabled="false" value="{{ old('jumlah_iuran',$iuran->jumlah_iuran) }}" name="jumlah_iuran" id="exampleFormControlInput1" type="number" readonly/>
+                                        <label class="form-label" for="exampleInputPassword22">Jumlah Target Iuran</label>
+                                        <input class="form-control" id="exampleInputPassword22" name="target_iuran"
+                                            type="number" value="{{ old('target_iuran',$iuran->target_iuran) }}" disabled="true" readonly />
                                     </div>
                                 </div>
                             </div>
@@ -91,12 +95,12 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="mb-3">
-                                        <label class="form-label" for="exampleInputPassword22">Target Iuran Peroarang</label>
-                                        <input class="form-control" id="exampleInputPassword22" name="target_iuran"
-                                            type="number" value="{{ old('target_iuran',$iuran->target_iuran) }}" disabled="true" readonly />
+                                        <label class="form-label" for="exampleFormControlInput1">Target Iuran Perorang</label>
+                                        <input class="form-control" disabled="false" value="{{ old('jumlah_iuran',$iuran->jumlah_iuran) }}" name="jumlah_iuran" id="exampleFormControlInput1" type="number" readonly/>
                                     </div>
                                 </div>
                             </div>
+                            
                             <div class="mb-3 row">
                                 <div class="col-sm-6">
                                     <label class="form-label">Tanggal Mulai Iuran</label>
@@ -125,16 +129,24 @@
                             </div>
                         </div>
                         <div class="card-footer text-end">
-                             <button class="btn btn-primary" type="submit">Edit</button>
-                            <button class="btn btn-secondary" type="reset">Reset</button>
-                            <a class="btn btn-light" href="{{ url()->previous() }}">Batal</a>
+                            <a class="btn btn-light" href="{{ url()->previous() }}">Kembali</a>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+    @endsection
+    @push('scripts')
+    <script src="{{ asset('assets/js/datatable/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/js/datatable/datatables/datatable.custom.js') }}"></script>
+    <script src="{{ asset('assets/js/tooltip-init.js') }}"></script>
+    <script type="text/javascript" src={{ asset('assets/js/trix.js') }}></script>
+@endpush
+@push('scripts-custom')
     <script>
+        //  document.querySelector("deskripsi_iuran").contentEditable = false
+         document.querySelector('trix-editor').editor.element.setAttribute('contentEditable', false)
         function previewImage(){
             const image = document.querySelector('#image');
             const imgPreview = document.querySelector('.img-preview');
@@ -152,8 +164,7 @@
         document.addEventListener('trix-file-accept', function(e) {
             e.preventDefault();
         })
-    </script>
-    <script>
+
         $(document).ready(function () {
             $('#dataTable').DataTable()
         })
@@ -175,7 +186,7 @@
               }
         }
     </script>
-    @endsection
+    @endpush
     
-    <script type="text/javascript" src={{ asset("assets/js/trix.js")}}></script>
+    
 
