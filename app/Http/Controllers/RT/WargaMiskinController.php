@@ -211,24 +211,4 @@ class WargaMiskinController extends Controller
         // return $pdf->stream();
     }
 
-    public function print($kemiskinan)
-    {
-        //
-
-        $dataKemiskinan = Kemiskinan::find($kemiskinan);
-
-        //jika data tidak ditemukan
-        if (!$dataKemiskinan) {
-            return redirect()->route('rt.kematian.index')
-                ->with('error', 'Print Gagal! Data tidak temukan');
-        }
-
-        // $data = $dataKemiskinan->get();
-        $dataKemiskinan['rt'] = auth()->user();
-        $dataKemiskinan['rw'] = auth()->user()->rw_rel;
-        // dd($dataKemiskinan['rt']);
-        //    return view('rt.kematian.surat_kematian_pdf', ['kematian' => $dataKemiskinan]);
-        $pdf = PDF::loadview('rt.kematian.surat_kematian_pdf', ['kematian' => $dataKemiskinan]);
-        return $pdf->stream();
-    }
 }
