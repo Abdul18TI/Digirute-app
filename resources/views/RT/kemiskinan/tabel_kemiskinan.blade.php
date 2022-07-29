@@ -70,7 +70,7 @@
                                             <td class="text-center">{{ $loop->iteration }}</td>
                                             <td>{{ $p->wargas->nama_lengkap }}</td>
                                             <td class="text-center"> 
-                                                <a class="text-success" href="{{ asset('storage/'. $p->bukti) }}">
+                                                <a class="text-success" href="{{ asset('storage/'. $p->bukti) }}" target="_blank">
                                                 Lihat Bukti
                                             </a></td>
                                             <td class="aksi">
