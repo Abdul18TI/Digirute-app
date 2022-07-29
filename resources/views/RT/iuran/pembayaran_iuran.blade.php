@@ -6,7 +6,7 @@
 
 @section('container')
 {{-- tableEdit --}}
-{{-- @push('scripts')
+{{-- @push('scripts')a
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="https://markcell.github.io/jquery-tabledit/assets/js/tabledit.min.js"></script>
 @endpush --}}

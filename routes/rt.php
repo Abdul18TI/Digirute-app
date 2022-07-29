@@ -105,6 +105,7 @@ Route::middleware(['auth:rt', 'PreventBackHistory'])->group(function () {
         Route::get('/ditampilkan', [PengaduanRTController::class, 'updateStatus'])->name('ditampilkan');
     });
 
+    route::get('iuran/{iuran}/pembayaran', [IuranRTController::class, 'pembayaran']);
     route::resource('iuran', IuranRTController::class);
 
 

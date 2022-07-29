@@ -122,4 +122,8 @@ class IuranRTController extends Controller
             ->with('error', 'Gagal menghapus data!');
         }
     }
+
+    public function pembayaran(Iuran $iuran){
+        dd($iuran);
+    }
 }
