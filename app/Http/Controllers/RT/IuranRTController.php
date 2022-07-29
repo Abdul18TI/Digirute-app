@@ -4,8 +4,10 @@ namespace App\Http\Controllers\RT;
 
 use App\Models\Iuran;
 use App\Models\JenisIuran;
+use App\Models\Warga;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Pembayaran;
 
 class IuranRTController extends Controller
 {
@@ -54,17 +56,17 @@ class IuranRTController extends Controller
             'deskripsi_iuran' => 'required'
         ]);
 
-        $validatedData['pj_iuran'] = 1;
+        $validatedData['pj_iuran'] = auth()->user()->id_rt;
         $validatedData['status_iuran'] = 1;
 
         try {
             Iuran::create($validatedData);
 
             return redirect()->route('rt.iuran.index')
-            ->with('success', 'Data berhasil ditambah!');
+                ->with('success', 'Data berhasil ditambah!');
         } catch (\Exception $e) {
             return redirect()->route('rt.iuran.index')
-            ->with('error', 'Gagal menambahkan data!');
+                ->with('error', 'Gagal menambahkan data!');
         }
     }
 
@@ -80,6 +82,39 @@ class IuranRTController extends Controller
             'iuran' => $iuran,
             'jenis_iuran' => JenisIuran::all(),
         ]);
+    }
+
+    public function pembayaran(Iuran $iuran)
+    {
+        $warga = Warga::where('rt', auth()->user()->id_rt)
+            ->where('status_warga', 0)
+            ->where('active', 1)
+            ->get();
+        // dd($iuran->pembayarans);
+        return view('rt.iuran.pembayaran_iuran', [
+            'iuran' => $iuran,
+            'warga' => $warga,
+            'jenis_iuran' => JenisIuran::all(),
+        ]);
+    }
+
+    public function storePembayaran(Request $request)
+    {
+        $validatedData = $request->validate([
+            'id_iuran' => 'required',
+            'id_warga' => 'required',
+            'nik' => 'required',
+            'jumlah_bayar' => 'integer',
+        ]);
+
+        try {
+            Pembayaran::create($validatedData);
+            return redirect()->route('rt.iuran.pembayaran', $request->id_iuran)
+                ->with('success', 'Pembayaran berhasil!');
+        } catch (\Exception $e) {
+            return redirect()->route('rt.iuran.index')
+                ->with('error', 'Pembayaran gagal!');
+        }
     }
 
     public function edit(Iuran $iuran)
@@ -116,10 +151,27 @@ class IuranRTController extends Controller
         try {
             $iuran->delete();
             return redirect()->route('rt.iuran.index')
-            ->with('success', 'data berhasil dihapus!');
+                ->with('success', 'data berhasil dihapus!');
         } catch (\Exception $e) {
             return redirect()->route('rt.iuran.index')
-            ->with('error', 'Gagal menghapus data!');
+                ->with('error', 'Gagal menghapus data!');
         }
+    }
+
+
+
+    public function show_warga(Request $request)
+    {
+        // $jenazah= Warga::where('nik', $warga->nik)->first();
+        $jenazah = Warga::with('pekerjaan')->select('id_warga', 'nama_lengkap', 'pekerjaan')
+            ->where('nik', $request->id)
+            ->where('rt', auth()->id())
+            ->where('status_warga', 0)
+            ->first();
+        if ($jenazah) {
+            return response()->json(['success' => 'Data ditemukan.', 'data' => $jenazah]);
+        }
+        return response()->json(['success' => 'Data tidak ditemukan.', 'data' => $jenazah]);
+        // dd($jenazah);
     }
 }

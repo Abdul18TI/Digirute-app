@@ -12,10 +12,12 @@ class Pembayaran extends Model
     protected $table = 'pembayaran';
     protected $primaryKey = 'id_pembayaran';
     protected $guarded = ['id_pembayaran'];
+    protected $with = ['wargas'];
 
-    public function warga()
+
+    public function wargas()
     {
-        return $this->belongsTo(Warga::class);
+        return $this->belongsTo(Warga::class, 'id_warga')->select('id_warga', 'nik', 'nama_lengkap', 'pekerjaan');
     }
 
     public function iuran()

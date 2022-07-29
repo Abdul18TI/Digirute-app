@@ -66,7 +66,7 @@
                                             </td>
                                             <td class="aksi">
                                                 <a class="btn btn-success btn-sm p-2"
-                                                    href="{{ route('rt.iuran.show', $i->id_iuran) }}"><span
+                                                    href="{{ route('rt.iuran.pembayaran', $i->id_iuran) }}"><span
                                                         class="fa fa-money"></span></a>
                                                 <a class="btn btn-secondary btn-sm p-2"
                                                     href="{{ route('rt.iuran.show', $i->id_iuran) }}"><span

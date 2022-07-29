@@ -41,7 +41,7 @@ Route::middleware(['auth:rt', 'PreventBackHistory'])->group(function () {
     Route::get('/wargat/tetap', [WargaController::class, 'wargatetap'])->name('wargat.tetap');
     Route::get('/wargatt/pendatang', [WargaController::class, 'wargapendatang'])->name('wargatt.pendatang');
     Route::get('/wargak/wargak', [WargaController::class, 'wargak'])->name('wargak.wargak');
-    
+
     Route::get('/warga/getKab/{id}', function ($id) {
         $kab = App\Models\Kabupaten::where('id_prov', $id)->get();
         return response()->json($kab);
@@ -69,7 +69,7 @@ Route::middleware(['auth:rt', 'PreventBackHistory'])->group(function () {
     route::resource('wargapindah', WargaPindahController::class)->only([
         'index', 'create', 'store', 'destroy'
     ]);
-  
+
     // KEGIATAN
     Route::get('/status/update', [KegiatanRTController::class, 'updateStatus'])->name('kegiatan.update.status');
     route::resource('kegiatan', KegiatanRTController::class);
@@ -81,9 +81,9 @@ Route::middleware(['auth:rt', 'PreventBackHistory'])->group(function () {
     // END PENGUMUMAN
 
     route::resource('fasilitas', FasilitasUmumRTController::class);
-  
+
     route::resource('profileRT', ProfileRTController::class);
-   
+
     // KEMATIAN
     route::get('kematian/show_jenazah', [WargaMeninggalController::class, 'show_warga'])->name('kematian.show_jenazah');
     route::get('kematian/show_warga', [WargaMeninggalController::class, 'show_warga'])->name('kematian.show_pelapor');
@@ -95,7 +95,7 @@ Route::middleware(['auth:rt', 'PreventBackHistory'])->group(function () {
     // END KEMATIAN
 
     route::resource('kemiskinan', WargaMiskinController::class)->only([
-        'index', 'create', 'store', 'destroy', 'show','show_warga', 'requestSurat', 'print'
+        'index', 'create', 'store', 'destroy', 'show', 'show_warga', 'requestSurat', 'print'
     ]);
 
     Route::prefix('pengaduan')->name('pengaduan.')->group(function () {
@@ -105,6 +105,10 @@ Route::middleware(['auth:rt', 'PreventBackHistory'])->group(function () {
         Route::get('/ditampilkan', [PengaduanRTController::class, 'updateStatus'])->name('ditampilkan');
     });
 
+    route::get('iuran/show_warga', [IuranRTController::class, 'show_warga'])->name('iuran.show_warga');
+    route::get('iuran/{iuran}/pembayaran', [IuranRTController::class, 'pembayaran'])->name('iuran.pembayaran');
+    route::post('iuran/pembayaran', [IuranRTController::class, 'storePembayaran'])->name('iuran.storePembayaran');
+    // Route::get('iuran/{iuran}', [IuranRTController::class, 'pembayaran'])->name('iuran.pembayaran');
     route::resource('iuran', IuranRTController::class);
 
 
@@ -123,7 +127,7 @@ Route::middleware(['auth:rt', 'PreventBackHistory'])->group(function () {
         Route::get('cek_surat', [SuratRTController::class, 'cekSurat'])->name('cekSurat');
         Route::post('validasi/qrcode', [SuratRTController::class, 'validasiCode'])->name('validasi_qrcode');
         // Route::get('/show/{pengaduan}', [PengaduanRTController::class, 'show'])->name('show');
-        
+
 
     });
 
