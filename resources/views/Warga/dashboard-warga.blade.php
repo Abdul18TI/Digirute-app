@@ -76,11 +76,13 @@
         <div class="row">
             <div class="col-xl-4 col-25 box-col-4 des-xl-25">
                 <div class="card latest-update-sec">
-                    <div class="card-header">
+                    <div class="card-header pb-2    ">
                         <div class="header-top d-sm-flex align-items-center">
-                            <h5>Jumlah warga </h5>
-                            <p class="text-muted">(Gender)</p>
+                            <h5>Gender</h5>
+                            <div class="center-content">
+                            </div>
                         </div>
+                        <p class="text-muted">Tahun : {{ now()->year }}</p>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive o-hidden">
@@ -108,13 +110,13 @@
             </div>
             <div class="col-xl-4 col-25 box-col-4 des-xl-25">
                 <div class="card latest-update-sec">
-                    <div class="card-header">
+                    <div class="card-header pb-2">
                         <div class="header-top d-sm-flex align-items-center">
-                            <h5>Jumlah Warga</h5>
-                            <p class="text-muted">(Meninggal)</p>
+                            <h5>Warga Meninggal</h5>
                             <div class="center-content">
                             </div>
                         </div>
+                        <p class="text-muted">Tahun : {{ now()->year }}</p>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive o-hidden">
@@ -137,13 +139,13 @@
             </div>
             <div class="col-xl-4 col-25 box-col-4 des-xl-25">
                 <div class="card latest-update-sec">
-                    <div class="card-header">
+                    <div class="card-header pb-2">
                         <div class="header-top d-sm-flex align-items-center">
-                            <h5>Jumlah Warga</h5>
-                            <p class="text-muted">(Miskin)</p>
+                            <h5>Warga Miskin</h5>
                             <div class="center-content">
                             </div>
                         </div>
+                        <p class="text-muted">Tahun : {{ now()->year }}</p>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive o-hidden">
