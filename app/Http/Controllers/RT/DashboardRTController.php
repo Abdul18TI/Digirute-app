@@ -31,10 +31,10 @@ class DashboardRTController extends Controller
         // $meninggal = WargaMeninggal::where('rt', $id_rt)->where('rw', $id_rw)->count('id');
         $meninggal = WargaMeninggal::whereHas('wargas', function ($q) {
             $q->where('rt', auth()->user()->id_rt)->where('rw', auth()->user()->rw_rel->id_rw);
-        })->count('id');
+        })->whereYear('tgl_kematian', now()->year)->count('id');
         $miskin = WargaMiskin::whereHas('wargas', function ($q) {
             $q->where('rt', auth()->user()->id_rt)->where('rw', auth()->user()->rw_rel->id_rw);
-        })->count('id');
+        })->whereYear('created_at', now()->year)->count('id');
         // dd($surat);
         // return '<pre>' . auth()->guard('rt')->user() . '</pre>';
         return view(
