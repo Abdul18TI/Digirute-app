@@ -76,6 +76,7 @@
                                     <div class="mb-3 row">
                                         <label class="form-label">Foto pengumuman</label>
                                         <input type="hidden" name="oldImage" value="{{ $pengumuman->foto_pengumuman }}">
+                                        
                                         @if($pengumuman->foto_pengumuman)
                                         <img src="{{ asset('storage/'. $pengumuman->foto_pengumuman) }}" class="img-preview img-fluid mb-3 col-sm-5 d-block">
                                         @else
@@ -83,6 +84,7 @@
                                         @endif
                                         <div class="col-sm-9">
                                             <input class="form-control" name="foto_pengumuman" onchange="previewImage()" id="image" type="file" />
+                                            <small class="text-muted">* Ukuran Maksimal File 4 Mb</small>
                                         </div>
                                     </div>
                                 </div>

@@ -67,6 +67,7 @@
                           <label class="col-sm-3 col-form-label" for="bukti_pengaduan">Bukti</label>
                           <div class="col-sm-9">
                             <input class="form-control" type="file" id="bukti_pengaduan" name="bukti_pengaduan">
+                             <small class="text-muted">* Ukuran Maksimal File 4 Mb</small>
                           </div>
                         </div>
                       </div>

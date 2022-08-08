@@ -95,6 +95,7 @@
                                         @endif
                                         <div class="col-sm-9">
                                             <input class="form-control" name="foto_kegiatan" onchange="previewImage()" id="image" type="file" />
+                                             <small class="text-muted">* Ukuran Maksimal File 4 Mb</small>
                                         </div>
                                     </div>
                                 </div>

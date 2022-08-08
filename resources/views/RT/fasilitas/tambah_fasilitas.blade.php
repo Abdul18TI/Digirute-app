@@ -103,12 +103,12 @@
                                             <div class="mb-3 row">
                                                 <label class="form-label">Foto Fasilitas</label>
                                                 <div class="col-sm">
-
                                                     {{-- <img class="img-preview img-fluid mb-3 col-sm-5"> --}}
                                                     <input
                                                         class="form-control  @error('foto_fasilitas') is-invalid @enderror"
                                                         name="foto_fasilitas" onchange="previewImage()" id="image"
                                                         type="file" />
+                                                    <small class="text-muted">* Ukuran Maksimal File 4 Mb</small>
                                                     @error('foto_fasilitas')
                                                         <a class="text-danger">
                                                             {{ $message }}

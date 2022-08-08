@@ -91,6 +91,7 @@
                                     <div class="col-sm-9">
                                       <input class="form-control" name="foto_fasilitas" onchange="previewImage()" id="image"
                                         type="file" />
+                                         <small class="text-muted">* Ukuran Maksimal File 4 Mb</small>
                                       <figure class="col-xl col-md xl-60 mt-3" itemprop="associatedMedia" itemscope="">
                                         @if ($fasilitas->foto_fasilitas)
                                           <a href="{{ asset('storage/' . $fasilitas->foto_fasilitas) }}" itemprop="contentUrl"

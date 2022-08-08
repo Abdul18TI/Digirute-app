@@ -128,6 +128,8 @@
                                         <div class="col-sm-9">
                                             <input class="form-control" name="foto_kegiatan" onchange="previewImage()"
                                                 id="image" type="file" />
+                                                {{-- <span class="text-muted">Maksimal 4 Mb</span> --}}
+                                                <small class="text-muted">* Ukuran Maksimal File 4 Mb</small>
                                             {{-- <img class=" img-fluid mb-3 col-sm-5"> --}}
                                             <figure class="col-xl col-md xl-60 mt-3" itemprop="associatedMedia"
                                                 itemscope="">

@@ -87,6 +87,7 @@
                                         <div class="col-sm-9">
                                             <img class="img-preview img-fluid mb-3 col-sm-5">
                                             <input class="form-control" name="foto_fasilitas" onchange="previewImage()" id="image" type="file" />
+                                             <small class="text-muted">* Ukuran Maksimal File 4 Mb</small>
                                         </div>
                                     </div>
                                 </div>
