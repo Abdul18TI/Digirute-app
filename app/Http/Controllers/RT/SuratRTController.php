@@ -78,7 +78,6 @@ class SuratRTController extends Controller
     public function printSuratKeterangan(Surat $surat)
     {
         //
-
         $surat = $surat;
         //jika data tidak ditemukan
         if (!$surat and $surat->status_surat == 0) {
@@ -100,7 +99,7 @@ class SuratRTController extends Controller
             $ttdrw = base64_encode(QrCode::format('svg')->size(100)->errorCorrection('H')->generate($surat->tanda_tangan_rw));
             $surat['ttdrw'] = $ttdrw;
         }
-        dd($surat);
+        // dd($surat);
         // return view('surat.surat_keterangan_pdf', ['surat' => $surat]);
         $pdf = PDF::loadview('surat.surat_keterangan_pdf', ['surat' => $surat]);
         return $pdf->stream();

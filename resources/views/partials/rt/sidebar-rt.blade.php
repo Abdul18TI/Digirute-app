@@ -66,10 +66,10 @@
                                     class="{{ prefixActive('rt.surat.cekSurat') }}">Cek Surat</a></li>
                         </ul>
                     </li>
-                       <li>
+                       {{-- <li>
                         <a class="nav-link menu-title link-nav" href="{{ route('rt.iuran.index') }}"><i
                                 data-feather="dollar-sign"></i><span>Iuran</span></a>
-                    </li>
+                    </li> --}}
                     <li>
                         <a class="nav-link menu-title link-nav" href="{{ route('rt.pengaduan.home') }}"><i
                                 data-feather="archive"></i><span>Pengaduan</span></a>
