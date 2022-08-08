@@ -117,6 +117,7 @@
                   <div class="center-content">
                   </div>
                 </div>
+                <p class="text-muted">Tahun : {{ now()->year }}</p>
               </div>
               <div class="card-body">
                 <div class="table-responsive o-hidden" style="overflow-y: scroll; max-height:75px">
@@ -145,6 +146,7 @@
                 <div class="header-top d-sm-flex align-items-center">
                   <h5>Jumlah warga </h5><p class="text-muted">(Gender)</p>
                 </div>
+                <p class="text-muted">Tahun : {{ now()->year }}</p>
               </div>
               <div class="card-body">
                 <div class="table-responsive o-hidden">
@@ -178,6 +180,7 @@
                   <div class="center-content">
                   </div>
                 </div>
+                <p class="text-muted">Tahun : {{ now()->year }}</p>
               </div>
               <div class="card-body">
                 <div class="table-responsive o-hidden">

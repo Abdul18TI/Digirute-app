@@ -108,6 +108,7 @@ Route::middleware(['auth:rt', 'PreventBackHistory'])->group(function () {
     route::get('iuran/show_warga', [IuranRTController::class, 'show_warga'])->name('iuran.show_warga');
     route::get('iuran/{iuran}/pembayaran', [IuranRTController::class, 'pembayaran'])->name('iuran.pembayaran');
     route::post('iuran/pembayaran', [IuranRTController::class, 'storePembayaran'])->name('iuran.storePembayaran');
+    route::delete('iuran/pembayaran/{id}', [IuranRTController::class, 'destroyPembayaran'])->name('iuran.destroyPembayaran');
     // Route::get('iuran/{iuran}', [IuranRTController::class, 'pembayaran'])->name('iuran.pembayaran');
     route::resource('iuran', IuranRTController::class);
 

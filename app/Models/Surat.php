@@ -22,16 +22,16 @@ class Surat extends Model
         return $this->belongsTo(Warga::class, 'pengaju', 'id_warga')->select('nik', 'no_kk', 'id_warga', 'nama_lengkap', 'jenis_kelamin', 'pekerjaan', 'agama', 'tempat_lahir', 'tgl_lahir', 'alamat', 'foto_warga');
     }
 
-    // public function rts()
-    // {
-    //     return $this->belongsTo(rt::class, 'warga', 'id_warga');
-    //     // return $this->belongsTo(rt::class);
-    // }
-    // public function rws()
-    // {
-    //     return $this->belongsTo(rw::class, 'warga', 'id_warga');
-    //     // return $this->belongsTo(rt::class);
-    // }
+    public function rts()
+    {
+        return $this->belongsTo(rt::class, 'warga', 'id_warga');
+        // return $this->belongsTo(rt::class);
+    }
+    public function rws()
+    {
+        return $this->belongsTo(rw::class, 'warga', 'id_warga');
+        // return $this->belongsTo(rt::class);
+    }
     public function setPropertieSuratAttribute($value)
     {
         $this->attributes['propertie_surat'] = json_encode($value);
