@@ -39,7 +39,7 @@
                     <div class="bg-info b-r-4 card-body">
                         <div class="media static-top-widget">
                             <div class="align-self-center text-center"><i data-feather="user"></i></div>
-                            <div class="media-body"><span class="m-0">Warga tetap</span>
+                            <div class="media-body"><span class="m-0">Warga Tetap</span>
                                 <h4 class="mb-0 counter">{{ count($wargatetap) }}</h4><i class="icon-bg"
                                     data-feather="user"></i>
                             </div>
@@ -52,9 +52,9 @@
                     <div class="bg-success b-r-4 card-body">
                         <div class="media static-top-widget">
                             <div class="align-self-center text-center"><i data-feather="calendar"></i></div>
-                            <div class="media-body"><span class="m-0">Warga pendatang</span>
+                            <div class="media-body"><span class="m-0">Warga Pendatang</span>
                                 <h4 class="mb-0 counter">{{ count($wargadatang) }}</h4><i class="icon-bg"
-                                    data-feather="calendar"></i>
+                                    data-feather="user"></i>
                             </div>
                         </div>
                     </div>
@@ -76,11 +76,13 @@
         <div class="row">
             <div class="col-xl-4 col-25 box-col-4 des-xl-25">
                 <div class="card latest-update-sec">
-                    <div class="card-header">
+                    <div class="card-header pb-2">
                         <div class="header-top d-sm-flex align-items-center">
-                            <h5>Jumlah warga </h5>
-                            <p class="text-muted">(Gender)</p>
+                            <h5>Gender</h5>
+                            <div class="center-content">
+                            </div>
                         </div>
+                        <p class="text-muted">Tahun : {{ now()->year }}</p>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive o-hidden">
@@ -108,13 +110,13 @@
             </div>
             <div class="col-xl-4 col-25 box-col-4 des-xl-25">
                 <div class="card latest-update-sec">
-                    <div class="card-header">
+                    <div class="card-header pb-2">
                         <div class="header-top d-sm-flex align-items-center">
-                            <h5>Jumlah Warga</h5>
-                            <p class="text-muted">(Meninggal)</p>
+                            <h5>Warga Meninggal</h5>
                             <div class="center-content">
                             </div>
                         </div>
+                        <p class="text-muted">Tahun : {{ now()->year }}</p>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive o-hidden">
@@ -137,13 +139,13 @@
             </div>
             <div class="col-xl-4 col-25 box-col-4 des-xl-25">
                 <div class="card latest-update-sec">
-                    <div class="card-header">
+                    <div class="card-header pb-2">
                         <div class="header-top d-sm-flex align-items-center">
-                            <h5>Jumlah Warga</h5>
-                            <p class="text-muted">(Miskin)</p>
+                            <h5>Warga Miskin</h5>
                             <div class="center-content">
                             </div>
                         </div>
+                        <p class="text-muted">Tahun : {{ now()->year }}</p>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive o-hidden">
@@ -152,7 +154,7 @@
                                     <tr>
                                         <td>
                                             <div class="media">
-                                                <div class="media-body"><span class="m-0">Warga miskin</span>
+                                                <div class="media-body"><span class="m-0">Warga Miskin</span>
                                                     <h4 class="mb-0 counter">{{ $miskin }}</h4>
                                                 </div>
                                             </div>

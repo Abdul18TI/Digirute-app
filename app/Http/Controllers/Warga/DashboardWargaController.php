@@ -33,11 +33,11 @@ class DashboardWargaController extends Controller
         })->latest()->get();
         // $meninggal = WargaMeninggal::where('rt', $id_rt)->where('rw', $id_rw)->count('id');
         $meninggal = WargaMeninggal::whereHas('wargas', function ($q) {
-            $q->where('rt', auth()->user()->id_rt)->where('rw', auth()->user()->rw_rel->id_rw);
-        })->count('id');
+            $q->where('rt', auth()->user()->rt)->where('rw', auth()->user()->rt_rel->id_rw);
+        })->whereYear('tgl_kematian', now()->year)->count('id');
         $miskin = WargaMiskin::whereHas('wargas', function ($q) {
-            $q->where('rt', auth()->user()->id_rt)->where('rw', auth()->user()->rw_rel->id_rw);
-        })->count('id');
+            $q->where('rt', auth()->user()->rt)->where('rw', auth()->user()->rt_rel->id_rw);
+        })->whereYear('created_at', now()->year)->count('id');
         return view(
             'Warga.dashboard-warga',
             [

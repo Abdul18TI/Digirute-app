@@ -78,7 +78,6 @@ class SuratRTController extends Controller
     public function printSuratKeterangan(Surat $surat)
     {
         //
-
         $surat = $surat;
         //jika data tidak ditemukan
         if (!$surat and $surat->status_surat == 0) {
