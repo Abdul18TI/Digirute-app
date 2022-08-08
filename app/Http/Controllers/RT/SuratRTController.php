@@ -62,9 +62,9 @@ class SuratRTController extends Controller
         // if ($surat->status_tandatangan == 2 and $surat->status_surat == 3) {
         //     $surat->update(['status_surat' => 4, 'nomor_surat' => CreateNomorSuratRT('SKE')]);
         // }
-         if ($surat->status_tandatangan == 1 and $surat->status_surat == 0) {
+        if ($surat->status_tandatangan == 1 and $surat->status_surat == 0) {
             $surat->update(['status_surat' => 1, 'propertie_surat' => $propertie_surat, 'nomor_surat' => CreateNomorSuratRT('SKE')]);
-            $tandatanganrt = rand(1,9999).'-'.$surat->nomor_surat.'-'. auth()->user()->id_rt.'-'. str_replace(' ', '', now());
+            $tandatanganrt = rand(1, 9999) . '-' . $surat->nomor_surat . '-' . auth()->user()->id_rt . '-' . str_replace(' ', '', now());
             $surat->tanda_tangan_rt =  $tandatanganrt;
             $surat->save();
         }
@@ -96,11 +96,11 @@ class SuratRTController extends Controller
         }
 
         $surat['ttdrw'] = null;
-        if($surat->tanda_tangan_rw != null){
+        if ($surat->tanda_tangan_rw != null) {
             $ttdrw = base64_encode(QrCode::format('svg')->size(100)->errorCorrection('H')->generate($surat->tanda_tangan_rw));
             $surat['ttdrw'] = $ttdrw;
         }
-        dd($surat);
+        // dd($surat);
         // return view('surat.surat_keterangan_pdf', ['surat' => $surat]);
         $pdf = PDF::loadview('surat.surat_keterangan_pdf', ['surat' => $surat]);
         return $pdf->stream();
@@ -117,11 +117,9 @@ class SuratRTController extends Controller
         $surat = Surat::where('tanda_tangan_rt', $request->qr_code)
             ->orWhere('tanda_tangan_rw', $request->qr_code)
             ->first();
-        if($surat == null){
-            return response()->json(['error' => 'Data tidak ditemukan.', ]);
+        if ($surat == null) {
+            return response()->json(['error' => 'Data tidak ditemukan.',]);
         }
         return $surat;
     }
-
-  
 }

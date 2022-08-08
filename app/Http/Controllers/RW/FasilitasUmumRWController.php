@@ -45,10 +45,11 @@ class FasilitasUmumRWController extends Controller
         }
 
         $validatedData['status_fasilitas'] = 1;
+        // $validatedData['rt'] = auth()->user()->id_rt;
+        $validatedData['rw'] = auth()->user()->id_rw;
 
         try {
             Fasilitas_umum::create($validatedData);
-
             return redirect()->route('rw.fasilitasrw.index')
                 ->with('success', 'Data berhasil ditambah!');
         } catch (\Exception $e) {

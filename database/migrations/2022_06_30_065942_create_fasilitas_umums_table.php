@@ -16,7 +16,7 @@ class CreateFasilitasUmumsTable extends Migration
         Schema::create('fasilitas_umums', function (Blueprint $table) {
             $table->id('id_fasilitas_umum');
             $table->foreignId('kategori_fasilitas_umum')->constrained('kategori_fasilitas_umums', 'id_kategori_fasilitas');
-            $table->foreignId('rt')->constrained('rts', 'id_rt')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('rt')->constrained('rts', 'id_rt')->onUpdate('cascade')->onDelete('cascade')->nullable();
             $table->foreignId('rw')->constrained('rws', 'id_rw')->onUpdate('cascade')->onDelete('cascade');
             $table->string('fasilitas_umum');
             $table->text('deskripsi_fasilitas');

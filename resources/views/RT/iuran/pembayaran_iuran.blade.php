@@ -35,38 +35,40 @@
       @endif
     </div>
       <div class="col-sm-12">
-        <div class="card">
         @if (session()->has('success'))
-          <div class="alert alert-success dark alert-dismissible fade show"
-            role="alert">
-            <strong>Sukses ! </strong> {{ session('success') }}.
-            <button class="btn-close"
-              type="button"
-              data-bs-dismiss="alert"
-              aria-label="Close"
-              data-bs-original-title=""
-              title=""></button>
-          </div>
-           @endif
-          @if (session()->has('error'))
-          <div class="alert alert-danger dark alert-dismissible fade show"
-            role="alert">
-            <strong>Gagal ! </strong> {{ session('error') }}.
-            <button class="btn-close"
-              type="button"
-              data-bs-dismiss="alert"
-              aria-label="Close"
-              data-bs-original-title=""
-              title=""></button>
-          </div>
-           @endif
+        <div class="alert alert-success dark alert-dismissible fade show"
+          role="alert">
+          <strong>Sukses ! </strong> {{ session('success') }}.
+          <button class="btn-close"
+            type="button"
+            data-bs-dismiss="alert"
+            aria-label="Close"
+            data-bs-original-title=""
+            title=""></button>
+        </div>
+         @endif
+        @if (session()->has('error'))
+        <div class="alert alert-danger dark alert-dismissible fade show"
+          role="alert">
+          <strong>Gagal ! </strong> {{ session('error') }}.
+          <button class="btn-close"
+            type="button"
+            data-bs-dismiss="alert"
+            aria-label="Close"
+            data-bs-original-title=""
+            title=""></button>
+        </div>
+         @endif
+        <div class="card">
+       
           <div class="card-header pb-0">
             <h2 class="text-center">{{ ucwords($iuran->judul_iuran) }}</h2>
                         <h6 class="text-center">Iuran {{ ucwords($iuran->jenis_iurans->nama_jenis_iuran) }}</h6>
                         @if ($iuran->target_iuran !== null)
                             <h6 class="text-center mb-3">Rp. {{ number_format($iuran->pembayarans->sum('jumlah_bayar'), 0, '.', '.') }} / Rp.{{ $iuran->jumlah_iuran }}</h6>
-                        @endif
+                        @else
                         <h4 class="text-center mb-3 text-success f-w-700">Rp. {{ number_format($iuran->pembayarans->sum('jumlah_bayar'), 0, '.', '.') }}</h6>
+                          @endif
           </div>
           <form class="form theme-form"
             method="POST" enctype="multipart/form-data"
@@ -196,6 +198,7 @@
                             <th>Nama</th>
                             <th>Jumlah Bayar</th>
                             <th>Tanggal Bayar</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     {{-- {!! QrCode::format('svg')->size(200)->errorCorrection('H')->generate('string') !!} --}}
@@ -207,6 +210,17 @@
                        <td> {{  $p->wargas->nama_lengkap }}</td>
                        <td> Rp. {{ number_format($p->jumlah_bayar, 0, '.', '.') }}</td>
                        <td> {{ tanggal_indo($p->created_at)}}</td>
+                       <td class="aksi">
+                        <form method="POST"
+                                                    action="{{ route('rt.iuran.destroyPembayaran', $p->id_pembayaran) }}"
+                                                    class="d-inline">
+                                                    @csrf
+                                                    <input name="_method" type="hidden" value="DELETE">
+                                                    <button type="submit" class="btn btn-danger btn-sm sweet" data-toggle="tooltip" title='Delete'>
+                                                        <span class="fa fa-trash-o"></span></button>
+                                                </form>
+                         {{-- {{ route('', $p->id_pembayaran) }} --}}
+                        </td>
                         </tr>
                         @endforeach
                     </tbody>

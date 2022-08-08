@@ -30,13 +30,13 @@ class SuratRWController extends Controller
     {
         // return CreateNomorSuratRW('SKE');
         $surat = Surat::with('wargas')->where('rw', auth()->user()->id_rw)
-        ->where('nomor_surat', '!=', null)
-        // ->where('status_tandatangan', 1)
+            ->where('nomor_surat', '!=', null)
+            // ->where('status_tandatangan', 1)
             ->Where('status_tandatangan', 2)
             ->orderBy('nomor_surat', 'asc')
             ->get();
-            // dd($surat);
-            // return $surat;
+        // dd($surat);
+        // return $surat;
         return view('RW.surat.nomor_surat', [
             'surat' => $surat,
             'title' => "Nomor Surat RW"
@@ -86,7 +86,7 @@ class SuratRWController extends Controller
         //jika data tidak ditemukan
         if (!$surat and $surat->status_surat == 0) {
             return redirect()->route('rw.surat.index')
-            ->with('error', 'Print Gagal! Data tidak temukan');
+                ->with('error', 'Print Gagal! Data tidak temukan');
         }
 
         // echo $surat->id_rt;
@@ -107,9 +107,10 @@ class SuratRWController extends Controller
             $surat['ttdrw'] = $ttdrw;
         }
         // dd(auth()->user());
+        // dd($surat->load('rts'));
         // return view('surat.surat_keterangan_pdf', ['surat' => $surat]);
-        $pdf = PDF::loadview('surat.surat_keterangan_pdf', ['surat' => $surat]);
-        return $pdf->stream();
+        // $pdf = PDF::loadview('RW.Surat.surat_keterangan_pdf', ['surat' => $surat]);
+        // return $pdf->stream();
     }
 
     // public function printSuratKeterangan(Surat $surat)
@@ -147,7 +148,7 @@ class SuratRWController extends Controller
         $surat = Surat::where('tanda_tangan_rt', $request->qr_code)
             ->orWhere('tanda_tangan_rw', $request->qr_code)
             ->first();
-            
+
         if ($surat == null) {
             return response()->json(['error' => 'Data tidak ditemukan.',]);
         }

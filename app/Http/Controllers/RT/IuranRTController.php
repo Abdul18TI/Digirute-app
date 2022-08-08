@@ -117,6 +117,13 @@ class IuranRTController extends Controller
         }
     }
 
+    public function destroyPembayaran($id)
+    {
+        $data = Pembayaran::find($id);
+        $data->delete();
+        return back()->with('success', 'Pembayaran berhasil dihapus!');
+    }
+
     public function edit(Iuran $iuran)
     {
         return view('rt.Iuran.edit_iuran', [
