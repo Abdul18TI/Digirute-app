@@ -18,7 +18,7 @@
 @section('container')
     @component('components.r-t.breadcrumb')
         @slot('breadcrumb_title')
-            <h3>Pengaduan Warga</h3>
+            <h3>Kegiatan Warga</h3>
         @endslot
         {{-- <li class="breadcrumb-item">Pengaduan</li> --}}
         {{-- <a href="{{ route('rt.kegiatan.index') }}"> --}}

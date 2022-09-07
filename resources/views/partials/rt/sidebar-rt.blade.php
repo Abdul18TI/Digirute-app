@@ -98,7 +98,7 @@
                                 data-feather="airplay"></i><span>Utilitas form</span></a>
                         <ul class="nav-submenu menu-content">
                             <li><a href="{{ route('rt.kategori_pengumuman.index') }}">Kategori Pengumuman</a></li>
-                            <li><a href="{{ route('rt.jenis_iuran.index') }}">Jenis Iuran</a></li>
+                            {{-- <li><a href="{{ route('rt.jenis_iuran.index') }}">Jenis Iuran</a></li> --}}
                             <li><a href="{{ route('rt.kategori_kegiatan.index') }}">Kategori Kegiatan</a></li>
                             <li><a href="{{ route('rt.kategori_pengaduan.index') }}">Kategori Pengaduan</a></li>
                             <li><a href="{{ route('rt.kategori_fasilitas.index') }}">Kategori Fasilitas</a></li>

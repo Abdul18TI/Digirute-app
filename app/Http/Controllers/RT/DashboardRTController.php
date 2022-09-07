@@ -26,7 +26,8 @@ class DashboardRTController extends Controller
         $lk = Warga::where('rt', $id_rt)->where('rw', $id_rw)->where('jenis_kelamin', 1)->count('jenis_kelamin');
         $pr = Warga::where('rt', $id_rt)->where('rw', $id_rw)->where('jenis_kelamin', 2)->count('jenis_kelamin');
         $kk = Warga::distinct()->where('rt', $id_rt)->where('rw', $id_rw)->count('no_kk');
-        $kegiatan = Kegiatan::with('Kategori_kegiatans')->take(5)->where('tgl_mulai_kegiatan', '>=', Carbon::now())->where('penanggung_jawab', 'RT')->where('id_penanggung_jawab', auth()->user()->id_rt)->get();
+        // echo  Carbon::now();
+        $kegiatan = Kegiatan::with('Kategori_kegiatans')->take(5)->where('tgl_mulai_kegiatan', '>=', Carbon::now()->format('Y-m-d'))->where('penanggung_jawab', 'RT')->where('id_penanggung_jawab', auth()->user()->id_rt)->get();
         $surat = Surat::with('wargas')->take(5)->where('status_surat', 0)->where('rt', $id_rt)->where('rw', $id_rw)->latest()->get();
         // $meninggal = WargaMeninggal::where('rt', $id_rt)->where('rw', $id_rw)->count('id');
         $meninggal = WargaMeninggal::whereHas('wargas', function ($q) {
@@ -35,7 +36,8 @@ class DashboardRTController extends Controller
         $miskin = WargaMiskin::whereHas('wargas', function ($q) {
             $q->where('rt', auth()->user()->id_rt)->where('rw', auth()->user()->rw_rel->id_rw);
         })->whereYear('created_at', now()->year)->count('id');
-        // dd($surat);
+       
+        // dd($kegiatan);   
         // return '<pre>' . auth()->guard('rt')->user() . '</pre>';
         return view(
             'RT.dashboard-rt',
